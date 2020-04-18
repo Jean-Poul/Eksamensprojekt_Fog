@@ -49,20 +49,9 @@
             </tr>
         </table>
 
-
-<%--        Bare lige se I har en ide om hvad vi forslå I ikke gør ! det hedder scpript lets --%>
-<%--        <% String error = (String) request.getAttribute( "error");--%>
-<%--           if ( error != null) { --%>
-<%--               out.println("<H2>Error!!</h2>");--%>
-<%--               out.println(error);--%>
-<%--           }--%>
-<%--        %>--%>
-
         <c:if test = "${requestScope.error!= null}" >
-
            <h2>Error ! </h2>
             ${requestScope.error}
-
         </c:if>
     </body>
 </html>
