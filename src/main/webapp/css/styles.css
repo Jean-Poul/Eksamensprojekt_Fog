@@ -3,59 +3,77 @@ html {
     margin: 0;
     padding: 0;
 }
+body, html {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 /* Header */
 header {
     height: 25vh;
-    background: url(../images/header.jpg) no-repeat center center;
+    background: url(../images/header.jpg) no-repeat center;
     background-size: cover;
 }
-.logo {
-    height: 25vh;
+.blur {
+    background: #FAFAFF;
     float: left;
+    filter: blur(27px);
+    -webkit-filter: blur(27px);
+    height: 100%;
+    width: 12em;
     position: absolute;
-    margin-top: 50px;
-    margin-left: 25px;
-    z-index: 100;
-}
-.logo :hover {
-    border: 1px solid white;
+    margin-top: 6em;
 }
 .headerText{
     float: right;
     color: #1D5E9A;
+    font-family: 'Caveat', cursive;
 }
 
 /* Navigation */
 nav {
-    background: #1D5E9A;
-    padding: 0;
-    z-index: 1;
-    position: absolute;
+    background: rgba(3,3,67,1);
+    background: -moz-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
+    background: -o-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
+    background: -ms-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
+    background: linear-gradient(to right, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030343', endColorstr='#1d5e9a', GradientType=1 );
+    padding: 0 !important;
+    overflow: visible !important;
 }
 nav a {
-    border: 1px solid white;
-    padding: 12px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
     text-align: center;
-    width: 100%;
 }
 nav a:hover {
-    background: #0C2069;
-    border: 1px solid black;
+    color: white;
+    border-left: 1px solid #30343F;
+    border-right: 1px solid #30343F;
 }
-.leftMenu {
-    width: 25%;
+.logo {
+    float: left;
+    position: absolute;
+    border: none !important;
 }
-.rightMenu {
-    width: 12%;
+.logo :hover {
+    background: none !important;
+    border: none !important;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px #30343F;
 }
 
 /* Footer */
 footer {
     background: #1D5E9A;
-    color: #0C2069;
+    color: #FAFAFF;
 }
 footer a:hover {
     text-decoration: none;
-    color: white;
+    color: #30343F;
 }

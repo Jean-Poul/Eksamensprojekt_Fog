@@ -1,7 +1,7 @@
 <!-- Header & imports -->
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="includes/header.inc" %>
-<!-- End header & imports -->
+<!-- End header -->
 
 <!-- Container -->
 <div class="container">

@@ -15,14 +15,15 @@
 
                 <h1>Fog første udkast</h1>
 
-                <form>
+                <!-- Input form -->
+                <form class="row" action="FrontController">
+
+                    <!-- Column -->
+                    <div class="col">
+                    <!-- Order option -->
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <label for="CarportWidth">Carport bredde</label>
+                        <select class="form-control" id="CarportWidth">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -30,7 +31,100 @@
                             <option>5</option>
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="CarportLength">Carport længde</label>
+                        <select class="form-control" id="CarportLength">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="RoofOption">Tag</label>
+                        <select class="form-control" id="RoofOption">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ShedWidth">Redskabsrum bredde</label>
+                        <select class="form-control" id="ShedWidth">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ShedLength">Redskabsrum længde</label>
+                        <select class="form-control" id="ShedLength">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <!-- End order option -->
+                    </div>
+                    <!-- End column -->
+
+                    <!-- Column -->
+                    <div class="col">
+                    <!-- User info -->
+                    <div class="form-group">
+                        <label for="Name">Navn</label>
+                        <input type="text" class="form-control" id="Name" placeholder="navn">
+                    </div>
+                    <div class="form-group">
+                        <label for="Address">Adresse</label>
+                        <input type="text" class="form-control" id="Address" placeholder="adresse">
+                    </div>
+                    <div class="form-group">
+                        <label for="ZipCodeCity">Postnummer og By</label>
+                        <input type="text" class="form-control" id="ZipCodeCity" placeholder="postnummer og by">
+                    </div>
+                    <div class="form-group">
+                        <label for="Telephone">Telefon</label>
+                        <input type="text" class="form-control" id="Telephone" placeholder="telefon">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email address</label>
+                        <input type="text" class="form-control" id="Email" placeholder="email">
+                    </div>
+                    <!-- End user info -->
+                    </div>
+                    <!-- End column -->
+
+                    <!-- Column -->
+                    <div class="col">
+
+                        <!-- Text area -->
+                        <div class="form-group">
+                            <label for="Comments">Bemærkninger</label>
+                            <textarea class="form-control" id="Comments" rows="12"></textarea>
+                        </div>
+                        <!-- End text area -->
+
+                        <!-- Submit button -->
+                        <input class="btn btn-primary" type="submit" value="Send">
+                        <!-- End submit button -->
+
+                    </div>
+                    <!-- End column -->
+
                 </form>
+                <!-- End form -->
 
             </section>
             <!-- End section -->
