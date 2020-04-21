@@ -14,6 +14,7 @@ public class CarportCalculation {
     private double carportLength;
     private double carportWidth;
     private int customerRoofAngle;
+
     private int calcAngle;
     private double calcRaftLength;
     private double calcRoofHeight;
@@ -117,6 +118,4 @@ public class CarportCalculation {
 //    private double calcNoOfBeams(){
 //
 //    }
-
-
 }
