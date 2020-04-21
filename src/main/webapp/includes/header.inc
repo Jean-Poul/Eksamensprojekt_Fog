@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="/images/favicon.ico?" rel="icon" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
     <!-- header title -->
     <title>${requestScope.message}</title>
 </head>
