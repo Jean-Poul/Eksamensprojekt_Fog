@@ -69,14 +69,14 @@
         <!-- Navigation links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active mr">
-                <a class="nav-link" href="index.jsp">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link px-5" href="index.jsp">Home<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item ml-5">
-                <a class="nav-link" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
+            <li class="nav-item">
+                <a class="nav-link px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
             </li>
         </ul>
 
-            <a class="nav-link btn badge-primary my-2 my-sm-0" href="FrontController?target=redirect&destination=login">Log ind<span class="sr-only">(current)</span></a>
+            <a class="nav-link my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind<span class="sr-only">(current)</span></a>
 
             <!-- End navigation links -->
         </div>
