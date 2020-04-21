@@ -14,6 +14,8 @@
             <section class="col-12">
 
                 <h1>Fog første udkast</h1>
+                <a class="btn btn-primary px-5" href="FrontController?target=redirect&destination=#">Byg selv</a>
+                <a class="btn btn-secondary px-5" href="FrontController?target=redirect&destination=#">Standard carporte</a>
 
                 <!-- Input form -->
                 <form class="row" action="FrontController">
