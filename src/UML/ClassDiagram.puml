@@ -1,0 +1,85 @@
+@startuml
+
+package "DBAccess" #78d683 {
+
+Class UserMapper{
+{static}+void createUser(User)
+{static}+User login(email, password)
+}
+
+class Connector{
+{static}-String URL
+{static}-String USERNAME
+{static}-String PASSWORD
+{static}-Connection singleton
+{static}+Connection connection()
+{static}+void setConnection(con)
+}
+
+}
+
+package "FunctionLayer" #96c4fa {
+
+class CarportCalculation{
+Skal udfyldes
+}
+
+class LogicFacade {
+{static}+User login(email, password)
+{static}+User createUser(email, password)
+}
+
+class LoginSampleException extends Exception{
++LoginSampleException(msg)
+}
+
+class User{
+-String email
+-String id
+-String password
+-String role
++User(email, password, role)
+}
+
+}
+
+package "PresentationLayer" #fa9696 {
+
+class Command{
+{Static}-HashMap: String, command
+{Static}-void initCommands()
+{Static}+Command from(request)
+{abstract} String execute()
+}
+
+class CarportCalcPage extends Command{
+{Static}+String execute(request, response)
+}
+
+class FrontController extends HttpServlet{
+{Static}#void processRequest(request, response)
+{Static}#void doGet(request, response)
+{Static}#void doPost(request, response)
+{Static}#void getServletInfo()
+}
+
+class Login extends Command{
+{Static}+String execute(request,response)
+}
+
+class Redirect extends Command{
+{Static}+String execute(request,response)
+}
+
+class Register extends Command{
+{Static}+String execute(request,response)
+}
+
+class UnknownCommand extends Command{
+{Static}+String execute(request,response)
+
+}
+
+}
+
+@enduml
