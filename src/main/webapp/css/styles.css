@@ -24,10 +24,10 @@ header {
     float: left;
     filter: blur(27px);
     -webkit-filter: blur(27px);
-    height: 100%;
+    height: 25vh;
     width: 12em;
     position: absolute;
-    margin-top: 6em;
+    margin-top: 3em;
 }
 .headerText{
     float: right;
