@@ -49,6 +49,11 @@
             </tr>
         </table>
 
+        <form name="testBeregning" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="CarportCalcPage">
+            <input class="btn btn-info" type="submit" value="Så test mig dog! Så laver jeg en sysout">
+        </form>
+
         <c:if test = "${requestScope.error!= null}" >
            <h2>Error ! </h2>
             ${requestScope.error}
