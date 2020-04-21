@@ -95,11 +95,18 @@ INSERT INTO roof (roof_type,roof_material) VALUES ('fladt','Plasttrapezplader'),
 UNLOCK TABLES;
 
 LOCK TABLES roof_pitch WRITE;
-INSERT INTO roof_pitch (pitch) VALUES ('15'),
-									  ('20'),
-                                      ('25'),
-                                      ('30'),
-                                      ('35'),
-                                      ('40'),
-                                      ('45');
+INSERT INTO roof_pitch (pitch,factor) VALUES ('15','1'),
+											 ('20','0.97'),
+											 ('25','0.94'),
+											 ('30','0.89'),
+											 ('35','0.84'),
+											 ('40','0.79'),
+											 ('45','0.72');
+UNLOCK TABLES;
+
+LOCK TABLES rafter_spacing WRITE;
+INSERT INTO rafter_spacing (category,beam_dimension,m04,m06,m08,m10,m12) VALUES ('let','45 x 120','2.81','2.48','2.26','2.10','1.98'),
+																				('let','45 x 195','4.52','4.02','3.68','3.44','3.24'),
+                                                                                ('tung','45 x 120','2.43','2.13','1.93','1.79','1.68'),
+                                                                                ('tung','45 x 195','3.94','3.48','3.18','2.95','2.78');
 UNLOCK TABLES;
