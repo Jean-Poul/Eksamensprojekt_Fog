@@ -1,0 +1,33 @@
+/* Global settings */
+html {
+    margin: 0;
+    padding: 0;
+}
+/* Navigation */
+header {
+    height: 25vh;
+    background: url(../_images/header.jpg) no-repeat center center;
+    background-size: cover;
+}
+header img {
+    height: 20vh;
+    width: 10vw;
+    margin-left: 50px;
+    margin-top: 100px;
+    float: left;
+}
+nav {
+    background: #1D5E9A;
+}
+nav a {
+    border: 1px solid white;
+    padding: 12px;
+    text-align: center;
+}
+.leftNav {
+    margin-left: 200px;
+}
+/* Footer */
+footer {
+    background: #1D5E9A;
+}
