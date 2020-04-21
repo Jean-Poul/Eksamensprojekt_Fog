@@ -1,16 +1,41 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jplm
-  Date: 19-04-2020
-  Time: 17:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<!-- Header & imports -->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@include file="../includes/header.inc" %>
+<!-- End header & imports -->
+
+<!-- Container -->
+<div class="container">
+    <!-- Row -->
+    <div class="row">
+
+        <main role="main">
+
+            <section class="col-12">
+
+                <h1>Fog første udkast</h1>
+                <!-- Alert container -->
+                <div class="alert alert-danger" role="alert">
+                    <!-- Error message -->
+                    <c:if test="${requestScope.error!= null}">
+
+                        <h2>Der opstod en fejl</h2>
+                        ${requestScope.error}
+
+                    </c:if>
+                    <!-- End error message -->
+                </div>
+                <!-- End alert container -->
+
+
+            </section>
+        </main>
+
+    </div>
+    <!-- End row -->
+</div>
+<!-- End container -->
+
+<!-- Footer -->
+<%@include file="../includes/footer.inc" %>
+<!-- End footer -->

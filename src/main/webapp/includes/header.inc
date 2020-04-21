@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- External CSS -->
-    <link rel="styleshess" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
     <!-- Google font -->
     <link rel="stylesheet" href="#">
     <!-- header title -->
@@ -16,17 +16,25 @@
 </head>
 <body>
 <header role="banner">
-    <a class="navbar-brand" href="index.jsp" title="Logo">
-        <img src="_images/logo.PNG" alt="Fog logo">
+    <a class="logo navbar-brand shadow p-3 mb-5 rounded" href="index.jsp" title="Logo">
+        <img src="images/logo.PNG" alt="Fog logo">
     </a>
-
-</header>et" href="_css/styles.c
-<nav role="navigation" class="navbar navbar-dark">
-<div class="leftNav navbar-nav navbar-expand-sm sticky-top">
-        <a class="nav-item nav-link align-content-center active" href="index.jsp" title="">Home</a>
+    <div class="headerText px-3 py-3">
+        <p>
+        Til dig, der går op i detaljen <br>
+        Dig, der banker, borer, skærer, skruer, former, vinkler, farver <br>
+        Tak, fordi du gør dig umage
+        </p>
+    </div>
+</header>
+<nav role="navigation" class="navbar navbar-dark py-0">
+    <div class="container">
+<div class="leftMenu navbar-nav navbar-expand-sm">
+        <a class="nav-item nav-link active" href="index.jsp" title="">Home</a>
         <a class="nav-item nav-link" href="FrontController?target=redirect&destination=customerpage" title="">Bestil</a>
     </div>
-    <div class="navbar-nav navbar-expand-sm ml-sm-auto">
+    <div class="rightMenu navbar-nav navbar-expand-sm ml-sm-auto">
         <a class="nav-item nav-link" href="FrontController?target=redirect&destination=login" title="">Log ind</a>
+    </div>
     </div>
 </nav>

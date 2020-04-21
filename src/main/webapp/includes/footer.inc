@@ -13,7 +13,7 @@
     <b>Telefon: </b><a href="tel:45-87-10-01">45 87 10 01 </a> &bull;
 
     <!-- Email -->
-    <b>Email:</b> <a href="mailto:mums@cupcake.com">info@johannesfog.dk</a> &bull;
+    <b>Email:</b> <a href="mailto:info@johannesfog.dk">info@johannesfog.dk</a> &bull;
     </span>
     <span>
     &copy; 2020 All rights reserved:

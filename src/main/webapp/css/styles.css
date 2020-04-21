@@ -3,31 +3,59 @@ html {
     margin: 0;
     padding: 0;
 }
-/* Navigation */
+
+/* Header */
 header {
     height: 25vh;
-    background: url(../_images/header.jpg) no-repeat center center;
+    background: url(../images/header.jpg) no-repeat center center;
     background-size: cover;
 }
-header img {
-    height: 20vh;
-    width: 10vw;
-    margin-left: 50px;
-    margin-top: 100px;
+.logo {
+    height: 25vh;
     float: left;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 25px;
+    z-index: 100;
 }
+.logo :hover {
+    border: 1px solid white;
+}
+.headerText{
+    float: right;
+    color: #1D5E9A;
+}
+
+/* Navigation */
 nav {
     background: #1D5E9A;
+    padding: 0;
+    z-index: 1;
+    position: absolute;
 }
 nav a {
     border: 1px solid white;
     padding: 12px;
     text-align: center;
+    width: 100%;
 }
-.leftNav {
-    margin-left: 200px;
+nav a:hover {
+    background: #0C2069;
+    border: 1px solid black;
 }
+.leftMenu {
+    width: 25%;
+}
+.rightMenu {
+    width: 12%;
+}
+
 /* Footer */
 footer {
     background: #1D5E9A;
+    color: #0C2069;
+}
+footer a:hover {
+    text-decoration: none;
+    color: white;
 }

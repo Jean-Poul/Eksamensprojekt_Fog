@@ -1,62 +1,44 @@
-<%-- 
-    Document   : index
-    Created on : Aug 22, 2017, 2:01:06 PM
-    Author     : kasper
---%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!-- Header & imports -->
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@include file="includes/header.inc" %>
+<!-- End header & imports -->
+
+<!-- Container -->
+<div class="container">
+    <!-- Row -->
+    <div class="row">
+
+        <!-- Main -->
+    <main role="main">
+        <!-- Section -->
+        <section class="col-12">
+
+    <h1>Fog første udkast</h1>
+     <p>Rum marooned jack Plate Fleet hogshead league gaff coffer barque lugger. Six pounders nipperkin blow the man down provost nipper dead men tell no tales careen black spot Sail ho brig. Driver capstan Chain Shot rope's end squiffy marooned Pirate Round jury mast bucko quarter.
+
+         Port jury mast matey long boat list spike reef gaff trysail mutiny. Long clothes cackle fruit Sea Legs keelhaul warp bucko pirate tack Nelsons folly fore. Chandler snow piracy dance the hempen jig no prey, no pay six pounders square-rigged league stern poop deck.
+
+         Provost chantey rutters aye Blimey fore pinnace walk the plank quarter line. Execution dock crimp take a caulk tender bilged on her anchor yawl spyglass case shot lass strike colors. Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
+
+         Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
+     </p>
 
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome page</title>
-    </head>
-    <body>
-        <h1>Welcome to Sem 2</h1>
-        
-        <table>
-            <tr><td>Login</td>
-                <td>
-                    <form name="login" action="FrontController" method="POST">
-                        <input type="hidden" name="target" value="login">
-                        Email:<br>
-                        <input type="text" name="email" value="someone@nowhere.com">
-                        <br>
-                        Password:<br>
-                        <input type="password" name="password" value="sesam">
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                </td>
-                <td>Or Register</td>
-                <td>
-                    <form name="register" action="FrontController" method="POST">
-                        <input type="hidden" name="target" value="register">
-                        Email:<br>
-                        <input type="text" name="email" value="someone@nowhere.com">
-                        <br>
-                        Password:<br>
-                        <input type="password" name="password1" value="sesam">
-                        <br>
-                        Retype Password:<br>
-                        <input type="password" name="password2" value="sesam">
-                        <br>
-                        <input type="submit" value="Submit">
-                    </form>
-                </td>
-            </tr>
-        </table>
+            <form name="testBeregning" action="FrontController" method="POST">
+                <input type="hidden" name="target" value="CarportCalcPage">
+                <input class="btn btn-info" type="submit" value="Så test mig dog! Så laver jeg en sysout">
+            </form>
 
-        <form name="testBeregning" action="FrontController" method="POST">
-            <input type="hidden" name="target" value="CarportCalcPage">
-            <input class="btn btn-info" type="submit" value="Så test mig dog! Så laver jeg en sysout">
-        </form>
+        </section>
+        <!-- End section -->
+    </main>
+        <!-- End main -->
+    </div>
+    <!-- End row -->
+</div>
+<!-- End container -->
 
-        <c:if test = "${requestScope.error!= null}" >
-           <h2>Error ! </h2>
-            ${requestScope.error}
-        </c:if>
-    </body>
-</html>
+<!-- Footer -->
+<%@include file="includes/footer.inc" %>
+<!-- End footer -->
+
