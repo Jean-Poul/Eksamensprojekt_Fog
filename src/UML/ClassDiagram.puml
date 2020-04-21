@@ -20,7 +20,7 @@ class Connector{
 
 package "FunctionLayer" #96c4fa {
 
-LogicFacade <--> Connector
+LogicFacade <--> UserMapper
 Connector <--> UserMapper
 UserMapper <--> User
 
