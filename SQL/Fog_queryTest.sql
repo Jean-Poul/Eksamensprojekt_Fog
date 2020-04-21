@@ -10,6 +10,7 @@ SELECT * FROM orders;
 SELECT * FROM roof;
 SELECT * FROM roof_pitch;
 SELECT * FROM user_proposition;
+SELECT * FROM rafter_spacing;
 UNLOCK TABLES;
 -- ----------------------------------
 -- queryes for carport width
@@ -40,3 +41,28 @@ SELECT roof_material FROM roof WHERE roof_type = 'fladt';
 -- queryes for erected roof
 -- ----------------------------------
 SELECT roof_material FROM roof WHERE roof_type = 'rejst';
+
+-- ----------------------------------
+-- queryes for rafter spacing light
+-- ----------------------------------
+SELECT * FROM rafter_spacing WHERE category = 'let';
+
+-- ----------------------------------
+-- queryes for rafter spacing heavy
+-- ----------------------------------
+SELECT * FROM rafter_spacing WHERE category = 'tung';
+
+-- ----------------------------------
+-- queryes for roof pitch 'pitch'
+-- ----------------------------------
+SELECT pitch FROM roof_pitch; 
+
+-- ----------------------------------
+-- queryes for roof pitch 'factor'
+-- ----------------------------------
+SELECT factor FROM roof_pitch;
+
+-- ---------------------------------------
+-- queryes for zipcode with leading zeros
+-- ---------------------------------------
+SELECT LPAD(zipcode,4,'0') as zipcode, cityname FROM cities LIMIT 0, 1500;

@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`measurement_units` (
   `ts_length` TINYINT(4) NOT NULL,
   PRIMARY KEY (`measurement_units_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -88,6 +89,24 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `fogdb`.`rafter_spacing`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fogdb`.`rafter_spacing` (
+  `rafter_spacing_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `category` VARCHAR(45) NOT NULL,
+  `beam_dimension` VARCHAR(45) NOT NULL,
+  `m04` DECIMAL(10,2) NOT NULL,
+  `m06` DECIMAL(10,2) NOT NULL,
+  `m08` DECIMAL(10,2) NOT NULL,
+  `m10` DECIMAL(10,2) NOT NULL,
+  `m12` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`rafter_spacing_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `fogdb`.`roof`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fogdb`.`roof` (
@@ -96,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`roof` (
   `roof_material` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`roof_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 59
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -106,8 +126,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `fogdb`.`roof_pitch` (
   `roof_pitch_id` INT(11) NOT NULL AUTO_INCREMENT,
   `pitch` INT(11) NOT NULL,
+  `factor` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`roof_pitch_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -122,6 +144,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`users` (
   `role` VARCHAR(20) NOT NULL DEFAULT 'costumer',
   PRIMARY KEY (`users_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
