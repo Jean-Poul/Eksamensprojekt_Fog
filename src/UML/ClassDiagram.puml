@@ -1,6 +1,6 @@
 @startuml
 
-package "DBAccess" #78d683 {
+package "DBAccess" #fa9696 {
 
 Class UserMapper{
 {static}+void createUser(User)
@@ -20,8 +20,21 @@ class Connector{
 
 package "FunctionLayer" #96c4fa {
 
+LogicFacade <--> Connector
+Connector <--> UserMapper
+UserMapper <--> User
+
 class CarportCalculation{
-Skal udfyldes
+-double carportLength
+-double carportWidth
+-int customerRoofAngle
+-int calcAngel
+-double calcRaftLength
+-double calcRoofHeight
+-void populateAngleAndFactor()
+-void calcRoofAngle()
+-void calcRaftLength()
+-void calcRoofHeight()
 }
 
 class LogicFacade {
@@ -43,7 +56,9 @@ class User{
 
 }
 
-package "PresentationLayer" #fa9696 {
+package "PresentationLayer" #78d683 {
+
+FrontController --|> Command
 
 class Command{
 {Static}-HashMap: String, command
@@ -77,7 +92,6 @@ class Register extends Command{
 
 class UnknownCommand extends Command{
 {Static}+String execute(request,response)
-
 }
 
 }
