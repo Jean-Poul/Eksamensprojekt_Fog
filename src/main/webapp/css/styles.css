@@ -24,10 +24,10 @@ header {
     float: left;
     filter: blur(27px);
     -webkit-filter: blur(27px);
-    height: 25vh;
-    width: 12em;
+    height: 136px;
+    width: 136px;
     position: absolute;
-    margin-top: 3em;
+    margin-top: 6em;
 }
 .headerText{
     float: right;
@@ -70,6 +70,16 @@ nav a:hover {
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 0px #30343F;
+}
+.logoBackground {
+    background: #033F63;
+    position: absolute;
+    height: 136px;
+    width: 136px;
+    margin-left: 1em;
+}
+.hamburger {
+    background: #30343F;
 }
 
 /* Footer */

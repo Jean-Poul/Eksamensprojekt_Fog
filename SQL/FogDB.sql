@@ -1,4 +1,4 @@
--- MySQL for FogDB
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -12,33 +12,11 @@ CREATE SCHEMA IF NOT EXISTS `fogdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb
 USE `fogdb` ;
 
 -- -----------------------------------------------------
--- Table `fogdb`.`user_proposition`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fogdb`.`user_proposition` (
-  `user_proposition_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `adress` VARCHAR(45) NOT NULL,
-  `zipcode` INT(11) NOT NULL,
-  `phone` INT(11) NOT NULL,
-  `email` VARCHAR(90) NOT NULL,
-  `comments` TEXT NOT NULL,
-  PRIMARY KEY (`user_proposition_id`, `zipcode`),
-  INDEX `fk_userProp_cities_idx` (`zipcode` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `fogdb`.`cities`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `fogdb`.`cities` (
   `zipcode` INT(11) NOT NULL,
-  `cityname` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`zipcode`),
-  CONSTRAINT `fk_userProp_cities`
-    FOREIGN KEY (`zipcode`)
-    REFERENCES `fogdb`.`user_proposition` (`zipcode`))
+  `cityname` VARCHAR(45) NOT NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -56,7 +34,24 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`measurement_units` (
   `ts_length` TINYINT(4) NOT NULL,
   PRIMARY KEY (`measurement_units_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `fogdb`.`user_proposition`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fogdb`.`user_proposition` (
+  `user_proposition_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `adress` VARCHAR(45) NOT NULL,
+  `zipcode` INT(11) NOT NULL,
+  `phone` INT(11) NOT NULL,
+  `email` VARCHAR(90) NOT NULL,
+  `comments` TEXT NOT NULL,
+  PRIMARY KEY (`user_proposition_id`))
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -95,13 +90,11 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`rafter_spacing` (
   `rafter_spacing_id` INT(11) NOT NULL AUTO_INCREMENT,
   `category` VARCHAR(45) NOT NULL,
   `beam_dimension` VARCHAR(45) NOT NULL,
-  `m04` DECIMAL(10,2) NOT NULL,
-  `m06` DECIMAL(10,2) NOT NULL,
-  `m08` DECIMAL(10,2) NOT NULL,
-  `m10` DECIMAL(10,2) NOT NULL,
-  `m12` DECIMAL(10,2) NOT NULL,
+  `beam_spacing` DECIMAL(10,2) NOT NULL,
+  `rafter_length` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`rafter_spacing_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -112,10 +105,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `fogdb`.`roof` (
   `roof_id` INT(11) NOT NULL AUTO_INCREMENT,
   `roof_type` VARCHAR(45) NOT NULL,
+  `roof_category` VARCHAR(45) NOT NULL,
   `roof_material` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`roof_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 59
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -129,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`roof_pitch` (
   `factor` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`roof_pitch_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -144,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`users` (
   `role` VARCHAR(20) NOT NULL DEFAULT 'costumer',
   PRIMARY KEY (`users_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

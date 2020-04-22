@@ -16,9 +16,9 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
     <!-- Favicon -->
-    <link href="/images/favicon.ico?" rel="icon" type="image/x-icon" />
-    <link rel="icon" type="image/png" href="images/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png">
     <!-- header title -->
     <title>${requestScope.message}</title>
 </head>
@@ -49,15 +49,16 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg">
-
+    <div class="logoBackground navbar-brand my-3"></div>
         <!-- Logo -->
         <a class="logo navbar-brand ml-5 d-none d-sm-inline-block" href="index.jsp" title="Logo">
-            <img height="136" width="136" src="images/logo.png" alt="Fog logo">
+
+            <img heigth="136" width="136" src="images/logo.png" alt="Fog logo">
         </a>
         <!-- end logo -->
 
     <!-- Hamburger menu -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="hamburger navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- End hamburger menu -->
