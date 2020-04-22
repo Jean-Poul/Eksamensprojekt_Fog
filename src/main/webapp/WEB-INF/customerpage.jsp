@@ -5,7 +5,7 @@
 <!-- End header & imports -->
 
 <!-- Container -->
-<div class="container">
+<div class="container min-vh-100">
     <!-- Row -->
     <div class="row">
         <!-- Main -->
