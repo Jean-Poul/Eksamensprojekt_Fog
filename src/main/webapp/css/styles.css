@@ -37,7 +37,7 @@ header {
 
 /* Navigation */
 nav {
-    background-image: linear-gradient(-90deg, #030343, #1d5e9a);
+    background-image: linear-gradient(-90deg, #1d5e9a, #030343 );
     /*
     background: rgba(3,3,67,1);
     background: -moz-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
