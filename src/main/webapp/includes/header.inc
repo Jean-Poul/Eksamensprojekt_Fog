@@ -30,7 +30,7 @@
 <!-- Header -->
 <header role="banner" class="jumbotron-fluid">
     <!-- Header text -->
-    <div class="headerText px-3 py-3">
+    <div class="headerText px-3 py-3 d-none d-sm-inline-block">
         <p>
         Til dig, der går op i detaljen <br>
         Dig, der banker, borer, skærer, skruer, former, vinkler, farver <br>
@@ -40,7 +40,7 @@
     <!-- end header text -->
 
     <!-- Blur effect -->
-    <div class="blur py-0 px-0">
+    <div class="blur py-0 px-0 d-none d-sm-inline-block">
     </div>
     <!-- End blur effect -->
 
@@ -51,7 +51,7 @@
 <nav class="navbar navbar-expand-lg">
 
         <!-- Logo -->
-        <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
+        <a class="logo navbar-brand ml-5 d-none d-sm-inline-block" href="index.jsp" title="Logo">
             <img height="136" width="136" src="images/logo.png" alt="Fog logo">
         </a>
         <!-- end logo -->
