@@ -66,3 +66,13 @@ SELECT factor FROM roof_pitch;
 -- queryes for zipcode with leading zeros
 -- ---------------------------------------
 SELECT LPAD(zipcode,4,'0') as zipcode, cityname FROM cities LIMIT 0, 1500;
+
+-- ----------------------------------------------------------------------------
+-- queryes for beam dimension and beam spacing using category and rafter lengt
+-- ----------------------------------------------------------------------------
+-- first ex. is using 'let' roof and a rafter length of 3.4m
+SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'let' and rafter_length >= '3.4'
+ORDER BY rafter_length ASC LIMIT 1;
+-- second ex. is using 'tung' roof and a rafter length of 2.98m
+SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'tung' and rafter_length >= '2.98'
+ORDER BY rafter_length ASC LIMIT 1;
