@@ -50,8 +50,8 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg">
     <div class="logoBackground navbar-brand my-3"></div>
-        <!-- Logo -->
-        <a class="logo navbar-brand ml-5 d-none d-sm-inline-block" href="index.jsp" title="Logo">
+        <!-- Logo d-none d-sm-inline-block -->
+        <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
 
             <img heigth="136" width="136" src="images/logo.png" alt="Fog logo">
         </a>
