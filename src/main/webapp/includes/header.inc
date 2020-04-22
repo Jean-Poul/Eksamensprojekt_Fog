@@ -49,16 +49,17 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg">
-
+    <div class="logoBackground navbar-brand my-3"></div>
         <!-- Logo -->
         <a class="logo navbar-brand ml-5 d-none d-sm-inline-block" href="index.jsp" title="Logo">
-            <img height="136" width="136" src="images/logo.png" alt="Fog logo">
+
+            <img heigth="136" width="136" src="images/logo.png" alt="Fog logo">
         </a>
         <!-- end logo -->
 
     <!-- Hamburger menu -->
-    <button class="navbar-toggler bg-primary text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">-</span>
+    <button class="hamburger navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
     <!-- End hamburger menu -->
 
