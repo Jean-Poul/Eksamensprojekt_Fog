@@ -16,9 +16,9 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
     <!-- Favicon -->
-    <link href="/images/favicon.ico?" rel="icon" type="image/x-icon" />
-    <link rel="icon" type="image/png" href="images/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="images/favicon-32x32.png">
+    <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png">
     <!-- header title -->
     <title>${requestScope.message}</title>
 </head>
@@ -57,8 +57,8 @@
         <!-- end logo -->
 
     <!-- Hamburger menu -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler bg-primary text-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">-</span>
     </button>
     <!-- End hamburger menu -->
 
