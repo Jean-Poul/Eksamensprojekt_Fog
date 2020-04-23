@@ -39,16 +39,11 @@
     </div>
     <!-- end header text -->
 
-    <!-- Blur effect -->
-    <div class="blur py-0 px-0 d-none d-sm-inline-block">
-    </div>
-    <!-- End blur effect -->
-
 </header>
 <!-- End header -->
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="logoBackground navbar-brand my-3"></div>
         <!-- Logo d-none d-sm-inline-block -->
         <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
@@ -63,10 +58,12 @@
     </button>
     <!-- End hamburger menu -->
 
+    <!-- Container -->
+    <div class="container">
+
     <!-- Collapse -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Container -->
-        <div class="container">
+
         <!-- Navigation links -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active mr">

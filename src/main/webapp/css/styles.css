@@ -19,16 +19,6 @@ header {
     background: url(../images/header.jpg) no-repeat center;
     background-size: cover;
 }
-.blur {
-    background: #FAFAFF;
-    float: left;
-    filter: blur(27px);
-    -webkit-filter: blur(27px);
-    height: 136px;
-    width: 136px;
-    position: absolute;
-    margin-top: 6em;
-}
 .headerText{
     float: right;
     color: #1D5E9A;
@@ -79,7 +69,7 @@ nav a:hover {
     margin-left: 1em;
 }
 .hamburger {
-    background: #30343F;
+
 }
 
 /* Footer */
