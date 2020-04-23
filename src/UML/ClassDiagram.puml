@@ -57,6 +57,19 @@ class User{
 +User(email, password, role)
 }
 
+class Svg{
+-double height
+-double
+-string viewbox
+-int x
+-int y
+-Stringbuilder svg
+-String headerTemplate
+-String rectTemplate
++Svg(height, width, viewbox, x, y)
++void addRect(x, y, height, width)
+}
+
 }
 
 package "PresentationLayer" #78d683 {
@@ -94,6 +107,10 @@ class Register extends Command{
 }
 
 class UnknownCommand extends Command{
+{Static}+String execute(request,response)
+}
+
+class Drawing extends Command{
 {Static}+String execute(request,response)
 }
 
