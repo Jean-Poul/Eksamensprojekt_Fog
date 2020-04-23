@@ -57,7 +57,7 @@
                     </div>
 
                         <div class="form-group">
-                            <label for="RoofOptionDegrees">Tag grader</label>
+                            <label for="RoofOptionDegrees">Tag hældning</label>
                             <select class="form-control" id="RoofOptionDegrees">
                                 <option>1</option>
                                 <option>2</option>
