@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="RoofOption">Tag</label>
+                        <label for="RoofOption">Tag type</label>
                         <select class="form-control" id="RoofOption">
                             <option>1</option>
                             <option>2</option>
@@ -55,6 +55,17 @@
                             <option>5</option>
                         </select>
                     </div>
+
+                        <div class="form-group">
+                            <label for="RoofOptionDegrees">Tag grader</label>
+                            <select class="form-control" id="RoofOptionDegrees">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
 
                     <div class="form-group">
                         <label for="ShedWidth">Redskabsrum bredde</label>
