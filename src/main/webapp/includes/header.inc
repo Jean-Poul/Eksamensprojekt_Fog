@@ -30,6 +30,7 @@
 <!-- Header -->
 <header role="banner" class="jumbotron-fluid">
     <!-- Header text -->
+
     <div class="headerText px-3 py-3 d-none d-sm-inline-block">
         <p>
         Til dig, der går op i detaljen <br>
@@ -44,7 +45,7 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="logoBackground navbar-brand my-3"></div>
+    <div class="logoBackground navbar-brand my-3"></div>-->
         <!-- Logo d-none d-sm-inline-block -->
         <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
 
@@ -52,8 +53,8 @@
         </a>
         <!-- end logo -->
 
-    <!-- Hamburger menu -->
-    <button class="hamburger navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Hamburger menu  ml-auto-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- End hamburger menu -->

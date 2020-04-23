@@ -17,7 +17,7 @@
             <div class="row">
 
                 <!-- Article -->
-    <article role="article" class="col">
+    <article role="article" class="col mt-5">
     <h1>Fog første udkast</h1>
      <p>
          Rum marooned jack Plate Fleet hogshead league gaff coffer barque lugger. Six pounders nipperkin blow the man down provost nipper dead men tell no tales careen black spot Sail ho brig. Driver capstan Chain Shot rope's end squiffy marooned Pirate Round jury mast bucko quarter.
