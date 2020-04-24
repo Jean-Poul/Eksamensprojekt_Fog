@@ -16,7 +16,7 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
     <!-- Favicon -->
-    <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon" />
+    <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon"/>
     <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" href="images/favicon/favicon-32x32.png">
     <!-- header title -->
@@ -33,9 +33,9 @@
 
     <div class="headerText px-3 py-3 d-none d-sm-inline-block">
         <p>
-        Til dig, der går op i detaljen <br>
-        Dig, der banker, borer, skærer, skruer, former, vinkler, farver <br>
-        Tak, fordi du gør dig umage
+            Til dig, der går op i detaljen <br>
+            Dig, der banker, borer, skærer, skruer, former, vinkler, farver <br>
+            Tak, fordi du gør dig umage
         </p>
     </div>
     <!-- end header text -->
@@ -43,12 +43,12 @@
 </header>
 <!-- End header -->
 
-    <!-- Container -->
-    <div class="container" id="menContainer">
+<!-- Container -->
+<div class="container" id="menContainer">
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <!-- <div class="logoBackground navbar-brand my-3"></div>-->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <!-- <div class="logoBackground navbar-brand my-3"></div>-->
 
         <!-- Logo d-none d-sm-inline-block -->
         <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
@@ -57,31 +57,34 @@
         </a>
         <!-- end logo -->
 
-    <!-- Hamburger menu  ml-auto-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- End hamburger menu -->
+        <!-- Hamburger menu  ml-auto-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- End hamburger menu -->
 
-    <!-- Collapse -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <!-- Navigation links -->
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active mr">
-                <a class="nav-link px-5" href="index.jsp">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
-            </li>
-        </ul>
+            <!-- Navigation links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active mr">
+                    <a class="nav-link px-5" href="index.jsp">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
+                </li>
+            </ul>
 
-            <a class="nav-link my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind<span class="sr-only">(current)</span></a>
-
+            <a class="nav-link my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind
+                <span class="sr-only">(current)</span></a>
             <!-- End navigation links -->
+
         </div>
-        <!-- End container -->
-    </div>
-    <!-- End collapse -->
-</nav>
-<!-- End navigation -->
+        <!-- End collapse -->
+    </nav>
+    <!-- End navigation -->
+</div>
+<!-- End container -->
+
