@@ -29,6 +29,12 @@
             <input type="hidden" name="target" value="CarportCalcPage">
             <input class="btn btn-info" type="submit" value="Så test mig dog! Så laver jeg en sysout">
         </form>
+
+        <form name="testDrawing" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="drawing">
+            <input class="btn btn-info" type="submit" value="test drawing">
+        </form>
+
         </article>
                 <!-- End article -->
 

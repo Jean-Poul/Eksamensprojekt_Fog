@@ -10,11 +10,11 @@ public class Svg {
     private StringBuilder svg = new StringBuilder();
 
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
 
-    public Svg(int height, int width, String viewbox, int x, int y) {
-        this.height = height;
+    public Svg(double width, double height, String viewbox, int x, int y) {
         this.width = width;
+        this.height = height;
         this.viewbox = viewbox;
         this.x = x;
         this.y = y;
@@ -69,5 +69,4 @@ public class Svg {
     public String toString() {
         return svg.toString() + "</svg>" ;
     }
-
 }
