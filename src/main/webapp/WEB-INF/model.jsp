@@ -16,7 +16,6 @@
                 <!-- Row -->
                 <div class="row">
 
-                    ${requestScope.svgdrawing}
 
                 </div>
                 <!-- End row -->
@@ -33,9 +32,4 @@
 <!-- Footer -->
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
-
-
-
-
-
 

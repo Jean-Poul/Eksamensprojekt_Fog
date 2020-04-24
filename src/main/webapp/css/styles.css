@@ -55,7 +55,6 @@ nav a:hover {
     padding-left: 0;
     padding-right: 0;
     max-width: 100%;
-
 }
 
 .logo {
@@ -64,6 +63,9 @@ nav a:hover {
     border: none !important;
     margin-top: -50px;
 /* On screens that are 600px or less, set the background color to olive */
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px #30343F;
 }
 
 @media screen and (max-width: 992px) {
@@ -73,22 +75,17 @@ nav a:hover {
 }
 
 .logo :hover {
-    background: none !important;
-    border: none !important;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 5px 0px #30343F;
+    /*background: none !important;
+    border: none !important;*/
 }
+/*
 .logoBackground {
     background: #033F63;
     position: absolute;
     height: 136px;
     width: 136px;
     margin-left: 1em;
-}
-.hamburger {
-
-}
+}*/
 
 /* Footer */
 footer {
