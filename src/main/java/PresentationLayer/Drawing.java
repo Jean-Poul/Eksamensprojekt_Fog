@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Drawing extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+
         Svg svg = new Svg(780.0, 600.0, "0,0,855,690",0,0);
 
         //Mål på hele carport
