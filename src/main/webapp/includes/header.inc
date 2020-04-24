@@ -43,13 +43,16 @@
 </header>
 <!-- End header -->
 
+    <!-- Container -->
+    <div class="container" id="menContainer">
+
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="logoBackground navbar-brand my-3"></div>-->
+    <!-- <div class="logoBackground navbar-brand my-3"></div>-->
         <!-- Logo d-none d-sm-inline-block -->
         <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
 
-            <img heigth="136" width="136" src="images/logo.png" alt="Fog logo">
+            <img heigth="90" width="90" src="images/logo.png" alt="Fog logo">
         </a>
         <!-- end logo -->
 
@@ -58,9 +61,6 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <!-- End hamburger menu -->
-
-    <!-- Container -->
-    <div class="container">
 
     <!-- Collapse -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

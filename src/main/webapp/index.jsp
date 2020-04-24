@@ -39,7 +39,7 @@
                 <!-- End article -->
 
                 <!-- Section -->
-            <section class="col">
+            <section class="col mt-5">
                 <!-- Carousel -->
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">

@@ -49,11 +49,29 @@ nav a:hover {
     border-left: 1px solid #30343F;
     border-right: 1px solid #30343F;
 }
+
+#menContainer{
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+
+}
+
 .logo {
     float: left;
-    position: absolute;
+    /*position: absolute;*/
     border: none !important;
+    margin-top: -50px;
+/* On screens that are 600px or less, set the background color to olive */
 }
+
+@media screen and (max-width: 992px) {
+    .logo {
+        float: left !important;
+    }
+}
+
 .logo :hover {
     background: none !important;
     border: none !important;
