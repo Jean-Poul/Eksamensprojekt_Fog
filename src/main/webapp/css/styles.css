@@ -51,7 +51,7 @@ nav a:hover {
 }
 
 #menContainer{
-    margin: 0 auto;
+    margin: 0 auto !important;
     padding-left: 0;
     padding-right: 0;
     max-width: 100%;
