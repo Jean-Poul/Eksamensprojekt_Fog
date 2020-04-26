@@ -10,7 +10,7 @@ public class Drawing extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        Svg svg = new Svg(780.0, 600.0, "0,0,855,690",0,0);
+        Svg svg = new Svg(75, 10, 1000,1000,"0,0,780,600");
 
         //Mål på hele carport
         svg.addRect(0,0,600.0,780.0);
@@ -54,6 +54,10 @@ public class Drawing extends Command {
         svg.addRect(110,562,9.7,10.0);
         svg.addRect(420,562,9.7,10.0);
         svg.addRect(730,562,9.7,10.0);
+
+        //Pile
+        svg.addLine(40,10,40,610);
+        svg.addLine(75,650,885,650);
 
         request.setAttribute("svgdrawing", svg.toString());
         return "drawing";
