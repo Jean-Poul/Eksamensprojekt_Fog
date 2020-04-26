@@ -1,7 +1,7 @@
 
 
 <!-- Footer -->
-<footer class="container-fluid page-footer font-small py-3">
+<footer class="container-fluid footer font-small py-3">
 
     <!-- Copyright -->
     <div class="footer-copyright text-center">
