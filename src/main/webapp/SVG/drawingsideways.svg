@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+
+<svg version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     height="100%" viewBox="0 0 855 500"
+     preserveAspectRatio="xMinYMin">
+
+    <defs>
+        <marker id="beginArrow" markerWidth="12" markerHeight="12" refX="0" refY="6" orient="auto">
+            <path d="M0,6 L12,0 L12,12 L0,6" style="fill: #000000;" />
+        </marker>
+        <marker id="endArrow" markerWidth="12" markerHeight="12" refX="12" refY="6" orient="auto">
+            <path d="M0,0 L12,6 L0,12 L0,0 " style="fill: #000000;" />
+        </marker>
+    </defs>
+
+    <!-- Pile -->
+    <line x1="40" y1="10" x2="40" y2="315" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+    <line x1="70" y1="105" x2="70" y2="315" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+    <line x1="105" y1="350" x2="185" y2="350" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+    <line x1="185" y1="350" x2="460" y2="350" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+    <line x1="460" y1="350" x2="580" y2="350" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+    <line x1="580" y1="350" x2="805" y2="350" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+    <line x1="805" y1="350" x2="835" y2="350" style="stroke:#000000;
+        marker-start: url(#beginArrow);
+        marker-end: url(#endArrow);" />
+
+
+    <!-- Text: Mål -->
+    <text style="text-anchor: middle" transform="translate(30,300) rotate(-90)">600 cm</text>
+    <text style="text-anchor: middle" x="200" y="350">780 cm</text>
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="95" y="10" width="730" height="305" viewBox="0 0 730 305" preserveAspectRatio="xMinYMin">
+
+        <!-- Ramme -->
+        <rect x="0" y="0" height="320" width="800" style="stroke:#000000; fill: #ffffff" />
+
+        <!-- Spær -->
+        <rect x="45" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="134" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="223" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="312" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="401" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="490" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="600" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+        <rect x="710" y="2.5" height="87.5" width="4.5" style="stroke:#000000; fill: #ffffff" />
+
+        <!-- Sternbræt -->
+        <rect x="10" y="2.5" height="10" width="730" style="stroke:#000000; fill: #ffffff" />
+
+
+        <!--vindskede -->
+        <rect x="5" y="0" height="85" width="10" style="stroke:#000000; fill: #ffffff" />
+        <rect x="735" y="0" height="85" width="10" style="stroke:#000000; fill: #ffffff" />
+        <!--vand bræt på vindskede -->
+        <rect x="5" y="70" height="2.5" width="10" style="stroke:#000000; fill: #ffffff" />
+        <rect x="735" y="70" height="2.5" width="10" style="stroke:#000000; fill: #ffffff" />
+        <!-- Stolper -->
+        <rect x="90" y="95" height="210" width="10" style="stroke:#000000; fill: #ffffff" />
+        <rect x="365" y="95" height="210" width="10" style="stroke:#000000; fill: #ffffff" />
+        <rect x="485" y="95" height="210" width="10" style="stroke:#000000; fill: #ffffff" />
+        <rect x="710" y="95" height="210" width="10" style="stroke:#000000; fill: #ffffff" />
+        <!-- Remme -->
+        <rect x="490" y="90" height="19.5" width="230" style="stroke:#000000; fill: #ffffff" />
+        <rect x="40" y="90" height="19.5" width="450" style="stroke:#000000; fill: #ffffff" />
+        <!-- Sternbræt -->
+        <rect x="10" y="80" height="15" width="730" style="stroke:#000000; fill: #ffffff" />
+
+
+
+
+
+
+
+        <!-- Bottom of roof -->
+        <line x1="10" y1="85" x2="740" y2="85" style="stroke:#000000; fill: #ffffff"/>
+        <!-- Skur -->
+        <!-- Skur stolper -->
+
+
+
+    </svg>
+
+</svg>
