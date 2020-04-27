@@ -13,6 +13,8 @@ public class Svg {
     private int x2;
     private int y2;
 
+    private int text;
+
     private StringBuilder svg = new StringBuilder();
 
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
@@ -20,6 +22,8 @@ public class Svg {
     private final String lineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
     private final String dotLineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String lowerTextTemplate = "<text style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
+    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(x=\"%d\" , y=\"%d\") rotate(-90); \" > %d cm</text>";
 
     public Svg(int x, int y, double width, double height, String viewbox) {
         this.width = width;
@@ -37,6 +41,12 @@ public class Svg {
         this.x1 = y2;
     }
 
+    public Svg(int x, int y, int text){
+        this.x = x;
+        this.y = y;
+        this.text = text;
+    }
+
     public void addRect(int x, int y, double height, double width){
         svg.append(String.format(rectTemplate, x, y, height, width));
     }
@@ -47,6 +57,14 @@ public class Svg {
 
     public void addDotLine(int x1, int y1, int x2, int y2){
         svg.append(String.format(dotLineTemplate, x1, y1, x2, y2));
+    }
+
+    public void addLowerText(int x, int y, int text){
+        svg.append(String.format(lowerTextTemplate, x, y, text));
+    }
+
+    public void addUpperText(int x, int y, int text){
+        svg.append(String.format(upperTextTemplate, x, y, text));
     }
 
     public double getWidth() {
@@ -119,6 +137,14 @@ public class Svg {
 
     public void setY2(int y2) {
         this.y2 = y2;
+    }
+
+    public int getText() {
+        return text;
+    }
+
+    public void setint(int text) {
+        this.text = text;
     }
 
     @Override
