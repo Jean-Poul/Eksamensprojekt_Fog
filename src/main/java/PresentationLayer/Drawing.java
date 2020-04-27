@@ -55,6 +55,10 @@ public class Drawing extends Command {
         svg.addRect(420,562,9.7,10.0);
         svg.addRect(730,562,9.7,10.0);
 
+        //Kryds
+        svg.addDotLine(55,35,600,570);
+        svg.addDotLine(55,570,600,35);
+
         //Pile
         svg.addLine(40,10,40,610);
         svg.addLine(75,650,885,650);
