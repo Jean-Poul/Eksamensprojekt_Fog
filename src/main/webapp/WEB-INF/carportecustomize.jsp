@@ -6,18 +6,18 @@
 <!-- Container -->
 <div class="container min-vh-100">
     <!-- Row -->
-    <div class="row">
+    <!--<div class="row">-->
 
         <!-- Main -->
-        <main role="main">
+        <!--<main role="main">-->
             <!-- Section -->
-            <section class="col-12">
-
+            <!--<section class="col-12">-->
+    <!-- Input form class="row" -->
+    <form action="FrontController">
                 <!-- Row -->
                 <div class="row">
 
-                    <!-- Input form -->
-                    <form class="row" action="FrontController">
+
 
                         <!-- Column -->
                         <div class="col-12 col-sm-6 col-md-4">
@@ -272,18 +272,18 @@
                         </div>
                         <!-- End column -->
 
-                    </form>
-                    <!-- End form -->
+
 
 
                 </div>
                 <!-- End row -->
-
-            </section>
+    </form>
+    <!-- End form -->
+            <!--</section>-->
             <!-- End section -->
-        </main>
+        <!--</main>-->
         <!-- End main -->
-    </div>
+    <!--</div>-->
     <!-- End row -->
 </div>
 <!-- End container -->
