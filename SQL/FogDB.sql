@@ -35,8 +35,9 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`item_list` (
   `material_type` VARCHAR(45) NOT NULL,
   `material` VARCHAR(45) NOT NULL,
   `description` VARCHAR(90) NULL DEFAULT NULL,
-  `pcs_per_unit` INT(11) NOT NULL,
-  `price` DECIMAL(10,2) NOT NULL,
+  `quantity` INT(11) NOT NULL,
+  `unit` VARCHAR(20) NULL DEFAULT NULL,
+  `price_per_unit` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`item_list_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

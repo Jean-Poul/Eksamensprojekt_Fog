@@ -1,9 +1,9 @@
 -- Required SQL for FogDB
 USE fogdb;
 
--- -----------------------------------------------------------------------------------------
--- Insert static records to tables in `users`, `measurement_units`, `roof` and `roof_pitch`
--- -----------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------
+-- Insert static records to tables in `users`, `measurement_units`, `roof`, `roof_pitch` and `item_list`
+-- ------------------------------------------------------------------------------------------------------
 LOCK TABLES users WRITE;
 INSERT INTO users (email,password,role) VALUES ('admin@fog.dk','1234','admin');
 UNLOCK TABLES;
@@ -125,4 +125,38 @@ INSERT INTO rafter_spacing (category,beam_dimension,beam_spacing,rafter_length) 
                                                                                 ('tung','45 x 195','0.8','3.18'),
                                                                                 ('tung','45 x 195','1.0','2.95'),
                                                                                 ('tung','45 x 195','1.2','2.78');
+UNLOCK TABLES;
+
+LOCK TABLES item_list WRITE;
+INSERT INTO item_list (material_type,material,description,quantity,unit,price_per_unit) VALUES ('Tilbehør til spær:','universal 190 mm højre','Til montering af spær på rem','1','','46.00'),
+																							   ('Tilbehør til spær:','universal 190 mm venstre','Til montering af spær på rem','1','','46.00'),
+                                                                                               ('Tilbehør til spær:','Hulplade 1,5 mm – 100 x 300 1,5.','Til samling af spær','2','','36.00'),
+                                                                                               ('Tilbehør til spær:','hulbånd 1x20 mm. 10 mtr.','Til vindkryds på spær','1','','574.00'),
+                                                                                               ('Tilbehør til dør:','Stalddørsgreb 50x75','til dør i skur i sæt','1','','131.00'),
+                                                                                               ('Tilbehør til dør:','T-hængsel 390 mm.','til dør i skur i sæt','2','','121.00'),
+                                                                                               ('Tilbehør til tværgående løsholter:','vinkelbeslag 35mm','til montering af løsholter (stk. pr. løsholter - afhænger af højde)','2','','7.00'),
+                                                                                               ('Skruepakke som fast følger med:','4,5 x 60 mm. Skruer 200 stk.','Til montering af Stern, vindskeder, vindkryds & vand bræt','1','200','74.95'),
+                                                                                               ('Skruepakke som fast følger med:','5,0 x 40 mm. beslagskruer 250 stk.','Til montering af universalbeslag + toplægte','1','250','219.00'),
+                                                                                               ('Skruepakke som fast følger med:','5,0 x 100 mm. skruer 200 stk.','til taglægter','1','200','169.00'),
+                                                                                               ('Skruepakke som fast følger med:','4,5 x 70 mm. Skruer 200 stk.','til montering af yderste bræt ved beklædning','1','200','140.00'),
+                                                                                               ('Skruepakke som fast følger med:','4,5 x 50 mm. Skruer 350 stk.','til montering af inderste bræt ved beklædning','1','350','75.00'),
+                                                                                               ('Skruepakke som fast følger med:','plastmo bundskruer 200 stk.','Skruer til tagplader','1','200','409.00'),
+                                                                                               ('Tilbehør til stolper:','bræddebolt 10 x 120 mm.','Til montering af rem på stolper (stk. pr stolpe, 4 i samling)','2','stk','11.70'),
+                                                                                               ('Tilbehør til stolper:','firkantskiver 40x40x11mm','Til montering af rem på stolper (stk. pr stolpe, 4 i samling)','2','stk','14.76'),
+                                                                                               ('Tilbehør til tag:','B & C Toplægte holder','Til montering på toppen af spæret (til toplægte)','1','m','48.95'),
+                                                                                               ('Tilbehør til tag:','B & C rygstensbeslag','Til montering af rygsten (pakke med 50 stk)','50','stk','505.00'),
+                                                                                               ('Tilbehør til tag:','B & C tagstens bindere & nakkekroge','til tagsten, alle ydersten + hver anden fastgøres. Fast pakke','2','stk','299.00'),
+                                                                                               ('Spær','45 x 95 mm','45x95 Tagspær trykimpr.','1','m','25.00'),
+                                                                                               ('Spær','45 x 120 mm','45x120 Tagspær trykimpr.','1','m','28.95'),
+                                                                                               ('Spær','45 x 195 mm','45x195 Tagspær trykimpr.','1','m','44.95'),
+                                                                                               ('Stolper','100 x 100 mm','100x100 Stolpe trykimpr.','1','m','41.95'),
+                                                                                               ('Stolper','125 x 125 mm','125x125 Stolpe trykimpr.','1','m','159.00'),
+                                                                                               ('Rem','45 x 145 mm','45x145 Rem ubh.','1','m','33.95'),
+                                                                                               ('Rem','45 x 195 mm','45x195 Rem ubh.','1','m','44.95'),
+                                                                                               ('Lægter, stern og løsholter','38x73','38x73 taglægte T1','1','m','22.95'),
+                                                                                               ('Lægter, stern og løsholter','38x73','38x73 toplægte','1','m','22.95'),
+                                                                                               ('Lægter, stern og løsholter','38x73','38x73 Lægte til z på bagside af dør ubh.','1','m','22.95'),
+                                                                                               ('Lægter, stern og løsholter','45x95','45x95 mm ubh. Løsholte','1','m','17.95'),
+                                                                                               ('Lægter, stern og løsholter','25x200','25x200 Bræt til stern trykimpr.','1','m','49.95');
+
 UNLOCK TABLES;

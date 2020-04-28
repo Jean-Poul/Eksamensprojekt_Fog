@@ -11,6 +11,7 @@ SELECT * FROM roof;
 SELECT * FROM roof_pitch;
 SELECT * FROM user_proposition;
 SELECT * FROM rafter_spacing;
+SELECT * FROM item_list;
 UNLOCK TABLES;
 -- ----------------------------------
 -- queryes for carport width
