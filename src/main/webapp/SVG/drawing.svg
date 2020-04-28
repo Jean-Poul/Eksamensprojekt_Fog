@@ -55,6 +55,32 @@
         <rect x="715" y="0" height="600" width="4.5" style="stroke:#000000; fill: #ffffff" />
         <rect x="775.5" y="0" height="600" width="4.5" style="stroke:#000000; fill: #ffffff" />
 
+        <!-- Lægter -->
+        <rect x="0" y="0" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="35" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="65" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="90" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="115" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="140" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="165" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="190" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="215" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="240" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="270" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+
+        <rect x="0" y="330" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="360" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="390" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="415" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="440" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="465" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="490" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="515" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="540" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="565" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+        <rect x="0" y="599" height="4.5" width="780" style="stroke:#000000; fill: #ffffff" />
+
+
         <!-- Kryds -->
         <line x1="55" y1="35" x2="600" y2="569.5" style="stroke:#000000; stroke-dasharray: 5 5;" />
         <line x1="55" y1="569.5" x2="600" y2="35" style="stroke:#000000; stroke-dasharray: 5 5;" />

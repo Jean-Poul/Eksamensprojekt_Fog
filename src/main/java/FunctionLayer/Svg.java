@@ -23,7 +23,7 @@ public class Svg {
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
     private final String dotLineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
     private final String lowerTextTemplate = "<text style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(x=\"%d\" , y=\"%d\") rotate(-90); \" > %d cm</text>";
+    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%d,%d) rotate(-90)\">600 cm</text>\n";
 
     public Svg(int x, int y, double width, double height, String viewbox) {
         this.width = width;
@@ -153,4 +153,5 @@ public class Svg {
         String res = svg.toString().replace(",",".");
         return res + "</svg>" ;
     }
+
 }

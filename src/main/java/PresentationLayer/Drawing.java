@@ -11,10 +11,11 @@ public class Drawing extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
         Svg svg = new Svg(0, 0, 1000,1000,"0,0,1000,1000");
+
         Svg innerDrawing = new Svg(75, 20, 900,800,"0,0,900,800");
 
         //Ramme
-        svg.addRect(0,0, 1000,1000);
+        innerDrawing.addRect(-75,-20, 1000,1000);
 
         //Mål på hele carport
         innerDrawing.addRect(75,20,600.0,780.0);
@@ -49,6 +50,32 @@ public class Drawing extends Command {
         innerDrawing.addRect(790,20,600.0,4.5);
         innerDrawing.addRect(850,20,600.0,4.5);
 
+        //Lægter
+        innerDrawing.addRect(75,20,4.5,780.0);
+        innerDrawing.addRect(75,55,4.5,780.0);
+        innerDrawing.addRect(75,81,4.5,780.0);
+        innerDrawing.addRect(75,107,4.5,780.0);
+        innerDrawing.addRect(75,133,4.5,780.0);
+        innerDrawing.addRect(75,159,4.5,780.0);
+        innerDrawing.addRect(75,185,4.5,780.0);
+        innerDrawing.addRect(75,211,4.5,780.0);
+        innerDrawing.addRect(75,237,4.5,780.0);
+        innerDrawing.addRect(75,263,4.5,780.0);
+        innerDrawing.addRect(75,289,4.5,780.0);
+        // ----------------------------------------------------- //
+        innerDrawing.addRect(75,325,4.5,780.0);
+        innerDrawing.addRect(75,351,4.5,780.0);
+        innerDrawing.addRect(75,377,4.5,780.0);
+        innerDrawing.addRect(75,403,4.5,780.0);
+        innerDrawing.addRect(75,429,4.5,780.0);
+        innerDrawing.addRect(75,455,4.5,780.0);
+        innerDrawing.addRect(75,481,4.5,780.0);
+        innerDrawing.addRect(75,507,4.5,780.0);
+        innerDrawing.addRect(75,533,4.5,780.0);
+        innerDrawing.addRect(75,559,4.5,780.0);
+        innerDrawing.addRect(75,585,4.5,780.0);
+        innerDrawing.addRect(75,620,4.5,780.0);
+
         //Stolper
         innerDrawing.addRect(185,52,9.7,10.0);
         innerDrawing.addRect(495,52,9.7,10.0);
@@ -69,7 +96,10 @@ public class Drawing extends Command {
         innerDrawing.addLowerText(465,670, 780);
         innerDrawing.addUpperText(30,300, 600);
 
-        request.setAttribute("svgdrawing", innerDrawing.toString());
+        request.setAttribute("svgInnerDrawing", innerDrawing.toString());
+
+        //request.setAttribute("svgdrawing", svg.toString());
+
         return "drawing";
     }
 }
