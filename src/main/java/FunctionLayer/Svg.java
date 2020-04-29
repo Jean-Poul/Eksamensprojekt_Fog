@@ -151,6 +151,7 @@ public class Svg {
     public String toString() {
 
         String res = svg.toString().replace(",",".");
+
         return res + "</svg>" ;
     }
 

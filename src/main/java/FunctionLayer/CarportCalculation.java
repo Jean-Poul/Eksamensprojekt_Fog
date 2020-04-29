@@ -6,13 +6,14 @@ import java.util.HashMap;
 
 /**
  * Indholder diverse metoder til beregning af carport størrelse, stykliste og priser
+ * Contains methods for calculating carport size and bill-of-material
  *
  * @author Alle
  */
 
 public class CarportCalculation {
 
-    //Nedestående FINALS er formodninger om standardafstande v. lægter.
+    //FINALS below are assumptions of standard dimensions - Should probably be in DB
     private static final int BOTTOM_LATHSPAN = 35;
     private static final int BOTTOM_LATHS = 2;
     private static final double TOP_LATH = 3;
@@ -21,11 +22,13 @@ public class CarportCalculation {
     DecimalFormat df = new DecimalFormat("#.##");
 
     //Input fra forespørgselssiden(.jsp)
+    //Inputs from carportecustomize.jsp
     private double carportLength;
     private double carportWidth;
     private int customerRoofAngle;
 
     //Kalkuleret kip-vinkel, spær- længde, afstand, antal og dimension samt taghøjde.
+    //Calculated roofangle (top), roof height, raft length, distance, quantity and dimensions
     private int calcAngle;
     private double calcRaftLength;
     private double noOfRafts;
@@ -33,29 +36,29 @@ public class CarportCalculation {
     private String raftDimension;
     private double calcRoofHeight;
 
-    //Lægter (På tværs af spær)
+    // Laths (Across rafts)
     private int noOfLaths;
     private double lathSpan;
 
-    //Returneres fra database - skal sletts når queries kører!
+    //To be returned from DB - Below should be deleted when queries work
     private String raftDimAndDist = "45 x 120 1.2";
 
     /*
     ######################################################
-    Hashmap "angleAndFactor" constructor og "populateValidAngles" skal rettes eller slettes hvis vinklerne hentes i DB
+    Hashmap "angleAndFactor", constructor and "populateValidAngles" should be aquired from DB.
     ######################################################
      */
 
-    //Indholder hældningsvinklen og den tilsvarende faktor der skal ganges med - hentet fra databasen.
+    //Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved from DB.
     HashMap<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
 
     public CarportCalculation() {
 
-        //Skal sikkert slettes når hashmappet hentes fra databasen!
+        //To be deleted when the hashmap is populated from DB
         populateAngleAndFactor();
     /*
     ########################
-    ###   TESTEKSEMPEL!  ###
+    ###   TEST EXAMPLE!  ###
     ########################
      */
 
@@ -86,7 +89,7 @@ public class CarportCalculation {
     }
 
     /**
-     * Sætter hældningsfaktor iht. dokumentationen (Skal sikkert hentes fra DB).
+     * Set roof slant multiplication factor according to documentation (To be retrieved from DB)
      */
     private void populateAngleAndFactor() {
         angleAndFactor.put(15, 1.0);
@@ -99,9 +102,9 @@ public class CarportCalculation {
     }
 
     /**
-     * Beregner vinklen i tagets kip. Skal bruges til at bestemme tagets højde
+     * Calculates the upper roof angle. Is necessary to determine roof height.
      *
-     * @param customerRoofAngle Kundens valgte hældning
+     * @param customerRoofAngle The customer selected roof slant angle
      */
     private void calcRoofAngle(int customerRoofAngle) {
         int triangleAngleSum = 180;
@@ -110,11 +113,11 @@ public class CarportCalculation {
     }
 
     /**
-     * Beregner spærrets længde
+     * Calculates the raft length
      *
-     * @param carportWidth        Kundens valgte bredde
-     * @param customerRoofAngle   Kundens valgte hældning
-     * @param calculatedRoofAngle Den beregnede vinkel i tagets kip fra calcRoofAngle()
+     * @param carportWidth        Customer selected carport width.
+     * @param customerRoofAngle   Customer selected roof slant angle.
+     * @param calculatedRoofAngle The calculated upper roof angle (Comes from calcRoofAngle().
      */
     private void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
 
@@ -143,10 +146,10 @@ public class CarportCalculation {
     }
 
     /**
-     * Udregner tagkonstruktionens højde
+     * Calculates the roofs total height.
      *
-     * @param customerRoofAngle Kundens valgte hældning på taget
-     * @param carportWidth      Kundens valgte bredde på carporten
+     * @param customerRoofAngle The customer selected roof slant angle.
+     * @param carportWidth      The customer selected carport width.
      */
     private void calcRoofHeight(int customerRoofAngle, double carportWidth) {
         double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
