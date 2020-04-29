@@ -12,8 +12,8 @@ public class Redirect extends Command {
 
         switch (destination) {
             case "customerpage": request.setAttribute( "message", "Kunde side"); break;
-            case "carportestandard": request.setAttribute( "message", "Standard byg"); break;
-            case "carportecustomize": request.setAttribute( "message", "Byg selv"); break;
+            case "carportstandard": request.setAttribute( "message", "Standard byg"); break;
+            case "carportcustomize": request.setAttribute( "message", "Byg selv"); break;
             case "login": request.setAttribute( "message", "Log ind side"); break;
             default: request.setAttribute("message", "Denne side findes ikke"); break;
         }

@@ -31,7 +31,7 @@
                         e Blimey fore pinnace walk the plank quarter line. Execution dock crimp take a caulk tender bilged on her anchor yawl spyglass case shot lass strike colors. Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
                         Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
                     </p>
-                    <a class="card-link btn btn-dark" href="FrontController?target=redirect&destination=carportestandard">Standard</a>
+                    <a class="card-link btn btn-dark" href="FrontController?target=redirect&destination=carportstandard">Standard</a>
                     </div>
                 </section>
                 <!-- End standard card -->
@@ -48,7 +48,10 @@
                         e Blimey fore pinnace walk the plank quarter line. Execution dock crimp take a caulk tender bilged on her anchor yawl spyglass case shot lass strike colors. Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
                         Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
                     </p>
-                    <a class="card-link btn btn-dark" href="FrontController?target=redirect&destination=carportecustomize">Byg selv</a>
+                        <form action="FrontController" method="POST">
+                            <input type="hidden" name="target" value="carportcustomize">
+                    <button class="btn btn-dark" type="submit">Byg selv</button>
+                        </form>
                     </div>
                 </section>
                 <!-- End customize card -->

@@ -1,4 +1,5 @@
 <!-- Header & imports -->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="../includes/header.inc" %>
 <!-- End header -->
@@ -13,7 +14,7 @@
             <!-- Section -->
             <!--<section class="col-12">-->
     <!-- Input form class="row" -->
-    <form action="FrontController">
+    <form action="FrontController" method="POST">
                 <!-- Row -->
                 <div class="row mt-4">
 
@@ -25,6 +26,11 @@
                             <div class="form-group">
                                 <label for="CarportWidth">Carport bredde</label>
                                 <select class="form-control" id="CarportWidth">
+                                    <option>Vælg bredde</option>
+                                    <c:forEach var="element" items="${requestScope.carport}">
+                                        <option value="${element.carportWidth}">${element.carportWidth}</option>
+                                    </c:forEach>
+                                    <!--
                                     <option>Vælg bredde</option>
                                     <option>240 cm</option>
                                     <option>270 cm</option>
@@ -43,13 +49,16 @@
                                     <option>660 cm</option>
                                     <option>690 cm</option>
                                     <option>720 cm</option>
-                                    <option>750 cm</option>
+                                    <option>750 cm</option> -->
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="CarportLength">Carport længde</label>
                                 <select class="form-control" id="CarportLength">
+                                    <c:forEach var="element" items="${requestScope.carport}">
+                                        <option value="${element.id}">${element.carportLength}</option>
+                                    </c:forEach>
                                     <option>Vælg længde</option>
                                     <option>240 cm</option>
                                     <option>270 cm</option>
@@ -76,6 +85,9 @@
                             <div class="form-group">
                                 <label for="RoofOption">Tag type</label>
                                 <select class="form-control" id="RoofOption">
+                                    <c:forEach var="element" items="${requestScope.roof}">
+                                        <option value="${element.id}">${element.roofType}</option>
+                                    </c:forEach>
                                     <option value="0">Carport med fladt tag</option>
                                     <option value="1">Carport med rejsning</option>
                                 </select>
@@ -86,6 +98,9 @@
                                 <div class="form-group">
                                     <label for="RoofFlat">Tag</label>
                                     <select class="form-control" id="RoofFlat">
+                                        <c:forEach var="element" items="${requestScope.roof}">
+                                            <option value="${element.id}">${element.roofFlatType}</option>
+                                        </c:forEach>
                                         <option>Vælg tagtype/farve</option>
                                         <option>Plasttrapezplader</option>
                                         <option>Plastmo Ecolite blåtonet</option>
@@ -99,6 +114,9 @@
                                 <div class="form-group">
                                     <label for="RoofRaised">Tag</label>
                                     <select class="form-control" id="RoofRaised">
+                                        <c:forEach var="element" items="${requestScope.roof}">
+                                            <option value="${element.id}">${element.raisedRoofType}</option>
+                                        </c:forEach>
                                         <option>Vælg tagtype/farve</option>
                                         <option>Betontagsten - Rød</option>
                                         <option>Betontagsten - Teglrød</option>
@@ -162,6 +180,9 @@
                                 <div class="form-group">
                                     <label for="RoofOptionDegrees">Taghældning</label>
                                     <select class="form-control" id="RoofOptionDegrees">
+                                        <c:forEach var="element" items="${requestScope.roof}">
+                                            <option value="${element.id}">${element.roofDegree}</option>
+                                        </c:forEach>
                                         <option>15 grader</option>
                                         <option>20 grader</option>
                                         <option selected>25 grader</option>
@@ -177,6 +198,9 @@
                             <div class="form-group">
                                 <label for="ShedWidth">Redskabsrum bredde</label>
                                 <select class="form-control" id="ShedWidth">
+                                    <c:forEach var="element" items="${requestScope.shed}">
+                                        <option value="${element.id}">${element.shedWidth}</option>
+                                    </c:forEach>
                                     <option>Ønsker ikke redskabsrum</option>
                                     <option>210 cm</option>
                                     <option>240 cm</option>
@@ -202,6 +226,9 @@
                             <div class="form-group">
                                 <label for="ShedLength">Redskabsrum længde</label>
                                 <select class="form-control" id="ShedLength">
+                                    <c:forEach var="element" items="${requestScope.shed}">
+                                        <option value="${element.id}">${element.shedLength}</option>
+                                    </c:forEach>
                                     <option>Ønsker ikke redskabsrum</option>
                                     <option>150 cm</option>
                                     <option>180 cm</option>
