@@ -12,93 +12,94 @@ public class Drawing extends Command {
 
         Svg svg = new Svg(0, 0, 1000,1000,"0,0,1000,1000");
 
-        Svg innerDrawing = new Svg(75, 20, 900,800,"0,0,900,800");
-
-        //Ramme
-        innerDrawing.addRect(-75,-20, 1000,1000);
-
         //Mål på hele carport
-        innerDrawing.addRect(75,20,600.0,780.0);
+        svg.addRect(0,0,600.0,780.0);
 
         //Skur
-        innerDrawing.addRect(599,21,400,250);
+        svg.addRect(524,1,400,250);
 
         //Skur stolper
-        innerDrawing.addRect(599,21,9.7,10.0);
-        innerDrawing.addRect(840,21,9.7,10.0);
-        innerDrawing.addRect(599,410,9.7,10.0);
-        innerDrawing.addRect(840,410,9.7,10.0);
+        svg.addRect(524,1,9.7,10.0);
+        svg.addRect(765,1,9.7,10.0);
+        svg.addRect(524,390,9.7,10.0);
+        svg.addRect(765,390,9.7,10.0);
 
         //Remme
-        innerDrawing.addRect(75,55,4.5,780.0);
-        innerDrawing.addRect(75,585,4.5,780.0);
+        svg.addRect(0,35,4.5,780.0);
+        svg.addRect(0,565,4.5,780.0);
 
         //Spær
-        innerDrawing.addRect(75,20,600.0,4.5);
-        innerDrawing.addRect(130,20,600.0,4.5);
-        innerDrawing.addRect(185,20,600.0,4.5);
-        innerDrawing.addRect(240,20,600.0,4.5);
-        innerDrawing.addRect(295,20,600.0,4.5);
-        innerDrawing.addRect(350,20,600.0,4.5);
-        innerDrawing.addRect(405,20,600.0,4.5);
-        innerDrawing.addRect(460,20,600.0,4.5);
-        innerDrawing.addRect(515,20,600.0,4.5);
-        innerDrawing.addRect(570,20,600.0,4.5);
-        innerDrawing.addRect(625,20,600.0,4.5);
-        innerDrawing.addRect(680,20,600.0,4.5);
-        innerDrawing.addRect(735,20,600.0,4.5);
-        innerDrawing.addRect(790,20,600.0,4.5);
-        innerDrawing.addRect(850,20,600.0,4.5);
+        svg.addRect(0,0,600.0,4.5);
+        svg.addRect(55,0,600.0,4.5);
+        svg.addRect(110,0,600.0,4.5);
+        svg.addRect(165,0,600.0,4.5);
+        svg.addRect(220,0,600.0,4.5);
+        svg.addRect(275,0,600.0,4.5);
+        svg.addRect(330,0,600.0,4.5);
+        svg.addRect(385,0,600.0,4.5);
+        svg.addRect(440,0,600.0,4.5);
+        svg.addRect(495,0,600.0,4.5);
+        svg.addRect(550,0,600.0,4.5);
+        svg.addRect(605,0,600.0,4.5);
+        svg.addRect(660,0,600.0,4.5);
+        svg.addRect(715,0,600.0,4.5);
+        svg.addRect(775,0,600.0,4.5);
 
         //Lægter
-        innerDrawing.addRect(75,20,4.5,780.0);
-        innerDrawing.addRect(75,55,4.5,780.0);
-        innerDrawing.addRect(75,81,4.5,780.0);
-        innerDrawing.addRect(75,107,4.5,780.0);
-        innerDrawing.addRect(75,133,4.5,780.0);
-        innerDrawing.addRect(75,159,4.5,780.0);
-        innerDrawing.addRect(75,185,4.5,780.0);
-        innerDrawing.addRect(75,211,4.5,780.0);
-        innerDrawing.addRect(75,237,4.5,780.0);
-        innerDrawing.addRect(75,263,4.5,780.0);
-        innerDrawing.addRect(75,289,4.5,780.0);
+        svg.addRect(0,0,4.5,780.0);
+        svg.addRect(0,35,4.5,780.0);
+        svg.addRect(0,61,4.5,780.0);
+        svg.addRect(0,87,4.5,780.0);
+        svg.addRect(0,113,4.5,780.0);
+        svg.addRect(0,139,4.5,780.0);
+        svg.addRect(0,165,4.5,780.0);
+        svg.addRect(0,191,4.5,780.0);
+        svg.addRect(0,217,4.5,780.0);
+        svg.addRect(0,243,4.5,780.0);
+        svg.addRect(0,269,4.5,780.0);
         // ----------------------------------------------------- //
-        innerDrawing.addRect(75,325,4.5,780.0);
-        innerDrawing.addRect(75,351,4.5,780.0);
-        innerDrawing.addRect(75,377,4.5,780.0);
-        innerDrawing.addRect(75,403,4.5,780.0);
-        innerDrawing.addRect(75,429,4.5,780.0);
-        innerDrawing.addRect(75,455,4.5,780.0);
-        innerDrawing.addRect(75,481,4.5,780.0);
-        innerDrawing.addRect(75,507,4.5,780.0);
-        innerDrawing.addRect(75,533,4.5,780.0);
-        innerDrawing.addRect(75,559,4.5,780.0);
-        innerDrawing.addRect(75,585,4.5,780.0);
-        innerDrawing.addRect(75,620,4.5,780.0);
+        svg.addRect(0,305,4.5,780.0);
+        svg.addRect(0,331,4.5,780.0);
+        svg.addRect(0,357,4.5,780.0);
+        svg.addRect(0,383,4.5,780.0);
+        svg.addRect(0,409,4.5,780.0);
+        svg.addRect(0,435,4.5,780.0);
+        svg.addRect(0,461,4.5,780.0);
+        svg.addRect(0,487,4.5,780.0);
+        svg.addRect(0,512,4.5,780.0);
+        svg.addRect(0,539,4.5,780.0);
+        svg.addRect(0,565,4.5,780.0);
+        svg.addRect(0,600,4.5,780.0);
 
         //Stolper
-        innerDrawing.addRect(185,52,9.7,10.0);
-        innerDrawing.addRect(495,52,9.7,10.0);
-        innerDrawing.addRect(805,52,9.7,10.0);
-        innerDrawing.addRect(185,582,9.7,10.0);
-        innerDrawing.addRect(495,582,9.7,10.0);
-        innerDrawing.addRect(805,582,9.7,10.0);
+        svg.addRect(110,32,9.7,10.0);
+        svg.addRect(420,32,9.7,10.0);
+        svg.addRect(730,32,9.7,10.0);
+        svg.addRect(110,562,9.7,10.0);
+        svg.addRect(420,562,9.7,10.0);
+        svg.addRect(730,562,9.7,10.0);
 
         //Kryds
-        innerDrawing.addDotLine(135,20,625,620);
-        innerDrawing.addDotLine(135,620,625,20);
+        svg.addDotLine(55,35,550,600);
+        svg.addDotLine(55,600,550,35);
 
         //Pile
-        innerDrawing.addLine(40,20,40,620);
-        innerDrawing.addLine(75,650,855,650);
+        svg.addLine(-30,0,-30,605);
+        svg.addLine(0,630,780,630);
+
+        //Pile Skur
+        svg.addLine(810,0,810,400);
+        svg.addLine(530,-30,780,-30);
+
+        //Skur text
+        svg.addUpperText(940,300, 400);
+        svg.addLowerText(655,-50, 250);
 
         //Text
-        innerDrawing.addLowerText(465,670, 780);
-        innerDrawing.addUpperText(30,300, 600);
+        svg.addLowerText(390,650, 780);
+        svg.addUpperText(50,390, 600);
 
-        request.setAttribute("svgInnerDrawing", innerDrawing.toString());
-
-        //request.setAttribute("svgdrawing", svg.toString());
+        request.setAttribute("svgDrawing", svg.toString());
 
         return "drawing";
     }

@@ -18,11 +18,11 @@ public class Svg {
     private StringBuilder svg = new StringBuilder();
 
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String lineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
+    private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
-    private final String dotLineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String lowerTextTemplate = "<text style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
+    private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
     private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%d,%d) rotate(-90)\">600 cm</text>\n";
 
     public Svg(int x, int y, double width, double height, String viewbox) {
@@ -150,9 +150,9 @@ public class Svg {
     @Override
     public String toString() {
 
-        String res = svg.toString().replace(",",".");
-
-        return res + "</svg>" ;
+        //String res = svg.toString().replace(",",".");
+        //return res + "</svg>" ;
+        return svg.toString() + "</svg>" ;
     }
 
 }
