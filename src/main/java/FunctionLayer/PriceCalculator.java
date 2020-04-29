@@ -12,10 +12,22 @@ public class PriceCalculator {
     //# FØLGENDE PRISER SKAL BEREGNES
     //##################################
 
-    //Pris for spær
-    //Pris for lægter
-    //Pris for rem
-    //Pris for stolper
-    //Pris for løsholter
+    //Pris for rem (supportingStrap)
+    //Pris for sternbrædder (Stern boards)
+    //Pris for stolper (Beams)
+    //Pris for roof cladding (Antal rækker og sten pr. række)
+    //Pris for brackets, bolts, screws and washers
+    //Pris for spær (Rafts)
+    //Pris for lægter (Laths)
+
+    //Pris skur
+        //wall-laths for shed
+        //+ 4 beams when shed
+        //Pris for løsholter ("Wall-laths" for cladding)
+        //cladding (Only cladding for sheds)
+        //Pris for door "Z" - make a door price package
+
+
+
 
 }

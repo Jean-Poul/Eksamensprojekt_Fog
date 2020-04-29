@@ -11,6 +11,25 @@ import java.util.HashMap;
  * @author Alle
  */
 
+// ###################
+// #   TO BE DONE    #
+// ###################
+
+    //Calculate supportingStrap (rem)
+    //Calculate sternBoards (Sternbrædder)
+    //Calculate number of beams. (4 w/o shed - 8 w. shed).
+    //Calculate "wall-laths" for cladding
+    //Calculate roof cladding ("6 rækker á 24 sten")
+    //Calculate brackets, bolts, screws and washers
+        //Rooftop brackets = antallet af sten i én række
+        //Tiles - (L x W / Roof area m2)
+        //tile hooks and binders (2 packages)
+
+        //Calculate shed (+4 beams = 8 total)
+            //"wall-laths" for cladding (L x W)
+            //Calculate cladding (Only on sheds - Sides 1 and 2 (L x W)
+            //Door (Cladding + handle, hinges and beams for "Z")
+
 public class CarportCalculation {
 
     //FINALS below are assumptions of standard dimensions - Should probably be in DB
