@@ -36,6 +36,11 @@
             <input class="btn btn-info" type="submit" value="test drawing">
         </form>
 
+        <form name="testDrawingSideways" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="drawingSideways">
+            <input class="btn btn-info" type="submit" value="test drawingSideways">
+        </form>
+
         </article>
                 <!-- End article -->
 
