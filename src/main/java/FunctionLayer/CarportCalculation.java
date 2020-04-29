@@ -15,20 +15,16 @@ import java.util.HashMap;
 // #   TO BE DONE    #
 // ###################
 
-    //Calculate supportingStrap (rem)
-    //Calculate sternBoards (Sternbrædder)
-    //Calculate number of beams. (4 w/o shed - 8 w. shed).
-    //Calculate "wall-laths" for cladding
-    //Calculate roof cladding ("6 rækker á 24 sten")
-    //Calculate brackets, bolts, screws and washers
-        //Rooftop brackets = antallet af sten i én række
-        //Tiles - (L x W / Roof area m2)
-        //tile hooks and binders (2 packages)
+//Shed dimensions should be validated to fit inside carport. TBD on .jsp maybe?
 
-        //Calculate shed (+4 beams = 8 total)
-            //"wall-laths" for cladding (L x W)
-            //Calculate cladding (Only on sheds - Sides 1 and 2 (L x W)
-            //Door (Cladding + handle, hinges and beams for "Z")
+//Calculate roof cladding ("6 rækker á 24 sten")
+//Calculate brackets, bolts, screws and washers
+//Rooftop brackets = antallet af sten i én række
+//Tiles - (L x W / Roof area m2)
+//tile hooks and binders (2 packages)
+
+//Calculate cladding (Only on sheds - Sides 1 and 2 (L x W) - cladding piece height and width
+//Door (Cladding + handle, hinges and beams for "Z")
 
 public class CarportCalculation {
 
@@ -40,38 +36,50 @@ public class CarportCalculation {
 
     DecimalFormat df = new DecimalFormat("#.##");
 
-    //Input fra forespørgselssiden(.jsp)
-    //Inputs from carportecustomize.jsp
     private double carportLength;
     private double carportWidth;
     private int customerRoofAngle;
+    private double shedLength;
+    private double shedWidth;
 
-    //Kalkuleret kip-vinkel, spær- længde, afstand, antal og dimension samt taghøjde.
-    //Calculated roofangle (top), roof height, raft length, distance, quantity and dimensions
     private int calcAngle;
     private double calcRaftLength;
     private double noOfRafts;
     private double raftDistance;
     private String raftDimension;
     private double calcRoofHeight;
+    private double supportingStrap;
+    private int sternBoardLength;
+    private double wallLath;
 
-    // Laths (Across rafts)
+    boolean withShed = false;
+
     private int noOfLaths;
     private double lathSpan;
+    private int noOfBeams;
 
     //To be returned from DB - Below should be deleted when queries work
     private String raftDimAndDist = "45 x 120 1.2";
 
+//    public CarportCalculation(double carportLength, double carportWidth, double customerRoofAngle, double shedLength, double shedWidth, String roofCladdingType){
+//        calcNoOfBeams(shedLength);
+//        //#######################################
+//        //DET HER BLIVER DEN RIGTIGE CONSTRUCTOR
+//        //#######################################
+//    }
+
     /*
-    ######################################################
     Hashmap "angleAndFactor", constructor and "populateValidAngles" should be aquired from DB.
-    ######################################################
-     */
+    */
 
     //Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved from DB.
     HashMap<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
 
-    public CarportCalculation() {
+
+    public CarportCalculation(double shedLength) {
+
+        //If the customer has selected a shed, the number of beams doubles.
+        calcNoOfBeams(shedLength);
 
         //To be deleted when the hashmap is populated from DB
         populateAngleAndFactor();
@@ -121,6 +129,42 @@ public class CarportCalculation {
     }
 
     /**
+     * Calculates the required amount of wall-laths for the shed
+     *
+     * @param shedWidth The customer selected shed width
+     * @param shedLength The customer selected shed length
+     */
+    private void calcWallLaths(double shedWidth, double shedLength){
+        double wallLathQty = (shedLength + shedWidth) * 2;
+        this.wallLath = wallLathQty;
+    }
+
+    /**
+     * Calculates the required no. of beams. (Will always be 4 unless there's a shed - then there's 8)
+     *
+     * @param shedLength
+     */
+    private void calcNoOfBeams(double shedLength) {
+        if (shedLength > 0) {
+            this.noOfBeams = 8;
+        } else {
+            this.noOfBeams = 4;
+        }
+    }
+
+    /**
+     * Calculates the amount of supporting strap needed (Tagets rem)
+     *
+     * @param carportWidth  The customer selected carport width
+     * @param carportLength The customer selected carport length
+     */
+    private void calculateSupportingStrap(double carportWidth, double carportLength) {
+
+        double totalSupportStrap = (carportLength + carportWidth) * 2;
+        this.supportingStrap = totalSupportStrap;
+    }
+
+    /**
      * Calculates the upper roof angle. Is necessary to determine roof height.
      *
      * @param customerRoofAngle The customer selected roof slant angle
@@ -129,6 +173,11 @@ public class CarportCalculation {
         int triangleAngleSum = 180;
         int calcAngle = triangleAngleSum - (customerRoofAngle * 2);
         this.calcAngle = calcAngle;
+    }
+
+    private void calcSternBoardLength(double raftLength) {
+        double sternBoardsLength = this.calcRaftLength * 4;
+        this.sternBoardLength = sternBoardLength;
     }
 
     /**
