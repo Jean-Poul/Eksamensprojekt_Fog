@@ -10,37 +10,79 @@ import java.util.List;
 
 public class Carportcustomize extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        //Initializing session variable with current session
         HttpSession session = request.getSession();
 
+        //Initializing Lists with measurement objects
         List<CarportWidth> carportWidth = (List<CarportWidth>) session.getAttribute("carportWidth");
-        List<RoofMeasurements> roofMeasurements = (List<RoofMeasurements>) session.getAttribute("roofMeasurements");
-        List<ShedMeasurements> shedMeasurements = (List<ShedMeasurements>) session.getAttribute("shedMeasurements");
+        List<CarportLength> carportLength = (List<CarportLength>) session.getAttribute("carportLength");
 
+        List<RoofFlat> roofFlat = (List<RoofFlat>) session.getAttribute("roofFlat");
+        List<RoofRaised> roofRaised = (List<RoofRaised>) session.getAttribute("roofRaised");
+        List<RoofDegree> roofDegree = (List<RoofDegree>) session.getAttribute("roofDegree");
 
-        if ( carportMeasurements == null ) {
-            carportMeasurements = LogicFacade.getCarportWidth();
+        List<ShedWidth> shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
+        List<ShedLength> shedLength = (List<ShedLength>) session.getAttribute("shedLength");
+
+        //Singletons for List to fill the select options
+        if ( carportWidth == null ) {
+            carportWidth = LogicFacade.getCarportWidth();
         } else {
-            carportMeasurements = (List<CarportMeasurements>) session.getAttribute("carportMeasurements");
+            carportWidth = (List<CarportWidth>) session.getAttribute("carportWidth");
         }
 
-   /*     if ( roofMeasurements == null ) {
-            roofMeasurements = LogicFacade.getRoof();
+        if ( carportLength == null ) {
+            carportLength = LogicFacade.getCarportLength();
         } else {
-            roofMeasurements = (List<RoofMeasurements>) session.getAttribute("roofMeasurements");
+            carportLength = (List<CarportLength>) session.getAttribute("carportLength");
         }
 
-        if ( shedMeasurements == null ) {
-            shedMeasurements = LogicFacade.getShed();
+
+        if ( roofFlat == null ) {
+            roofFlat = LogicFacade.getRoofFlat();
         } else {
-            shedMeasurements = (List<ShedMeasurements>) session.getAttribute("shedMeasurements");
-        }*/
+            roofFlat = (List<RoofFlat>) session.getAttribute("roofFlat");
+        }
 
-        request.setAttribute("carport", carportMeasurements);
-        request.setAttribute("roof", roofMeasurements);
-        request.setAttribute("shed", shedMeasurements);
-        System.out.println(carportMeasurements);
+        if ( roofRaised == null ) {
+            roofRaised = LogicFacade.getRoofRaised();
+        } else {
+            roofRaised = (List<RoofRaised>) session.getAttribute("roofRaised");
+        }
 
+        if ( roofDegree == null ) {
+            roofDegree = LogicFacade.getRoofDegree();
+        } else {
+            roofDegree = (List<RoofDegree>) session.getAttribute("roofDegree");
+        }
+
+
+        if ( shedWidth == null ) {
+            shedWidth = LogicFacade.getShedWidth();
+        } else {
+            shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
+        }
+
+        if ( shedLength == null ) {
+            shedLength = LogicFacade.getShedLength();
+        } else {
+            shedLength = (List<ShedLength>) session.getAttribute("shedLength");
+        }
+
+
+        //Attributes to grab on jsp site
+        request.setAttribute("carportwidth", carportWidth);
+        request.setAttribute("carportlength", carportLength);
+
+        request.setAttribute("roofflat", roofFlat);
+        request.setAttribute("roofraised", roofRaised);
+        request.setAttribute("roofdegree", roofDegree);
+
+        request.setAttribute("shedWidth", shedWidth);
+        request.setAttribute("shedLength", shedLength);
+
+        //Return value for FrontController
         return "carportcustomize";
     }
 }

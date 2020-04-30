@@ -18,7 +18,6 @@ abstract class Command {
         commands.put( "CarportCalcPage", new CarportCalcPage() );
         commands.put( "redirect", new Redirect() );
         commands.put( "drawing", new Drawing() );
-        commands.put( "customerpage", new Customerpage() );
         commands.put( "carportcustomize", new Carportcustomize() );
     }
 

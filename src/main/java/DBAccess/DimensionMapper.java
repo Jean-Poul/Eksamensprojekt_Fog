@@ -1,8 +1,6 @@
 package DBAccess;
 
-import FunctionLayer.CarportWidth;
-import FunctionLayer.RoofMeasurements;
-import FunctionLayer.ShedMeasurements;
+import FunctionLayer.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,11 +16,11 @@ public class DimensionMapper {
 
     /**
      *
-     * @return carportMeasurements
+     * @return carportWidth
      * @throws SQLException
      */
     public static List<CarportWidth> getCarportWidth() throws SQLException {
-        List<CarportWidth> carportMeasurements = new ArrayList<>();
+        List<CarportWidth> carportWidth = new ArrayList<>();
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT units FROM measurement_units WHERE c_width = '1'";
@@ -31,67 +29,157 @@ public class DimensionMapper {
             while (rs.next()) {
                 int width = rs.getInt("units");
                 CarportWidth cw = new CarportWidth(width);
-                carportMeasurements.add(cw);
+                carportWidth.add(cw);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             throw new SQLException(ex.getMessage());
         }
 
-        return carportMeasurements;
+        return carportWidth;
     }
 
     /**
      *
-     * @return roofMeasurements
+     * @return carportLength
      * @throws SQLException
      */
-    public static List<RoofMeasurements> getRoof() throws SQLException {
-        List<RoofMeasurements> roofMeasurements = new ArrayList<>();
+    public static List<CarportLength> getCarportLength() throws SQLException {
+        List<CarportLength> carportLength = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM ORDER BY ";
+            String SQL = "SELECT units FROM measurement_units WHERE c_length = '1'";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("roofId");
-                String roofType = rs.getString("roofType");
-                String roofFlatType = rs.getString("roofFlatType");
-                String raisedRoofType = rs.getString("raisedRoofType");
-                int roofDegree = rs.getInt("roofDegree");
-                RoofMeasurements rm = new RoofMeasurements(id, roofType, roofFlatType, raisedRoofType, roofDegree);
-                roofMeasurements.add(rm);
+                int length = rs.getInt("units");
+                CarportLength cl = new CarportLength(length);
+                carportLength.add(cl);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             throw new SQLException(ex.getMessage());
         }
 
-        return roofMeasurements;
+        return carportLength;
     }
 
     /**
      *
-     * @return shedMeasurements
+     * @return roofFlat
      * @throws SQLException
      */
-    public static List<ShedMeasurements> getShed() throws SQLException {
-        List<ShedMeasurements> shedMeasurements = new ArrayList<>();
+    public static List<RoofFlat> getRoofFlat() throws SQLException {
+        List<RoofFlat> roofFlat = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM ORDER BY ";
+            String SQL = "SELECT roof_material FROM roof WHERE roof_type = 'fladt'";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("shedId");
-                int shedWidth = rs.getInt("shedWidth");
-                int shedLength = rs.getInt("shedLength");
-                ShedMeasurements sm = new ShedMeasurements(id, shedWidth, shedLength);
-                shedMeasurements.add(sm);
+                String roofFlatOption = rs.getString("roof_material");
+                RoofFlat rf = new RoofFlat(roofFlatOption);
+                roofFlat.add(rf);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             throw new SQLException(ex.getMessage());
         }
 
-        return shedMeasurements;
+        return roofFlat;
+    }
+
+    /**
+     *
+     * @return roofRaised
+     * @throws SQLException
+     */
+    public static List<RoofRaised> getRoofRaised() throws SQLException {
+        List<RoofRaised> roofRaised = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT roof_material FROM roof WHERE roof_type = 'rejst'";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String roofRaisedOptions = rs.getString("roof_material");
+                RoofRaised rfo = new RoofRaised(roofRaisedOptions);
+                roofRaised.add(rfo);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return roofRaised;
+    }
+
+    /**
+     *
+     * @return roofDegree
+     * @throws SQLException
+     */
+    public static List<RoofDegree> getRoofDegree() throws SQLException {
+        List<RoofDegree> roofDegree = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT pitch FROM roof_pitch";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int roofDegreeOptions = rs.getInt("pitch");
+                RoofDegree rd = new RoofDegree(roofDegreeOptions);
+                roofDegree.add(rd);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return roofDegree;
+    }
+
+    /**
+     *
+     * @return shedWidth
+     * @throws SQLException
+     */
+    public static List<ShedWidth> getShedWidth() throws SQLException {
+        List<ShedWidth> shedWidth = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT units FROM measurement_units WHERE ts_width = '1'";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int shedWidthOptions = rs.getInt("units");
+                ShedWidth sw = new ShedWidth(shedWidthOptions);
+                shedWidth.add(sw);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return shedWidth;
+    }
+
+    /**
+     *
+     * @return shedLength
+     * @throws SQLException
+     */
+    public static List<ShedLength> getShedLength() throws SQLException {
+        List<ShedLength> shedLength = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT units FROM measurement_units WHERE ts_length = '1'";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int shedLengthOptions = rs.getInt("units");
+                ShedLength sl = new ShedLength(shedLengthOptions);
+                shedLength.add(sl);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return shedLength;
     }
 
 }

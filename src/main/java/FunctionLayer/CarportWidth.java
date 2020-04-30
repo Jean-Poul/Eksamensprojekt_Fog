@@ -1,22 +1,26 @@
 package FunctionLayer;
 
 /**
- * Class for instantiating instances of request measurements for a carport
+ * Class for instantiating instances of request measurements for carport width
  */
-
 public class CarportWidth {
 
-    private int carportWidth;
+    private int carportWidthOption;
 
-    public CarportWidth(int carportWidth) {
-        this.carportWidth = carportWidth;
+    /**
+     * Constructor
+     * @param carportWidthOption
+     */
+    public CarportWidth(int carportWidthOption) {
+        this.carportWidthOption = carportWidthOption;
     }
 
-    public int getCarportWidth() {
-        return carportWidth;
+    //Getters and setters
+    public int getCarportWidthOption() {
+        return carportWidthOption;
     }
 
-    public void setCarportWidth(int carportWidth) {
-        this.carportWidth = carportWidth;
+    public void setCarportWidthOption(int carportWidthOption) {
+        this.carportWidthOption = carportWidthOption;
     }
 }
