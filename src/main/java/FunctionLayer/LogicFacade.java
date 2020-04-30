@@ -12,7 +12,7 @@ import java.util.List;
 public class LogicFacade {
 
     //##################
-    //User related calls
+    //User calls
     //##################
 
     /**
@@ -38,6 +38,58 @@ public class LogicFacade {
         DataMapper.createUser( user );
         return user;
     }
+
+
+    //##################
+    //User quote calls
+    //##################
+
+    /**
+     *
+     * @param name
+     * @param adress
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comments
+     * @throws LoginSampleException
+     */
+    public static void createUserQuote(String name,String adress,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
+        DataMapper.createUserQuote(name,adress,zipcodeCity,phone,email,comments);
+    }
+
+    /**
+     *
+     * @param user_proposition_id
+     * @param oc_width
+     * @param oc_length
+     * @param ots_width
+     * @param ots_length
+     * @param roof_type
+     * @param roof_material
+     * @param pitch
+     * @throws LoginSampleException
+     */
+    public static void createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
+        DataMapper.createQuoteOrder(user_proposition_id, oc_width, oc_length, ots_width, ots_length, roof_type, roof_material, pitch);
+    }
+
+    /**
+     *
+     * @param orders_id
+     * @param material_type
+     * @param material
+     * @param description
+     * @param length
+     * @param quantity
+     * @param unit
+     * @param total_price
+     * @throws LoginSampleException
+     */
+    public static void createQuoteOrderline(int orders_id,String material_type,String material,String description,int length,int quantity,String unit,double total_price) throws LoginSampleException {
+        DataMapper.createQuoteOrderline(orders_id,material_type,material,description,length,quantity,unit,total_price);
+    }
+
 
     //##################
     //Select option calls
@@ -104,41 +156,6 @@ public class LogicFacade {
      */
     public static List<ShedLength> getShedLength() throws SQLException {
         return DataMapper.getShedLength();
-    }
-
-
-    //##################
-    //User related calls
-    //##################
-
-    /**
-     *
-     * @param name
-     * @param adress
-     * @param zipcodeCity
-     * @param phone
-     * @param email
-     * @param comments
-     * @throws LoginSampleException
-     */
-    public static void createUserQuote(String name,String adress,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
-        DataMapper.createUserQuote(name,adress,zipcodeCity,phone,email,comments);
-    }
-
-    /**
-     *
-     * @param user_proposition_id
-     * @param oc_width
-     * @param oc_length
-     * @param ots_width
-     * @param ots_length
-     * @param roof_type
-     * @param roof_material
-     * @param pitch
-     * @throws LoginSampleException
-     */
-    public static void createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
-        DataMapper.createQuoteOrder(user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
     }
 
 }

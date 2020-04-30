@@ -12,10 +12,11 @@
         <main role="main">
             <!-- Section -->
             <section class="col-12">
-
+                <br/>
                 <!-- Row -->
                 <div class="row">
 
+                   ${requestScope.svgdrawingSideways}
 
 
                 </div>
@@ -33,4 +34,9 @@
 <!-- Footer -->
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
+
+
+
+
+
 

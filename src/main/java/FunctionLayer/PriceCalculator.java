@@ -29,6 +29,4 @@ public class PriceCalculator {
         //Pris for door "Z" - make a door price package
 
 
-
-
 }

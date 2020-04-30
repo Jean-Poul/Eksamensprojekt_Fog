@@ -157,6 +157,9 @@ INSERT INTO item_list (material_type,material,description,quantity,unit,price_pe
                                                                                                ('Lægter, stern og løsholter','38x73','38x73 toplægte','1','m','22.95'),
                                                                                                ('Lægter, stern og løsholter','38x73','38x73 Lægte til z på bagside af dør ubh.','1','m','22.95'),
                                                                                                ('Lægter, stern og løsholter','45x95','45x95 mm ubh. Løsholte','1','m','17.95'),
-                                                                                               ('Lægter, stern og løsholter','25x200','25x200 Bræt til stern trykimpr.','1','m','49.95');
+                                                                                               ('Lægter, stern og løsholter','25x200','25x200 Bræt til stern trykimpr.','1','m','49.95'),
+                                                                                               ('Lægter, stern og løsholter','19x100','19x100 Beklædning af skur','1','m','9.95'),
+                                                                                               ('Tag','20,4 x 23,6','20,4 x 23,6 tagsten "Gammel dansk"','1','stk','17.95'),
+                                                                                               ('Tag','109 x 240','109 x 240 Trapez tagplade','1','stk','84.95');
 
 UNLOCK TABLES;
