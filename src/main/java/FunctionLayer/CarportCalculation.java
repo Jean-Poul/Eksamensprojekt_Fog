@@ -17,10 +17,8 @@ import java.util.HashMap;
 
 //Shed dimensions should be validated to fit inside carport. TBD on .jsp maybe?
 
-//Calculate roof cladding ("6 rækker á 24 sten")
 //Calculate brackets, bolts, screws and washers
 //Rooftop brackets = antallet af sten i én række
-//Tiles - (L x W / Roof area m2)
 //tile hooks and binders (2 packages)
 
 //Calculate cladding (Only on sheds - Sides 1 and 2 (L x W) - cladding piece height and width
@@ -33,6 +31,14 @@ public class CarportCalculation {
     private static final int BOTTOM_LATHS = 2;
     private static final double TOP_LATH = 3;
     private static final double AVG_LATH_SPAN = 30;
+    private static final double ROOF_TILE_LENGTH = 23.6;
+    private static final double ROOF_TILE_WIDTH = 20.4;
+    private static final double ROOF_TRAPEZ_LENGTH = 240;
+    private static final double ROOF_TRAPEZ_WIDTH = 109;
+
+    boolean withShed = false;
+    boolean raisedRoof;
+
 
     DecimalFormat df = new DecimalFormat("#.##");
 
@@ -51,8 +57,9 @@ public class CarportCalculation {
     private double supportingStrap;
     private int sternBoardLength;
     private double wallLath;
+    private int totalNumberOfRoofTiles;
+    private int totalNumberOfRoofTrapezPlates;
 
-    boolean withShed = false;
 
     private int noOfLaths;
     private double lathSpan;
@@ -62,7 +69,8 @@ public class CarportCalculation {
     private String raftDimAndDist = "45 x 120 1.2";
 
 //    public CarportCalculation(double carportLength, double carportWidth, double customerRoofAngle, double shedLength, double shedWidth, String roofCladdingType){
-//        calcNoOfBeams(shedLength);
+//        //TJEK OM DER ER SKUR
+//        //TJEK OM DET ER REJST TAG
 //        //#######################################
 //        //DET HER BLIVER DEN RIGTIGE CONSTRUCTOR
 //        //#######################################
@@ -74,6 +82,7 @@ public class CarportCalculation {
 
     //Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved from DB.
     HashMap<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
+
 
     //double shedLength
     public CarportCalculation() {
@@ -128,13 +137,37 @@ public class CarportCalculation {
         angleAndFactor.put(45, 0.72);
     }
 
+
+    /**
+     * Calculates the amount of roof tiles OR trapez plates depending on the roof type
+     * @param carportLength The customer selected carport length
+     * @param calcRaftLength The calculated raft length
+     * @param ROOF_TILE_LENGTH Length of a roof tile (Assumed value from FOG website)
+     * @param ROOF_TILE_WIDTH Width of a roof tile (Assumed value from FOG website)
+     * @param ROOF_TRAPEZ_LENGTH Length of a roof trapez plate (Assumed value from FOG website)
+     * @param ROOF_TRAPEZ_WIDTH Width of a roof trapez plate (Assumed value from FOG website)
+     */
+    private void calculateRoofCladdingArea(int carportLength, double calcRaftLength, double ROOF_TILE_LENGTH, double ROOF_TILE_WIDTH, double ROOF_TRAPEZ_LENGTH, double ROOF_TRAPEZ_WIDTH) {
+
+        if (raisedRoof) {
+            int columnsOfTiles = (int) (carportLength / ROOF_TILE_WIDTH);
+            int rowsOfTiles = (int) ((calcRaftLength * 100) / ROOF_TILE_LENGTH); //Converting raft length to cm
+            int totalNumberOfRoofTiles = rowsOfTiles * columnsOfTiles * 2; //Multiply by 2 to get both sides of the roof
+            this.totalNumberOfRoofTiles = totalNumberOfRoofTiles;
+        } else if (!raisedRoof) {
+            double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TILE_WIDTH;
+            int noOfTrapezPlates = (int) ((carportLength * carportWidth) / trapezPlateSquareArea);
+            this.totalNumberOfRoofTrapezPlates = noOfTrapezPlates;
+        }
+    }
+
     /**
      * Calculates the required amount of wall-laths for the shed
      *
-     * @param shedWidth The customer selected shed width
+     * @param shedWidth  The customer selected shed width
      * @param shedLength The customer selected shed length
      */
-    private void calcWallLaths(double shedWidth, double shedLength){
+    private void calcWallLaths(double shedWidth, double shedLength) {
         double wallLathQty = (shedLength + shedWidth) * 2;
         this.wallLath = wallLathQty;
     }
