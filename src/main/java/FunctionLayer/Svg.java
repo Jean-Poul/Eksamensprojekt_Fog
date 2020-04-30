@@ -157,9 +157,9 @@ public class Svg {
     @Override
     public String toString() {
 
-        //String res = svg.toString().replace("," , ".");
-        //return res + "</svg>" ;
-        return svg.toString() + "</svg>" ;
+        String res = svg.toString().replace("[^(100),(100)]+," , ".");
+        return res + "</svg>" ;
+        //return svg.toString() + "</svg>" ;
     }
 
 }
