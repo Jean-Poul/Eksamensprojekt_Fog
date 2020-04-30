@@ -12,7 +12,6 @@ public class CarportCalcPage extends Command {
 
         //CarportCalculation c = new CarportCalculation();
 
-
         return "index";
     }
 }
