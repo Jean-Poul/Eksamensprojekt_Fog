@@ -8,12 +8,17 @@ import java.util.List;
 
 /**
  * The purpose of DataMapper is to be able to make database queries
+ *
+ *  1. User
+ *  2. User quotes
+ *  3. Select option
+ *  4.
  */
 
 public class DataMapper {
 
     //##################
-    //User queries
+    //1. User queries
     //##################
 
     public static void createUser( User user ) throws LoginSampleException {
@@ -58,7 +63,7 @@ public class DataMapper {
     }
 
     //##################
-    //User quote queries
+    //2. User quote queries
     //##################
 
     /**
