@@ -1,6 +1,7 @@
 package FunctionLayer;
 
 import DBAccess.DimensionMapper;
+import DBAccess.CustomerQuoteMapper;
 import DBAccess.UserMapper;
 
 import java.sql.SQLException;
@@ -105,6 +106,15 @@ public class LogicFacade {
      */
     public static List<ShedLength> getShedLength() throws SQLException {
         return DimensionMapper.getShedLength();
+    }
+
+
+    public static void createUserQuote(String name,String adress,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
+        CustomerQuoteMapper.createUserQuote(name,adress,zipcodeCity,phone,email,comments);
+    }
+
+    public static void createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
+        CustomerQuoteMapper.createQuoteOrder(user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
     }
 
 }

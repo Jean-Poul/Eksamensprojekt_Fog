@@ -16,8 +16,7 @@
                 <!-- Row -->
                 <div class="row">
 
-                   ${requestScope.svgdrawing}
-                   ${requestScope.svgInnerDrawing}
+                   ${requestScope.svgDrawing}
 
 
                 </div>

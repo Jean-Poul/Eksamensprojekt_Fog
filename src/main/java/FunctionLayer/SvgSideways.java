@@ -1,21 +1,21 @@
 package FunctionLayer;
 
-public class Svg {
+public class SvgSideways {
 
     private double width;
     private double height;
     private String viewbox;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    private int x1;
-    private int y1;
-    private int x2;
-    private int y2;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
 
     private int text;
 
-    private StringBuilder svg = new StringBuilder();
+    private StringBuilder svgSideways = new StringBuilder();
 
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
     private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
@@ -25,46 +25,46 @@ public class Svg {
     private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
     private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%d,%d) rotate(-90)\">600 cm</text>\n";
 
-    public Svg(int x, int y, double width, double height, String viewbox) {
+    public SvgSideways(double x, double y, double width, double height, String viewbox) {
         this.width = width;
         this.height = height;
         this.viewbox = viewbox;
         this.x = x;
         this.y = y;
-        svg.append(String.format(headerTemplate, x, y, height, width, viewbox));
+        svgSideways.append(String.format(headerTemplate, x, y, height, width, viewbox));
     }
 
-    public Svg(int x1, int y1, int x2, int y2){
+    public SvgSideways(double x1, double y1, double x2, double y2){
         this.x1 = x1;
         this.x1 = y1;
         this.x1 = x2;
         this.x1 = y2;
     }
 
-    public Svg(int x, int y, int text){
+    public SvgSideways(double x, double y, int text){
         this.x = x;
         this.y = y;
         this.text = text;
     }
 
-    public void addRect(int x, int y, double height, double width){
-        svg.append(String.format(rectTemplate, x, y, height, width));
+    public void addRect(double x, double y, double height, double width){
+        svgSideways.append(String.format(rectTemplate, x, y, height, width));
     }
 
-    public void addLine(int x1, int y1, int x2, int y2){
-        svg.append(String.format(lineTemplate, x1, y1, x2, y2));
+    public void addLine(double x1, double y1, double x2, double y2){
+        svgSideways.append(String.format(lineTemplate, x1, y1, x2, y2));
     }
 
-    public void addDotLine(int x1, int y1, int x2, int y2){
-        svg.append(String.format(dotLineTemplate, x1, y1, x2, y2));
+    public void addDotLine(double x1, double y1, double x2, double y2){
+        svgSideways.append(String.format(dotLineTemplate, x1, y1, x2, y2));
     }
 
-    public void addLowerText(int x, int y, int text){
-        svg.append(String.format(lowerTextTemplate, x, y, text));
+    public void addLowerText(double x, double y, int text){
+        svgSideways.append(String.format(lowerTextTemplate, x, y, text));
     }
 
-    public void addUpperText(int x, int y, int text){
-        svg.append(String.format(upperTextTemplate, x, y, text));
+    public void addUpperText(double x, double y, int text){
+        svgSideways.append(String.format(upperTextTemplate, x, y, text));
     }
 
     public double getWidth() {
@@ -91,51 +91,51 @@ public class Svg {
         this.viewbox = viewbox;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
-    public int getX1() {
+    public double getX1() {
         return x1;
     }
 
-    public void setX1(int x1) {
+    public void setX1(double x1) {
         this.x1 = x1;
     }
 
-    public int getY1() {
+    public double getY1() {
         return y1;
     }
 
-    public void setY1(int y1) {
+    public void setY1(double y1) {
         this.y1 = y1;
     }
 
-    public int getX2() {
+    public double getX2() {
         return x2;
     }
 
-    public void setX2(int x2) {
+    public void setX2(double x2) {
         this.x2 = x2;
     }
 
-    public int getY2() {
+    public double getY2() {
         return y2;
     }
 
-    public void setY2(int y2) {
+    public void setY2(double y2) {
         this.y2 = y2;
     }
 
@@ -150,9 +150,7 @@ public class Svg {
     @Override
     public String toString() {
 
-        //String res = svg.toString().replace(",",".");
-        //return res + "</svg>" ;
-        return svg.toString() + "</svg>" ;
-    }
 
+        return svgSideways.toString() + "</svg>" ;
+    }
 }
