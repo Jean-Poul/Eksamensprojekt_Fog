@@ -18,7 +18,10 @@ import java.util.List;
 
 //Shed dimensions should be validated to fit inside carport. TBD on .jsp maybe?
 
-//Calculate correct raft spacing
+//Select correct raft spacing (Almost done)
+//Select correct raft dimension (Easily done when above is finished)
+
+//Select correct beams for light/heavy roof
 
 //Calculate brackets, bolts, screws and washers
 //tile hooks and binders (2 packages)
