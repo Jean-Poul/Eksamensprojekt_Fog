@@ -1,8 +1,6 @@
 package FunctionLayer;
 
-import DBAccess.DimensionMapper;
-import DBAccess.CustomerQuoteMapper;
-import DBAccess.UserMapper;
+import DBAccess.DataMapper;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -25,7 +23,7 @@ public class LogicFacade {
      * @throws LoginSampleException
      */
     public static User login( String email, String password ) throws LoginSampleException {
-        return UserMapper.login( email, password );
+        return DataMapper.login( email, password );
     }
 
     /**
@@ -37,7 +35,7 @@ public class LogicFacade {
      */
     public static User createUser( String email, String password ) throws LoginSampleException {
         User user = new User(email, password, "customer");
-        UserMapper.createUser( user );
+        DataMapper.createUser( user );
         return user;
     }
 
@@ -51,7 +49,7 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<CarportWidth> getCarportWidth() throws SQLException {
-        return DimensionMapper.getCarportWidth();
+        return DataMapper.getCarportWidth();
     }
 
     /**
@@ -60,7 +58,7 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<CarportLength> getCarportLength() throws SQLException {
-        return DimensionMapper.getCarportLength();
+        return DataMapper.getCarportLength();
     }
 
     /**
@@ -69,7 +67,7 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<RoofFlat> getRoofFlat() throws SQLException {
-        return DimensionMapper.getRoofFlat();
+        return DataMapper.getRoofFlat();
     }
 
     /**
@@ -78,7 +76,7 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<RoofRaised> getRoofRaised() throws SQLException {
-        return DimensionMapper.getRoofRaised();
+        return DataMapper.getRoofRaised();
     }
 
     /**
@@ -87,7 +85,7 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<RoofDegree> getRoofDegree() throws SQLException {
-        return DimensionMapper.getRoofDegree();
+        return DataMapper.getRoofDegree();
     }
 
     /**
@@ -96,7 +94,7 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<ShedWidth> getShedWidth() throws SQLException {
-        return DimensionMapper.getShedWidth();
+        return DataMapper.getShedWidth();
     }
 
     /**
@@ -105,16 +103,42 @@ public class LogicFacade {
      * @throws SQLException
      */
     public static List<ShedLength> getShedLength() throws SQLException {
-        return DimensionMapper.getShedLength();
+        return DataMapper.getShedLength();
     }
 
 
+    //##################
+    //User related calls
+    //##################
+
+    /**
+     *
+     * @param name
+     * @param adress
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comments
+     * @throws LoginSampleException
+     */
     public static void createUserQuote(String name,String adress,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
-        CustomerQuoteMapper.createUserQuote(name,adress,zipcodeCity,phone,email,comments);
+        DataMapper.createUserQuote(name,adress,zipcodeCity,phone,email,comments);
     }
 
+    /**
+     *
+     * @param user_proposition_id
+     * @param oc_width
+     * @param oc_length
+     * @param ots_width
+     * @param ots_length
+     * @param roof_type
+     * @param roof_material
+     * @param pitch
+     * @throws LoginSampleException
+     */
     public static void createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
-        CustomerQuoteMapper.createQuoteOrder(user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
+        DataMapper.createQuoteOrder(user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
     }
 
 }

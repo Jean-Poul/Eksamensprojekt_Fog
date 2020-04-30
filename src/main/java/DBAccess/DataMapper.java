@@ -2,17 +2,136 @@ package DBAccess;
 
 import FunctionLayer.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class will get measurements from the database to populate the select options in carportcustomize.jsp
+ * The purpose of DataMapper is to be able to make database queries
  */
-public class DimensionMapper {
+
+public class DataMapper {
+
+    //##################
+    //User queries
+    //##################
+
+    public static void createUser( User user ) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO Users (email, password, role) VALUES (?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
+            ps.setString( 1, user.getEmail() );
+            ps.setString( 2, user.getPassword() );
+            ps.setString( 3, user.getRole() );
+            ps.executeUpdate();
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+            int id = ids.getInt( 1 );
+            user.setId( id );
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
+    }
+
+    public static User login( String email, String password ) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT users_id, role FROM users "
+                    + "WHERE email=? AND password=?";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ps.setString( 1, email );
+            ps.setString( 2, password );
+            ResultSet rs = ps.executeQuery();
+            if ( rs.next() ) {
+                String role = rs.getString( "role" );
+                int id = rs.getInt( "users_id" );
+                User user = new User( email, password, role );
+                user.setId( id );
+                return user;
+            } else {
+                throw new LoginSampleException( "Could not validate user" );
+            }
+        } catch ( ClassNotFoundException | SQLException ex ) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    //##################
+    //User quote queries
+    //##################
+
+    /**
+     *
+     * @param name
+     * @param adress
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comments
+     * @return userId
+     * @throws LoginSampleException
+     */
+    public static int createUserQuote(String name,String adress,String zipcodeCity,int phone, String email,String comments) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO user_proposition (name,adress,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?);";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, name);
+            ps.setString(2, adress);
+            ps.setString(3,zipcodeCity);
+            ps.setInt(4,phone);
+            ps.setString(5,email);
+            ps.setString(6, comments);
+            ps.executeUpdate();
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+            int userId = ids.getInt(1);
+            return userId;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param user_proposition_id
+     * @param oc_width
+     * @param oc_length
+     * @param ots_width
+     * @param ots_length
+     * @param roof_type
+     * @param roof_material
+     * @param pitch
+     * @return orderId
+     * @throws LoginSampleException
+     */
+    public static int createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width, int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO orders (user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES (?,?,?,?,?,?,?,?);";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, user_proposition_id);
+            ps.setInt(2, oc_width);
+            ps.setInt(3, oc_length);
+            ps.setInt(4, ots_width);
+            ps.setInt(5, ots_length);
+            ps.setString(6, roof_type);
+            ps.setString(7, roof_material);
+            ps.setInt(8, pitch);
+            ps.executeUpdate();
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+            int orderId = ids.getInt(1);
+            return orderId;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    //##################
+    //Select option queries
+    //##################
 
     /**
      *
@@ -181,5 +300,7 @@ public class DimensionMapper {
 
         return shedLength;
     }
+
+
 
 }

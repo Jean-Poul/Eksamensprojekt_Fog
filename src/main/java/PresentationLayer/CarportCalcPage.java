@@ -10,7 +10,7 @@ public class CarportCalcPage extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        CarportCalculation c = new CarportCalculation();
+        //CarportCalculation c = new CarportCalculation();
 
 
         return "index";
