@@ -172,7 +172,7 @@ public class SvgSideways {
     @Override
     public String toString() {
 
-        //String res = svgSideways.toString().replace(",",".");
+        String res = svgSideways.toString().replace(",",".");
         //return res + "</svg>" ;
         return svgSideways.toString() + "</svg>" ;
     }
