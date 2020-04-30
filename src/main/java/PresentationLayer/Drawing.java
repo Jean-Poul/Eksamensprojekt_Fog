@@ -80,8 +80,8 @@ public class Drawing extends Command {
         svg.addRect(730,562,9.7,10.0);
 
         //Kryds
-        svg.addDotLine(55,35,550,600);
-        svg.addDotLine(55,600,550,35);
+        svg.addDotLine(55,0,550,600);
+        svg.addDotLine(55,600,550,0);
 
         //Pile
         svg.addLine(-30,0,-30,605);
