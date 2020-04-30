@@ -74,7 +74,7 @@ public class DrawingSideways extends Command {
         svgSideways.addRect(660.0,105.0,200.0,10.0);
         svgSideways.addRect(675.0,105.0,200.0,10.0);
         svgSideways.addRect(695.0,105.0,200.0,10.0);
-        svgSideways.addRect(7100.0,105.0,200.0,10.0);
+        svgSideways.addRect(710.0,105.0,200.0,10.0);
         svgSideways.addRect(725.0,105.0,200.0,10.0);
         svgSideways.addRect(740.0,105.0,200.0,10.0);
         svgSideways.addRect(755.0,105.0,200.0,10.0);
@@ -87,8 +87,8 @@ public class DrawingSideways extends Command {
         svgSideways.addLineNoArrow(35.0, 305.0,800.0,305.0);
 
         //Rooftiles
-        svgSideways.addLine(250.0, 250.0,250.0,270.4);
-        svgSideways.addLine(273.6, 250.0,273.6,270.4);
+        svgSideways.addLineNoArrow(250.0, 250.0,250.0,270);
+        svgSideways.addLineNoArrow(275, 250.0,275,270);
         //Roof tile
         svgSideways.addRoofTile1();
         svgSideways.addRoofTile2();

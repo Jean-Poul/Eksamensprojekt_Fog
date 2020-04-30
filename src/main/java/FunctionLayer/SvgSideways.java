@@ -33,8 +33,8 @@ public class SvgSideways {
     private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
     private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
     private final String upperTextTemplate = "<text  transform=\"translate(%f,%f) rotate(-90)\" style=\"text-anchor: middle\"> %d </text>\n";
-    private final String roofTileTemplate1 = "<path d=\"M 200 270.4 Q 211.8 280 223.6 270.4\" style=\"stroke:#000000; fill: #ffffff\"/>";
-    private final String roofTileTemplate2 = "<path d=\"M 200 270.4 Q 211.8 280 223.6 270.4\" style=\"stroke:#000000; fill: #ffffff\"/>";
+    private final String roofTileTemplate1 = "<path d=\"M 250 250 Q 262.5 260 275 250\" style=\"stroke:#000000; fill: #ffffff\"/>";
+    private final String roofTileTemplate2 = "<path d=\"M 250 270 Q 262.5 280 275 270\" style=\"stroke:#000000; fill: #ffffff\"/>";
 
     public SvgSideways(double x, double y, double width, double height, String viewbox) {
         this.width = width;
