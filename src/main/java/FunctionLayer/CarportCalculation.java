@@ -79,7 +79,7 @@ public class CarportCalculation {
     public CarportCalculation() {
 
         //If the customer has selected a shed, the number of beams doubles.
-        calcNoOfBeams(shedLength);
+        //calcNoOfBeams(shedLength);
 
         //To be deleted when the hashmap is populated from DB
         populateAngleAndFactor();
