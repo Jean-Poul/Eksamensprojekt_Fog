@@ -16,7 +16,7 @@ public class DrawingSideways extends Command {
         //svgSideways.addRect(90.0,-20.0, 380.0,850.0);
 
         //Mål på hele carport
-        //svgSideways.addRect(75,20,600.0,780.0);
+        //svgSideways.addRect(0,0,600.0,780.0);
 
         //Spær
         svgSideways.addRect(85.0,2.5,87.5,4.5);
@@ -59,7 +59,7 @@ public class DrawingSideways extends Command {
         svgSideways.addRect(50.0,80.0,15.0,730.0);
 
         //Bottom of roof
-        svgSideways.addLine(50.0, 85.0,780.0,85.0);
+        svgSideways.addLine(50.0, -30.0,780.0,-30.0);
 
         //Skur
         svgSideways.addRect(525.0,105.0,200.0,10.0);
@@ -80,7 +80,7 @@ public class DrawingSideways extends Command {
         svgSideways.addRect(755.0,105.0,200.0,10.0);
 
         //Diagonal Arrows
-        svgSideways.addLineNoArrow(50.0, 325.0,50.0,109.5);
+        svgSideways.addLineNoArrow(55, 325.0,55,109.5);
         svgSideways.addLineNoArrow(780.0, 325.0,780.0,109.5);
 
         //Horizontal arrow
@@ -89,21 +89,22 @@ public class DrawingSideways extends Command {
         //Rooftiles
         svgSideways.addLine(250.0, 250.0,250.0,270.4);
         svgSideways.addLine(273.6, 250.0,273.6,270.4);
-        //MANGLER TAGSTEN
-        //svgSideways.addPath
+        //Roof tile
+        svgSideways.addRoofTile1();
+        svgSideways.addRoofTile2();
 
         //arrow measurements
-        svgSideways.addLine(0, 0.0,0.0,305.0);
-        svgSideways.addLine(25, 95.0,25.0,305.0);
-        svgSideways.addLine(50, 350.0,130.0,350.0);
-        svgSideways.addLine(130, 350.0,405.0,350.0);
-        svgSideways.addLine(405, 350.0,525.0,350.0);
-        svgSideways.addLine(525, 350.0,750.0,350.0);
-        svgSideways.addLine(750, 350.0,780.0,350.0);
+        svgSideways.addLine(0.0, 0.0,0.0,305.0);
+        svgSideways.addLine(25.0, 95.0,25.0,305.0);
+        svgSideways.addLine(50.0, 350.0,130.0,350.0);
+        svgSideways.addLine(130.0, 350.0,405.0,350.0);
+        svgSideways.addLine(405.0, 350.0,525.0,350.0);
+        svgSideways.addLine(525.0, 350.0,750.0,350.0);
+        svgSideways.addLine(750.0, 350.0,780.0,350.0);
 
         //text measurements
-        svgSideways.addUpperText(25,200, 305);
-        svgSideways.addUpperText(30,200, 210);
+        svgSideways.addUpperText(90,250, 305);
+        svgSideways.addUpperText(120,290, 210);
 
         svgSideways.addLowerText(80,340, 80);
         svgSideways.addLowerText(275,340, 275);
@@ -111,7 +112,6 @@ public class DrawingSideways extends Command {
         svgSideways.addLowerText(470,340, 120);
         svgSideways.addLowerText(660,340, 225);
         svgSideways.addLowerText(770,340, 30);
-
 
         request.setAttribute("svgdrawingSideways", svgSideways.toString());
         return "drawingSideways";
