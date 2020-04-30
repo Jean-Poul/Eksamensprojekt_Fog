@@ -75,8 +75,8 @@ public class CarportCalculation {
     //Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved from DB.
     HashMap<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
 
-
-    public CarportCalculation(double shedLength) {
+    //double shedLength
+    public CarportCalculation() {
 
         //If the customer has selected a shed, the number of beams doubles.
         calcNoOfBeams(shedLength);
