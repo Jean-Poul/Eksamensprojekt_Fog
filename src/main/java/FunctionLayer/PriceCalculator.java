@@ -12,18 +12,19 @@ public class PriceCalculator {
     //# FØLGENDE PRISER SKAL BEREGNES
     //##################################
 
-    //Pris for rem (supportingStrap)
-    //Pris for sternbrædder (Stern boards)
-    //Pris for stolper (Beams)
-    //Pris for roof cladding (Antal rækker og sten pr. række)
-    //Pris for brackets, bolts, screws and washers
+    //Pris for rem (supportingStrap) x m
+    //Pris for sternbrædder (Stern boards) x m
+    //Pris for stolper (Beams) x m
+    //Pris for roof cladding (Antal rækker og sten pr. række) m2
+            //Tile      l:20,4 w: 23,6, DKK 17,95
+            //Trapez    l: 109 w: 240   DKK 84,95
+    //Pris for bracket, bolts, screws and washers
     //Pris for spær (Rafts)
     //Pris for lægter (Laths)
 
     //Pris skur
-        //wall-laths for shed
         //+ 4 beams when shed
-        //Pris for løsholter ("Wall-laths" for cladding)
+        //wall-laths for shed
         //cladding (Only cladding for sheds)
         //Pris for door "Z" - make a door price package
 
