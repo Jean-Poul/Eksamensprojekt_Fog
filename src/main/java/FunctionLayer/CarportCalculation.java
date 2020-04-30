@@ -11,18 +11,15 @@ import java.util.*;
 /**
  * KLASSEN HAR BRUG FOR FØLGENDE INFORMATIONER FRA DATABASEN.
  * De skal altså hentes med datamapper igennem logicfacade og instantieres som objekter i denne klasse.
- * <p>
- * Det kunne være CarportRFQ rfq = new CarportRFQ(bla, bla, bla, bla, bla, bla);
- * rfq.getCarportWidth;
- * rfq.getCarportLength
- * osv.
- * <p>
- * int      - carport længde
- * int      - carport bredde
- * boolean  - carport tag fladt/rejst
- * int      - kundens valgte hældning
- * int      - skur bredde
- * int      - skur længde
+ * int          - carport længde
+ * int          - carport bredde
+ * boolean      - carport tag fladt/rejst
+ * int          - kundens valgte hældning
+ * int          - skur bredde
+ * int          - skur længde
+ * HashMap      - anglesAndFactor (format: [int 15], double 1.0])
+ * ArrayList    - RaftDistancesLightRoof (format: ["let"],["44 x 120"],["0.4"],["10.26])
+ * ArrayList    - RaftDistancesHeavyRoof - as above
  */
 
 //TO-DO Systemet skal vælge det rigtige spær!
@@ -90,7 +87,7 @@ public class CarportCalculation {
     //[FIX] Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved and populated from DB.
     HashMap<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
 
-    //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy) - should be retrieved and populated from DB
+    //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy)
     ArrayList<ArrayList<String>> raftDistancesLight = new ArrayList<>();
     ArrayList<ArrayList<String>> raftDistancesHeavy = new ArrayList<>();
 
