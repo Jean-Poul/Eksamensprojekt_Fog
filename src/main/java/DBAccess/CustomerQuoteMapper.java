@@ -52,4 +52,23 @@ public class CustomerQuoteMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
+    public static void createQuoteOrderline(int orders_id, String material_type, String material, String description, int length, int quantity, String unit, double total_price) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO orderline (orders_id,material_type,material,description,length,quantity,unit,total_price) VALUES (?,?,?,?,?,?,?,?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orders_id);
+            ps.setString(2, material_type);
+            ps.setString(3, material);
+            ps.setString(4, description);
+            ps.setInt(5, length);
+            ps.setInt(6, quantity);
+            ps.setString(7, unit);
+            ps.setDouble(8, total_price);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
 }
