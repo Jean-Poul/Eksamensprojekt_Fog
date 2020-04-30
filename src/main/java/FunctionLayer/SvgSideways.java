@@ -18,22 +18,23 @@ public class SvgSideways {
     private StringBuilder svgSideways = new StringBuilder();
 
 
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> " +
-            "<defs>\n" +
-                "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
-                    "<path d=\"M0,6 L12.0 L12.12 L0.6\" style=\"fill: #000000;\" />\n" +
-                "</marker>\n" +
-                "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
-                  "<path d=\"M0.0 L12.6 L0.12 L0.0 \" style=\"fill: #000000;\" />\n" +
-                "</marker>\n" +
+    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+            "</marker>\n" +
+            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+            "</marker>\n" +
             "</defs>";
-    private final String rectTemplate = "<rect  x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String lineTemplate = "<line  x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
+    private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
-    private final String lineNoArrowTemplate = "<line  x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String dotLineTemplate = "<line  x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String lowerTextTemplate = "<text  style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d </text>\n";
+    private final String lineNoArrowTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
+    private final String upperTextTemplate = "<text  transform=\"translate(%f,%f) rotate(-90)\" style=\"text-anchor: middle\"> %d </text>\n";
+    private final String roofTileTemplate1 = "<path d=\"M 200 270.4 Q 211.8 280 223.6 270.4\" style=\"stroke:#000000; fill: #ffffff\"/>";
+    private final String roofTileTemplate2 = "<path d=\"M 200 270.4 Q 211.8 280 223.6 270.4\" style=\"stroke:#000000; fill: #ffffff\"/>";
 
     public SvgSideways(double x, double y, double width, double height, String viewbox) {
         this.width = width;
@@ -78,6 +79,14 @@ public class SvgSideways {
 
     public void addUpperText(double x, double y, int text){
         svgSideways.append(String.format(upperTextTemplate, x, y, text));
+    }
+
+    public void addRoofTile1(){
+        svgSideways.append(String.format(roofTileTemplate1));
+    }
+
+    public void addRoofTile2(){
+        svgSideways.append(String.format(roofTileTemplate2));
     }
 
     public double getWidth() {
@@ -163,8 +172,8 @@ public class SvgSideways {
     @Override
     public String toString() {
 
-        String res = svgSideways.toString().replace(",",".");
-        return res + "</svg>" ;
-        //return svgSideways.toString() + "</svg>" ;
+        //String res = svgSideways.toString().replace(",",".");
+        //return res + "</svg>" ;
+        return svgSideways.toString() + "</svg>" ;
     }
 }
