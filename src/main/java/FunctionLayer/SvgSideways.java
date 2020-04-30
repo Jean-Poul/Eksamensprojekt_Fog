@@ -17,13 +17,22 @@ public class SvgSideways {
 
     private StringBuilder svgSideways = new StringBuilder();
 
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
+    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> " +
+            "<defs>\n" +
+                "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                    "<path d=\"M0,6 L12.0 L12.12 L0.6\" style=\"fill: #000000;\" />\n" +
+                "</marker>\n" +
+                "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                  "<path d=\"M0.0 L12.6 L0.12 L0.0 \" style=\"fill: #000000;\" />\n" +
+                "</marker>\n" +
+            "</defs>";
+    private final String rectTemplate = "<rect  x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String lineTemplate = "<line  x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
-    private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%d,%d) rotate(-90)\">600 cm</text>\n";
+    private final String lineNoArrowTemplate = "<line  x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String dotLineTemplate = "<line  x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String lowerTextTemplate = "<text  style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
+    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d </text>\n";
 
     public SvgSideways(double x, double y, double width, double height, String viewbox) {
         this.width = width;
@@ -53,6 +62,9 @@ public class SvgSideways {
 
     public void addLine(double x1, double y1, double x2, double y2){
         svgSideways.append(String.format(lineTemplate, x1, y1, x2, y2));
+    }
+    public void addLineNoArrow(double x1, double y1, double x2, double y2){
+        svgSideways.append(String.format(lineNoArrowTemplate, x1, y1, x2, y2));
     }
 
     public void addDotLine(double x1, double y1, double x2, double y2){
@@ -150,7 +162,8 @@ public class SvgSideways {
     @Override
     public String toString() {
 
-
-        return svgSideways.toString() + "</svg>" ;
+        String res = svgSideways.toString().replace(",",".");
+        return res + "</svg>" ;
+        //return svgSideways.toString() + "</svg>" ;
     }
 }

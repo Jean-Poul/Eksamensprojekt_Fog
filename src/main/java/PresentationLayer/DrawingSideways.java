@@ -13,104 +13,104 @@ public class DrawingSideways extends Command {
         SvgSideways svgSideways = new SvgSideways(0.0, 0.0, 1000.0,1000.0,"0,0,1000,1000");
 
         //Ramme
-        svgSideways.addRect(90.0,-20.0, 380.0,850.0);
+        //svgSideways.addRect(90.0,-20.0, 380.0,850.0);
 
         //Mål på hele carport
-        svgSideways.addRect(75,20,600.0,780.0);
+        //svgSideways.addRect(75,20,600.0,780.0);
 
         //Spær
-        svgSideways.addRect(35.0,2.5,87.5,4.5);
-        svgSideways.addRect(124.0,2.5,87.5,4.5);
-        svgSideways.addRect(213.0,2.5,87.5,4.5);
-        svgSideways.addRect(302.0,2.5,87.5,4.5);
-        svgSideways.addRect(391.0,2.5,87.5,4.5);
-        svgSideways.addRect(480.0,2.5,87.5,4.5);
-        svgSideways.addRect(590.0,2.5,87.5,4.5);
-        svgSideways.addRect(700.0,2.5,87.5,4.5);
+        svgSideways.addRect(85.0,2.5,87.5,4.5);
+        svgSideways.addRect(174.0,2.5,87.5,4.5);
+        svgSideways.addRect(263.0,2.5,87.5,4.5);
+        svgSideways.addRect(352.0,2.5,87.5,4.5);
+        svgSideways.addRect(441.0,2.5,87.5,4.5);
+        svgSideways.addRect(520.0,2.5,87.5,4.5);
+        svgSideways.addRect(640.0,2.5,87.5,4.5);
+        svgSideways.addRect(750.0,2.5,87.5,4.5);
 
         //Tag
-        svgSideways.addRect(0.0,2.5,4.5,730.0);
-        svgSideways.addRect(0.0,25.0,4.5,730.0);
-        svgSideways.addRect(0.0,45.0,4.5,730.0);
-        svgSideways.addRect(0.0,65.0,4.5,730.0);
-        svgSideways.addRect(0.0,80.0,4.5,730.0);
+        svgSideways.addRect(50.0,2.5,4.5,730.0);
+        svgSideways.addRect(50.0,25.0,4.5,730.0);
+        svgSideways.addRect(50.0,45.0,4.5,730.0);
+        svgSideways.addRect(50.0,65.0,4.5,730.0);
+        svgSideways.addRect(50.0,80.0,4.5,730.0);
 
         //Tagryg
-        svgSideways.addRect(0.0,2.5,10.0,730.0);
+        svgSideways.addRect(50.0,2.5,10.0,730.0);
 
         //vindskede
-        svgSideways.addRect(-5.0,0.0,85.0,10.0);
-        svgSideways.addRect(725.0,0.0,85.0,10.0);
+        svgSideways.addRect(45.0,0.0,85.0,10.0);
+        svgSideways.addRect(775.0,0.0,85.0,10.0);
 
         //Vandbraet på vindskede
-        svgSideways.addRect(-5.0,70.0,2.5,10.0);
-        svgSideways.addRect(725.0,70.0,2.5,10.0);
+        svgSideways.addRect(45.0,70.0,2.5,10.0);
+        svgSideways.addRect(775.0,70.0,2.5,10.0);
 
         //Stolper
-        svgSideways.addRect(80.0,95.0,210.0,10.0);
-        svgSideways.addRect(355.0,95.0,210.0,10.0);
-        svgSideways.addRect(475.0,95.0,210.0,10.0);
-        svgSideways.addRect(700.0,95.0,210.0,10.0);
+        svgSideways.addRect(130.0,95.0,210.0,10.0);
+        svgSideways.addRect(405.0,95.0,210.0,10.0);
+        svgSideways.addRect(525.0,95.0,210.0,10.0);
+        svgSideways.addRect(750.0,95.0,210.0,10.0);
 
         //rem skur
-        svgSideways.addRect(480.0,90.0,19.5,230.0);
+        svgSideways.addRect(530.0,90.0,19.5,230.0);
 
         //Sternbraet
-        svgSideways.addRect(0.0,80.0,15.0,730.0);
+        svgSideways.addRect(50.0,80.0,15.0,730.0);
 
         //Bottom of roof
-        svgSideways.addLine(00.0, 85.0,730.0,85.0);
+        svgSideways.addLine(50.0, 85.0,780.0,85.0);
 
         //Skur
-        svgSideways.addRect(475.0,105.0,200.0,10.0);
-        svgSideways.addRect(490.0,105.0,200.0,10.0);
-        svgSideways.addRect(505.0,105.0,200.0,10.0);
-        svgSideways.addRect(520.0,105.0,200.0,10.0);
-        svgSideways.addRect(535.0,105.0,200.0,10.0);
-        svgSideways.addRect(550.0,105.0,200.0,10.0);
-        svgSideways.addRect(565.0,105.0,200.0,10.0);
-        svgSideways.addRect(580.0,105.0,200.0,10.0);
-        svgSideways.addRect(595.0,105.0,200.0,10.0);
-        svgSideways.addRect(610.0,105.0,200.0,10.0);
-        svgSideways.addRect(625.0,105.0,200.0,10.0);
+        svgSideways.addRect(525.0,105.0,200.0,10.0);
+        svgSideways.addRect(540.0,105.0,200.0,10.0);
+        svgSideways.addRect(555.0,105.0,200.0,10.0);
+        svgSideways.addRect(570.0,105.0,200.0,10.0);
+        svgSideways.addRect(585.0,105.0,200.0,10.0);
+        svgSideways.addRect(600.0,105.0,200.0,10.0);
+        svgSideways.addRect(615.0,105.0,200.0,10.0);
+        svgSideways.addRect(630.0,105.0,200.0,10.0);
         svgSideways.addRect(645.0,105.0,200.0,10.0);
         svgSideways.addRect(660.0,105.0,200.0,10.0);
         svgSideways.addRect(675.0,105.0,200.0,10.0);
-        svgSideways.addRect(690.0,105.0,200.0,10.0);
-        svgSideways.addRect(705.0,105.0,200.0,10.0);
+        svgSideways.addRect(695.0,105.0,200.0,10.0);
+        svgSideways.addRect(7100.0,105.0,200.0,10.0);
+        svgSideways.addRect(725.0,105.0,200.0,10.0);
+        svgSideways.addRect(740.0,105.0,200.0,10.0);
+        svgSideways.addRect(755.0,105.0,200.0,10.0);
 
         //Diagonal Arrows
-        svgSideways.addLine(00.0, 325.0,00.0,109.5);
-        svgSideways.addLine(730.0, 325.0,730.0,109.5);
+        svgSideways.addLineNoArrow(50.0, 325.0,50.0,109.5);
+        svgSideways.addLineNoArrow(780.0, 325.0,780.0,109.5);
 
         //Horizontal arrow
-        svgSideways.addLine(-15.0, 305.0,750.0,305.0);
+        svgSideways.addLineNoArrow(35.0, 305.0,800.0,305.0);
 
         //Rooftiles
-        svgSideways.addLine(200.0, 250.0,200.0,270.4);
-        svgSideways.addLine(223.6, 250.0,223.6,270.4);
+        svgSideways.addLine(250.0, 250.0,250.0,270.4);
+        svgSideways.addLine(273.6, 250.0,273.6,270.4);
         //MANGLER TAGSTEN
         //svgSideways.addPath
 
         //arrow measurements
-        svgSideways.addLine(30, 10.0,30.0,315.0);
-        svgSideways.addLine(60, 105.0,60.0,315.0);
-        svgSideways.addLine(95, 350.0,175.0,350.0);
-        svgSideways.addLine(175, 350.0,450.0,350.0);
-        svgSideways.addLine(450, 350.0,570.0,350.0);
-        svgSideways.addLine(570, 350.0,795.0,350.0);
-        svgSideways.addLine(795, 350.0,825.0,350.0);
+        svgSideways.addLine(0, 0.0,0.0,305.0);
+        svgSideways.addLine(25, 95.0,25.0,305.0);
+        svgSideways.addLine(50, 350.0,130.0,350.0);
+        svgSideways.addLine(130, 350.0,405.0,350.0);
+        svgSideways.addLine(405, 350.0,525.0,350.0);
+        svgSideways.addLine(525, 350.0,750.0,350.0);
+        svgSideways.addLine(750, 350.0,780.0,350.0);
 
         //text measurements
         svgSideways.addUpperText(25,200, 305);
-        svgSideways.addUpperText(50,200, 210);
+        svgSideways.addUpperText(30,200, 210);
 
-        svgSideways.addLowerText(135,340, 80);
-        svgSideways.addLowerText(300,340, 275);
+        svgSideways.addLowerText(80,340, 80);
+        svgSideways.addLowerText(275,340, 275);
 
-        svgSideways.addLowerText(510,340, 120);
-        svgSideways.addLowerText(670,340, 225);
-        svgSideways.addLowerText(805,340, 30);
+        svgSideways.addLowerText(470,340, 120);
+        svgSideways.addLowerText(660,340, 225);
+        svgSideways.addLowerText(770,340, 30);
 
 
         request.setAttribute("svgdrawingSideways", svgSideways.toString());
