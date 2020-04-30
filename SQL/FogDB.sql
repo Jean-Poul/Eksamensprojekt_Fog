@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`item_list` (
   `price_per_unit` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`item_list_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -94,12 +95,37 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`orders` (
   `roof_material` VARCHAR(90) NOT NULL,
   `pitch` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`orders_id`),
-  INDEX `fk_userProp_orders_idx` (`user_proposition_id` ASC) VISIBLE,
+  INDEX `fk_userProp_orders_idx` (`user_proposition_id` ASC) INVISIBLE,
   CONSTRAINT `fk_userProp_orders`
     FOREIGN KEY (`user_proposition_id`)
     REFERENCES `fogdb`.`user_proposition` (`user_proposition_id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `fogdb`.`orderline`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fogdb`.`orderline` (
+  `orderline_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `orders_id` INT(11) NOT NULL,
+  `material_type` VARCHAR(45) NOT NULL,
+  `material` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(90) NOT NULL,
+  `length` INT(11) NOT NULL,
+  `quantity` INT(11) NOT NULL,
+  `unit` VARCHAR(20) NOT NULL,
+  `total_price` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`orderline_id`),
+  INDEX `fk_orderline_orders_idx` (`orders_id` ASC) VISIBLE,
+  CONSTRAINT `fk_orderline_orders`
+    FOREIGN KEY (`orders_id`)
+    REFERENCES `fogdb`.`orders` (`orders_id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
