@@ -17,6 +17,10 @@
                 <div class="row">
 
 
+                    <a class="card-link btn btn-dark"
+                       href="FrontController?target=redirect&destination=quoteview">Forespørgsels oversigt
+                    </a>
+
                 </div>
                 <!-- End row -->
 
