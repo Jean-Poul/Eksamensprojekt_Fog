@@ -158,6 +158,8 @@ public class Svg {
     public String toString() {
         String res = svg.toString().replace(",",".");
         res = res.replace("translate(100.100)","translate(100,100)");
+        res = res.replace("M0.0 L12.6 L0.12 L0.0","M0,0 L12,6 L0,12 L0,0");
+        res = res.replace("M0.6 L12.0 L12.12 L0.6","M0,6 L12,0 L12,12 L0,6");
         //String res = svg.toString().replace("[^(100),(100)]+," , ".");
         return res + "</svg>" ;
         //return svg.toString() + "</svg>" ;
