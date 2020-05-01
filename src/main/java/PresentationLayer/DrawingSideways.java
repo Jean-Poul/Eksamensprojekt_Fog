@@ -52,8 +52,11 @@ public class DrawingSideways extends Command {
         svgSideways.addRect(525.0,95.0,210.0,10.0);
         svgSideways.addRect(750.0,95.0,210.0,10.0);
 
+        //rem
+        svgSideways.addRect(80.0,90.0,19.5,450.0);
         //rem skur
         svgSideways.addRect(530.0,90.0,19.5,230.0);
+
 
         //Sternbraet
         svgSideways.addRect(50.0,80.0,15.0,730.0);
