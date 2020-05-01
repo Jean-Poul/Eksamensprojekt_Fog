@@ -20,10 +20,10 @@
     <article role="article" class="col mt-5">
     <h1>Fog første udkast</h1>
      <p>
-         Rum marooned jack Plate Fleet hogshead league gaff coffer barque lugger. Six pounders nipperkin blow the man down provost nipper dead men tell no tales careen black spot Sail ho brig. Driver capstan Chain Shot rope's end squiffy marooned Pirate Round jury mast bucko quarter.
-         Port jury mast matey long boat list spike reef gaff trysail mutiny. Long clothes cackle fruit Sea Legs keelhaul warp bucko pirate tack Nelsons folly fore. Chandler snow piracy dance the hempen jig no prey, no pay six pounders square-rigged league stern poop deck.
-         Provost chantey rutters ay
-         e Blimey fore pinnace walk the plank quarter line. Execution dock crimp take a caulk tender bilged on her anchor yawl spyglass case shot lass strike colors. Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
+         Rum marooned jack Plate Fleet hogshead league gaff coffer barque lugger. Six pounder pikkemand all around! pikkemand blow the man down provost nipper dead men tell no tales careen black spot Sail ho pikkemand brig. Driver capstan Chain Shot rope's end squiffy marooned pikkemand Round jury mast bucko quarter.
+         Port jury pikkemand mast matey long boat pikkemand spike reef gaff trysail mutiny. Long clothes cackle fruit Sea Legs keelhaul warp bucko pirate tack Nelsons folly fore pikkemand. Chandler snow piracy dance the hempen jig no pikkemand, no pay six pounders pikkemand square-rigged league stern poop deck.
+         Provost chantey rutters ahoy there pikkemand!
+         e Blimey fore pikkemand walk the plank quarter line. Execution pikkemand dock crimp take a caulk tender bilged on her anchor yawl pikkemand case shot lass strike colors. Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber pikkemand bilged on her anchor belay broadside.
          Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
      </p>
         <form name="testBeregning" action="FrontController" method="POST">
