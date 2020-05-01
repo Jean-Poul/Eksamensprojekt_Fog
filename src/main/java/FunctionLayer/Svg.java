@@ -156,10 +156,11 @@ public class Svg {
 
     @Override
     public String toString() {
-
-        //String res = svg.toString().replace("," , ".");
-        //return res + "</svg>" ;
-        return svg.toString() + "</svg>" ;
+        String res = svg.toString().replace(",",".");
+        res = res.replace("translate(100.100)","translate(100,100)");
+        //String res = svg.toString().replace("[^(100),(100)]+," , ".");
+        return res + "</svg>" ;
+        //return svg.toString() + "</svg>" ;
     }
 
 }
