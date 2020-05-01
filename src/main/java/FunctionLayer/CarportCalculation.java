@@ -44,8 +44,8 @@ public class CarportCalculation {
     private static final int BOTTOM_LATHS = 2;
     private static final double TOP_LATH = 3;
     private static final double AVG_LATH_SPAN = 30;
-    private static final double ROOF_TILE_LENGTH = 23.6;
-    private static final double ROOF_TILE_WIDTH = 20.4;
+    private static final double ROOF_TILE_LENGTH = 25;
+    private static final double ROOF_TILE_WIDTH = 20;
     private static final double ROOF_TRAPEZ_LENGTH = 240;
     private static final double ROOF_TRAPEZ_WIDTH = 109;
     private static final String SHED_CLADDING_BOARD_DIM = "19x100";
