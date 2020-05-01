@@ -7,7 +7,8 @@
 <!-- Container -->
 <div class="container min-vh-100">
 
-    <form action="FrontController" method="POST">
+    <form action="FrontController" method="POST" class="needs-validation" novalidate>
+        <input type="hidden" name="target" value="carportCalcPage">
         <!-- Row -->
         <div class="row mt-4">
             <!-- Column -->
@@ -16,8 +17,8 @@
                 <!-- Carport width -->
                 <div class="form-group">
                     <label for="CarportWidth">Carport bredde</label>
-                    <select class="form-control" id="CarportWidth">
-                        <option>Vælg bredde</option>
+                    <select class="custom-select" id="CarportWidth" name="carportWidth" required>
+                        <option value="">Vælg bredde</option>
                         <c:forEach var="element" items="${requestScope.carportwidth}">
                             <option value="${element.carportWidthOption}">${element.carportWidthOption}</option>
                         </c:forEach>
@@ -27,8 +28,8 @@
                 <!-- Carport length -->
                 <div class="form-group">
                     <label for="CarportLength">Carport længde</label>
-                    <select class="form-control" id="CarportLength">
-                        <option>Vælg længde</option>
+                    <select class="custom-select" id="CarportLength" name="carportLength" required>
+                        <option value="">Vælg længde</option>
                         <c:forEach var="element" items="${requestScope.carportlength}">
                             <option value="${element.carportLengthOptions}">${element.carportLengthOptions}</option>
                         </c:forEach>
@@ -38,7 +39,7 @@
                 <!-- Roof option -->
                 <div class="form-group">
                     <label for="RoofOption">Tag type</label>
-                    <select class="form-control" id="RoofOption">
+                    <select class="custom-select" id="RoofOption" name="roofOption">
                         <option value="0">Carport med fladt tag</option>
                         <option value="1">Carport med rejsning</option>
                     </select>
@@ -48,8 +49,8 @@
                 <div id="flatRoof" style="display: block">
                     <div class="form-group">
                         <label for="RoofFlat">Tag</label>
-                        <select class="form-control" id="RoofFlat">
-                            <option>Vælg tagtype/farve</option>
+                        <select class="custom-select" id="RoofFlat" name="roofFlat" required>
+                            <option value="">Vælg tagtype/farve</option>
                             <c:forEach var="element" items="${requestScope.roofflat}">
                                 <option value="${element.roofFlatOptions}">${element.roofFlatOptions}</option>
                             </c:forEach>
@@ -61,8 +62,8 @@
                 <div id="raisedRoof" style="display: none">
                     <div class="form-group">
                         <label for="RoofRaised">Tag</label>
-                        <select class="form-control" id="RoofRaised">
-                            <option>Vælg tag type</option>
+                        <select class="custom-select" id="RoofRaised" name="roofRaised">
+                            <option value="">Vælg tag type</option>
                             <c:forEach var="element" items="${requestScope.roofraised}">
                                 <option value="${element.roofRaisedOptions}">${element.roofRaisedOptions}</option>
                             </c:forEach>
@@ -72,8 +73,8 @@
                     <!-- Roof degrees -->
                     <div class="form-group">
                         <label for="RoofOptionDegrees">Taghældning</label>
-                        <select class="form-control" id="RoofOptionDegrees">
-                            <option>Vælg hældning</option>
+                        <select class="custom-select" id="RoofOptionDegrees" name="roofOptionDegrees">
+                            <option value="">Vælg hældning</option>
                             <c:forEach var="element" items="${requestScope.roofdegree}">
                                 <option value="${element.roofDegreeOption}">${element.roofDegreeOption}</option>
                             </c:forEach>
@@ -84,8 +85,8 @@
                 <!-- Shed width -->
                 <div class="form-group">
                     <label for="ShedWidth">Redskabsrum bredde</label>
-                    <select class="form-control" id="ShedWidth">
-                        <option>Ønsker ikke redskabsrum</option>
+                    <select class="custom-select" id="ShedWidth" name="shedWidth">
+                        <option value="">Ønsker ikke redskabsrum</option>
                         <c:forEach var="element" items="${requestScope.shedWidth}">
                             <option value="${element.shedWidthOption}">${element.shedWidthOption}</option>
                         </c:forEach>
@@ -95,8 +96,8 @@
                 <!-- Shed length -->
                 <div class="form-group">
                     <label for="ShedLength">Redskabsrum længde</label>
-                    <select class="form-control" id="ShedLength">
-                        <option>Ønsker ikke redskabsrum</option>
+                    <select class="custom-select" id="ShedLength" name="shedLength">
+                        <option value="">Ønsker ikke redskabsrum</option>
                         <c:forEach var="element" items="${requestScope.shedLength}">
                             <option value="${element.shedLengthOption}">${element.shedLengthOption}</option>
                         </c:forEach>
@@ -112,23 +113,23 @@
                 <!-- User info -->
                 <div class="form-group">
                     <label for="Name">Navn</label>
-                    <input type="text" class="form-control" id="Name" placeholder="navn">
+                    <input type="text" class="form-control" id="Name" placeholder="navn" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="Address">Adresse</label>
-                    <input type="text" class="form-control" id="Address" placeholder="adresse">
+                    <input type="text" class="form-control" id="Address" placeholder="adresse" name="adress" required>
                 </div>
                 <div class="form-group">
                     <label for="ZipCodeCity">Postnummer og By</label>
-                    <input type="text" class="form-control" id="ZipCodeCity" placeholder="postnummer og by">
+                    <input type="text" class="form-control" id="ZipCodeCity" placeholder="postnummer og by" name="zipcodeCity" required>
                 </div>
                 <div class="form-group">
                     <label for="Telephone">Telefon</label>
-                    <input type="text" class="form-control" id="Telephone" placeholder="telefon">
+                    <input type="text" class="form-control" id="Telephone" placeholder="telefon" pattern="^\+?\d{0,13}" name="telephone" required>
                 </div>
                 <div class="form-group">
                     <label for="Email">Email address</label>
-                    <input type="text" class="form-control" id="Email" placeholder="email">
+                    <input type="text" class="form-control" id="Email" placeholder="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}"  name="email" required>
                 </div>
                 <!-- End user info -->
             </div>
@@ -140,7 +141,7 @@
                 <!-- Text area -->
                 <div class="form-group">
                     <label for="Comments">Bemærkninger</label>
-                    <textarea class="form-control" id="Comments" rows="12"></textarea>
+                    <textarea class="form-control" id="Comments" rows="12" name="comments"></textarea>
                 </div>
                 <!-- End text area -->
 
@@ -168,11 +169,56 @@
         $('#RoofOption').on('change', function () {
             if (this.value == '1') {
                 $("#raisedRoof").show();
+                $("#RoofRaised").attr("required", true);
+                $("#RoofOptionDegrees").attr("required", true);
                 $("#flatRoof").hide();
+                $("#RoofFlat").attr("required", false);
             } else {
                 $("#raisedRoof").hide();
+                $("#RoofRaised").attr("required", false);
+                $("#RoofOptionDegrees").attr("required", false);
                 $("#flatRoof").show();
+                $("#RoofFlat").attr("required", true);
             }
         });
     });
+</script>
+
+<!-- validation of shed option -->
+<script>
+    $(document).ready(function () {
+        $("#ShedWidth,#ShedLength").on('change', function () {
+            var sw = $('#ShedWidth').val();
+            var sl = $('#ShedLength').val();
+            if((sw === '' && sl !== '') || (sw !== '' && sl === '') || (sw !== '' && sl !== '')) {
+                $("#ShedWidth").attr("required", true);
+                $("#ShedLength").attr("required", true);
+            } else {
+                $("#ShedWidth").attr("required", false);
+                $("#ShedLength").attr("required", false);
+            }
+        });
+    });
+</script>
+
+<!-- user-validation -->
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
 </script>
