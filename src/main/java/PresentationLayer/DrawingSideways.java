@@ -62,7 +62,7 @@ public class DrawingSideways extends Command {
         svgSideways.addRect(50.0,80.0,15.0,730.0);
 
         //Bottom of roof
-        svgSideways.addLine(50.0, -30.0,780.0,-30.0);
+        svgSideways.addLineNoArrow(50.0, 85.0,780.0,85.0);
 
         //Skur
         svgSideways.addRect(525.0,105.0,200.0,10.0);
