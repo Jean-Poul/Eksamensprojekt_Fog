@@ -172,7 +172,9 @@ public class SvgSideways {
     @Override
     public String toString() {
 
-        String res = svgSideways.toString().replace("[^(100),(100)]+,",".");
+        String res = svgSideways.toString().replace(",",".");
+        res = res.replace("translate(100.100)","translate(100,100)");
+        //String res = svgSideways.toString().replace("[^(100),(100)]+,",".");
         return res + "</svg>" ;
         //return svgSideways.toString() + "</svg>" ;
     }
