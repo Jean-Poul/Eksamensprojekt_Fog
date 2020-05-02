@@ -2,7 +2,6 @@ package PresentationLayer;
 
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Svg;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

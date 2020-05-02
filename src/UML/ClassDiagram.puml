@@ -28,25 +28,114 @@ Connector <--> UserMapper
 UserMapper <--> User
 
 class CarportCalculation{
--double carportLength
--double carportWidth
+{static}-final int BOTTOM_LATHSPAN = 35;
+{static}-final int BOTTOM_LATHS = 2;
+{static}-final double TOP_LATH = 3;
+{static}-final double AVG_LATH_SPAN = 30;
+{static}-final double ROOF_TILE_LENGTH = 25;
+{static}-final double ROOF_TILE_WIDTH = 20;
+{static}-final double ROOF_TRAPEZ_LENGTH = 240;
+{static}-final double ROOF_TRAPEZ_WIDTH = 109;
+{static}-final String SHED_CLADDING_BOARD_DIM = "19x100";
+{static}-final String BEAM_DIMENSION_HEAVY = "125 x 125";
+{static}-final String BEAM_DIMENSION_LIGHT = "100 x 100";
+
+-private boolean raisedRoof
+-roofHeavy
+-int carportLength
+-int carportWidth
 -int customerRoofAngle
--int calcAngel
+-double shedLength
+-double shedWidth
+-String roofCladdingType
+-int calcAngle
 -double calcRaftLength
+-double noOfRafts
+-double raftDistance
+-String raftDimension
 -double calcRoofHeight
--void populateAngleAndFactor()
--void calcRoofAngle()
--void calcRaftLength()
--void calcRoofHeight()
+-double supportingStrap
+-int sternBoardLength
+-double wallLath
+-int totalNumberOfRoofTiles
+-int totalNumberOfRoofTrapezPlates
+-int shedWallLaths
+-int noOfCladdingBoards
+-String beamDimension
+-int noOfLaths
+-double lathSpan
+-int noOfBeams
+
++HashMap<Integer,Double> angelAndFactor
++Arraylist<Arraylist> raftDistancesLight
++Arraylist<Arraylist> raftDistancesHeavy
+
++CarportCalculation()
+-populateRaftDistancesLigth()
+-populateRaftDistancesHeavy()
+-populateAngeAndFactor()
+-selectRaftDimAndSpacing(roofHeavy, calcRaftLength)
+-calcShedCladding(shedWidth, shedLength)
+-calculateShedWallLaths()
+-calcRoofCladdingArea(carportLength, calcRaftLength, ROOF_TILE_LENGTH, ROOF_TILE_WIDTH, ROOF_TRAPEZ_LENGTH, ROOF_TRAPEZ_WIDTH, customerRoofAngle)
+-calcWallLaths(shedWidth, shedLength)
+-calcNoOfBeamsAndDim(shedLength)
+-calculateSupportingStrap(carportWidth, carportLength)
+-calculateRoofAngle(customerRoofAngle)
+-calcSternBoardLength(RaftLength)
+-calcRaftLength(carportWidth, customerRoofAngle,calculateRoofAngle)
+-noOfRafts(carportLength, raftDistance)
+-calcRoofHeight(customerRoofAngle, carportWidth)
+-calcRoofLaths(calcRaftLength)
 }
 
 class LogicFacade {
 {static}+User login(email, password)
 {static}+User createUser(email, password)
+
+{static}+User createUserQuote(name, adress, zipcodeCity, phone, email, comments)
+{static}+User createUserQuoteOrder(user_proposition_id, oc_width,oc_length, ots_width, ots_length, roof_type, roof_material, pitch)
+{static}+User createQuoteOrderline(orders_id, material_type, material, description, length, quantity, unit, total_price)
+{static}+List<CarportWidth> getCarportWidth()
+{static}+List<CarportLength> getCarportLength()
+{static}+List<RoofFlat> getRoofFlat()
+{static}+List<RoofRaised> getRoofRaised()
+{static}+List<RoofDegree> getRoofDegree()
+{static}+List<ShedWidth> getShedWidth()
+{static}+List<ShedLength> getShedLength()
+{static}+List<BeamDimensionLight> getBeamDimensionLight()
+{static}+List<BeamDimensionHeavy> getBeamDimensionHeavy()
+{static}+Map<Integer,Double> getPitchFactor()
 }
 
 class LoginSampleException extends Exception{
 +LoginSampleException(msg)
+}
+
+class PriceCalculator{
+}
+
+class RoofDegree{
+-int RoofDegreeOption
++roofDegree(RoofDegreeOption)
+}
+
+class RoofFlat{
+-String roofFlatOption
++RoofFlat(roofFlatOption)
+}
+
+class roofRaised{
++String RoofRaisedOption
++RoofRaised(roofRaisedOptions)
+}
+
+class ShedLength{
++ShedLength( shedLengthOption)
+}
+
+class ShedWidth{
++ShedWidth( shedWidthOption)
 }
 
 class User{
@@ -63,11 +152,60 @@ class Svg{
 -string viewbox
 -int x
 -int y
+-int x1
+-int y1
+-int x2
+-int y2
+-int text
 -Stringbuilder svg
 -String headerTemplate
 -String rectTemplate
+-String lineTemplate
+-String dotLineTemplate
+-String lowerTextTemplate
+-String upperTextTemplate
 +Svg(height, width, viewbox, x, y)
-+void addRect(x, y, height, width)
++Svg(x1, y1, x2, y2)
++Svg(x, y, text)
++ toString()
+}
+
+class SvgSideways{
+-double height
+-double
+-string viewbox
+-double x1
+-double y1
+-double x2
+-double y2
+-int text
+-Stringbuilder svgSideways
+-String headerTemplate
+-String rectTemplate
+-String lineTemplate
+-String dotLineTemplate
+-String lowerTextTemplate
+-String upperTextTemplate
++SvgSideways(height, width, viewbox, x, y)
++SvgSideways(x1, y1, x2, y2)
++SvgSideways(x, y, text)
++ toString()
+}
+
+class BeamDimensionHeavy{
++BeamDimensionHeavy(beamDimensionHeavy, beamSpacingHeavy)
+}
+
+class BeamDimensionLight{
++BeamDimensionLight(beamDimensionLight, beamSpacingLight)
+}
+
+class CarportLength{
++CarportLength(carportLengthOption)
+}
+
+class CarportWidth{
++CarportWidth(carportWidthOption)
 }
 
 }
@@ -111,7 +249,22 @@ class UnknownCommand extends Command{
 }
 
 class Drawing extends Command{
+ {Static}+String execute(request,response)
+}
+
+class Carportcustomize extends Command{
 {Static}+String execute(request,response)
+{Static}+List<CarportWidth> carportWidth
+{Static}+List<CarportLength> carportLength
+{Static}+List<RoofFlat> roofFlat
+{Static}+List<RoofRaised> roofRaised
+{Static}+List<RoofDegree> roofDegree
+{Static}+List<ShedWidth> shedWidth
+{Static}+List<ShedLength> shedLength
+}
+
+class DrawingSideways extends Command{
+ {Static}+String execute(request,response)
 }
 
 }

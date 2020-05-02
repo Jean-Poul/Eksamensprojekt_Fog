@@ -1,5 +1,26 @@
 package FunctionLayer;
 
+/**
+ * KLASSEN HAR BRUG FOR FØLGENDE INFORMATIONER FRA DATABASEN.
+ * double       - carpot width
+ * double       - carpot height
+ * String       - viewbox mål (Måske samme som carport størrelse?)
+ * int          - x
+ * int          - y
+ * int          - x1
+ * int          - x2
+ * int          - y1
+ * int          - y2
+ * KAN VÆRE NEDENSTÅENDE SKAL VÆRE I DRAWING.JAVA ISTEDET?
+ * int          - Skur bredde
+ * int          - Skur længde
+ * int          - Spærantal
+ * int          - Bredde mellem spær
+ * int          - lægteantal
+ * int          - Bredde imellem lægter
+ * int          - Antal stolper på carporten
+ */
+
 public class Svg {
 
     private double width;
