@@ -4,6 +4,7 @@ import DBAccess.DataMapper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The purpose of LogicFacade is to call Mapper classes safely without doing it directly from other methods in other classes
@@ -156,6 +157,35 @@ public class LogicFacade {
      */
     public static List<ShedLength> getShedLength() throws SQLException {
         return DataMapper.getShedLength();
+    }
+
+
+    //##################
+    // Carport calculation
+    //##################
+
+    /**
+     *
+     * @param rafterLength
+     * @return
+     * @throws SQLException
+     */
+    public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws SQLException {
+        return DataMapper.getBeamDimensionLight(rafterLength);
+    }
+
+    /**
+     *
+     * @param rafterLength
+     * @return
+     * @throws SQLException
+     */
+    public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws SQLException {
+        return DataMapper.getBeamDimensionHeavy(rafterLength);
+    }
+
+    public static Map<Integer,Double> getPitchFactor() throws SQLException {
+        return DataMapper.getPitchFactor();
     }
 
 }

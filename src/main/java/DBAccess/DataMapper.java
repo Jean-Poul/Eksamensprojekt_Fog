@@ -4,7 +4,9 @@ import FunctionLayer.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The purpose of DataMapper is to be able to make database queries
@@ -166,7 +168,7 @@ public class DataMapper {
     }
 
     //##################
-    //Select option queries
+    //3. Select option queries
     //##################
 
     /**
@@ -339,4 +341,83 @@ public class DataMapper {
 
 
 
+    /**
+     *
+     * @param rafterLength
+     * @return beam-dimension and beam-spacing for light roof
+     * @throws SQLException
+     */
+    public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws SQLException {
+        List<BeamDimensionLight> beamDimensionLight = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'let' and rafter_length >= ?" +
+                    "ORDER BY rafter_length ASC LIMIT 1;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setDouble(1, rafterLength);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String beamDimension = rs.getString("beam_dimension");
+                double beamSpacing = rs.getDouble("beam_spacing");
+                BeamDimensionLight bd = new BeamDimensionLight(beamDimension,beamSpacing);
+                beamDimensionLight.add(bd);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return beamDimensionLight;
+    }
+
+    /**
+     *
+     * @param rafterLength
+     * @return beam-dimension and beam-spacing for heavy roof
+     * @throws SQLException
+     */
+    public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws SQLException {
+        List<BeamDimensionHeavy> beamDimensionHeavy = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'tung' and rafter_length >= ?" +
+                    "ORDER BY rafter_length ASC LIMIT 1;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setDouble(1, rafterLength);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String beamDimension = rs.getString("beam_dimension");
+                double beamSpacing = rs.getDouble("beam_spacing");
+                BeamDimensionHeavy bd = new BeamDimensionHeavy(beamDimension,beamSpacing);
+                beamDimensionHeavy.add(bd);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return beamDimensionHeavy;
+    }
+
+    /**
+     *
+     * @return HashMap of pitch and factor
+     * @throws SQLException
+     */
+    public static Map<Integer, Double> getPitchFactor() throws SQLException {
+        Map<Integer, Double> pitchFactor = new HashMap<>();
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT pitch,factor FROM roof_pitch;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int pitch = rs.getInt("pitch");
+                double factor = rs.getDouble("factor");
+                pitchFactor.put(pitch,factor);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+        return pitchFactor;
+    }
 }
