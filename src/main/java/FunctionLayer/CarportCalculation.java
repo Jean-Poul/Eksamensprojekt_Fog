@@ -22,11 +22,11 @@ import java.util.*;
  * ArrayList    - RaftDistancesHeavyRoof - as above
  */
 
-//TO-DO Systemet skal vælge det rigtige spær!
-
-//[FIX] Shed dimensions should be validated to fit inside carport. TBD on .jsp maybe?
-//[FIX] Calculate brackets, bolts, screws and washers - perhaps make a complete solution (Assumption)
-//[FIX] Door (Cladding + handle, hinges and beams for "Z") - perhaps make a complete solution (Assumption)
+/*
+TO-DO Systemet skal vælge det rigtige spær! (Hentes fra databasen)
+TO-DO Shed dimensions should be validated to fit inside carport. TBD on .jsp maybe?
+TO-DO Calculate brackets, bolts, screws and washers - Assume something and make a constructor for raised or flat (Remember shed)
+*/
 
 /**
  * Contains methods for calculating every dimension of the total carport solution.
@@ -55,7 +55,7 @@ public class CarportCalculation {
     //##########################################################
     // Class variables used for calculations
     //##########################################################
-    private boolean raisedRoof = true;
+    private boolean raisedRoof;
     boolean roofHeavy;
     private int carportLength;
     private int carportWidth;
@@ -111,7 +111,7 @@ public class CarportCalculation {
         shedLength = 690;
         shedWidth = 330;
         roofHeavy = false; //Should be determined - maybe depending on flat/raised roof?
-
+        raisedRoof = true;
 
         populateAngleAndFactor();
         calcRoofAngle(customerRoofAngle);
@@ -251,8 +251,6 @@ public class CarportCalculation {
         angleAndFactor.put(45, 0.72);
     }
 
-
-
     //[FIX]
     /**
      * Selects the correct raft spacing and dimension using arraylists with data from the database.
@@ -300,9 +298,6 @@ public class CarportCalculation {
             //Need an exception here.
         }
     }
-
-
-
 
     /**
      * Calculates the required amount of vertical boards for cladding the shed
