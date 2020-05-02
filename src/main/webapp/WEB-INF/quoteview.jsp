@@ -8,190 +8,298 @@
     <!-- Row -->
     <div class="row">
 
-        <!-- Main -->
-        <main role="main">
             <!-- Section -->
             <section class="col-12">
 
-                <!-- Row -->
-                <div class="row">
+                    <!-- Customer info container -->
+                    <div class="container px-0">
+                        <!-- Customer info -->
+                        <div class="accordion" id="cardid">
 
-                    <!-- Customer info -->
-                    <table class="table table-striped table-dark bg-primary table-hover">
-                        <caption>Kunde information</caption>
-                        <thead>
-                        <tr>
-                            <th class="text-center bg-dark" colspan="4">Kunde information
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Fornavn</th>
-                            <th scope="col">Efternavn</th>
-                            <th scope="col">Brugernavn</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>fornavn</td>
-                            <td>efternavn</td>
-                            <td>@bruger</td>
-                        </tr>
-                        </tbody>
-                        <a class="card-link btn btn-dark" href="#">Opdater</a>
-                    </table>
+                            <div class="card">
+                                <div class="card-header" id="idheading">
+                                    <h5 class="mb-0">
+                                        <a href="#idinfo"
+                                           class="collapsed"
+                                           data-toggle="collapse"
+                                           aria-expanded="true"
+                                           aria-controls="customerid"
+                                        >ID</a>
+                                    </h5>
+                                </div><!-- card header -->
+
+                                <div id="idinfo"
+                                     class="collapse show"
+                                     data-parent="#cardid"
+                                     aria-labelledby="idheading"
+                                >
+                                    <div class="card-body">
+                                        <p>id request her</p>
+                                    </div>
+                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
+                                </div><!-- card collapse -->
+                            </div><!-- card -->
+
+                        </div>
+
+                        <div class="accordion" id="firstnameid">
+
+                            <div class="card">
+                                <div class="card-header" id="nameheading">
+                                    <h5 class="mb-0">
+                                        <a href="#nameinfo"
+                                           class="collapsed"
+                                           data-toggle="collapse"
+                                           aria-expanded="true"
+                                           aria-controls="customerfirstname"
+                                        >Fornavn</a>
+                                    </h5>
+                                </div><!-- card header -->
+
+                                <div id="nameinfo"
+                                     class="collapse show"
+                                     data-parent="#firstnameid"
+                                     aria-labelledby="nameheading"
+                                >
+                                    <div class="card-body">
+                                        <p>fornavn request her</p>
+                                    </div>
+                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
+                                </div><!-- card collapse -->
+                            </div><!-- card -->
+
+                        </div>
+
+                        <div class="accordion" id="lastnameid">
+
+                            <div class="card">
+                                <div class="card-header" id="lastnameheading">
+                                    <h5 class="mb-0">
+                                        <a href="#lastnameinfo"
+                                           class="collapsed"
+                                           data-toggle="collapse"
+                                           aria-expanded="true"
+                                           aria-controls="customerlastname"
+                                        >Efternavn</a>
+                                    </h5>
+                                </div><!-- card header -->
+
+                                <div id="lastnameinfo"
+                                     class="collapse show"
+                                     data-parent="#lastnameid"
+                                     aria-labelledby="lastnameheading"
+                                >
+                                    <div class="card-body">
+                                        <p>efternavn request her</p>
+                                    </div>
+                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
+                                </div><!-- card collapse -->
+                            </div><!-- card -->
+
+                        </div>
+
+                        <div class="accordion" id="userid">
+
+                            <div class="card">
+                                <div class="card-header" id="userheading">
+                                    <h5 class="mb-0">
+                                        <a href="#userinfo"
+                                           class="collapsed"
+                                           data-toggle="collapse"
+                                           aria-expanded="true"
+                                           aria-controls="username"
+                                        >Brugernavn</a>
+                                    </h5>
+                                </div><!-- card header -->
+
+                                <div id="userinfo"
+                                     class="collapse show"
+                                     data-parent="#userid"
+                                     aria-labelledby="userheading"
+                                >
+                                    <div class="card-body">
+                                        <p>brugernavn request her</p>
+                                    </div>
+                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
+                                </div><!-- card collapse -->
+                            </div><!-- card -->
+
+                        </div>
+
+
+                    <!-- End customer info container -->
                     <!-- End customer info -->
+
                     <!-- Shipment info -->
-                    <table class="table table-striped table-dark bg-primary table-hover">
-                        <caption>Fragt adresse</caption>
-                        <thead>
-                        <tr>
-                            <th class="text-center bg-dark" colspan="4">Fragt adresse
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Adresse</th>
-                            <th scope="col">Postnummer</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Telefon</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>adresse</td>
-                            <td>postnummer</td>
-                            <td>email@email.com</td>
-                            <td>123456</td>
-                        </tr>
-                        </tbody>
-                        <a class="card-link btn btn-dark" href="#">Opdater</a>
-                    </table>
+                    <div class="accordion" id="shipmentinfoid">
+
+                        <div class="card">
+                            <div class="card-header" id="shipmentheading">
+                                <h5 class="mb-0">
+                                    <a href="#shipmentinfo"
+                                       class="collapsed"
+                                       data-toggle="collapse"
+                                       aria-expanded="true"
+                                       aria-controls="shipmentinfobox"
+                                    >Fragt adresse</a>
+                                </h5>
+                            </div><!-- card header -->
+
+                            <div id="shipmentinfo"
+                                 class="collapse show"
+                                 data-parent="#shipmentinfoid"
+                                 aria-labelledby="shipmentheading"
+                            >
+                                <div class="card-body">
+                                    <p>adresse request her</p>
+                                    <p>postnummer request her</p>
+                                    <p>email request her</p>
+                                    <p>telefon request her</p>
+                                </div>
+                                <a class="card-link btn btn-dark" href="#">Opdater</a>
+                            </div><!-- card collapse -->
+                        </div><!-- card -->
+
+                    </div>
                     <!-- End shipment info -->
                     <!-- Customer quote info -->
-                    <table class="table table-striped table-dark bg-primary table-hover">
-                        <caption>Kunde har efterspurgt</caption>
-                        <thead>
-                        <tr>
-                            <th class="text-center bg-dark" colspan="4">Kunde har efterspurgt
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Carport bredde</th>
-                            <th scope="col">Carport længde</th>
-                            <th scope="col">Tag type</th>
-                            <th scope="col">Tag vinkel</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>carport bredde</td>
-                            <td>carport længde</td>
-                            <td>tag type</td>
-                            <td>tag vinkel</td>
-                        </tr>
-                        </tbody>
-                        <a class="card-link btn btn-dark" href="#">Opdater</a>
-                    </table>
+                    <div class="accordion" id="quoteid">
+
+                        <div class="card">
+                            <div class="card-header" id=quoteheading">
+                                <h5 class="mb-0">
+                                    <a href="#quoteinfo"
+                                       class="collapsed"
+                                       data-toggle="collapse"
+                                       aria-expanded="true"
+                                       aria-controls="quoteinfobox"
+                                    >Kunde har efterspurgt</a>
+                                </h5>
+                            </div><!-- card header -->
+
+                            <div id="quoteinfo"
+                                 class="collapse show"
+                                 data-parent="#quoteid"
+                                 aria-labelledby="quoteheading"
+                            >
+                                <div class="card-body">
+                                    <p>carport bredde request her</p>
+                                    <p>carport længde request her</p>
+                                    <p>tap type request her</p>
+                                    <p>tag vinkel request her</p>
+                                </div>
+                                <a class="card-link btn btn-dark" href="#">Opdater</a>
+                            </div><!-- card collapse -->
+                        </div><!-- card -->
+
+                    </div>
                     <!-- End customer quote info -->
-                    <!-- Customer add on info -->
-                    <table class="table table-striped table-dark bg-primary table-hover">
-                        <caption>Kunde tilføjelser</caption>
-                        <thead>
-                        <tr>
-                            <th class="text-center bg-dark" colspan="4">Kunde tilføjelser
-                            </th>
-                        </tr>
-                        <tr>
-                            <th scope="col">Redskabsrum bredde</th>
-                            <th scope="col">Redskabsrum længde</th>
-                            <th scope="col">-</th>
-                            <th scope="col">-</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>redskabsrum bredde</td>
-                            <td>redskabsrum længde</td>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        </tbody>
-                        <a class="card-link btn btn-dark" href="#">Opdater</a>
-                    </table>
-                    <!-- End customer add on info -->
-                    <!-- Customer remark -->
-                    <table class="table table-striped table-dark bg-primary table-hover">
-                        <caption>Kunde tilføjelser</caption>
-                        <thead>
-                        <tr>
-                            <th class="text-center bg-dark">Bemærkning
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="text-center bg-dark"><small>Overskrift</small>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                e Blimey fore pinnace walk the plank quarter line. Execution dock crimp take a caulk
-                                tender
-                                bilged on her anchor yawl spyglass case shot lass strike colors. Trysail grog blossom to
-                                go
-                                on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay
-                                broadside.
-                                e Blimey fore pinnace walk the plank quarter line. Execution dock crimp take a caulk
-                                tender
-                                bilged on her anchor yawl spyglass case shot lass strike colors. Trysail grog blossom to
-                                go
-                                on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay
-                                broadside.
-                            </td>
-                        </tr>
-                        </tbody>
-                        <a class="card-link btn btn-dark" href="#">Opdater</a>
-                    </table>
-                    <!-- End customer remark -->
-                    <!-- Total price -->
-                    <table class="table table-striped table-dark bg-primary table-hover">
-                        <caption>Total pris</caption>
-                        <thead>
-                        <tr>
-                            <th class="text-center bg-dark" colspan="12">Pris
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-left" colspan="2">Total pris inkl. momse</td>
-                            <td class="text-right" colspan="2">15.999,-</td>
-                        </tr>
-                        <tr>
-                            <td colspan="12"></td>
-                        </tr>
-                        </tbody>
-                        <a class="card-link btn btn-dark" href="#">Opdater</a>
-                    </table>
-                    <!-- End total price -->
-                    <!-- Button choices -->
-                    <div class="container d-flex justify-content-center">
+
+                <!-- Customer add on info -->
+                    <div class="accordion" id="addonid">
+
+                        <div class="card">
+                            <div class="card-header" id=addonheading">
+                                <h5 class="mb-0">
+                                    <a href="#addoninfo"
+                                       class="collapsed"
+                                       data-toggle="collapse"
+                                       aria-expanded="true"
+                                       aria-controls="addoninfobox"
+                                    >Kunde tilføjelser</a>
+                                </h5>
+                            </div><!-- card header -->
+
+                            <div id="addoninfo"
+                                 class="collapse show"
+                                 data-parent="#addonid"
+                                 aria-labelledby="addonheading"
+                            >
+                                <div class="card-body">
+                                    <p>redskabsrum bredde request her</p>
+                                    <p>redskabsrum længde request her</p>
+                                </div>
+                                <a class="card-link btn btn-dark" href="#">Opdater</a>
+                            </div><!-- card collapse -->
+                        </div><!-- card -->
+
+                    </div>
+                <!-- End customer add on info -->
+                <!-- Customer remark -->
+                    <div class="accordion" id="remarkid">
+
+                        <div class="card">
+                            <div class="card-header" id=remarkheading">
+                                <h5 class="mb-0">
+                                    <a href="#remarkinfo"
+                                       class="collapsed"
+                                       data-toggle="collapse"
+                                       aria-expanded="true"
+                                       aria-controls="remarkinfobox"
+                                    >Bemærkning</a>
+                                </h5>
+                            </div><!-- card header -->
+
+                            <div id="remarkinfo"
+                                 class="collapse show"
+                                 data-parent="#remarkid"
+                                 aria-labelledby="remarkheading"
+                            >
+                                <div class="card-body">
+                                    <p>bemærkning request her</p>
+                                </div>
+                                <a class="card-link btn btn-dark" href="#">Opdater</a>
+                            </div><!-- card collapse -->
+                        </div><!-- card -->
+
+                    </div>
+                <!-- End customer remark -->
+                <!-- Total price -->
+                    <div class="accordion" id="priceid">
+
+                        <div class="card">
+                            <div class="card-header" id=priceheading">
+                                <h5 class="mb-0">
+                                    <a href="#priceinfo"
+                                       class="collapsed"
+                                       data-toggle="collapse"
+                                       aria-expanded="true"
+                                       aria-controls="priceinfobox"
+                                    >Total pris</a>
+                                </h5>
+                            </div><!-- card header -->
+
+                            <div id="priceinfo"
+                                 class="collapse show"
+                                 data-parent="#priceid"
+                                 aria-labelledby="priceheading"
+                            >
+                                <div class="card-body">
+                                    <p>Pris inkl. moms</p>
+                                    <p><b>pris request her</b></p>
+                                </div>
+                                <a class="card-link btn btn-dark" href="#">Opdater</a>
+                            </div><!-- card collapse -->
+                        </div><!-- card -->
+
+                    </div>
+
+                    </div>
+
+                <!-- End total price -->
+                <!-- Button choices -->
+                <div class="container d-flex justify-content-center my-3">
                     <button type="button" class="btn btn-success col-2 mx-2">Godkend</button>
                     <button type="button" class="btn btn-primary col-2 mx-2">Se tegning</button>
                     <button type="button" class="btn btn-danger col-2 mx-2">Afvis</button>
-                    </div>
-                    <!-- End button choices -->
-
                 </div>
-                <!-- End row -->
+                <!-- End button choices -->
 
-            </section>
-            <!-- End section -->
-        </main>
-        <!-- End main -->
-    </div>
-    <!-- End row -->
+    </section>
+    <!-- End section -->
+
+</div>
+<!-- End row -->
 </div>
 <!-- End container -->
 
