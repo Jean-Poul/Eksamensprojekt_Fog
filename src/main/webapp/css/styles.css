@@ -68,6 +68,10 @@ nav a:hover {
     box-shadow: 10px 10px 5px 0px #30343F;
 }
 
+.optionDisabled {
+    background-color: lightgray;
+}
+
 @media screen and (max-width: 992px) {
     .logo {
         float: left !important;
@@ -86,6 +90,7 @@ nav a:hover {
     width: 136px;
     margin-left: 1em;
 }*/
+
 
 /* Footer */
 footer {
