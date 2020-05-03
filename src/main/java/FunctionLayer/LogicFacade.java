@@ -48,15 +48,16 @@ public class LogicFacade {
     /**
      *
      * @param name
-     * @param adress
+     * @param address
      * @param zipcodeCity
      * @param phone
      * @param email
      * @param comments
+     * @return userId
      * @throws LoginSampleException
      */
-    public static void createUserQuote(String name,String adress,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
-        DataMapper.createUserQuote(name,adress,zipcodeCity,phone,email,comments);
+    public static int createUserQuote(String name,String address,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
+        return DataMapper.createUserQuote(name,address,zipcodeCity,phone,email,comments);
     }
 
     /**
@@ -69,10 +70,11 @@ public class LogicFacade {
      * @param roof_type
      * @param roof_material
      * @param pitch
+     * @return orderId
      * @throws LoginSampleException
      */
-    public static void createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
-        DataMapper.createQuoteOrder(user_proposition_id, oc_width, oc_length, ots_width, ots_length, roof_type, roof_material, pitch);
+    public static int createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
+        return DataMapper.createQuoteOrder(user_proposition_id, oc_width, oc_length, ots_width, ots_length, roof_type, roof_material, pitch);
     }
 
     /**

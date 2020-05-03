@@ -117,7 +117,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Address">Adresse</label>
-                    <input type="text" class="form-control" id="Address" placeholder="adresse" name="adress" required>
+                    <input type="text" class="form-control" id="Address" placeholder="adresse" name="address" required>
                 </div>
                 <div class="form-group">
                     <label for="ZipCodeCity">Postnummer og By</label>
