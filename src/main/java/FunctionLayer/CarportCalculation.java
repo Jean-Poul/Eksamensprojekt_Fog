@@ -1,32 +1,8 @@
 package FunctionLayer;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.*;
-
-
-// ######################################
-// #           TO BE DONE               #
-// ######################################
-
-/**
- * KLASSEN HAR BRUG FOR FØLGENDE INFORMATIONER FRA DATABASEN.
- * De skal altså hentes med datamapper igennem logicfacade og instantieres som objekter i denne klasse.
- * int          - carport længde
- * int          - carport bredde
- * boolean      - carport tag fladt/rejst
- * int          - kundens valgte hældning
- * int          - skur bredde
- * int          - skur længde
- * HashMap      - anglesAndFactor (format: [int 15], double 1.0])
- * ArrayList    - RaftDistancesLightRoof (format: ["let"],["44 x 120"],["0.4"],["10.26])
- * ArrayList    - RaftDistancesHeavyRoof - as above
- */
-
-/*
-TO-DO Systemet skal vælge det rigtige spær! (Hentes fra databasen)
-TO-DO Shed dimensions should be validated to fit inside carport. TBD on .jsp maybe?
-TO-DO Calculate brackets, bolts, screws and washers - Assume something and make a constructor for raised or flat (Remember shed)
-*/
 
 /**
  * Contains methods for calculating every dimension of the total carport solution.
@@ -55,7 +31,8 @@ public class CarportCalculation {
     //##########################################################
     // Class variables used for calculations
     //##########################################################
-    private boolean raisedRoof;
+
+    private boolean raisedRoof; //If true, then roofHeavy is true as well (Is set in constructor)
     boolean roofHeavy;
     private int carportLength;
     private int carportWidth;
@@ -64,7 +41,7 @@ public class CarportCalculation {
     private double shedWidth;
     private String roofCladdingType;
     private int calcAngle;
-    private double calcRaftLength;
+    private double raftLength;
     private double noOfRafts;
     private double raftDistance;
     private String raftDimension;
@@ -80,12 +57,15 @@ public class CarportCalculation {
     private int noOfLaths;
     private double lathSpan;
     private int noOfBeams;
+    private List<BeamDimensionHeavy> raftStringHeavy;
+    private List<BeamDimensionLight> raftStringLight;
+
 
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
 
     //[FIX] Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved and populated from DB.
-    HashMap<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
+    Map<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
 
     //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy)
     ArrayList<ArrayList<String>> raftDistancesLight = new ArrayList<>();
@@ -95,9 +75,51 @@ public class CarportCalculation {
     // CONSTRUCTOR (Probably easier to make a new one when DB connection is running)
     //##########################################################
 
-    //##########################################################
-    // TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
-    //##########################################################
+//    //The "Real" constructor
+//    public CarportCalculation() throws SQLException {
+//
+//        LogicFacade logFac = new LogicFacade();
+//        this.angleAndFactor = logFac.getPitchFactor(); //Get pitch-factor table
+//
+//        /*
+//         * Methods below should be created in LogicFacade to get relevant customer queries.
+//         */
+//
+//        //this.carportWidth = logFac.getCusCarportWidth();
+//        //this.carportLength = logFac.getCusCarportLength();
+//
+//        //this.carportShedLength = logFac.getCusShedLength();
+//        //this.carportShedWidth = logFac.getCusShedWith();
+//
+//        //this.customerRoofAngle = logFac.getCusPitch()
+//        calcRoofAngle(customerRoofAngle);
+//
+//
+////        If roof is raised, then it's heavy!
+////        if(logFac.getCusPitch() > 0){
+////            this.raisedRoof = true;
+////            this.roofHeavy = true;
+////        } else {
+////            this.raisedRoof = false;
+////            this.roofHeavy = false;
+////        }
+//
+//        //If roof is raised calculate raft spacing and get dimensions from DB.
+//        if (raisedRoof) {
+//            calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
+//            if (roofHeavy) {
+//                this.raftStringHeavy = logFac.getBeamDimensionHeavy(raftLength);
+//                raftDistance = Double.parseDouble(String.valueOf(raftStringHeavy.get(1)));
+//            } else {
+//                this.raftStringLight = logFac.getBeamDimensionLight(raftLength);
+//                raftDistance = Double.parseDouble(String.valueOf(raftStringLight.get(1)));
+//            }
+//        }
+//    }
+
+//    ##########################################################
+//     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
+//    ##########################################################
     public CarportCalculation() {
     /*
     ########################
@@ -125,18 +147,18 @@ public class CarportCalculation {
 
         calcRoofHeight(customerRoofAngle, carportWidth);
         calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
-        selectRaftDimAndSpacing(roofHeavy, calcRaftLength);
+        selectRaftDimAndSpacing(roofHeavy, raftLength);
         noOfRafts(carportLength, raftDistance);
-        calcRoofLaths(calcRaftLength);
+        calcRoofLaths(raftLength);
         calculateShedWallLaths();
         calcShedCladding(shedLength, shedWidth, SHED_CLADDING_BOARD_DIM);
-        calcRoofCladdingArea(carportLength, calcRaftLength, ROOF_TILE_LENGTH, ROOF_TILE_WIDTH, ROOF_TRAPEZ_LENGTH, ROOF_TRAPEZ_WIDTH, customerRoofAngle);
+        calcRoofCladdingArea(carportLength, raftLength, ROOF_TILE_LENGTH, ROOF_TILE_WIDTH, ROOF_TRAPEZ_LENGTH, ROOF_TRAPEZ_WIDTH, customerRoofAngle);
         calcNoOfBeamsAndDim(shedLength);
 
         System.out.println("Tungt tag?: " + roofHeavy);
         System.out.println("Systemet udregner antal spær: " + df.format(noOfRafts) + " stk");
         System.out.println("Systemet udregner spærdimension " + raftDimension + " mm");
-        System.out.println("Systemet udregner spærlængde: " + df.format(calcRaftLength) + " cm");
+        System.out.println("Systemet udregner spærlængde: " + df.format(raftLength) + " cm");
         System.out.println("Systemet udregner spærafstand: " + (raftDistance * 100) + " cm");
         System.out.println("Systemet udregner tagets højde: " + df.format(calcRoofHeight) + " cm");
         System.out.println("Systemet udregner antal lægter " + noOfLaths + " stk");
@@ -146,6 +168,22 @@ public class CarportCalculation {
         System.out.println("Systemet udregner antal beklædningsbræt til skur: " + noOfCladdingBoards + " stk");
         System.out.println("Systemet udregner antal løsholter: " + this.shedWallLaths + " stk");
         System.out.println("Der skal bruges " + noOfBeams + " søjler i størrelsen " + beamDimension);
+    }
+
+    /**
+     * Calculates the raft length
+     *
+     * @param carportWidth        Customer selected carport width.
+     * @param customerRoofAngle   Customer selected roof slant angle.
+     * @param calculatedRoofAngle The calculated upper roof angle (Comes from calcRoofAngle().
+     */
+    private void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
+
+        double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
+        double calcRoofAngleRadian = Math.toRadians(calculatedRoofAngle);
+        double calcRaftLength = (carportWidth * Math.sin(custRoofAngleRadian)) / (Math.sin(calcRoofAngleRadian));
+        calcRaftLength = calcRaftLength * angleAndFactor.get(customerRoofAngle);
+        this.raftLength = calcRaftLength;
     }
 
     //[FIX] Populates raftDistance lists for light roof types. This is a practical example - Should be retrieved and populatedfrom DB
@@ -410,25 +448,10 @@ public class CarportCalculation {
      * @param raftLength the calculated raftlength which matches the length of the roof stern.
      */
     private void calcSternBoardLength(double raftLength) {
-        double sternBoardsLength = this.calcRaftLength * 4;
+        double sternBoardsLength = this.raftLength * 4;
         this.sternBoardLength = sternBoardLength;
     }
 
-    /**
-     * Calculates the raft length
-     *
-     * @param carportWidth        Customer selected carport width.
-     * @param customerRoofAngle   Customer selected roof slant angle.
-     * @param calculatedRoofAngle The calculated upper roof angle (Comes from calcRoofAngle().
-     */
-    private void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
-
-        double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
-        double calcRoofAngleRadian = Math.toRadians(calculatedRoofAngle);
-        double calcRaftLength = (carportWidth * Math.sin(custRoofAngleRadian)) / (Math.sin(calcRoofAngleRadian));
-        calcRaftLength = calcRaftLength * angleAndFactor.get(customerRoofAngle);
-        this.calcRaftLength = calcRaftLength;
-    }
 
     /**
      * Calculates the required amount of rafts
