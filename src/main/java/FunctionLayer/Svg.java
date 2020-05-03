@@ -1,44 +1,64 @@
 package FunctionLayer;
 
-/**
- * KLASSEN HAR BRUG FOR FØLGENDE INFORMATIONER FRA DATABASEN.
- * double       - carpot width
- * double       - carpot height
- * String       - viewbox mål (Måske samme som carport størrelse?)
- * int          - x
- * int          - y
- * int          - x1
- * int          - x2
- * int          - y1
- * int          - y2
- * KAN VÆRE NEDENSTÅENDE SKAL VÆRE I DRAWING.JAVA ISTEDET?
- * int          - Skur bredde
- * int          - Skur længde
- * int          - Spærantal
- * int          - Bredde mellem spær
- * int          - lægteantal
- * int          - Bredde imellem lægter
- * int          - Antal stolper på carporten
- */
-
 public class Svg {
+    //##########################################################
+    //The class needs following information from database/carportCalculation.
+    //##########################################################
+    private double carportLength;
+    private double carportWidth;
+    private double carportX;
+    private double carportY;
 
+    private double noOfRafts;
+    private double raftDistance;
+    private double raftLength;
+    private double raftX;
+    private double raftY;
+
+    private double shedLength;
+    private double shedWidth;
+    private double shedX;
+    private double shedY;
+
+    private double noOfLaths;
+    private double lathSpan;
+    private double lathX;
+    private double lathY;
+
+    private double noOfBeams; //Is this including shed beams?
+    private double beamDistance; //Need calculation?
+    private double beamX;
+    private double beamY;
+
+    private double windCrossX1;
+    private double windCrossX2;
+    private double windCrossY1;
+    private double windCrossY2;
+
+    private double arrowLineX1;
+    private double arrowLineX2;
+    private double arrowLineY1;
+    private double arrowLineY2;
+
+    //##########################################################
+    //Variables for Svg.java
+    //##########################################################
     private double width;
     private double height;
     private String viewbox;
-    private int x;
-    private int y;
-
-    private int x1;
-    private int y1;
-    private int x2;
-    private int y2;
-
+    private double x;
+    private double y;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
     private int text;
-
     private StringBuilder svg = new StringBuilder();
 
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    //##########################################################
+    //Templates for generation svg drawing using StringBuilder.
+    //##########################################################
+    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
             "</marker>\n" +
@@ -46,14 +66,14 @@ public class Svg {
             "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
             "</marker>\n" +
             "</defs>";
-    private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000;\n" +
+    private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
-    private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%d\" y=\"%d\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%d,%d) rotate(-90)\">600 cm</text>\n";
+    private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
+    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d cm</text>\n";
 
-    public Svg(int x, int y, double width, double height, String viewbox) {
+    public Svg(double x, double y, double width, double height, String viewbox) {
         this.width = width;
         this.height = height;
         this.viewbox = viewbox;
@@ -62,36 +82,36 @@ public class Svg {
         svg.append(String.format(headerTemplate, x, y, height, width, viewbox));
     }
 
-    public Svg(int x1, int y1, int x2, int y2){
+    public Svg(double x1, double y1, double x2, double y2){
         this.x1 = x1;
         this.x1 = y1;
         this.x1 = x2;
         this.x1 = y2;
     }
 
-    public Svg(int x, int y, int text){
+    public Svg(double x, double y, int text){
         this.x = x;
         this.y = y;
         this.text = text;
     }
 
-    public void addRect(int x, int y, double height, double width){
+    public void addRect(double x, double y, double height, double width){
         svg.append(String.format(rectTemplate, x, y, height, width));
     }
 
-    public void addLine(int x1, int y1, int x2, int y2){
+    public void addLine(double x1, double y1, double x2, double y2){
         svg.append(String.format(lineTemplate, x1, y1, x2, y2));
     }
 
-    public void addDotLine(int x1, int y1, int x2, int y2){
+    public void addDotLine(double x1, double y1, double x2, double y2){
         svg.append(String.format(dotLineTemplate, x1, y1, x2, y2));
     }
 
-    public void addLowerText(int x, int y, int text){
+    public void addLowerText(double x, double y, int text){
         svg.append(String.format(lowerTextTemplate, x, y, text));
     }
 
-    public void addUpperText(int x, int y, int text){
+    public void addUpperText(double x, double y, int text){
         svg.append(String.format(upperTextTemplate, x, y, text));
     }
 
@@ -119,15 +139,15 @@ public class Svg {
         this.viewbox = viewbox;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -135,7 +155,7 @@ public class Svg {
         this.y = y;
     }
 
-    public int getX1() {
+    public double getX1() {
         return x1;
     }
 
@@ -143,7 +163,7 @@ public class Svg {
         this.x1 = x1;
     }
 
-    public int getY1() {
+    public double getY1() {
         return y1;
     }
 
@@ -151,7 +171,7 @@ public class Svg {
         this.y1 = y1;
     }
 
-    public int getX2() {
+    public double getX2() {
         return x2;
     }
 
@@ -159,7 +179,7 @@ public class Svg {
         this.x2 = x2;
     }
 
-    public int getY2() {
+    public double getY2() {
         return y2;
     }
 

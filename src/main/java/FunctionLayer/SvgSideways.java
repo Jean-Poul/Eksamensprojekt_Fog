@@ -1,48 +1,84 @@
 package FunctionLayer;
 
-/**
- * KLASSEN HAR BRUG FOR FØLGENDE INFORMATIONER FRA DATABASEN.
- * double       - carpot width
- * double       - carpot height
- * String       - viewbox mål (Måske samme som carport størrelse?)
- * double          - x
- * double          - y
- * double          - x1
- * double          - x2
- * double          - y1
- * double          - y2
- * KAN VÆRE NEDENSTÅENDE SKAL VÆRE I DRAWINGSIDEWAYS.JAVA ISTEDET?
- * double          - Rem længde
- * double          - Sternbræt længde?
- * double          - Vindskede
- * double          - Skur bredde
- * double          - Skur længde
- * double          - Spærantal
- * double          - Bredde mellem spær
- * double          - lægteantal
- * double          - Bredde imellem lægter
- * double          - Antal stolper på carporten
- * double          - Antal tegl
- */
-
 public class SvgSideways {
+    //##########################################################
+    //The class needs following information from database/carportCalculation.
+    //##########################################################
+    private double noOfRafts;
+    private double raftDistance;
+    private double raftLength;
+    private double raftX;
+    private double raftY;
 
+    private double roofHeigt;
+    private double roofLength;
+    private double roofX;
+    private double roofY;
+
+    private double roofRidgeHeight;
+    private double roofRidgeLength;
+    private double RidgeX;
+    private double RidgeY;
+
+    private double roofBargeHeigt;
+    private double roofBargeLength;
+    private double roofBargeX;
+    private double roofBargeY;
+
+    private double fasciaBoardHeight;
+    private double fasciaBoardLength;
+    private double fasciaBoardX;
+    private double fasciaBoardY;
+
+    private double roofBottomHeight;
+    private double roofBottomLength;
+    private double roofBottomLengthX;
+    private double roofBottomLengthY;
+
+    private double shedLength;
+    private double shedWidth;
+    private double shedX;
+    private double shedY;
+
+    private double noOfLaths;
+    private double lathSpan;
+    private double lathX;
+    private double lathY;
+
+    private double noOfBeams; //Is this including shed beams?
+    private double beamDistance; //Need calculation?
+    private double beamX;
+    private double beamY;
+
+    private double numberOfRoofTiles;
+    private double roofTilesX1;
+    private double roofTilesX2;
+    private double roofTilesY1;
+    private double roofTilesY2;
+
+    private double arrowLineX1;
+    private double arrowLineX2;
+    private double arrowLineY1;
+    private double arrowLineY2;
+
+    //##########################################################
+    //Variables for Svg.java
+    //##########################################################
     private double width;
     private double height;
     private String viewbox;
     private double x;
     private double y;
-
     private double x1;
     private double y1;
     private double x2;
     private double y2;
-
     private int text;
-
     private StringBuilder svgSideways = new StringBuilder();
 
-
+    //##########################################################
+    //Templates for generation svg drawing using StringBuilder.
+    //##########################################################
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +

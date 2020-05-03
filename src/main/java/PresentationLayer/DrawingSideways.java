@@ -12,12 +12,6 @@ public class DrawingSideways extends Command {
 
         SvgSideways svgSideways = new SvgSideways(0.0, 0.0, 1000.0,1000.0,"0,0,1000,1000");
 
-        //Ramme
-        //svgSideways.addRect(90.0,-20.0, 380.0,850.0);
-
-        //Mål på hele carport
-        //svgSideways.addRect(0,0,600.0,780.0);
-
         //Spær
         svgSideways.addRect(85.0,2.5,87.5,4.5);
         svgSideways.addRect(174.0,2.5,87.5,4.5);
