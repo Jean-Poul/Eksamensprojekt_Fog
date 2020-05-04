@@ -4,30 +4,37 @@ public class Svg {
     //##########################################################
     //The class needs following information from database/carportCalculation.
     //##########################################################
-    private double carportLength;
-    private double carportWidth;
-    private double carportX;
-    private double carportY;
+    CarportCalculation c = new CarportCalculation();
 
-    private double noOfRafts;
-    private double raftDistance;
-    private double raftLength;
-    private double raftX;
-    private double raftY;
+    private double carportHeight = c.getCarportWidth();
+    private double carportWidth = c.getCarportLength();
+    private double carportX = 0;
+    private double carportY = 0;
 
-    private double shedLength;
-    private double shedWidth;
-    private double shedX;
-    private double shedY;
+    private double noOfRafts = c.getNoOfRafts();
+    private double raftDistance = c.getAvgRaftDistance();
+    private double raftLength = c.getCarportWidth();
+    private double raftWidth = 4.5; //Statisk lige nu
+    private double raftX = 0;
+    private double raftY = 0;
 
-    private double noOfLaths;
-    private double lathSpan;
-    private double lathX;
-    private double lathY;
+    private double shedLength = c.getShedLength();
+    private double shedWidth = c.getShedWidth();
+    private double shedX = 465; //Statisk lige nu
+    private double shedY = 15; //Statisk lige nu
 
-    private double noOfBeams; //Is this including shed beams?
-    private double beamDistance; //Need calculation?
-    private double beamX;
+    private double noOfLaths = c.getNoOfLaths();
+    private double lathLength = 4.5; //Statisk lige nu
+    private double lathWidth = c.getCarportLength();
+    private double lathSpan = c.getLathSpan();
+    private double lathX = 0;
+    private double lathY = 0; //Statisk lige nu
+
+    private double noOfBeams = c.getNoOfBeams(); //Is this including shed beams?
+    private double beamDistance; //Need calculation
+    private double beamHight = 10;
+    private double beamWidth = 10;
+    private double beamX = 35;
     private double beamY;
 
     private double windCrossX1;
@@ -101,8 +108,30 @@ public class Svg {
     //##########################################################
     //Methods for StringBuilder
     //##########################################################
-    public void addRect(double x, double y, double height, double width){
-        svg.append(String.format(rectTemplate, x, y, height, width));
+    public void addCarport(){
+        svg.append(String.format(rectTemplate, carportX, carportY, carportHeight, carportWidth));
+    }
+
+    public void addShed(){
+        svg.append(String.format(rectTemplate, shedX, shedY, shedLength, shedWidth));
+    }
+
+    public void addRafts(){
+        for (int i=0; i <noOfRafts; i++) {
+            raftX=raftX+raftDistance;
+            svg.append(String.format(rectTemplate, raftX, raftY, raftLength, raftWidth));
+        }
+    }
+
+    public void addLaths(){
+        for (int i=0; i <noOfLaths; i++) {
+            lathY=lathY+lathSpan;
+            svg.append(String.format(rectTemplate, lathX, lathY, lathLength, lathWidth));
+        }
+    }
+    //Skal færdiggøres. Udregning af beam afstand??
+    public void addBeams(){
+        svg.append(String.format(rectTemplate, beamX, beamY, beamHight, beamWidth));
     }
 
     public void addLine(double x1, double y1, double x2, double y2){

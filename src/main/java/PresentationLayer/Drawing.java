@@ -11,6 +11,12 @@ public class Drawing extends Command {
 
         Svg svg = new Svg(0, 0, 1000,1000,"0,0,1000,1000");
 
+        svg.addCarport();
+        svg.addShed();
+        svg.addRafts();
+        svg.addLaths();
+
+        /**
         //Mål på hele carport
         svg.addRect(0,0,600.0,780.0);
 
@@ -18,10 +24,10 @@ public class Drawing extends Command {
         svg.addRect(524,1,400,250);
 
         //Skur stolper
-        svg.addRect(524,1,9.7,10.0);
-        svg.addRect(765,1,9.7,10.0);
-        svg.addRect(524,390,9.7,10.0);
-        svg.addRect(765,390,9.7,10.0);
+        svg.addRect(524,1,10.0,10.0);
+        svg.addRect(765,1,10.0,10.0);
+        svg.addRect(524,390,10.0,10.0);
+        svg.addRect(765,390,10.0,10.0);
 
         //Remme
         svg.addRect(0,35,4.5,780.0);
@@ -97,6 +103,7 @@ public class Drawing extends Command {
         //Text
         svg.addLowerText(390,650, 780);
         svg.addUpperText(50,390, 600);
+         */
 
         request.setAttribute("svgDrawing", svg.toString());
 
