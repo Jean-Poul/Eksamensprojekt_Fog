@@ -13,7 +13,7 @@ public class CarportCalculation {
 
     //##########################################################
     // FINALS below are assumptions of standard dimensions.
-    // Should probably be in DB if FOG needs to change these later.
+    // SHOULD BE RETRIEVED FROM DATABASE (And should probably not be FINAL)
     //##########################################################
     private static final int BOTTOM_LATHSPAN = 35;
     private static final int BOTTOM_LATHS = 2;
@@ -30,48 +30,79 @@ public class CarportCalculation {
     private static final String BEAM_DIMENSION_HEAVY = "125 x 125";
     private static final String BEAM_DIMENSION_LIGHT = "100 x 100";
 
-    //##########################################################
-    // Class variables used for calculations
-    //##########################################################
-
+    // ###########################################
+    //  CUSTOMER SELECTED CRITERIA [cm]
+    // ###########################################
     private boolean raisedRoof; //If true, then roofHeavy is true as well (Is set in constructor)
-    boolean roofHeavy;
     private int carportLength;
     private int carportWidth;
     private int customerRoofAngle;
     private double shedLength;
     private double shedWidth;
-    private String roofCladdingType;
-    private int calcAngle;
+
+    // ###########################################
+    //  ITEM TYPES GETTING ASSIGNED WITH CORRESPONDING ARTICLE NO. FROM DB
+    // ###########################################
+    private int raftType;
+    private int shedWallLathType;
+    private int shedCladdingBoardType;
+    private int roofLathType;
+    private int supportStrapType;
+    private int roofCladType;
+    private int sternBoardType;
+    private int beamType;
+
+
+    // ###########################################
+    //  RAFT CALCULATIONS (Qty & Length [cm])
+    // ###########################################
     private double raftLength;
-    private double noOfRafts;
+    private int noOfRafts;
     private double raftDistance;
     private double avgRaftDistance;
     private String raftDimension;
-    private double calcRoofHeight;
-    private double supportingStrap;
-    private int sternBoardLength;
-    private double wallLath;
-    private int totalNumberOfRoofTiles;
-    private int totalNumberOfRoofTrapezPlates;
+    private double horizontalRaftLength;
+    private double verticalRaftLength;
+    private int noOfHorizontalRafts;
+    private int noOfVerticalRafts;
+
+    // ###########################################
+    //  SHED CALCULATIONS [cm]
+    // ###########################################
     private int shedWallLaths;
     private int noOfCladdingBoards;
-    private String beamDimension;
-    private int noOfBeams;
+
+    // ###########################################
+    //  ROOF CALCULATIONS [cm]
+    // ###########################################
+    private double calcRoofHeight;
     private int noOfLaths;
     private double lathSpan;
+    private double supportingStrapLength;
+    private int totalNumberOfRoofTiles;
+    private int totalNumberOfRoofTrapezPlates;
+    private String roofCladdingType;
+    private int calcAngle;
+
+    // ###########################################
+    //  ASSORTED STRUCTURAL & ACCESSORIES
+    // ###########################################
+    private boolean roofHeavy;
+    private int sternBoardLength;
+    private String beamDimension;
+    private int noOfBeams;
+
+    // ###########################################
+    //  ENGINEERING TABLES FROM DATABASE
+    // ###########################################
     private List<BeamDimensionHeavy> raftStringHeavy;
     private List<BeamDimensionLight> raftStringLight;
+    ArrayList<ArrayList<String>> raftDistancesLight = new ArrayList<>(); //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy)
+    ArrayList<ArrayList<String>> raftDistancesHeavy = new ArrayList<>();
+    Map<Integer, Double> angleAndFactor = new HashMap<Integer, Double>(); //[FIX] Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved and populated from DB.
 
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
-
-    //[FIX] Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved and populated from DB.
-    Map<Integer, Double> angleAndFactor = new HashMap<Integer, Double>();
-
-    //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy)
-    ArrayList<ArrayList<String>> raftDistancesLight = new ArrayList<>();
-    ArrayList<ArrayList<String>> raftDistancesHeavy = new ArrayList<>();
 
     //##########################################################
     // CONSTRUCTOR (Probably easier to make a new one when DB connection is running)
@@ -119,106 +150,6 @@ public class CarportCalculation {
 //        }
 //    }
 
-    public boolean isRaisedRoof() {
-        return raisedRoof;
-    }
-
-    public boolean isRoofHeavy() {
-        return roofHeavy;
-    }
-
-    public int getCarportLength() {
-        return carportLength;
-    }
-
-    public int getCarportWidth() {
-        return carportWidth;
-    }
-
-    public int getCustomerRoofAngle() {
-        return customerRoofAngle;
-    }
-
-    public double getShedLength() {
-        return shedLength;
-    }
-
-    public double getShedWidth() {
-        return shedWidth;
-    }
-
-    public String getRoofCladdingType() {
-        return roofCladdingType;
-    }
-
-    public int getCalcAngle() {
-        return calcAngle;
-    }
-
-    public double getRaftLength() {
-        return raftLength;
-    }
-
-    public double getNoOfRafts() {
-        return noOfRafts;
-    }
-
-    public double getAvgRaftDistance() {
-        return avgRaftDistance;
-    }
-
-    public String getRaftDimension() {
-        return raftDimension;
-    }
-
-    public double getCalcRoofHeight() {
-        return calcRoofHeight;
-    }
-
-    public double getSupportingStrap() {
-        return supportingStrap;
-    }
-
-    public int getSternBoardLength() {
-        return sternBoardLength;
-    }
-
-    public double getWallLath() {
-        return wallLath;
-    }
-
-    public int getTotalNumberOfRoofTiles() {
-        return totalNumberOfRoofTiles;
-    }
-
-    public int getTotalNumberOfRoofTrapezPlates() {
-        return totalNumberOfRoofTrapezPlates;
-    }
-
-    public int getShedWallLaths() {
-        return shedWallLaths;
-    }
-
-    public int getNoOfCladdingBoards() {
-        return noOfCladdingBoards;
-    }
-
-    public String getBeamDimension() {
-        return beamDimension;
-    }
-
-    public int getNoOfBeams() {
-        return noOfBeams;
-    }
-
-    public int getNoOfLaths() {
-        return noOfLaths;
-    }
-
-    public double getLathSpan() {
-        return lathSpan;
-    }
-
     //    ##########################################################
 //     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
 //    ##########################################################
@@ -256,6 +187,7 @@ public class CarportCalculation {
         calcShedCladding(shedLength, shedWidth, SHED_CLADDING_BOARD_DIM);
         calcRoofCladdingArea(carportLength, raftLength, ROOF_TILE_LENGTH, ROOF_TILE_WIDTH, ROOF_TRAPEZ_LENGTH, ROOF_TRAPEZ_WIDTH, customerRoofAngle);
         calcNoOfBeamsAndDim(shedLength);
+        calculateSupportingStrap(carportWidth, carportLength);
 
         System.out.println("Tungt tag?: " + roofHeavy);
         System.out.println("Systemet udregner antal spær: " + df.format(noOfRafts) + " stk");
@@ -270,22 +202,6 @@ public class CarportCalculation {
         System.out.println("Systemet udregner antal beklædningsbræt til skur: " + noOfCladdingBoards + " stk");
         System.out.println("Systemet udregner antal løsholter: " + this.shedWallLaths + " stk");
         System.out.println("Der skal bruges " + noOfBeams + " søjler i størrelsen " + beamDimension);
-    }
-
-    /**
-     * Calculates the raft length
-     *
-     * @param carportWidth        Customer selected carport width.
-     * @param customerRoofAngle   Customer selected roof slant angle.
-     * @param calculatedRoofAngle The calculated upper roof angle (Comes from calcRoofAngle().
-     */
-    private void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
-
-        double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
-        double calcRoofAngleRadian = Math.toRadians(calculatedRoofAngle);
-        double calcRaftLength = (carportWidth * Math.sin(custRoofAngleRadian)) / (Math.sin(calcRoofAngleRadian));
-        calcRaftLength = calcRaftLength * angleAndFactor.get(customerRoofAngle);
-        this.raftLength = calcRaftLength;
     }
 
     //[FIX] Populates raftDistance lists for light roof types. This is a practical example - Should be retrieved and populatedfrom DB
@@ -391,47 +307,48 @@ public class CarportCalculation {
         angleAndFactor.put(45, 0.72);
     }
 
+    /**
+     * Calculates the raft length
+     *
+     * @param carportWidth        Customer selected carport width.
+     * @param customerRoofAngle   Customer selected roof slant angle.
+     * @param calculatedRoofAngle The calculated upper roof angle (Comes from calcRoofAngle().
+     */
+    private void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
+
+        //Determine sloped raft length
+        double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
+        double calcRoofAngleRadian = Math.toRadians(calculatedRoofAngle);
+        double calcRaftLength = (carportWidth * Math.sin(custRoofAngleRadian)) / (Math.sin(calcRoofAngleRadian));
+        calcRaftLength = calcRaftLength * angleAndFactor.get(customerRoofAngle);
+        raftLength = calcRaftLength;
+
+        //Determine length of horizontal rafts
+        horizontalRaftLength = this.carportWidth;
+
+        //Determine height of vertical rafts
+        verticalRaftLength = getCalcRoofHeight();
+    }
+
     //[FIX]
+
     /**
      * Selects the correct raft spacing and dimension using arraylists with data from the database.
      *
      * @param roofHeavy      Determines if the roof type is heavy or light (Used to select from correct arraylist)
      * @param calcRaftLength Used to select from correct arraylist
+     * @author Mick
      */
     private void selectRaftDimAndSpacing(boolean roofHeavy, double calcRaftLength) {
         double raftLengthM = calcRaftLength / 100; //Convert calcRaftLength to meters
         if (!roofHeavy) {
-            if (raftLengthM <= Double.parseDouble(String.valueOf(raftDistancesLight.get(0).get(3)))) {
-                this.raftDistance = Double.parseDouble(String.valueOf(raftDistancesLight.get(0).get(2))); //Get the raft spacing
-                this.raftDimension = (String) raftDistancesLight.get(0).get(1); //Get the raft dimensions
-            } else if (raftLengthM >= Double.parseDouble(String.valueOf(raftDistancesLight.get(raftDistancesLight.size() - 1).get(3)))) {
-                this.raftDistance = Double.parseDouble(String.valueOf(raftDistancesLight.get(raftDistancesLight.size() - 1).get(2))); //Get the raft spacing
-                this.raftDimension = (String) raftDistancesLight.get(raftDistancesLight.size() - 1).get(1); //Get the raft dimensions
-            } else {
-                for (int i = 1; i < raftDistancesLight.size(); i++) {
-                    if (raftLengthM > Double.parseDouble(String.valueOf(raftDistancesLight.get(i).get(3)))
-                            &&
-                            raftLengthM < Double.parseDouble(String.valueOf(raftDistancesLight.get(0 + i).get(3)))) {
-                        this.raftDistance = Double.parseDouble(String.valueOf(raftDistancesLight.get(i + 1).get(2))); //Get the raft spacing
-                        this.raftDimension = (String) raftDistancesLight.get(i).get(1); //Get the raft dimensions
-                    }
-                }
-            }
+            raftDistance = 0.8;
+            raftDimension = "45 x 120";
+            raftType = 20;
         } else if (roofHeavy) {
-            if (raftLengthM < Double.parseDouble(String.valueOf(raftDistancesHeavy.get(0).get(3)))) {
-                this.raftDistance = Double.parseDouble(String.valueOf(raftDistancesHeavy.get(0).get(2))); //Get the raft spacing
-                this.raftDimension = (String) raftDistancesHeavy.get(0).get(1); //Get the raft dimensions
-            } else {
-                for (int i = 0; i < raftDistancesHeavy.size(); i++) {
-
-                    if (raftLengthM > Double.parseDouble(String.valueOf(raftDistancesHeavy.get(i).get(3)))
-                            &&
-                            raftLengthM < Double.parseDouble(String.valueOf(raftDistancesHeavy.get(0 + i).get(3)))) {
-                        this.raftDistance = Double.parseDouble(String.valueOf(raftDistancesHeavy.get(i + 1).get(2))); //Get the raft spacing
-                        this.raftDimension = (String) raftDistancesHeavy.get(i).get(1); //Get the raft dimensions
-                    }
-                }
-            }
+            raftDistance = 0.6;
+            raftDimension = "95 x 120";
+            raftType = 21;
 
         } else {
             //If the roof is neither light or heavy, something went wrong bigtime.
@@ -459,7 +376,7 @@ public class CarportCalculation {
      * Outputs number of laths required for shed. Currently set to a fixed number of 12
      */
     private void calculateShedWallLaths() {
-        this.shedWallLaths = 12;
+        shedWallLaths = 12;
     }
 
     /**
@@ -483,12 +400,12 @@ public class CarportCalculation {
             int rowsOfTiles = (int) ((calcRaftLength) / ROOF_TILE_LENGTH);
             int totalNumberOfRoofTiles = rowsOfTiles * columnsOfTiles * 2; //Multiply by 2 to get both sides of the roof
             this.totalNumberOfRoofTiles = totalNumberOfRoofTiles;
-            this.roofCladdingType = "tagsten";
+            roofCladdingType = "tagsten";
         } else if (!raisedRoof) {
             double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TILE_WIDTH;
             int noOfTrapezPlates = (int) ((carportLength * carportWidth) / trapezPlateSquareArea);
-            this.totalNumberOfRoofTrapezPlates = noOfTrapezPlates;
-            this.roofCladdingType = "trapezplader";
+            totalNumberOfRoofTrapezPlates = noOfTrapezPlates;
+            roofCladdingType = "trapezplader";
         }
     }
 
@@ -510,9 +427,9 @@ public class CarportCalculation {
      */
     private void calcNoOfBeamsAndDim(double shedLength) {
         if (shedLength > 0) {
-            this.noOfBeams = 8;
+            noOfBeams = 8;
         } else {
-            this.noOfBeams = 4;
+            noOfBeams = 4;
         }
         if (roofHeavy) {
             beamDimension = BEAM_DIMENSION_HEAVY;
@@ -529,8 +446,8 @@ public class CarportCalculation {
      */
     private void calculateSupportingStrap(double carportWidth, double carportLength) {
 
-        double totalSupportStrap = (carportLength*2) + carportWidth;
-        this.supportingStrap = totalSupportStrap;
+        double totalSupportStrap = (carportLength * 2) + carportWidth;
+        supportingStrapLength = totalSupportStrap;
     }
 
     /**
@@ -561,11 +478,16 @@ public class CarportCalculation {
      * @param raftDistance  The calculated raft distance
      */
     private void noOfRafts(double carportLength, double raftDistance) {
-        double noOfRafts = Math.ceil(carportLength / (raftDistance * 100)); //Convert raftdistance to cm
+
+        //Determine no. of sloped rafts
+        int noOfRafts = (int) Math.ceil(carportLength / (raftDistance * 100)); //Convert raftdistance to cm
         double avgRaftDistance = this.carportLength / noOfRafts;
         this.avgRaftDistance = avgRaftDistance;
         this.noOfRafts = noOfRafts;
 
+        //Determine no. of horizontal and vertical rafts
+        noOfHorizontalRafts = this.noOfRafts;
+        noOfVerticalRafts = this.noOfRafts;
     }
 
     /**
@@ -594,7 +516,184 @@ public class CarportCalculation {
         double calcLathSpan = (calcRaftLength - bottomLathSpan - topLathSpan) / calcLaths;
         int actualLaths = (int) ((calcLaths + bottomLaths) * 2);
 
-        this.noOfLaths = actualLaths;
-        this.lathSpan = calcLathSpan;
+        noOfLaths = actualLaths;
+        lathSpan = calcLathSpan;
     }
+
+// ################################
+// #      GETTERS & SETTERS       #
+// ################################
+
+    public void setRaftType(int raftType) {
+        this.raftType = raftType;
+    }
+
+    public void setShedWallLathType(int shedWallLathType) {
+        this.shedWallLathType = shedWallLathType;
+    }
+
+    public void setShedCladdingBoardType(int shedCladdingBoardType) {
+        this.shedCladdingBoardType = shedCladdingBoardType;
+    }
+
+    public void setRoofLathType(int roofLathType) {
+        this.roofLathType = roofLathType;
+    }
+
+    public void setSupportStrapType(int supportStrapType) {
+        this.supportStrapType = supportStrapType;
+    }
+
+    public void setRoofCladType(int roofCladType) {
+        this.roofCladType = roofCladType;
+    }
+
+    public void setSternBoardType(int sternBoardType) {
+        this.sternBoardType = sternBoardType;
+    }
+
+    public void setBeamType(int beamType) {
+        this.beamType = beamType;
+    }
+
+    public boolean isRaisedRoof() {
+        return raisedRoof;
+    }
+
+    public boolean isRoofHeavy() {
+        return roofHeavy;
+    }
+
+    public int getCarportLength() {
+        return carportLength;
+    }
+
+    public int getCarportWidth() {
+        return carportWidth;
+    }
+
+    public int getCustomerRoofAngle() {
+        return customerRoofAngle;
+    }
+
+    public double getShedLength() {
+        return shedLength;
+    }
+
+    public double getShedWidth() {
+        return shedWidth;
+    }
+
+    public String getRoofCladdingType() {
+        return roofCladdingType;
+    }
+
+    public int getCalcAngle() {
+        return calcAngle;
+    }
+
+    public double getRaftLength() {
+        return raftLength;
+    }
+
+    public double getNoOfRafts() {
+        return noOfRafts;
+    }
+
+    public double getAvgRaftDistance() {
+        return avgRaftDistance;
+    }
+
+    public String getRaftDimension() {
+        return raftDimension;
+    }
+
+    public double getCalcRoofHeight() {
+        return calcRoofHeight;
+    }
+
+    public double getSupportingStrapLength() {
+        return supportingStrapLength;
+    }
+
+    public int getSternBoardLength() {
+        return sternBoardLength;
+    }
+
+    public int getTotalNumberOfRoofTiles() {
+        return totalNumberOfRoofTiles;
+    }
+
+    public int getTotalNumberOfRoofTrapezPlates() {
+        return totalNumberOfRoofTrapezPlates;
+    }
+
+    public int getShedWallLaths() {
+        return shedWallLaths;
+    }
+
+    public int getNoOfCladdingBoards() {
+        return noOfCladdingBoards;
+    }
+
+    public String getBeamDimension() {
+        return beamDimension;
+    }
+
+    public int getNoOfBeams() {
+        return noOfBeams;
+    }
+
+    public int getNoOfLaths() {
+        return noOfLaths;
+    }
+
+    public double getLathSpan() {
+        return lathSpan;
+    }
+
+    public int getNoOfHorizontalRafts() {
+        return noOfHorizontalRafts;
+    }
+
+    public double getHorizontalRaftLength() {
+        return horizontalRaftLength;
+    }
+
+    public int getNoOfVerticalRafts() {
+        return noOfVerticalRafts;
+    }
+
+    public double getVerticalRaftLength() {
+        return verticalRaftLength;
+    }
+
+    public int getRaftType() {
+        return raftType;
+    }
+
+    public int getShedWallLathType() {
+        return shedWallLathType;
+    }
+
+    public int getShedCladdingBoardType() {
+        return shedCladdingBoardType;
+    }
+
+    public int getRoofLathType() {
+        return roofLathType;
+    }
+
+    public int getSupportStrapType() {
+        return supportStrapType;
+    }
+
+    public int getRoofCladType() {
+        return roofCladType;
+    }
+
+    public int getSternBoardType() {
+        return sternBoardType;
+    }
+
 }
