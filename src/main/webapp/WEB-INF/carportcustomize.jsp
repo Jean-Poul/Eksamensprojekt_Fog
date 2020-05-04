@@ -74,7 +74,7 @@
                     <div class="form-group">
                         <label for="RoofOptionDegrees">Taghældning</label>
                         <select class="custom-select" id="RoofOptionDegrees" name="roofOptionDegrees">
-                            <option value="">Vælg hældning</option>
+                            <option value="0">Vælg hældning</option>
                             <c:forEach var="element" items="${requestScope.roofdegree}">
                                 <option value="${element.roofDegreeOption}">${element.roofDegreeOption} grader</option>
                             </c:forEach>

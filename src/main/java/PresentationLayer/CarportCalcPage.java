@@ -50,13 +50,15 @@ public class CarportCalcPage extends Command {
 
         // initialize variables
         String roofType;
+        int pitch;
         int orderId;
 
         // insert into order using switch case to choose between flat or raised roof
         switch (roofOption) {
             case 0:
+                pitch = 0;
                 roofType = "fladt";
-                orderId = LogicFacade.createQuoteOrder(userId,carportWidth,carportLength,shedWidth,shedLength,roofType,roofFlat,0);
+                orderId = LogicFacade.createQuoteOrder(userId,carportWidth,carportLength,shedWidth,shedLength,roofType,roofFlat,pitch);
                 break;
             case 1:
                 roofType = "rejst";
