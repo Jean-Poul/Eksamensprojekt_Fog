@@ -19,11 +19,14 @@ public class CarportCalculation {
     private static final int BOTTOM_LATHS = 2;
     private static final double TOP_LATH_GAP = 3;
     private static final double AVG_LATH_SPAN = 30;
+
     private static final double ROOF_TILE_LENGTH = 25;
     private static final double ROOF_TILE_WIDTH = 20;
     private static final double ROOF_TRAPEZ_LENGTH = 240;
     private static final double ROOF_TRAPEZ_WIDTH = 109;
+
     private static final String SHED_CLADDING_BOARD_DIM = "19x100";
+
     private static final String BEAM_DIMENSION_HEAVY = "125 x 125";
     private static final String BEAM_DIMENSION_LIGHT = "100 x 100";
 
@@ -116,7 +119,107 @@ public class CarportCalculation {
 //        }
 //    }
 
-//    ##########################################################
+    public boolean isRaisedRoof() {
+        return raisedRoof;
+    }
+
+    public boolean isRoofHeavy() {
+        return roofHeavy;
+    }
+
+    public int getCarportLength() {
+        return carportLength;
+    }
+
+    public int getCarportWidth() {
+        return carportWidth;
+    }
+
+    public int getCustomerRoofAngle() {
+        return customerRoofAngle;
+    }
+
+    public double getShedLength() {
+        return shedLength;
+    }
+
+    public double getShedWidth() {
+        return shedWidth;
+    }
+
+    public String getRoofCladdingType() {
+        return roofCladdingType;
+    }
+
+    public int getCalcAngle() {
+        return calcAngle;
+    }
+
+    public double getRaftLength() {
+        return raftLength;
+    }
+
+    public double getNoOfRafts() {
+        return noOfRafts;
+    }
+
+    public double getAvgRaftDistance() {
+        return avgRaftDistance;
+    }
+
+    public String getRaftDimension() {
+        return raftDimension;
+    }
+
+    public double getCalcRoofHeight() {
+        return calcRoofHeight;
+    }
+
+    public double getSupportingStrap() {
+        return supportingStrap;
+    }
+
+    public int getSternBoardLength() {
+        return sternBoardLength;
+    }
+
+    public double getWallLath() {
+        return wallLath;
+    }
+
+    public int getTotalNumberOfRoofTiles() {
+        return totalNumberOfRoofTiles;
+    }
+
+    public int getTotalNumberOfRoofTrapezPlates() {
+        return totalNumberOfRoofTrapezPlates;
+    }
+
+    public int getShedWallLaths() {
+        return shedWallLaths;
+    }
+
+    public int getNoOfCladdingBoards() {
+        return noOfCladdingBoards;
+    }
+
+    public String getBeamDimension() {
+        return beamDimension;
+    }
+
+    public int getNoOfBeams() {
+        return noOfBeams;
+    }
+
+    public int getNoOfLaths() {
+        return noOfLaths;
+    }
+
+    public double getLathSpan() {
+        return lathSpan;
+    }
+
+    //    ##########################################################
 //     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
 //    ##########################################################
     public CarportCalculation() {
