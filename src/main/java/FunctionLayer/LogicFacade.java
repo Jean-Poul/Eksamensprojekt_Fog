@@ -169,7 +169,7 @@ public class LogicFacade {
     /**
      *
      * @param rafterLength
-     * @return
+     * @return beam-dimension and beam-spacing for light roof
      * @throws SQLException
      */
     public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws SQLException {
@@ -179,15 +179,29 @@ public class LogicFacade {
     /**
      *
      * @param rafterLength
-     * @return
+     * @return beam-dimension and beam-spacing for heavy roof
      * @throws SQLException
      */
     public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws SQLException {
         return DataMapper.getBeamDimensionHeavy(rafterLength);
     }
 
+    /**
+     *
+     * @return HashMap of pitch and factor
+     * @throws SQLException
+     */
     public static Map<Integer,Double> getPitchFactor() throws SQLException {
         return DataMapper.getPitchFactor();
+    }
+
+    /**
+     *
+     * @return List of standard dimensions
+     * @throws SQLException
+     */
+    public static List<StandardDimensions> getStandardDimensions() throws SQLException {
+        return DataMapper.getStandardDimensions();
     }
 
 }

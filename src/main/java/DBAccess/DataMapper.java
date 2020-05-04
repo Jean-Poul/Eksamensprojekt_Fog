@@ -420,4 +420,38 @@ public class DataMapper {
         }
         return pitchFactor;
     }
+
+    /**
+     *
+     * @return List of standard dimensions
+     * @throws SQLException
+     */
+    public static List<StandardDimensions> getStandardDimensions() throws SQLException {
+        List<StandardDimensions> standardDimensions = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM standard_dimensions;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bottom_lathspan = rs.getInt("bottom_lathspan");
+                int bottom_laths = rs.getInt("bottom_laths");
+                double top_lath_gap = rs.getDouble("top_lath_gap");
+                double avg_lath_span = rs.getDouble("avg_lath_span");
+                double roof_tile_length = rs.getDouble("roof_tile_length");
+                double roof_tile_width = rs.getDouble("roof_tile_width");
+                double roof_trapez_length = rs.getDouble("roof_trapez_length");
+                double roof_trapez_width = rs.getDouble("roof_trapez_width");
+                String shed_claddeing_board_dim = rs.getString("shed_claddeing_board_dim");
+                String beam_dimension_heavy = rs.getString("beam_dimension_heavy");
+                String beam_dimension_light = rs.getString("beam_dimension_light");
+                StandardDimensions sd = new StandardDimensions(bottom_lathspan,bottom_laths,top_lath_gap,avg_lath_span,roof_tile_length,roof_tile_width,roof_trapez_length,roof_trapez_width,shed_claddeing_board_dim,beam_dimension_heavy,beam_dimension_light);
+                standardDimensions.add(sd);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return standardDimensions;
+    }
 }
