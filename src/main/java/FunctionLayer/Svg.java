@@ -73,6 +73,9 @@ public class Svg {
     private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
     private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d cm</text>\n";
 
+    //##########################################################
+    //constructors
+    //##########################################################
     public Svg(double x, double y, double width, double height, String viewbox) {
         this.width = width;
         this.height = height;
@@ -95,6 +98,9 @@ public class Svg {
         this.text = text;
     }
 
+    //##########################################################
+    //Methods for StringBuilder
+    //##########################################################
     public void addRect(double x, double y, double height, double width){
         svg.append(String.format(rectTemplate, x, y, height, width));
     }
@@ -115,6 +121,9 @@ public class Svg {
         svg.append(String.format(upperTextTemplate, x, y, text));
     }
 
+    //##########################################################
+    //Getters/Setters/toString()
+    //##########################################################
     public double getWidth() {
         return width;
     }

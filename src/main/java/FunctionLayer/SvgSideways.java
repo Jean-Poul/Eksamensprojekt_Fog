@@ -97,6 +97,9 @@ public class SvgSideways {
     private final String roofTileTemplate1 = "<path d=\"M 350 350 Q 362.5 360 375 350\" style=\"stroke:#000000; fill: #ffffff\"/>";
     private final String roofTileTemplate2 = "<path d=\"M 350 370 Q 362.5 380 375 370\" style=\"stroke:#000000; fill: #ffffff\"/>";
 
+    //##########################################################
+    //constructors
+    //##########################################################
     public SvgSideways(double x, double y, double width, double height, String viewbox) {
         this.width = width;
         this.height = height;
@@ -119,6 +122,9 @@ public class SvgSideways {
         this.text = text;
     }
 
+    //##########################################################
+    //Methods for StringBuilder
+    //##########################################################
     public void addRect(double x, double y, double height, double width){
         svgSideways.append(String.format(rectTemplate, x, y, height, width));
     }
@@ -142,6 +148,9 @@ public class SvgSideways {
         svgSideways.append(String.format(upperTextTemplate, x, y, text));
     }
 
+    //##########################################################
+    //Getters/Setters/toString()
+    //##########################################################
     public void addRoofTile1(){
         svgSideways.append(String.format(roofTileTemplate1));
     }
