@@ -38,9 +38,9 @@ public class CarportCalcPage extends Command {
         int carportLength = Integer.parseInt(request.getParameter("carportLength"));
         String roofFlat = request.getParameter("roofFlat");
         String roofRaised = request.getParameter("roofRaised");
-        int roofOptionDegrees = Integer.parseInt(request.getParameter("roofOptionDegrees"));
-        int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
-        int shedLength = Integer.parseInt(request.getParameter("shedLength"));
+        String roofOptionDegrees = request.getParameter("roofOptionDegrees");
+        String shedWidth = request.getParameter("shedWidth");
+        String shedLength = request.getParameter("shedLength");
 
         // Roof option
         int roofOption = Integer.parseInt(request.getParameter("roofOption"));
@@ -48,21 +48,40 @@ public class CarportCalcPage extends Command {
         // insert user proposition and return userId
         int userId = LogicFacade.createUserQuote(name,address,zipcodeCity,telephone,email,comments);
 
+
         // initialize variables
         String roofType;
         int pitch;
         int orderId;
+        int roofDegrees = 0;
+        int shedW = 0;
+        int shedL = 0;
 
+        // check if roofOptionDegrees is not empty and parse to int
+        if(!roofOptionDegrees.isEmpty()) {
+            roofDegrees = Integer.parseInt(roofOptionDegrees);
+        }
+
+        // check if shedWidth is not empty and parse to int
+        if(!shedWidth.isEmpty()) {
+            shedW = Integer.parseInt(shedWidth);
+        }
+
+        // check if shedLength is not empty and parse to int
+        if(!shedLength.isEmpty()) {
+            shedL = Integer.parseInt(shedLength);
+        }
+        
         // insert into order using switch case to choose between flat or raised roof
         switch (roofOption) {
             case 0:
                 pitch = 0;
                 roofType = "fladt";
-                orderId = LogicFacade.createQuoteOrder(userId,carportWidth,carportLength,shedWidth,shedLength,roofType,roofFlat,pitch);
+                orderId = LogicFacade.createQuoteOrder(userId,carportWidth,carportLength,shedW,shedL,roofType,roofFlat,pitch);
                 break;
             case 1:
                 roofType = "rejst";
-                orderId = LogicFacade.createQuoteOrder(userId,carportWidth,carportLength,shedWidth,shedLength,roofType,roofRaised,roofOptionDegrees);
+                orderId = LogicFacade.createQuoteOrder(userId,carportWidth,carportLength,shedW,shedL,roofType,roofRaised,roofDegrees);
                 break;
         }
 
