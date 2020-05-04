@@ -20,7 +20,7 @@ abstract class Command {
         commands.put( "drawing", new Drawing() );
         commands.put( "carportcustomize", new Carportcustomize() );
         commands.put( "drawingSideways", new DrawingSideways() );
-        commands.put("carportCalcPage", new CarportCalcPage());
+        commands.put("midlertidigTest", new midlertidigTest());
     }
 
     static Command from( HttpServletRequest request ) {

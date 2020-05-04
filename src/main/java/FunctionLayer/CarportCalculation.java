@@ -1,6 +1,5 @@
 package FunctionLayer;
 
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -18,13 +17,16 @@ public class CarportCalculation {
     //##########################################################
     private static final int BOTTOM_LATHSPAN = 35;
     private static final int BOTTOM_LATHS = 2;
-    private static final double TOP_LATH = 3;
+    private static final double TOP_LATH_GAP = 3;
     private static final double AVG_LATH_SPAN = 30;
+
     private static final double ROOF_TILE_LENGTH = 25;
     private static final double ROOF_TILE_WIDTH = 20;
     private static final double ROOF_TRAPEZ_LENGTH = 240;
     private static final double ROOF_TRAPEZ_WIDTH = 109;
+
     private static final String SHED_CLADDING_BOARD_DIM = "19x100";
+
     private static final String BEAM_DIMENSION_HEAVY = "125 x 125";
     private static final String BEAM_DIMENSION_LIGHT = "100 x 100";
 
@@ -44,6 +46,7 @@ public class CarportCalculation {
     private double raftLength;
     private double noOfRafts;
     private double raftDistance;
+    private double avgRaftDistance;
     private String raftDimension;
     private double calcRoofHeight;
     private double supportingStrap;
@@ -54,12 +57,11 @@ public class CarportCalculation {
     private int shedWallLaths;
     private int noOfCladdingBoards;
     private String beamDimension;
+    private int noOfBeams;
     private int noOfLaths;
     private double lathSpan;
-    private int noOfBeams;
     private List<BeamDimensionHeavy> raftStringHeavy;
     private List<BeamDimensionLight> raftStringLight;
-
 
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
@@ -117,7 +119,107 @@ public class CarportCalculation {
 //        }
 //    }
 
-//    ##########################################################
+    public boolean isRaisedRoof() {
+        return raisedRoof;
+    }
+
+    public boolean isRoofHeavy() {
+        return roofHeavy;
+    }
+
+    public int getCarportLength() {
+        return carportLength;
+    }
+
+    public int getCarportWidth() {
+        return carportWidth;
+    }
+
+    public int getCustomerRoofAngle() {
+        return customerRoofAngle;
+    }
+
+    public double getShedLength() {
+        return shedLength;
+    }
+
+    public double getShedWidth() {
+        return shedWidth;
+    }
+
+    public String getRoofCladdingType() {
+        return roofCladdingType;
+    }
+
+    public int getCalcAngle() {
+        return calcAngle;
+    }
+
+    public double getRaftLength() {
+        return raftLength;
+    }
+
+    public double getNoOfRafts() {
+        return noOfRafts;
+    }
+
+    public double getAvgRaftDistance() {
+        return avgRaftDistance;
+    }
+
+    public String getRaftDimension() {
+        return raftDimension;
+    }
+
+    public double getCalcRoofHeight() {
+        return calcRoofHeight;
+    }
+
+    public double getSupportingStrap() {
+        return supportingStrap;
+    }
+
+    public int getSternBoardLength() {
+        return sternBoardLength;
+    }
+
+    public double getWallLath() {
+        return wallLath;
+    }
+
+    public int getTotalNumberOfRoofTiles() {
+        return totalNumberOfRoofTiles;
+    }
+
+    public int getTotalNumberOfRoofTrapezPlates() {
+        return totalNumberOfRoofTrapezPlates;
+    }
+
+    public int getShedWallLaths() {
+        return shedWallLaths;
+    }
+
+    public int getNoOfCladdingBoards() {
+        return noOfCladdingBoards;
+    }
+
+    public String getBeamDimension() {
+        return beamDimension;
+    }
+
+    public int getNoOfBeams() {
+        return noOfBeams;
+    }
+
+    public int getNoOfLaths() {
+        return noOfLaths;
+    }
+
+    public double getLathSpan() {
+        return lathSpan;
+    }
+
+    //    ##########################################################
 //     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
 //    ##########################################################
     public CarportCalculation() {
@@ -159,7 +261,7 @@ public class CarportCalculation {
         System.out.println("Systemet udregner antal spær: " + df.format(noOfRafts) + " stk");
         System.out.println("Systemet udregner spærdimension " + raftDimension + " mm");
         System.out.println("Systemet udregner spærlængde: " + df.format(raftLength) + " cm");
-        System.out.println("Systemet udregner spærafstand: " + (raftDistance * 100) + " cm");
+        System.out.println("Systemet udregner spærafstand: " + (avgRaftDistance) + " cm");
         System.out.println("Systemet udregner tagets højde: " + df.format(calcRoofHeight) + " cm");
         System.out.println("Systemet udregner antal lægter " + noOfLaths + " stk");
         System.out.println("Systemet udregner lægteafstand: " + df.format(lathSpan) + " cm");
@@ -390,16 +492,16 @@ public class CarportCalculation {
         }
     }
 
-    /**
-     * Calculates the required amount of wall-laths for the shed
-     *
-     * @param shedWidth  The customer selected shed width
-     * @param shedLength The customer selected shed length
-     */
-    private void calcWallLaths(double shedWidth, double shedLength) {
-        double wallLathQty = (shedLength + shedWidth) * 2;
-        this.wallLath = wallLathQty;
-    }
+//    /**
+//     * Calculates the required amount of wall-laths for the shed
+//     *
+//     * @param shedWidth  The customer selected shed width
+//     * @param shedLength The customer selected shed length
+//     */
+//    private void calcWallLaths(double shedWidth, double shedLength) {
+//        double wallLathQty = (shedLength + shedWidth) * 2;
+//        this.wallLath = wallLathQty;
+//    }
 
     /**
      * Calculates the required no. of beams and their dimension. (Will always be 4 unless there's a shed - then there's 8)
@@ -427,7 +529,7 @@ public class CarportCalculation {
      */
     private void calculateSupportingStrap(double carportWidth, double carportLength) {
 
-        double totalSupportStrap = (carportLength + carportWidth) * 2;
+        double totalSupportStrap = (carportLength*2) + carportWidth;
         this.supportingStrap = totalSupportStrap;
     }
 
@@ -448,10 +550,9 @@ public class CarportCalculation {
      * @param raftLength the calculated raftlength which matches the length of the roof stern.
      */
     private void calcSternBoardLength(double raftLength) {
-        double sternBoardsLength = this.raftLength * 4;
+        double sternBoardsLength = this.carportLength * 2;
         this.sternBoardLength = sternBoardLength;
     }
-
 
     /**
      * Calculates the required amount of rafts
@@ -460,8 +561,11 @@ public class CarportCalculation {
      * @param raftDistance  The calculated raft distance
      */
     private void noOfRafts(double carportLength, double raftDistance) {
-        double noOfRafts = Math.round(carportLength / (raftDistance * 100)); //Convert raftdistance to cm
+        double noOfRafts = Math.ceil(carportLength / (raftDistance * 100)); //Convert raftdistance to cm
+        double avgRaftDistance = this.carportLength / noOfRafts;
+        this.avgRaftDistance = avgRaftDistance;
         this.noOfRafts = noOfRafts;
+
     }
 
     /**
@@ -484,7 +588,7 @@ public class CarportCalculation {
     private void calcRoofLaths(double calcRaftLength) {
         int bottomLathSpan = BOTTOM_LATHSPAN;
         int bottomLaths = BOTTOM_LATHS;
-        double topLathSpan = TOP_LATH;
+        double topLathSpan = TOP_LATH_GAP;
         double avgLathSpan = AVG_LATH_SPAN;
         double calcLaths = Math.round((calcRaftLength - bottomLathSpan - topLathSpan) / avgLathSpan);
         double calcLathSpan = (calcRaftLength - bottomLathSpan - topLathSpan) / calcLaths;
