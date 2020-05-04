@@ -27,7 +27,7 @@
          Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
      </p>
         <form name="testBeregning" action="FrontController" method="POST">
-            <input type="hidden" name="target" value="CarportCalcPage">
+            <input type="hidden" name="target" value="midlertidigTest">
             <input class="btn btn-info" type="submit" value="Så test mig dog! Så laver jeg en sysout">
         </form>
 

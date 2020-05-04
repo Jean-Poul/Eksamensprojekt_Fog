@@ -11,7 +11,7 @@ public class CarportCalcPage extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        CarportCalculation c = new CarportCalculation();
+
 
         /**
          * 1. Hent alle user-input fra carportcustomerize.jsp til variabler
