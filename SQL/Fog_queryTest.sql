@@ -12,6 +12,7 @@ SELECT * FROM roof_pitch;
 SELECT * FROM user_proposition;
 SELECT * FROM rafter_spacing;
 SELECT * FROM item_list;
+SELECT * FROM standard_dimensions;
 UNLOCK TABLES;
 -- ----------------------------------
 -- queryes for carport width
@@ -63,6 +64,11 @@ SELECT pitch FROM roof_pitch;
 -- ----------------------------------
 SELECT factor FROM roof_pitch;
 
+-- ---------------------------------------------
+-- queryes for roof pitch 'pitch' and 'factor'
+-- ---------------------------------------------
+SELECT pitch,factor FROM roof_pitch;
+
 -- ---------------------------------------
 -- queryes for zipcode with leading zeros
 -- ---------------------------------------
@@ -77,3 +83,10 @@ ORDER BY rafter_length ASC LIMIT 1;
 -- second ex. is using 'tung' roof and a rafter length of 2.98m
 SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'tung' and rafter_length >= '2.98'
 ORDER BY rafter_length ASC LIMIT 1;
+
+-- ------------------------------------
+-- query for item list material_type
+-- ------------------------------------ 
+SELECT material_type FROM item_list GROUP BY material_type;
+
+INSERT INTO orders (oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES ('','','','','','','');

@@ -163,3 +163,7 @@ INSERT INTO item_list (material_type,material,description,quantity,unit,price_pe
                                                                                                ('Tag','109 x 240','109 x 240 Trapez tagplade','1','stk','84.95');
 
 UNLOCK TABLES;
+
+LOCK TABLES standard_dimensions WRITE;
+INSERT INTO standard_dimensions (bottom_lathspan,bottom_laths,top_lath_gap,avg_lath_span,roof_tile_length,roof_tile_width,roof_trapez_length,roof_trapez_width,shed_claddeing_board_dim,beam_dimension_heavy,beam_dimension_light) VALUES ('35','2','3','30','25','20','240','109','19x100','125 x 125','100 x 100');
+UNLOCK TABLES;

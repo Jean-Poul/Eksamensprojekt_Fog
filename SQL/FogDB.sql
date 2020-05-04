@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`user_proposition` (
   `comments` TEXT NOT NULL,
   PRIMARY KEY (`user_proposition_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -102,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`orders` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -172,6 +174,28 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`roof_pitch` (
   PRIMARY KEY (`roof_pitch_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `fogdb`.`standard_dimensions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `fogdb`.`standard_dimensions` (
+  `standard_dimensions_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `bottom_lathspan` INT(11) NOT NULL,
+  `bottom_laths` INT(11) NOT NULL,
+  `top_lath_gap` DECIMAL(10,2) NOT NULL,
+  `avg_lath_span` DECIMAL(10,2) NOT NULL,
+  `roof_tile_length` DECIMAL(10,2) NOT NULL,
+  `roof_tile_width` DECIMAL(10,2) NOT NULL,
+  `roof_trapez_length` DECIMAL(10,2) NOT NULL,
+  `roof_trapez_width` DECIMAL(10,2) NOT NULL,
+  `shed_claddeing_board_dim` VARCHAR(45) NOT NULL,
+  `beam_dimension_heavy` VARCHAR(45) NOT NULL,
+  `beam_dimension_light` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`standard_dimensions_id`))
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
