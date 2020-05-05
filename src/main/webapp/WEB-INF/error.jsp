@@ -5,11 +5,9 @@
 <!-- End header & imports -->
 
 <!-- Container -->
-<div class="container">
+<div class="container min-vh-100">
     <!-- Row -->
     <div class="row">
-
-        <main role="main">
 
             <section class="col-12">
 
@@ -29,7 +27,6 @@
 
 
             </section>
-        </main>
 
     </div>
     <!-- End row -->

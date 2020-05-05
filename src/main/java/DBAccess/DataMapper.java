@@ -64,6 +64,57 @@ public class DataMapper {
         }
     }
 
+
+    /**
+     *
+     * @return users
+     * @throws SQLException
+     */
+    public static List<User> getUserList() throws SQLException {
+        List<User> users = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM users";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("users_id");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                String role = rs.getString("role");
+                User user = new User(id, email, password, role);
+                users.add(user);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return users;
+    }
+
+    /**
+     *
+     * @return user
+     * @throws SQLException
+     */
+    public static int getUserSum() throws SQLException {
+        int userCount = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT count(users_id) FROM users";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                userCount = rs.getInt("count(users_id)");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return userCount;
+    }
+
+
     //##################
     //2. User quote queries
     //##################
@@ -165,6 +216,83 @@ public class DataMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
+    }
+
+
+    public static void deleteQuote(int qouteID) throws SQLException {
+        try{
+            System.out.println(qouteID);
+            Connection con = Connector.connection();
+            String SQL = "DELETE from user_proposition WHERE user_proposition_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, qouteID);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex ) {
+            throw new SQLException( ex.getMessage() );
+        }
+    }
+
+    public static List<CustomerQuote> CustomerQuote() throws SQLException {
+        List<CustomerQuote> customerQuote = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT user_proposition_id FROM user_proposition";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int userPropositionId = rs.getInt("user_proposition_id");
+                CustomerQuote cq = new CustomerQuote(userPropositionId);
+                customerQuote.add(cq);
+                System.out.println(cq.toString());
+                System.out.println(customerQuote.get(0).toString());
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return customerQuote;
+    }
+
+    public static List<CustomerQuote> getCustomerQouteList() throws SQLException {
+        List<CustomerQuote> customerQuoteList = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM user_proposition";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("user_proposition_id");
+                String name = rs.getString("name");
+                String address = rs.getString("adress");
+                int zipcode = rs.getInt("zipcodeCity");
+                int phone = rs.getInt("phone");
+                String email = rs.getString("email");
+                String comments = rs.getString("comments");
+                CustomerQuote cq = new CustomerQuote(id, name, address, zipcode, phone, email, comments);
+                customerQuoteList.add(cq);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return customerQuoteList;
+    }
+
+    public static int getQouteSum() throws SQLException {
+        int qouteCount = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT count(user_proposition_id) FROM user_proposition";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                qouteCount = rs.getInt("count(user_proposition_id)");
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return qouteCount;
     }
 
     //##################

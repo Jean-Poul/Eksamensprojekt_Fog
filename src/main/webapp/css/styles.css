@@ -91,6 +91,10 @@ nav a:hover {
     margin-left: 1em;
 }*/
 
+/* Table */
+.tabel-nav {
+    background: white;
+}
 
 /* Footer */
 footer {

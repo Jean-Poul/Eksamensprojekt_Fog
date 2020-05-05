@@ -18,9 +18,10 @@ abstract class Command {
         commands.put( "CarportCalcPage", new CarportCalcPage() );
         commands.put( "redirect", new Redirect() );
         commands.put( "drawing", new Drawing() );
-        commands.put( "carportcustomize", new Carportcustomize() );
+        commands.put( "carportCustomize", new CarportCustomize() );
         commands.put( "drawingSideways", new DrawingSideways() );
         commands.put("midlertidigTest", new midlertidigTest());
+        commands.put( "rejectQuote", new RejectQuote() );
     }
 
     static Command from( HttpServletRequest request ) {

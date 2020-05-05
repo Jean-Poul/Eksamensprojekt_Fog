@@ -38,7 +38,7 @@
                             Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged
                             on her anchor belay broadside.
                         </p>
-                        <a class="card-link btn btn-dark"
+                        <a class="card-link btn btn-dark stretched-link"
                            href="FrontController?target=redirect&destination=carportstandard">Standard</a>
                     </div>
                 </section>
@@ -66,8 +66,8 @@
                             on her anchor belay broadside.
                         </p>
                         <form action="FrontController" method="POST">
-                            <input type="hidden" name="target" value="carportcustomize">
-                            <button class="btn btn-dark" type="submit">Byg selv</button>
+                            <input type="hidden" name="target" value="carportCustomize">
+                            <button class="btn btn-dark stretched-link" type="submit">Byg selv</button>
                         </form>
                     </div>
                 </section>
