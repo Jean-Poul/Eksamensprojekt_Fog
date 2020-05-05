@@ -23,7 +23,7 @@ public class CustomerQuote {
      * @param customerId
      * @param name
      * @param address
-     * @param zipcode
+     * @param zipcodeCity
      * @param phone
      * @param email
      * @param comment

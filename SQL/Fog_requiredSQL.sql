@@ -167,3 +167,11 @@ UNLOCK TABLES;
 LOCK TABLES standard_dimensions WRITE;
 INSERT INTO standard_dimensions (bottom_lathspan,bottom_laths,top_lath_gap,avg_lath_span,roof_tile_length,roof_tile_width,roof_trapez_length,roof_trapez_width,shed_claddeing_board_dim,beam_dimension_heavy,beam_dimension_light) VALUES ('35','2','3','30','25','20','240','109','19x100','125 x 125','100 x 100');
 UNLOCK TABLES;
+
+LOCK TABLES user_proposition WRITE;
+INSERT INTO user_proposition VALUES ('1','Hans Gummi','Gummivej 2', '3490 Kvistgård', '12116644', 'gummigeden@gmail.com','');
+UNLOCK TABLES;
+
+LOCK TABLES orders WRITE;
+INSERT INTO orders VALUES ('1','1','2020-05-05 18:26:00','Forespørgsel','450','510','420','300','rejst','Eternittag B6 - Teglrød','25');
+UNLOCK TABLES;

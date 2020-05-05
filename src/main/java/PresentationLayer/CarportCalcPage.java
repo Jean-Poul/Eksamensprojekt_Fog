@@ -1,11 +1,13 @@
 package PresentationLayer;
 
 import FunctionLayer.CarportCalculation;
+import FunctionLayer.CreateCalculatedQuote;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 
 public class CarportCalcPage extends Command {
     @Override
@@ -88,6 +90,8 @@ public class CarportCalcPage extends Command {
 
         // Her skal der laves beregninger og insættes i ordrerlinje?????
 
+//        CreateCalculatedQuote carportCalculation = new CreateCalculatedQuote();
+//        carportCalculation;
 
         // User info for receipt
         request.setAttribute("name",name);

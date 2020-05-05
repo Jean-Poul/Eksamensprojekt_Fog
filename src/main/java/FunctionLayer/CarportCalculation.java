@@ -12,28 +12,25 @@ import java.util.*;
  */
 public class CarportCalculation {
 
-    //##########################################################
-    // FINALS below are assumptions of standard dimensions.
-    // SHOULD BE RETRIEVED FROM DATABASE (And should probably not be FINAL)
-    //##########################################################
-    int bottomLathSpan = 45;
-    int bottomLaths = 2;
-    double topLathGap = 3;
-    double avgLathSpan = 30;
+    //User data (In order to reference what user ID the calculation belongs to
+    int userID;
+    //int userPropositionID;
 
-    double roofTileLength = 25;
-    double roofTileWidth = 20;
-    double roofTrapezLength = 240;
-    double roofTrapezWidth = 109;
+    //Standard dimensions - retrieved from DB (Assumptions)
+    int bottomLathSpan;
+    int bottomLaths;
+    double topLathGap;
+    double avgLathSpan;
+    double roofTileLength;
+    double roofTileWidth;
+    double roofTrapezLength;
+    double roofTrapezWidth;
+    String shedCladdingBoardDim;
+    String beamDimensionHeavy;
+    String beamDimensionLight;
 
-    String shedCladdingBoardDim = "19x100";
 
-    String beamDimensionHeavy = "125 x 125";
-    String beamDimensionLight = "100 x 100";
-
-    // ###########################################
-    //  ITEM TYPES GETTING ASSIGNED WITH CORRESPONDING ARTICLE NO. FROM DB
-    // ###########################################
+    //  ITEM TYPES GETTING ASSIGNED WITH CORRESPONDING ARTICLE NO. FROM DB (ASSIGMENT SHOULD BE DONE IN EACH METHOD)
     private int raftType;
     private int shedWallLathType;
     private int shedCladdingBoardType;
@@ -43,9 +40,7 @@ public class CarportCalculation {
     private int sternBoardType;
     private int beamType;
 
-    // ###########################################
     //  CUSTOMER SELECTED CRITERIA [cm]
-    // ###########################################
     private boolean raisedRoof; //If true, then roofHeavy is true as well (Is set in constructor)
     private int carportLength;
     private int carportWidth;
@@ -53,9 +48,7 @@ public class CarportCalculation {
     private double shedLength;
     private double shedWidth;
 
-    // ###########################################
     //  RAFT CALCULATIONS (Qty & Length [cm])
-    // ###########################################
     private double raftLength;
     private int noOfRafts;
     private double raftDistance;
@@ -66,18 +59,14 @@ public class CarportCalculation {
     private int noOfHorizontalRafts;
     private int noOfVerticalRafts;
 
-    // ###########################################
     //  SHED CALCULATIONS [cm]
-    // ###########################################
     private int shedWallLaths;
     private int noOfCladdingBoardsTotal;
     private double claddingBoardOverlap = 2.5;
     private int noOfCladdingBoardsWidth;
     private int noOfCladdingBoardsLength;
 
-    // ###########################################
     //  ROOF CALCULATIONS [cm]
-    // ###########################################
     private double calcRoofHeight;
     private int noOfLaths;
     private double lathSpan;
@@ -87,51 +76,37 @@ public class CarportCalculation {
     private String roofCladdingType;
     private int calcAngle;
 
-    // ###########################################
     //  ASSORTED STRUCTURAL & ACCESSORIES
-    // ###########################################
     private boolean roofHeavy;
     private int sternBoardLength;
     private String beamDimension;
     private int noOfBeams;
 
-    // ###########################################
     //  ENGINEERING TABLES FROM DATABASE
-    // ###########################################
     private List<BeamDimensionHeavy> raftStringHeavy;
     private List<BeamDimensionLight> raftStringLight;
+
     ArrayList<ArrayList<String>> raftDistancesLight = new ArrayList<>(); //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy)
     ArrayList<ArrayList<String>> raftDistancesHeavy = new ArrayList<>();
-    Map<Integer, Double> angleAndFactor = new HashMap<Integer, Double>(); //[FIX] Contains the roof slant angle and the corresponding factor to multiply with - Should be retrieved and populated from DB.
+
 
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
 
+    private LogicFacade log = new LogicFacade();
 
-//    public CarportCalculation(int orders_id, int user_proposition_Id, int cusCarportWidth, int cusCarportLength, int cusShedWidth, int cusShedLength, String cusRoofType, String cusRoofMaterial, int cusRoofPitch) throws SQLException {
-//
-//        //Set standard dimensions from database (Assumptions)
-//
-//
-//
+    //Fetch standard dimensions from db (Assumptions)
+    private List<StandardDimensions> standardDimensions = log.getStandardDimensions();
 
-//
-//    }
+    //Contains the roof slant angle and the corresponding factor to multiply with
+    private Map<Integer, Double> angleAndFactor = log.getPitchFactor();
 
-    //    ##########################################################
-//     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
-//    ##########################################################
+    public CarportCalculation(int userID) throws SQLException {
 
-    LogicFacade log = new LogicFacade();
-    List<StandardDimensions> standardDimensions = log.getStandardDimensions(); //Retrieve standard dimensions from db (Assumptions)
+        this.userID = userID;
+        //this.userPropositionID = user_proposition_Id; //How do we get this (Remember to add to parameter)?
 
-    public CarportCalculation() throws SQLException {
-    /*
-    ########################
-    ###   TEST EXAMPLE!  ###
-    ########################
-     */
-
+        //Set standard dimensions from database (Assumptions)
         this.bottomLathSpan = standardDimensions.get(0).getBottom_lathspan();
         this.bottomLaths = standardDimensions.get(0).getBottom_laths();
         this.topLathGap = standardDimensions.get(0).getTop_lath_gap();
@@ -144,27 +119,37 @@ public class CarportCalculation {
         this.beamDimensionHeavy = standardDimensions.get(0).getBeam_dimension_heavy();
         this.beamDimensionLight = standardDimensions.get(0).getBeam_dimension_light();
 
-        carportLength = 450;
-        carportWidth = 510;
-        customerRoofAngle = 30;
-        shedLength = 300;
-        shedWidth = 360;
-        roofHeavy = false; //Should be determined - maybe depending on flat/raised roof?
-        raisedRoof = true;
+        this.carportLength = log.getUserProposition(userID).get(0).getCarport_length();
+        this.carportWidth = log.getUserProposition(userID).get(0).getCarport_width();
+        this.customerRoofAngle = log.getUserProposition(userID).get(0).getPitch();
+        this.shedLength = log.getUserProposition(userID).get(0).getShed_length();
+        this.shedWidth = log.getUserProposition(userID).get(0).getShed_width();
 
-        populateAngleAndFactor();
+        if (this.customerRoofAngle > 0) {
+            this.raisedRoof = true;
+            this.roofHeavy = true;
+        } else {
+            this.raisedRoof = false;
+            this.roofHeavy = false;
+        }
+
+        //[FIX] TEMPORARY FIX UNTIL RAFTDISTANCES WORKS
+        if (roofHeavy) {
+            //this.raftDistance = log.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy(); //Out of bounds!?
+            //this.raftDimension = log.getBeamDimensionHeavy(raftLength).get(0).getBeamDimensionHeavy();
+            raftDistance = 1.0;
+            raftDimension = "45 x 150";
+        } else {
+            //this.raftDistance = log.getBeamDimensionLight(raftLength).get(0).getBeamSpacingLight();
+            //this.raftDimension = log.getBeamDimensionLight(raftLength).get(0).getBeamDimensionLight();
+            raftDistance = 1.0;
+            raftDimension = "45 x 150";
+        }
+
+        //Begin calculations
         calcRoofAngle(customerRoofAngle);
-        populateRaftDistancesLight();
-        populateRaftDistancesHeavy();
-        //[FIX] These functions should be generated with data from the database!
-        //Bear in mind, that some functions should be calculated before others.
-
-        System.out.println("Lad os lave et test eksempel:");
-        System.out.println("Kunden vælger en carport på: " + carportWidth + " x " + carportLength + " m med vinkel " + customerRoofAngle);
-
         calcRoofHeight(customerRoofAngle, carportWidth);
         calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
-        selectRaftDimAndSpacing(roofHeavy, raftLength);
         noOfRafts(carportLength, raftDistance);
         calcRoofLaths(raftLength);
         calculateShedWallLaths();
@@ -173,122 +158,46 @@ public class CarportCalculation {
         calcNoOfBeamsAndDim(shedLength);
         calculateSupportingStrap(carportWidth, carportLength);
 
-        System.out.println("Tungt tag?: " + roofHeavy);
-        System.out.println("Systemet udregner antal spær: " + df.format(noOfRafts) + " stk");
-        System.out.println("Systemet udregner spærdimension " + raftDimension + " mm");
-        System.out.println("Systemet udregner spærlængde: " + df.format(raftLength) + " cm");
+        //Test for console
+        System.out.println("*****************************************");
+        System.out.println("\t\t KUNDENS VALG \t\t");
+        System.out.println("*****************************************");
+        System.out.println("Carport længde: " + carportLength + " cm");
+        System.out.println("Carport bredde: " + carportWidth + " cm");
+        System.out.println("Rejst tag?: " + raisedRoof );
+
+        System.out.println("*****************************************");
+        System.out.println("\t\t BYGGETEKNISK \t\t");
+        System.out.println("*****************************************");
+        System.out.println("Så systemet et tungt tag?: " + roofHeavy);
+        System.out.println("Antal søjler " + noOfBeams);
+        System.out.println("Søjle dimension: " + beamDimension);
+        System.out.println("Sternbrædder totallængde: " + sternBoardLength);
+
+        System.out.println("*****************************************");
+        System.out.println("\t\t SKUR \t\t");
+        System.out.println("*****************************************");
+        System.out.println("Skur længde: " + shedLength + " cm");
+        System.out.println("Skur bredde: " + shedWidth + " cm");
+        System.out.println("Antal beklædningsbræt: " + noOfCladdingBoardsTotal + " stk." + "(" + noOfCladdingBoardsLength + "stk. pr. længde og " + noOfCladdingBoardsWidth + " i bredden)");
+        System.out.println("Antal løsholter: " + this.shedWallLaths + " stk");
+
+        System.out.println("*****************************************");
+        System.out.println("\t\t SPÆR \t\t");
+        System.out.println("*****************************************");
+        System.out.println("Spærlængde: " + df.format(raftLength) + " cm");
+        System.out.println("Spærdimension " + raftDimension + " mm");
+        System.out.println("Antal spær: " + df.format(noOfRafts) + " stk");
         System.out.println("Systemet udregner spærafstand: " + (avgRaftDistance) + " cm");
-        System.out.println("Systemet udregner tagets højde: " + df.format(calcRoofHeight) + " cm");
-        System.out.println("Systemet udregner antal lægter " + noOfLaths + " stk");
-        System.out.println("Systemet udregner lægteafstand: " + df.format(lathSpan) + " cm");
-        System.out.println("Systemet udregner lægtelængde: " + carportLength + " cm");
-        System.out.println("Der skal bruges " + totalNumberOfRoofTiles + " " + roofCladdingType);
-        System.out.println("Systemet udregner antal beklædningsbræt til skur: " + noOfCladdingBoardsTotal + " stk");
-        System.out.println("Systemet udregner antal løsholter: " + this.shedWallLaths + " stk");
-        System.out.println("Der skal bruges " + noOfBeams + " søjler i størrelsen " + beamDimension);
-    }
 
-    //[FIX] Populates raftDistance lists for light roof types. This is a practical example - Should be retrieved and populatedfrom DB
-    private void populateRaftDistancesLight() {
-        ArrayList<String> lRaftDistance1 = new ArrayList<String>();
-        ArrayList<String> lRaftDistance2 = new ArrayList<String>();
-        ArrayList<String> lRaftDistance3 = new ArrayList<String>();
-        ArrayList<String> lRaftDistance4 = new ArrayList<String>();
-
-        String dbRaftDistance1 = "let,44 x 120,0.4,10.26"; //This should come fromt the DB
-        String dbRaftDistance2 = "let,50 x 140,0.6,6.48"; //This should come fromt the DB
-        String dbRaftDistance3 = "let,45 x 120,0.8,2.26"; //This should come fromt the DB
-        String dbRaftDistance4 = "let,45 x 195,0.4,4.52"; //This should come fromt the DB
-
-        String[] dbRaftDistanceArr1 = dbRaftDistance1.split(",");
-        String[] dbRaftDistanceArr2 = dbRaftDistance2.split(",");
-        String[] dbRaftDistanceArr3 = dbRaftDistance3.split(",");
-        String[] dbRaftDistanceArr4 = dbRaftDistance4.split(",");
-
-        for (int i = 0; i < dbRaftDistanceArr1.length; i++) {
-            lRaftDistance1.add(dbRaftDistanceArr1[i]);
-        }
-
-        for (int i = 0; i < dbRaftDistanceArr2.length; i++) {
-            lRaftDistance2.add(dbRaftDistanceArr2[i]);
-        }
-
-        for (int i = 0; i < dbRaftDistanceArr3.length; i++) {
-            lRaftDistance3.add(dbRaftDistanceArr3[i]);
-        }
-
-        for (int i = 0; i < dbRaftDistanceArr4.length; i++) {
-            lRaftDistance3.add(dbRaftDistanceArr4[i]);
-        }
-
-        raftDistancesLight.add(lRaftDistance1);
-        raftDistancesLight.add(lRaftDistance2);
-        raftDistancesLight.add(lRaftDistance3);
-        raftDistancesLight.add(lRaftDistance4);
-
-//        Collections.sort(raftDistancesLight, new Comparator<ArrayList<String>>() {
-//            @Override
-//            public int compare(ArrayList<String> a, ArrayList<String> b) {
-//                return a.get(3).compareTo(b.get(3));
-//            }
-//        });
-    }
-
-    //[FIX] Populates raftDistance lists for heavy roof types. This is a practical example - Should be retrieved and populated from DB
-    private void populateRaftDistancesHeavy() {
-        ArrayList<String> hRaftDistance1 = new ArrayList<String>();
-        ArrayList<String> hRaftDistance2 = new ArrayList<String>();
-        ArrayList<String> hRaftDistance3 = new ArrayList<String>();
-        ArrayList<String> hRaftDistance4 = new ArrayList<String>();
-
-        String dbRaftDistance1 = "tung,45 x 120,0.4,2.43"; //This should come fromt the DB
-        String dbRaftDistance2 = "tung,45 x 120,0.6,2.13"; //This should come fromt the DB
-        String dbRaftDistance3 = "tung,45 x 120,0.8,1.93"; //This should come fromt the DB
-        String dbRaftDistance4 = "tung,45 x 195,0.4,3.94"; //This should come fromt the DB
-
-        String[] dbRaftDistanceArr1 = dbRaftDistance1.split(",");
-        String[] dbRaftDistanceArr2 = dbRaftDistance2.split(",");
-        String[] dbRaftDistanceArr3 = dbRaftDistance3.split(",");
-        String[] dbRaftDistanceArr4 = dbRaftDistance4.split(",");
-
-        for (int i = 0; i < dbRaftDistanceArr1.length; i++) {
-            hRaftDistance1.add(dbRaftDistanceArr1[i]);
-        }
-
-        for (int i = 0; i < dbRaftDistanceArr2.length; i++) {
-            hRaftDistance2.add(dbRaftDistanceArr2[i]);
-        }
-
-        for (int i = 0; i < dbRaftDistanceArr3.length; i++) {
-            hRaftDistance3.add(dbRaftDistanceArr3[i]);
-        }
-
-        for (int i = 0; i < dbRaftDistanceArr4.length; i++) {
-            hRaftDistance4.add(dbRaftDistanceArr4[i]);
-        }
-
-        raftDistancesHeavy.add(hRaftDistance1);
-        raftDistancesHeavy.add(hRaftDistance2);
-        raftDistancesHeavy.add(hRaftDistance3);
-        raftDistancesHeavy.add(hRaftDistance4);
-
-//        Collections.sort(raftDistancesHeavy, new Comparator<ArrayList<String>>() {
-//            @Override
-//            public int compare(ArrayList<String> a, ArrayList<String> b) {
-//                return a.get(3).compareTo(b.get(3));
-//            }
-//        });
-    }
-
-    //[FIX] Set roof slant multiplication factor according to documentation - Should be retrieved and populated from DB
-    private void populateAngleAndFactor() {
-        angleAndFactor.put(15, 1.0);
-        angleAndFactor.put(20, 0.97);
-        angleAndFactor.put(25, 0.94);
-        angleAndFactor.put(30, 0.89);
-        angleAndFactor.put(35, 0.84);
-        angleAndFactor.put(40, 0.79);
-        angleAndFactor.put(45, 0.72);
+        System.out.println("*****************************************");
+        System.out.println("\t\t TAGKONSTRUKTION \t\t");
+        System.out.println("*****************************************");
+        System.out.println("Tagkonstruktionens højde: " + df.format(calcRoofHeight) + " cm");
+        System.out.println("Antal Taglægter: " + noOfLaths + " stk");
+        System.out.println("Taglægte længde: " + carportLength + " cm");
+        System.out.println("Lægteafstand: " + df.format(lathSpan) + " cm");
+        System.out.println("Antal " + roofCladdingType + " " + totalNumberOfRoofTiles);
     }
 
     /**
@@ -305,7 +214,7 @@ public class CarportCalculation {
         double calcRoofAngleRadian = Math.toRadians(calculatedRoofAngle);
         double calcRaftLength = (carportWidth * Math.sin(custRoofAngleRadian)) / (Math.sin(calcRoofAngleRadian));
         calcRaftLength = calcRaftLength * angleAndFactor.get(customerRoofAngle);
-        raftLength = calcRaftLength;
+        this.raftLength = calcRaftLength;
 
         //Determine length of horizontal rafts
         horizontalRaftLength = this.carportWidth;
@@ -314,31 +223,7 @@ public class CarportCalculation {
         verticalRaftLength = getCalcRoofHeight();
     }
 
-    //[FIX]
 
-    /**
-     * Selects the correct raft spacing and dimension using arraylists with data from the database.
-     *
-     * @param roofHeavy      Determines if the roof type is heavy or light (Used to select from correct arraylist)
-     * @param calcRaftLength Used to select from correct arraylist
-     * @author Mick
-     */
-    private void selectRaftDimAndSpacing(boolean roofHeavy, double calcRaftLength) {
-        double raftLengthM = calcRaftLength / 100; //Convert calcRaftLength to meters
-        if (!roofHeavy) {
-            raftDistance = 0.8;
-            raftDimension = "45 x 120";
-            raftType = 20;
-        } else if (roofHeavy) {
-            raftDistance = 0.6;
-            raftDimension = "95 x 120";
-            raftType = 21;
-
-        } else {
-            //If the roof is neither light or heavy, something went wrong bigtime.
-            //Need an exception here.
-        }
-    }
 
     /**
      * Calculates the required amount of vertical boards for cladding the shed
@@ -396,17 +281,6 @@ public class CarportCalculation {
             roofCladdingType = "trapezplader";
         }
     }
-
-//    /**
-//     * Calculates the required amount of wall-laths for the shed
-//     *
-//     * @param shedWidth  The customer selected shed width
-//     * @param shedLength The customer selected shed length
-//     */
-//    private void calcWallLaths(double shedWidth, double shedLength) {
-//        double wallLathQty = (shedLength + shedWidth) * 2;
-//        this.wallLath = wallLathQty;
-//    }
 
     /**
      * Calculates the required no. of beams and their dimension. (Will always be 4 unless there's a shed - then there's 8)
@@ -684,4 +558,15 @@ public class CarportCalculation {
         return sternBoardType;
     }
 
+    public int getNoOfCladdingBoardsWidth() {
+        return noOfCladdingBoardsWidth;
+    }
+
+    public int getNoOfCladdingBoardsLength() {
+        return noOfCladdingBoardsLength;
+    }
+
+    public int getBeamType() {
+        return beamType;
+    }
 }

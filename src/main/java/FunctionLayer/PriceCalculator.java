@@ -8,50 +8,45 @@ package FunctionLayer;
 
 public class PriceCalculator {
 
-    //Init ny beregning = "Opfrisk" prisList
+    //Item information should be retrieved from DB every time the query runs (Put the item array in the constructor)
 
+    //  RAFT CALCULATIONS (Qty & Length [cm])
+    private double totalRaftLength; //Remember vertical and horizontal rafts!
 
-    //#### Roof rafts (Spær)
-    private double totalRaftLength;
-    private double raftPricePrM;
-    private double totalRaftPrice;
+    //  SHED CALCULATIONS [cm]
+    private double totalShedWallLathLength;
+    private int totalShedCladdingBoardLength;
 
-    //#### Shed laths (Løsholter)
-    private double totalShedWallLathsLength;
-    private double shedLathPriceprM;
-    private double shedWallTotalPrice;
-
-    //#### Shed cladding (Beklædning skur)
-    private double shedCladdingBoardPricePrM;
-    private double totalShedCladdingBoardLength;
-    private double totalPriceCladdingBoards;
-
-    //#### Roof laths (Taglægter)
-    private double totalRoofLathLengthM;
-    private double roofLathPricePrM;
-    private double roofLathTotalPrice;
-
-    //#### support strap (Rem)
-    private double totalSupportStrapLength;
-    private double supportStrapPricePrM;
-    private double totalPriceStrap;
-
-    //#### Roof cladding
-    private double roofCladdingPricePrPc;
+    //  ROOF CALCULATIONS [cm]
+    private double totalLathsLength;
+    private double totalSupportingStrapLength;
     private int totalNumberOfRoofTiles;
-    private double totalPriceRoofCladding;
+    private int totalNumberOfRoofTrapezPlates;
 
-    //#### Stern boards (Stern brædder)
-    private double totalSternBoardLengthM;
-    private double sternBoardPricePrM;
-    private double totalPriceSternBoards;
+    //  ASSORTED STRUCTURAL & ACCESSORIES
+    private double totalSternBoardLength;
+    private int totalNoOfBeamLength;
 
-    //#### Beams (Stolper)
-    private double beamPricePrM;
-    private int totalNoOfBeams;
-    private double totalPriceBeams;
+    public PriceCalculator(CarportCalculation cpCalc) {
 
-    public PriceCalculator() {
+    //Rafters
+    this.totalRaftLength = cpCalc.getRaftLength() * cpCalc.getNoOfRafts();
+
+    //Shed - NOTE THAT DOOR IS NOT SUBTRACTED FROM SHED CLADDING
+    this.totalShedWallLathLength = ((cpCalc.getShedLength() + cpCalc.getShedWidth() * 2 ) * cpCalc.getShedWallLaths());
+    this.totalShedCladdingBoardLength = cpCalc.getNoOfCladdingBoardsTotal();
+
+    //Roof
+    this.totalLathsLength = cpCalc.getNoOfLaths() * cpCalc.getCarportLength();
+    this.totalSupportingStrapLength = cpCalc.getSupportingStrapLength();
+    this.totalNumberOfRoofTiles = cpCalc.getTotalNumberOfRoofTiles();
+    this.totalNumberOfRoofTrapezPlates = cpCalc.getTotalNumberOfRoofTrapezPlates();
+
+    //Assorted
+    this.totalSternBoardLength = cpCalc.getSternBoardLength();
+    this.totalNoOfBeamLength = cpCalc.getNoOfBeams(); //STD LENGTH IS 250 cm - NEEDS TO MULTIPLY BY THIS - PROBABLY FROM DB
+
+    //REMEMBER A PACKAGE FOR SHED DOOR + DIVERSE BRACKETS, SCREWS, BOLTS, ETC
 
     }
 

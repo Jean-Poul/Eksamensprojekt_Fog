@@ -10,7 +10,7 @@ public class SvgSideways {
     CarportCalculation c;
     {
         try {
-            c = new CarportCalculation();
+            c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,9 +1,9 @@
 package FunctionLayer;
 
 /**
- * Gets customer quote inquiry from database and calculates complete carport & price and stores in database
+ * CLASS MIGHT BE REDUNDANT - SORRY
  */
-public class CreateQuote {
+public class CreateCalculatedQuote {
 
     //CarportCalculation carportCalc = new CarportCalculation( very special constructor here );
     //PriceCalculator priceCalc = new PriceCalculator( carportCalc );
