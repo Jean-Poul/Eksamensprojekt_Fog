@@ -97,6 +97,7 @@
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
+                        </div>
                             <!-- End carousel -->
                     </section>
                     <!-- End section -->
