@@ -90,6 +90,7 @@
 
             <!-- Create employee -->
             <div class="container">
+                <h3>Opret medarbejder</h3>
                 <form name="register" action="FrontController" method="POST">
                     <input type="hidden" name="target" value="register">
                     Email:<br>
@@ -101,7 +102,7 @@
                     Retype Password:<br>
                     <input type="password" name="password2" value="sesam">
                     <br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Opret">
                 </form>
             </div>
             <!-- End employee -->
