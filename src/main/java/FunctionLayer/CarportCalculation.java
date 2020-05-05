@@ -160,10 +160,10 @@ public class CarportCalculation {
     ########################
      */
 
-        carportLength = 850;
+        carportLength = 800;
         carportWidth = 650;
         customerRoofAngle = 30;
-        shedLength = 290;
+        shedLength = 215;
         shedWidth = 330;
         roofHeavy = false; //Should be determined - maybe depending on flat/raised roof?
         raisedRoof = true;
