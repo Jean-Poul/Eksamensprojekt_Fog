@@ -12,6 +12,15 @@ public class DrawingSideways extends Command {
 
         SvgSideways svgSideways = new SvgSideways(0.0, 0.0, 1000.0,1000.0,"0,0,1000,1000");
 
+
+        //ROOF
+
+        svgSideways.addRoof();
+        svgSideways.addCarport();
+
+
+        //svgSideways.addCarport();
+        /*
         //Spær
         svgSideways.addRect(85.0,2.5,87.5,4.5);
         svgSideways.addRect(174.0,2.5,87.5,4.5);
@@ -29,10 +38,10 @@ public class DrawingSideways extends Command {
         svgSideways.addRect(50.0,65.0,4.5,730.0);
         svgSideways.addRect(50.0,80.0,4.5,730.0);
 
-        //Tagryg
+        //Tagryg done
         svgSideways.addRect(50.0,2.5,10.0,730.0);
 
-        //vindskede
+        //vindskede / windwagoo done
         svgSideways.addRect(45.0,0.0,85.0,10.0);
         svgSideways.addRect(775.0,0.0,85.0,10.0);
 
@@ -58,7 +67,7 @@ public class DrawingSideways extends Command {
         //Bottom of roof
         svgSideways.addLineNoArrow(50.0, 85.0,780.0,85.0);
 
-        //Skur
+        //Skur // shed
         svgSideways.addRect(525.0,105.0,200.0,10.0);
         svgSideways.addRect(540.0,105.0,200.0,10.0);
         svgSideways.addRect(555.0,105.0,200.0,10.0);
@@ -109,7 +118,7 @@ public class DrawingSideways extends Command {
         svgSideways.addLowerText(470,340, 120);
         svgSideways.addLowerText(660,340, 225);
         svgSideways.addLowerText(770,340, 30);
-
+            */
         request.setAttribute("svgdrawingSideways", svgSideways.toString());
         return "drawingSideways";
     }
