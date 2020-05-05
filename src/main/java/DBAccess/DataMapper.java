@@ -248,7 +248,7 @@ public class DataMapper {
             while (rs.next()) {
                 int id = rs.getInt("user_proposition_id");
                 String name = rs.getString("name");
-                String address = rs.getString("adress");
+                String address = rs.getString("address");
                 int zipcode = rs.getInt("zipcodeCity");
                 int phone = rs.getInt("phone");
                 String email = rs.getString("email");

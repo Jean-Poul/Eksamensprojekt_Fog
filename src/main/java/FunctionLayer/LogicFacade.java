@@ -138,9 +138,6 @@ public class LogicFacade {
         DataMapper.deleteQuote(quoteID);
     }
 
-
-
-
     //##################
     //Select option calls
     //##################

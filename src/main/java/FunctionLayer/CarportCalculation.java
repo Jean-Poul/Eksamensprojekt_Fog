@@ -1,5 +1,6 @@
 package FunctionLayer;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -15,30 +16,20 @@ public class CarportCalculation {
     // FINALS below are assumptions of standard dimensions.
     // SHOULD BE RETRIEVED FROM DATABASE (And should probably not be FINAL)
     //##########################################################
-    private static final int BOTTOM_LATHSPAN = 35;
-    private static final int BOTTOM_LATHS = 2;
-    private static final double TOP_LATH_GAP = 3;
-    private static final double AVG_LATH_SPAN = 30;
+    int bottomLathSpan = 45;
+    int bottomLaths = 2;
+    double topLathGap = 3;
+    double avgLathSpan = 30;
 
-    private static final double ROOF_TILE_LENGTH = 25;
-    private static final double ROOF_TILE_WIDTH = 20;
-    private static final double ROOF_TRAPEZ_LENGTH = 240;
-    private static final double ROOF_TRAPEZ_WIDTH = 109;
+    double roofTileLength = 25;
+    double roofTileWidth = 20;
+    double roofTrapezLength = 240;
+    double roofTrapezWidth = 109;
 
-    private static final String SHED_CLADDING_BOARD_DIM = "19x100";
+    String shedCladdingBoardDim = "19x100";
 
-    private static final String BEAM_DIMENSION_HEAVY = "125 x 125";
-    private static final String BEAM_DIMENSION_LIGHT = "100 x 100";
-
-    // ###########################################
-    //  CUSTOMER SELECTED CRITERIA [cm]
-    // ###########################################
-    private boolean raisedRoof; //If true, then roofHeavy is true as well (Is set in constructor)
-    private int carportLength;
-    private int carportWidth;
-    private int customerRoofAngle;
-    private double shedLength;
-    private double shedWidth;
+    String beamDimensionHeavy = "125 x 125";
+    String beamDimensionLight = "100 x 100";
 
     // ###########################################
     //  ITEM TYPES GETTING ASSIGNED WITH CORRESPONDING ARTICLE NO. FROM DB
@@ -52,6 +43,15 @@ public class CarportCalculation {
     private int sternBoardType;
     private int beamType;
 
+    // ###########################################
+    //  CUSTOMER SELECTED CRITERIA [cm]
+    // ###########################################
+    private boolean raisedRoof; //If true, then roofHeavy is true as well (Is set in constructor)
+    private int carportLength;
+    private int carportWidth;
+    private int customerRoofAngle;
+    private double shedLength;
+    private double shedWidth;
 
     // ###########################################
     //  RAFT CALCULATIONS (Qty & Length [cm])
@@ -70,7 +70,10 @@ public class CarportCalculation {
     //  SHED CALCULATIONS [cm]
     // ###########################################
     private int shedWallLaths;
-    private int noOfCladdingBoards;
+    private int noOfCladdingBoardsTotal;
+    private double claddingBoardOverlap = 2.5;
+    private int noOfCladdingBoardsWidth;
+    private int noOfCladdingBoardsLength;
 
     // ###########################################
     //  ROOF CALCULATIONS [cm]
@@ -104,67 +107,48 @@ public class CarportCalculation {
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
 
-    //##########################################################
-    // CONSTRUCTOR (Probably easier to make a new one when DB connection is running)
-    //##########################################################
 
-//    //The "Real" constructor
-//    public CarportCalculation() throws SQLException {
+//    public CarportCalculation(int orders_id, int user_proposition_Id, int cusCarportWidth, int cusCarportLength, int cusShedWidth, int cusShedLength, String cusRoofType, String cusRoofMaterial, int cusRoofPitch) throws SQLException {
 //
-//        LogicFacade logFac = new LogicFacade();
-//        this.angleAndFactor = logFac.getPitchFactor(); //Get pitch-factor table
-//
-//        /*
-//         * Methods below should be created in LogicFacade to get relevant customer queries.
-//         */
-//
-//        //this.carportWidth = logFac.getCusCarportWidth();
-//        //this.carportLength = logFac.getCusCarportLength();
-//
-//        //this.carportShedLength = logFac.getCusShedLength();
-//        //this.carportShedWidth = logFac.getCusShedWith();
-//
-//        //this.customerRoofAngle = logFac.getCusPitch()
-//        calcRoofAngle(customerRoofAngle);
+//        //Set standard dimensions from database (Assumptions)
 //
 //
-////        If roof is raised, then it's heavy!
-////        if(logFac.getCusPitch() > 0){
-////            this.raisedRoof = true;
-////            this.roofHeavy = true;
-////        } else {
-////            this.raisedRoof = false;
-////            this.roofHeavy = false;
-////        }
 //
-//        //If roof is raised calculate raft spacing and get dimensions from DB.
-//        if (raisedRoof) {
-//            calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
-//            if (roofHeavy) {
-//                this.raftStringHeavy = logFac.getBeamDimensionHeavy(raftLength);
-//                raftDistance = Double.parseDouble(String.valueOf(raftStringHeavy.get(1)));
-//            } else {
-//                this.raftStringLight = logFac.getBeamDimensionLight(raftLength);
-//                raftDistance = Double.parseDouble(String.valueOf(raftStringLight.get(1)));
-//            }
-//        }
+
+//
 //    }
 
-//    ##########################################################
+    //    ##########################################################
 //     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
 //    ##########################################################
-    public CarportCalculation() {
+
+    LogicFacade log = new LogicFacade();
+    List<StandardDimensions> standardDimensions = log.getStandardDimensions(); //Retrieve standard dimensions from db (Assumptions)
+
+    public CarportCalculation() throws SQLException {
     /*
     ########################
     ###   TEST EXAMPLE!  ###
     ########################
      */
 
-        carportLength = 800;
-        carportWidth = 650;
+        this.bottomLathSpan = standardDimensions.get(0).getBottom_lathspan();
+        this.bottomLaths = standardDimensions.get(0).getBottom_laths();
+        this.topLathGap = standardDimensions.get(0).getTop_lath_gap();
+        this.avgLathSpan = standardDimensions.get(0).getAvg_lath_span();
+        this.roofTileLength = standardDimensions.get(0).getRoof_tile_length();
+        this.roofTileWidth = standardDimensions.get(0).getRoof_tile_width();
+        this.roofTrapezLength = standardDimensions.get(0).getRoof_trapez_length();
+        this.roofTrapezWidth = standardDimensions.get(0).getRoof_trapez_width();
+        this.shedCladdingBoardDim = standardDimensions.get(0).getShed_claddeing_board_dim();
+        this.beamDimensionHeavy = standardDimensions.get(0).getBeam_dimension_heavy();
+        this.beamDimensionLight = standardDimensions.get(0).getBeam_dimension_light();
+
+        carportLength = 450;
+        carportWidth = 510;
         customerRoofAngle = 30;
-        shedLength = 215;
-        shedWidth = 330;
+        shedLength = 300;
+        shedWidth = 360;
         roofHeavy = false; //Should be determined - maybe depending on flat/raised roof?
         raisedRoof = true;
 
@@ -184,8 +168,8 @@ public class CarportCalculation {
         noOfRafts(carportLength, raftDistance);
         calcRoofLaths(raftLength);
         calculateShedWallLaths();
-        calcShedCladding(shedLength, shedWidth, SHED_CLADDING_BOARD_DIM);
-        calcRoofCladdingArea(carportLength, raftLength, ROOF_TILE_LENGTH, ROOF_TILE_WIDTH, ROOF_TRAPEZ_LENGTH, ROOF_TRAPEZ_WIDTH, customerRoofAngle);
+        calcShedCladding(shedLength, shedWidth, shedCladdingBoardDim);
+        calcRoofCladdingArea(carportLength, raftLength, roofTileLength, roofTileWidth, roofTrapezLength, roofTrapezWidth, customerRoofAngle);
         calcNoOfBeamsAndDim(shedLength);
         calculateSupportingStrap(carportWidth, carportLength);
 
@@ -199,7 +183,7 @@ public class CarportCalculation {
         System.out.println("Systemet udregner lægteafstand: " + df.format(lathSpan) + " cm");
         System.out.println("Systemet udregner lægtelængde: " + carportLength + " cm");
         System.out.println("Der skal bruges " + totalNumberOfRoofTiles + " " + roofCladdingType);
-        System.out.println("Systemet udregner antal beklædningsbræt til skur: " + noOfCladdingBoards + " stk");
+        System.out.println("Systemet udregner antal beklædningsbræt til skur: " + noOfCladdingBoardsTotal + " stk");
         System.out.println("Systemet udregner antal løsholter: " + this.shedWallLaths + " stk");
         System.out.println("Der skal bruges " + noOfBeams + " søjler i størrelsen " + beamDimension);
     }
@@ -366,10 +350,14 @@ public class CarportCalculation {
     private void calcShedCladding(double shedWidth, double shedLength, String SHED_CLADDING_BOARD_DIM) {
         String sCladBoardWidth = SHED_CLADDING_BOARD_DIM.substring(SHED_CLADDING_BOARD_DIM.length() - 3, SHED_CLADDING_BOARD_DIM.length());
         int cladBoardWidth = Integer.parseInt(sCladBoardWidth) / 10; //Convert to cm
-        int claddingBoardsShedWidth = (int) (shedWidth / cladBoardWidth);
-        int claddingBoardsShedLength = (int) (shedLength / cladBoardWidth);
-        int noOfCladdingBoards = (claddingBoardsShedLength + claddingBoardsShedWidth) * 2; //Calculate all four sides of the shed
-        this.noOfCladdingBoards = noOfCladdingBoards;
+
+        int claddingBoardsShedWidth = (int) (shedWidth / cladBoardWidth); //No of cladding boards shed length w/o overlap
+        noOfCladdingBoardsWidth = (int) Math.ceil((claddingBoardsShedWidth + (((claddingBoardsShedWidth / claddingBoardOverlap) / cladBoardWidth)))); //No. of cladding boards, with overlap in mind
+
+        int claddingBoardsShedLength = (int) (shedLength / cladBoardWidth); //As above
+        noOfCladdingBoardsLength = (int) Math.ceil((claddingBoardsShedLength + (((claddingBoardsShedLength / claddingBoardOverlap) / cladBoardWidth))));
+
+        noOfCladdingBoardsTotal = (noOfCladdingBoardsWidth + noOfCladdingBoardsLength) * 2; //Calculate all four sides of the shed
     }
 
     /**
@@ -432,9 +420,9 @@ public class CarportCalculation {
             noOfBeams = 4;
         }
         if (roofHeavy) {
-            beamDimension = BEAM_DIMENSION_HEAVY;
+            beamDimension = beamDimensionHeavy;
         } else if (!roofHeavy) {
-            beamDimension = BEAM_DIMENSION_LIGHT;
+            beamDimension = beamDimensionLight;
         }
     }
 
@@ -508,10 +496,10 @@ public class CarportCalculation {
      * @param calcRaftLength
      */
     private void calcRoofLaths(double calcRaftLength) {
-        int bottomLathSpan = BOTTOM_LATHSPAN;
-        int bottomLaths = BOTTOM_LATHS;
-        double topLathSpan = TOP_LATH_GAP;
-        double avgLathSpan = AVG_LATH_SPAN;
+        int bottomLathSpan = this.bottomLathSpan;
+        int bottomLaths = this.bottomLaths;
+        double topLathSpan = topLathGap;
+        double avgLathSpan = this.avgLathSpan;
         double calcLaths = Math.round((calcRaftLength - bottomLathSpan - topLathSpan) / avgLathSpan);
         double calcLathSpan = (calcRaftLength - bottomLathSpan - topLathSpan) / calcLaths;
         int actualLaths = (int) ((calcLaths + bottomLaths) * 2);
@@ -632,8 +620,8 @@ public class CarportCalculation {
         return shedWallLaths;
     }
 
-    public int getNoOfCladdingBoards() {
-        return noOfCladdingBoards;
+    public int getNoOfCladdingBoardsTotal() {
+        return noOfCladdingBoardsTotal;
     }
 
     public String getBeamDimension() {

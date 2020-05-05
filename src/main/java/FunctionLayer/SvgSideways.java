@@ -1,11 +1,20 @@
 package FunctionLayer;
 
+import java.sql.SQLException;
+
 public class SvgSideways {
     //##########################################################
     //The class needs following information from database/carportCalculation.
     //##########################################################
 
-    CarportCalculation c = new CarportCalculation();
+    CarportCalculation c;
+    {
+        try {
+            c = new CarportCalculation();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     //private double carportWidth = c.getCarportWidth();
     private double carportLength = c.getCarportLength();
