@@ -50,7 +50,7 @@ public class CarportCalcPage extends Command {
 
 
         // initialize variables
-        String roofType;
+        String roofType = null;
         int pitch;
         int orderId;
         int roofDegrees = 0;
@@ -86,6 +86,27 @@ public class CarportCalcPage extends Command {
         }
 
 
-        return "index";
+        // Her skal der laves beregninger og insættes i ordrerlinje?????
+
+
+        // User info for receipt
+        request.setAttribute("name",name);
+        request.setAttribute("address",address);
+        request.setAttribute("zipcodeCity",zipcodeCity);
+        request.setAttribute("telephone",telephone);
+        request.setAttribute("email",email);
+        request.setAttribute("comments",comments);
+        
+        // Carport measurements for receipt
+        request.setAttribute("carportWidth",carportWidth);
+        request.setAttribute("carportLength",carportLength);
+        request.setAttribute("roofFlat",roofFlat);
+        request.setAttribute("roofRaised",roofRaised);
+        request.setAttribute("roofOptionDegrees",roofOptionDegrees);
+        request.setAttribute("shedWidth",shedWidth);
+        request.setAttribute("shedLength",shedLength);
+        request.setAttribute("roofType",roofType);
+        
+        return "receipt";
     }
 }
