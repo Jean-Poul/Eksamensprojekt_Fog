@@ -52,6 +52,8 @@ public class SvgSideways {
     private double shedY = roofHeigt+15; //Statisk lige nu
     private double shedCladdingWidth = 10.0;   // c.getcladdingwidth
     private double shedCladdingHeight = 200;
+    private double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
+
 
 
     //Lægter
@@ -205,43 +207,11 @@ public class SvgSideways {
         //Skur beklædning
         if (shedLength>0) {
             svgSideways.append(String.format(rectTemplate, shedX, shedY, shedCladdingHeight, shedCladdingWidth  ));
+            for (int i=0; i <(noOfCladsSideways-1); i++) {
+                shedX=shedX+(shedCladdingWidth+5);
+                svgSideways.append(String.format(rectTemplate, shedX, shedY, shedCladdingHeight, shedCladdingWidth));
+        }}
 
-        }
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public void addRect(double x, double y, double height, double width){
-        svgSideways.append(String.format(rectTemplate, x, y, height, width));
-    }
-
-    public void addLine(double x1, double y1, double x2, double y2){
-        svgSideways.append(String.format(lineTemplate, x1, y1, x2, y2));
-    }
-    public void addLineNoArrow(double x1, double y1, double x2, double y2){
-        svgSideways.append(String.format(lineNoArrowTemplate, x1, y1, x2, y2));
-    }
-
-    public void addDotLine(double x1, double y1, double x2, double y2){
-        svgSideways.append(String.format(dotLineTemplate, x1, y1, x2, y2));
-    }
-
-    public void addLowerText(double x, double y, int text){
-        svgSideways.append(String.format(lowerTextTemplate, x, y, text));
-    }
-
-    public void addUpperText(double x, double y, int text){
-        svgSideways.append(String.format(upperTextTemplate, x, y, text));
     }
 
     //##########################################################
