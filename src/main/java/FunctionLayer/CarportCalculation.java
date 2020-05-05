@@ -150,7 +150,7 @@ public class CarportCalculation {
 //        }
 //    }
 
-    //    ##########################################################
+//    ##########################################################
 //     TEST CONSTRUCTOR - PAY ATTENTION TO METHOD EXECUTION ORDER
 //    ##########################################################
     public CarportCalculation() {
