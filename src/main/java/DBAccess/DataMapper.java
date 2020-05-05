@@ -191,17 +191,13 @@ public class DataMapper {
     }
 
 
-<<<<<<< Updated upstream
-
-    public static void deleteQuote(int qouteID) throws SQLException {
-=======
     /**
      *
      * @param quoteID
      * @throws SQLException
      */
     public static void deleteQuote(int quoteID) throws SQLException {
->>>>>>> Stashed changes
+
         try{
             Connection con = Connector.connection();
             String SQL = "DELETE from user_proposition WHERE user_proposition_id = ?";
@@ -252,7 +248,7 @@ public class DataMapper {
             while (rs.next()) {
                 int id = rs.getInt("user_proposition_id");
                 String name = rs.getString("name");
-                String address = rs.getString("address");
+                String address = rs.getString("adress");
                 int zipcode = rs.getInt("zipcodeCity");
                 int phone = rs.getInt("phone");
                 String email = rs.getString("email");
