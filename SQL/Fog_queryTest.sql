@@ -74,6 +74,7 @@ SELECT pitch,factor FROM roof_pitch;
 -- ---------------------------------------
 SELECT LPAD(zipcode,4,'0') as zipcode, cityname FROM cities LIMIT 0, 1500;
 
+
 -- ----------------------------------------------------------------------------
 -- queryes for beam dimension and beam spacing using category and rafter lengt
 -- ----------------------------------------------------------------------------
