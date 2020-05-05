@@ -12,7 +12,7 @@ import java.util.Map;
  * The purpose of DataMapper is to be able to make database queries
  *
  *  1. User
- *  2. User quotes
+ *  2. Create user quotes
  *  3. Select option
  *  4.
  */
@@ -115,9 +115,9 @@ public class DataMapper {
     }
 
 
-    //##################
-    //2. User quote queries
-    //##################
+    //##############################
+    //2. Create user quote queries
+    //##############################
 
     /**
      *
@@ -130,13 +130,13 @@ public class DataMapper {
      * @return userId
      * @throws LoginSampleException
      */
-    public static int createUserQuote(String name,String adress,String zipcodeCity,int phone, String email,String comments) throws LoginSampleException {
+    public static int createUserQuote(String name,String address,String zipcodeCity,int phone, String email,String comments) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO user_proposition (name,adress,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?);";
+            String SQL = "INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, name);
-            ps.setString(2, adress);
+            ps.setString(2, address);
             ps.setString(3,zipcodeCity);
             ps.setInt(4,phone);
             ps.setString(5,email);
@@ -219,6 +219,7 @@ public class DataMapper {
     }
 
 
+
     public static void deleteQuote(int qouteID) throws SQLException {
         try{
             System.out.println(qouteID);
@@ -263,7 +264,7 @@ public class DataMapper {
             while (rs.next()) {
                 int id = rs.getInt("user_proposition_id");
                 String name = rs.getString("name");
-                String address = rs.getString("adress");
+                String address = rs.getString("address");
                 int zipcode = rs.getInt("zipcodeCity");
                 int phone = rs.getInt("phone");
                 String email = rs.getString("email");
@@ -581,5 +582,79 @@ public class DataMapper {
         }
 
         return standardDimensions;
+    }
+
+    public static List<UserProposition> getAllUserPropositions() throws SQLException {
+        List<UserProposition> userProposition = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM user_proposition u\n" +
+                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int user_proposition_id = rs.getInt("user_proposition_id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String zipcodeCity = rs.getString("zipcodeCity");
+                int phone = rs.getInt("phone");
+                String email = rs.getString("email");
+                String comments = rs.getString("comments");
+                int orders_id = rs.getInt("orders_id");
+                String order_date = rs.getString("order_date");
+                String status = rs.getString("status");
+                int carport_width = rs.getInt("oc_width");
+                int carport_length = rs.getInt("oc_length");
+                int shed_width = rs.getInt("ots_width");
+                int shed_length = rs.getInt("ots_length");
+                String roof_type = rs.getString("roof_type");
+                String roof_material = rs.getString("roof_material");
+                int pitch = rs.getInt("pitch");
+                UserProposition up = new UserProposition(user_proposition_id,name,address,zipcodeCity,phone,email,comments,orders_id,order_date,status,carport_width,carport_length,shed_width,shed_length,roof_type,roof_material,pitch);
+                userProposition.add(up);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return userProposition;
+    }
+
+    public static List<UserProposition> getUserPropositions(int userId) throws SQLException {
+        List<UserProposition> userProposition = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM user_proposition u\n" +
+                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id\n" +
+                    "WHERE u.user_proposition_id = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int user_proposition_id = rs.getInt("user_proposition_id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String zipcodeCity = rs.getString("zipcodeCity");
+                int phone = rs.getInt("phone");
+                String email = rs.getString("email");
+                String comments = rs.getString("comments");
+                int orders_id = rs.getInt("orders_id");
+                String order_date = rs.getString("order_date");
+                String status = rs.getString("status");
+                int carport_width = rs.getInt("oc_width");
+                int carport_length = rs.getInt("oc_length");
+                int shed_width = rs.getInt("ots_width");
+                int shed_length = rs.getInt("ots_length");
+                String roof_type = rs.getString("roof_type");
+                String roof_material = rs.getString("roof_material");
+                int pitch = rs.getInt("pitch");
+                UserProposition up = new UserProposition(user_proposition_id,name,address,zipcodeCity,phone,email,comments,orders_id,order_date,status,carport_width,carport_length,shed_width,shed_length,roof_type,roof_material,pitch);
+                userProposition.add(up);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return userProposition;
     }
 }

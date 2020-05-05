@@ -15,7 +15,7 @@ abstract class Command {
         commands = new HashMap<>();
         commands.put( "login", new Login() );
         commands.put( "register", new Register() );
-        commands.put( "CarportCalcPage", new CarportCalcPage() );
+        commands.put( "carportCalcPage", new CarportCalcPage() );
         commands.put( "redirect", new Redirect() );
         commands.put( "drawing", new Drawing() );
         commands.put( "carportCustomize", new CarportCustomize() );

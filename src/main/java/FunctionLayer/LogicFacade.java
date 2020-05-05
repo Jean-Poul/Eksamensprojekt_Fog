@@ -240,4 +240,11 @@ public class LogicFacade {
         return DataMapper.getStandardDimensions();
     }
 
+    public static List<UserProposition> getAllUserPropositions() throws SQLException {
+        return DataMapper.getAllUserPropositions();
+    }
+
+    public static List<UserProposition> getUserProposition(int userId) throws SQLException {
+        return DataMapper.getUserPropositions(userId);
+    }
 }
