@@ -12,7 +12,7 @@ public class SvgSideways {
     private double carportX = 0;
     private double carportY = 0;
 
-
+    //Spær
     private double noOfRafts = c.getNoOfRafts();
     private double raftDistance = c.getAvgRaftDistance();
     private double raftHeight = 87.5;
@@ -20,32 +20,43 @@ public class SvgSideways {
     private double raftX = 0;
     private double raftY = 0;
 
+    //Taghøjde
     private double roofHeigt = 90.0;
     private double roofLength;
     private double roofX;
     private double roofY;
 
-    private double roofRidgeHeight;
-    private double roofRidgeLength;
-    private double RidgeX;
-    private double RidgeY;
+    //Tagtop
+    private double roofRidgeHeight = 10.0;
+    private double roofRidgeLength = carportLength;
+    private double RidgeX = 0.0;
+    private double RidgeY = 0.0 ;
 
+
+    //REM
     private double roofBargeHeigt;
     private double roofBargeLength;
     private double roofBargeX;
     private double roofBargeY;
 
+    //Sternbræt
     private double fasciaBoardHeight = 15.0;
     private double fasciaBoardLength = carportLength;
     private double fasciaBoardX = 0.0;
     private double fasciaBoardY = 80.0;
 
-
+    //Skur
     private double shedLength = c.getShedLength();
     private double shedWidth = c.getShedWidth();
-    private double shedX = 465; //Statisk lige nu
-    private double shedY = 15; //Statisk lige nu
+    private double shedX = carportLength-30-shedLength; //Statisk lige nu
+    private double shedY = roofHeigt+15; //Statisk lige nu
+    private double shedCladdingWidth = 10.0;   // c.getcladdingwidth
+    private double shedCladdingHeight = 200;
+    private double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
 
+
+
+    //Lægter
     private double noOfLaths = (c.getNoOfLaths()/2);
     private double lathWidth = 4.5; //Statisk lige nu
     private double lathLength = c.getCarportLength();
@@ -53,19 +64,22 @@ public class SvgSideways {
     private double lathX = 0;
     private double lathY = 0; //Statisk lige nu
 
+    //Stolper
     private double noOfBeams = c.getNoOfBeams(); //Is this including shed beams?
     private double beamDistance = 200 ; //Need calculation
     private double beamlength = 210;
     private double beamWidth = 10;
-    private double beamX = 80.0;
+    private double beamX = 0.0;
     private double beamY = 95.0;
 
+    //Tagsten
     private double numberOfRoofTiles;
     private double roofTilesX1;
     private double roofTilesX2;
     private double roofTilesY1;
     private double roofTilesY2;
 
+    //pile
     private double arrowLineX1;
     private double arrowLineX2;
     private double arrowLineY1;
@@ -146,8 +160,8 @@ public class SvgSideways {
             raftX=raftX+raftDistance;
             svgSideways.append(String.format(rectTemplate, (raftX-2.5), (raftY+2.5), raftHeight, raftWidth));
         }
-        //Rooftop
-        svgSideways.append(String.format(rectTemplate, carportX, (carportY+2.5), 10.0, carportLength));
+        //Roofridge
+        svgSideways.append(String.format(rectTemplate, RidgeX, (RidgeY+2.5), roofRidgeHeight, roofRidgeLength));
 
         //laths
         for (int i=0; i <noOfLaths; i++) {
@@ -176,51 +190,28 @@ public class SvgSideways {
         System.out.println(noOfRafts);
 
         //BEAMS - STOLPER
-        svgSideways.append(String.format(rectTemplate, (beamX), (beamY), beamlength, beamWidth));
-        for (int i=0; i <(noOfBeams/2); i++) {
-            beamX=beamX+(carportLength/((noOfBeams/2)));
-            svgSideways.append(String.format(rectTemplate, (beamX), (beamY), beamlength, beamWidth));
+        svgSideways.append(String.format(rectTemplate, (beamX+80), (beamY), beamlength, beamWidth));
+        svgSideways.append(String.format(rectTemplate, (carportLength-40), (beamY), beamlength, beamWidth));
+
+        if (shedLength>0){
+            svgSideways.append(String.format(rectTemplate, (carportLength-shedLength-30), (beamY), beamlength, beamWidth));
+            svgSideways.append(String.format(rectTemplate, ((carportLength/2)-beamWidth/2), (beamY), beamlength, beamWidth));
         }
+
         // rem?? skal ændres til rem højde!
         svgSideways.append(String.format(rectTemplate, (carportX+30), (carportY+roofHeigt), 19.5, carportLength-60));
         if (shedLength>0) {
-            svgSideways.append(String.format(rectTemplate, (carportLength - shedLength - 30), (carportY + roofHeigt), 19.5, shedLength));
+            svgSideways.append(String.format(rectTemplate, (carportLength - shedLength - 30+(beamWidth/2)), (carportY + roofHeigt), 19.5, (shedLength-(beamWidth/2))));
         }
 
-    }
+        //Skur beklædning
+        if (shedLength>0) {
+            svgSideways.append(String.format(rectTemplate, shedX, shedY, shedCladdingHeight, shedCladdingWidth  ));
+            for (int i=0; i <(noOfCladsSideways-1); i++) {
+                shedX=shedX+(shedCladdingWidth+5);
+                svgSideways.append(String.format(rectTemplate, shedX, shedY, shedCladdingHeight, shedCladdingWidth));
+        }}
 
-
-
-
-
-
-
-
-
-
-
-
-    public void addRect(double x, double y, double height, double width){
-        svgSideways.append(String.format(rectTemplate, x, y, height, width));
-    }
-
-    public void addLine(double x1, double y1, double x2, double y2){
-        svgSideways.append(String.format(lineTemplate, x1, y1, x2, y2));
-    }
-    public void addLineNoArrow(double x1, double y1, double x2, double y2){
-        svgSideways.append(String.format(lineNoArrowTemplate, x1, y1, x2, y2));
-    }
-
-    public void addDotLine(double x1, double y1, double x2, double y2){
-        svgSideways.append(String.format(dotLineTemplate, x1, y1, x2, y2));
-    }
-
-    public void addLowerText(double x, double y, int text){
-        svgSideways.append(String.format(lowerTextTemplate, x, y, text));
-    }
-
-    public void addUpperText(double x, double y, int text){
-        svgSideways.append(String.format(upperTextTemplate, x, y, text));
     }
 
     //##########################################################

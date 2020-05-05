@@ -68,7 +68,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 CREATE TABLE IF NOT EXISTS `fogdb`.`user_proposition` (
   `user_proposition_id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `adress` VARCHAR(45) NOT NULL,
+  `address` VARCHAR(45) NOT NULL,
   `zipcodeCity` VARCHAR(45) NOT NULL,
   `phone` INT(11) NOT NULL,
   `email` VARCHAR(90) NOT NULL,
