@@ -10,10 +10,24 @@ public class CustomerQuote {
     private String email;
     private String comment;
 
+    /**
+     * Constructor
+     * @param customerId
+     */
     public CustomerQuote(int customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     * Constructor
+     * @param customerId
+     * @param name
+     * @param address
+     * @param zipcode
+     * @param phone
+     * @param email
+     * @param comment
+     */
     public CustomerQuote(int customerId, String name, String address, int zipcode, int phone, String email, String comment) {
         this.customerId = customerId;
         this.name = name;
@@ -24,6 +38,7 @@ public class CustomerQuote {
         this.comment = comment;
     }
 
+    //Getters and setters
     public int getCustomerId() {
         return customerId;
     }

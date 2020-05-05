@@ -42,15 +42,6 @@ public class LogicFacade {
 
     /**
      *
-     * @return DataMapper.getUserList()
-     * @throws SQLException
-     */
-   /* public static List<User> getUserList() throws SQLException {
-        return DataMapper.getUserList();
-    }*/
-
-    /**
-     *
      * @return DataMapper.getUserSum()
      * @throws SQLException
      */
@@ -111,20 +102,40 @@ public class LogicFacade {
         DataMapper.createQuoteOrderline(orders_id,material_type,material,description,length,quantity,unit,total_price);
     }
 
-    public static int getQouteSum() throws SQLException {
-        return DataMapper.getQouteSum();
+    /**
+     *
+     * @return DataMapper.getQuoteSum()
+     * @throws SQLException
+     */
+    public static int getQuoteSum() throws SQLException {
+        return DataMapper.getQuoteSum();
     }
 
-    public static List<CustomerQuote> getCustomerQouteList() throws SQLException {
-        return DataMapper.getCustomerQouteList();
+    /**
+     *
+     * @return DataMapper.getCustomerQuoteList()
+     * @throws SQLException
+     */
+    public static List<CustomerQuote> getCustomerQuoteList() throws SQLException {
+        return DataMapper.getCustomerQuoteList();
     }
 
-    public static List<CustomerQuote> CustomerQuote() throws SQLException {
-        return DataMapper.CustomerQuote();
+    /**
+     *
+     * @return DataMapper.getCustomerQuoteID()
+     * @throws SQLException
+     */
+    public static List<CustomerQuote> getCustomerQuoteID() throws SQLException {
+        return DataMapper.getCustomerQuoteID();
     }
 
-    public static void deleteQuote(int qouteID) throws SQLException {
-        DataMapper.deleteQuote(qouteID);
+    /**
+     *
+     * @param quoteID
+     * @throws SQLException
+     */
+    public static void deleteQuote(int quoteID) throws SQLException {
+        DataMapper.deleteQuote(quoteID);
     }
 
 

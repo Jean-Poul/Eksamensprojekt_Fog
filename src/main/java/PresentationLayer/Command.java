@@ -22,6 +22,7 @@ abstract class Command {
         commands.put( "drawingSideways", new DrawingSideways() );
         commands.put("midlertidigTest", new midlertidigTest());
         commands.put( "rejectQuote", new RejectQuote() );
+        commands.put( "quoteview", new QuoteView() );
     }
 
     static Command from( HttpServletRequest request ) {

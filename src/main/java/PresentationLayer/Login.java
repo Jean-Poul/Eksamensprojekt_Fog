@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- The purpose of Login is to...
+ The purpose of Login is to have a user role before you can access the admin page
 
  @author kasper
  */
@@ -29,17 +29,13 @@ public class Login extends Command {
         session.setAttribute( "role", user.getRole() );
         session.setAttribute("email", email);  // ellers skal man skrive  user.email på jsp siderne og det er sgu lidt mærkeligt at man har adgang til private felter. Men måske er det meget fedt , jeg ved det ikke
 
-
-        List<CustomerQuote> customerQuoteList = LogicFacade.getCustomerQouteList();
+        //Initializers for display info on adminpage.jsp
+        List<CustomerQuote> customerQuoteList = LogicFacade.getCustomerQuoteList();
         int userSum = LogicFacade.getUserSum();
-        int qouteSum = LogicFacade.getQouteSum();
+        int quoteSum = LogicFacade.getQuoteSum();
 
-        List<CustomerQuote> customerQuote = LogicFacade.CustomerQuote();
-
-        request.setAttribute("customerQuote", customerQuote);
-
-        request.setAttribute("userqoutelist", customerQuoteList);
-        request.setAttribute("qoutesum", qouteSum);
+        request.setAttribute("userquotelist", customerQuoteList);
+        request.setAttribute("quotesum", quoteSum);
         request.setAttribute("usersum", userSum);
 
         return user.getRole() + "page";
