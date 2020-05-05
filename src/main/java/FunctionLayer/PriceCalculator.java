@@ -8,6 +8,7 @@ package FunctionLayer;
 
 public class PriceCalculator {
 
+    //Init ny beregning = "Opfrisk" prisList
 
 
     //#### Roof rafts (Spær)

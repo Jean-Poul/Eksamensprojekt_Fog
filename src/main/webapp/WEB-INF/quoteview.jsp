@@ -1,4 +1,5 @@
 <!-- Header & imports -->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="../includes/header.inc" %>
 <!-- End header -->
@@ -11,8 +12,6 @@
             <!-- Section -->
             <section class="col-12">
 
-                    <!-- Customer info container -->
-                    <div class="container px-0">
                         <!-- Customer info -->
                         <div class="accordion" id="cardid">
 
@@ -24,7 +23,7 @@
                                            data-toggle="collapse"
                                            aria-expanded="true"
                                            aria-controls="customerid"
-                                        >ID</a>
+                                        >Kunde info</a>
                                     </h5>
                                 </div><!-- card header -->
 
@@ -35,89 +34,8 @@
                                 >
                                     <div class="card-body">
                                         <p>id request her</p>
-                                    </div>
-                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
-                                </div><!-- card collapse -->
-                            </div><!-- card -->
-
-                        </div>
-
-                        <div class="accordion" id="firstnameid">
-
-                            <div class="card">
-                                <div class="card-header" id="nameheading">
-                                    <h5 class="mb-0">
-                                        <a href="#nameinfo"
-                                           class="collapsed"
-                                           data-toggle="collapse"
-                                           aria-expanded="true"
-                                           aria-controls="customerfirstname"
-                                        >Fornavn</a>
-                                    </h5>
-                                </div><!-- card header -->
-
-                                <div id="nameinfo"
-                                     class="collapse show"
-                                     data-parent="#firstnameid"
-                                     aria-labelledby="nameheading"
-                                >
-                                    <div class="card-body">
                                         <p>fornavn request her</p>
-                                    </div>
-                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
-                                </div><!-- card collapse -->
-                            </div><!-- card -->
-
-                        </div>
-
-                        <div class="accordion" id="lastnameid">
-
-                            <div class="card">
-                                <div class="card-header" id="lastnameheading">
-                                    <h5 class="mb-0">
-                                        <a href="#lastnameinfo"
-                                           class="collapsed"
-                                           data-toggle="collapse"
-                                           aria-expanded="true"
-                                           aria-controls="customerlastname"
-                                        >Efternavn</a>
-                                    </h5>
-                                </div><!-- card header -->
-
-                                <div id="lastnameinfo"
-                                     class="collapse show"
-                                     data-parent="#lastnameid"
-                                     aria-labelledby="lastnameheading"
-                                >
-                                    <div class="card-body">
                                         <p>efternavn request her</p>
-                                    </div>
-                                    <a class="card-link btn btn-dark" href="#">Opdater</a>
-                                </div><!-- card collapse -->
-                            </div><!-- card -->
-
-                        </div>
-
-                        <div class="accordion" id="userid">
-
-                            <div class="card">
-                                <div class="card-header" id="userheading">
-                                    <h5 class="mb-0">
-                                        <a href="#userinfo"
-                                           class="collapsed"
-                                           data-toggle="collapse"
-                                           aria-expanded="true"
-                                           aria-controls="username"
-                                        >Brugernavn</a>
-                                    </h5>
-                                </div><!-- card header -->
-
-                                <div id="userinfo"
-                                     class="collapse show"
-                                     data-parent="#userid"
-                                     aria-labelledby="userheading"
-                                >
-                                    <div class="card-body">
                                         <p>brugernavn request her</p>
                                     </div>
                                     <a class="card-link btn btn-dark" href="#">Opdater</a>
@@ -125,9 +43,6 @@
                             </div><!-- card -->
 
                         </div>
-
-
-                    <!-- End customer info container -->
                     <!-- End customer info -->
 
                     <!-- Shipment info -->
@@ -284,14 +199,23 @@
 
                     </div>
 
-                    </div>
 
                 <!-- End total price -->
                 <!-- Button choices -->
+
                 <div class="container d-flex justify-content-center my-3">
                     <button type="button" class="btn btn-success col-2 mx-2">Godkend</button>
                     <button type="button" class="btn btn-primary col-2 mx-2">Se tegning</button>
-                    <button type="button" class="btn btn-danger col-2 mx-2">Afvis</button>
+
+                    <form class="btn btn-danger col-2 mx-2" name="rejectOrder" action="FrontController" method="post">
+                        <input type="hidden" name="target" value="rejectQuote">
+                        <c:forEach var="delete" items="${requestScope.rejectcustomercuotes}">
+                        <input type="hidden" name="quoteId" itemscope="${requestScope.rejectcustomercuotes}" value="${delete.customerId}">
+                        </c:forEach>
+                        <input type="submit" class="btn text-white" value="Afvis"
+                               onclick="return confirm('Er du sikker på at du vil slette?')"/>
+                    </form>
+
                 </div>
                 <!-- End button choices -->
 

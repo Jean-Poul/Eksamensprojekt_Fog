@@ -40,6 +40,24 @@ public class LogicFacade {
         return user;
     }
 
+    /**
+     *
+     * @return DataMapper.getUserList()
+     * @throws SQLException
+     */
+   /* public static List<User> getUserList() throws SQLException {
+        return DataMapper.getUserList();
+    }*/
+
+    /**
+     *
+     * @return DataMapper.getUserSum()
+     * @throws SQLException
+     */
+    public static int getUserSum() throws SQLException {
+        return DataMapper.getUserSum();
+    }
+
 
     //##################
     //User quote calls
@@ -92,6 +110,24 @@ public class LogicFacade {
     public static void createQuoteOrderline(int orders_id,String material_type,String material,String description,int length,int quantity,String unit,double total_price) throws LoginSampleException {
         DataMapper.createQuoteOrderline(orders_id,material_type,material,description,length,quantity,unit,total_price);
     }
+
+    public static int getQouteSum() throws SQLException {
+        return DataMapper.getQouteSum();
+    }
+
+    public static List<CustomerQuote> getCustomerQouteList() throws SQLException {
+        return DataMapper.getCustomerQouteList();
+    }
+
+    public static List<CustomerQuote> CustomerQuote() throws SQLException {
+        return DataMapper.CustomerQuote();
+    }
+
+    public static void deleteQuote(int qouteID) throws SQLException {
+        DataMapper.deleteQuote(qouteID);
+    }
+
+
 
 
     //##################

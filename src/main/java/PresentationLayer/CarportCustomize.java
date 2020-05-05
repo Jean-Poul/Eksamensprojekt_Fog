@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Carportcustomize extends Command {
+public class CarportCustomize extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         //Initializing session variable with current session
