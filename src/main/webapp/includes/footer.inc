@@ -1,7 +1,7 @@
 
 
 <!-- Footer -->
-<footer class="container-fluid footer font-small py-3">
+<footer class="container-fluid footer font-small py-3 hide-on-print">
 
     <!-- Copyright -->
     <div class="footer-copyright text-center">

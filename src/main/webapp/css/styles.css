@@ -105,3 +105,22 @@ footer a:hover {
     text-decoration: none;
     color: #FAFAFF;
 }
+
+/* Print */
+.print-footer {
+    background: #1D5E9A;
+    color: #FAFAFF;
+    font-size: 0.8em;
+}
+
+.view-on-print {display: none;}
+.hide-on-print {display: block;}
+
+@media print {
+    #page-view {
+
+        background-color: #ffffff;
+    }
+    .view-on-print {display: block;}
+    .hide-on-print {display: none;}
+}

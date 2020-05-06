@@ -11,6 +11,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <!-- External CSS -->
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <!-- Google font -->
@@ -28,7 +31,7 @@
 <body>
 
 <!-- Header -->
-<header role="banner" class="jumbotron-fluid">
+<header role="banner" class="jumbotron-fluid hide-on-print">
     <!-- Header text -->
 
     <div class="headerText px-3 py-3 d-none d-sm-inline-block">

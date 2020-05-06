@@ -8,6 +8,9 @@ import FunctionLayer.LoginSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class CarportCalcPage extends Command {
     @Override
@@ -34,6 +37,7 @@ public class CarportCalcPage extends Command {
         int telephone = Integer.parseInt(request.getParameter("telephone"));
         String email = request.getParameter("email");
         String comments = request.getParameter("comments");
+        String commentsTrimmed = comments.trim(); // trims the trailing and leading spaces from comments
 
         // Carport measurements
         int carportWidth = Integer.parseInt(request.getParameter("carportWidth"));
@@ -48,7 +52,7 @@ public class CarportCalcPage extends Command {
         int roofOption = Integer.parseInt(request.getParameter("roofOption"));
 
         // insert user proposition and return userId
-        int userId = LogicFacade.createUserQuote(name,address,zipcodeCity,telephone,email,comments);
+        int userId = LogicFacade.createUserQuote(name,address,zipcodeCity,telephone,email,commentsTrimmed);
 
 
         // initialize variables
@@ -93,13 +97,20 @@ public class CarportCalcPage extends Command {
 //        CreateCalculatedQuote carportCalculation = new CreateCalculatedQuote();
 //        carportCalculation;
 
+        // Create date for proposition receipt
+        Locale dk = new Locale("da","DK");
+        LocalDateTime receiptDate = LocalDateTime.now();
+        DateTimeFormatter receiptFormatDate = DateTimeFormatter.ofPattern("d. MMM yyyy", dk);
+        String formattedDate = receiptDate.format(receiptFormatDate);
+
         // User info for receipt
         request.setAttribute("name",name);
         request.setAttribute("address",address);
         request.setAttribute("zipcodeCity",zipcodeCity);
         request.setAttribute("telephone",telephone);
         request.setAttribute("email",email);
-        request.setAttribute("comments",comments);
+        request.setAttribute("commentsTrimmed",commentsTrimmed);
+        request.setAttribute("date",formattedDate);
         
         // Carport measurements for receipt
         request.setAttribute("carportWidth",carportWidth);
@@ -110,6 +121,7 @@ public class CarportCalcPage extends Command {
         request.setAttribute("shedWidth",shedWidth);
         request.setAttribute("shedLength",shedLength);
         request.setAttribute("roofType",roofType);
+        request.setAttribute("roofOption",roofOption);
         
         return "receipt";
     }
