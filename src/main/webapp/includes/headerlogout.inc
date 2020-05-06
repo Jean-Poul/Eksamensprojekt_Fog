@@ -11,9 +11,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
     <!-- External CSS -->
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <!-- Google font -->
@@ -31,7 +28,7 @@
 <body>
 
 <!-- Header -->
-<header role="banner" class="jumbotron-fluid hide-on-print">
+<header role="banner" class="jumbotron-fluid">
     <!-- Header text -->
 
     <div class="headerText px-3 py-3 d-none d-sm-inline-block">
@@ -73,15 +70,15 @@
             <!-- Navigation links -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link px-5" href="index.jsp">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link px-5" href="index.jsp">Home</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
                 </li>
             </ul>
 
-            <a class="nav-link my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind
-                </a>
+            <a class="nav-link my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=index">Log ud
+                <span class="sr-only">(current)</span></a>
             <!-- End navigation links -->
 
         </div>

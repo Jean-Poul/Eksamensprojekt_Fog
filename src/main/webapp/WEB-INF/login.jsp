@@ -14,20 +14,23 @@
             <!-- Section -->
             <section class="col-12">
 
-                <h1>Fog første udkast</h1>
                 <!-- Login form -->
                 <div class="container">
                     <h3>Login</h3>
                     <form name="login" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="login">
-                        Email:<br>
-                        <input type="text" name="email" value="admin@fog.dk">
-                        <br>
-                        Password:<br>
-                        <input type="password" name="password" value="1234">
-                        <br>
-                        <input type="submit" value="Submit">
+                        <div class="form-group">
+                            <label for="InputEmail">Email adresse</label>
+                            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" value="admin@fog.dk">
+                            <small id="emailHelp" class="form-text text-muted">Vi deler din email med alle!</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword">Password</label>
+                            <input type="password" class="form-control" id="InputPassword" name="password" value="1234">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log ind</button>
                     </form>
+
                 </div>
                 <!-- End login form -->
 

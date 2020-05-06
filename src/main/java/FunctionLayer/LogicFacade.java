@@ -40,16 +40,6 @@ public class LogicFacade {
         return user;
     }
 
-    /**
-     *
-     * @return DataMapper.getUserSum()
-     * @throws SQLException
-     */
-    public static int getUserSum() throws SQLException {
-        return DataMapper.getUserSum();
-    }
-
-
     //##################
     //User quote calls
     //##################
@@ -104,33 +94,6 @@ public class LogicFacade {
 
     /**
      *
-     * @return DataMapper.getQuoteSum()
-     * @throws SQLException
-     */
-    public static int getQuoteSum() throws SQLException {
-        return DataMapper.getQuoteSum();
-    }
-
-    /**
-     *
-     * @return DataMapper.getCustomerQuoteList()
-     * @throws SQLException
-     */
-    public static List<CustomerQuote> getCustomerQuoteList() throws SQLException {
-        return DataMapper.getCustomerQuoteList();
-    }
-
-    /**
-     *
-     * @return DataMapper.getCustomerQuoteID()
-     * @throws SQLException
-     */
-    public static List<CustomerQuote> getCustomerQuoteID() throws SQLException {
-        return DataMapper.getCustomerQuoteID();
-    }
-
-    /**
-     *
      * @param quoteID
      * @throws SQLException
      */
@@ -138,6 +101,25 @@ public class LogicFacade {
         DataMapper.deleteQuote(quoteID);
     }
 
+    /**
+     *
+     * @param userId
+     * @return DataMapper.getUserPropositions(userId)
+     * @throws SQLException
+     */
+    public static List<UserProposition> getUserProposition(int userId) throws SQLException {
+        return DataMapper.getUserProposition(userId);
+    }
+
+    /**
+     *
+     * @return DataMapper.getAllUserPropositions()
+     * @throws SQLException
+     */
+    public static List<UserProposition> getAllUserPropositions() throws SQLException {
+        return DataMapper.getAllUserPropositions();
+    }
+    
     //##################
     //Select option calls
     //##################
@@ -248,11 +230,5 @@ public class LogicFacade {
         return DataMapper.getStandardDimensions();
     }
 
-    public static List<UserProposition> getAllUserPropositions() throws SQLException {
-        return DataMapper.getAllUserPropositions();
-    }
 
-    public static List<UserProposition> getUserProposition(int userId) throws SQLException {
-        return DataMapper.getUserPropositions(userId);
-    }
 }

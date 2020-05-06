@@ -1,7 +1,6 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,14 +10,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * RejectQuote will reject and delete a given customer quote
+ *
  */
-public class RejectQuote extends Command {
+public class AdminRejectQuote extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         HttpSession session = request.getSession();
 
-        String quoteID = request.getParameter("quoteId");
+        String quoteID = request.getParameter("quoteID");
 
         LogicFacade.deleteQuote(Integer.parseInt(quoteID));
 

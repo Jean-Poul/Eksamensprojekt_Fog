@@ -1,13 +1,12 @@
 package PresentationLayer;
 
-import FunctionLayer.CustomerQuote;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.User;
+import FunctionLayer.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,13 +29,8 @@ public class Login extends Command {
         session.setAttribute("email", email);  // ellers skal man skrive  user.email på jsp siderne og det er sgu lidt mærkeligt at man har adgang til private felter. Men måske er det meget fedt , jeg ved det ikke
 
         //Initializers for display info on adminpage.jsp
-        List<CustomerQuote> customerQuoteList = LogicFacade.getCustomerQuoteList();
-        int userSum = LogicFacade.getUserSum();
-        int quoteSum = LogicFacade.getQuoteSum();
-
-        request.setAttribute("userquotelist", customerQuoteList);
-        request.setAttribute("quotesum", quoteSum);
-        request.setAttribute("usersum", userSum);
+        List<UserProposition> userProposition = LogicFacade.getAllUserPropositions();
+        request.setAttribute("userpropositions", userProposition);
 
         return user.getRole() + "page";
     }
