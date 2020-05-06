@@ -9,6 +9,7 @@ public class SvgSideways {
 
     //private double carportWidth = c.getCarportWidth();
     private double carportLength = c.getCarportLength();
+
     private double carportX = 0;
     private double carportY = 0;
 
@@ -84,6 +85,8 @@ public class SvgSideways {
     private double arrowLineX2;
     private double arrowLineY1;
     private double arrowLineY2;
+
+    private double carportHeight = (roofHeigt+beamlength+5);
 
     //##########################################################
     //Variables for Svg.java
@@ -211,6 +214,50 @@ public class SvgSideways {
                 shedX=shedX+(shedCladdingWidth+5);
                 svgSideways.append(String.format(rectTemplate, shedX, shedY, shedCladdingHeight, shedCladdingWidth));
         }}
+    }
+
+    public void addLines(){
+
+        //Horizontal line
+        svgSideways.append(String.format(lineNoArrowTemplate, carportX-15,(carportHeight),carportLength+15,(carportHeight)));
+
+        //Diagonal line left
+        svgSideways.append(String.format(lineNoArrowTemplate, carportX,(roofHeigt+15),carportX,(carportHeight+15)));
+
+        //Diagonal line right
+        svgSideways.append(String.format(lineNoArrowTemplate, carportLength,(roofHeigt+15),carportLength,(carportHeight+15)));
+
+
+
+        //Arrows & measurements
+        //Height
+        svgSideways.append(String.format(lineTemplate, (carportX-50),0.0,(carportX-50),carportHeight));
+        //svgSideways.addUpperText(90,250, 305);
+        svgSideways.append(String.format(lineTemplate,(carportX-25), (roofHeigt+5), (carportX-25),carportHeight));
+        //svgSideways.addUpperText(120,290, 210);
+
+        //Width
+        //Leftside  -> left beam
+        svgSideways.append(String.format(lineTemplate,(carportX), carportHeight+30, (carportX+80),carportHeight+30));
+
+        //Shed right beam ----> right side
+        svgSideways.append(String.format(lineTemplate,(carportLength-30.0), (carportHeight+30), carportLength,(carportHeight+30)));
+
+        if (shedLength>0) {
+            //shed left beam to right beam <--->
+            svgSideways.append(String.format(lineTemplate,(carportLength-shedLength-30), (carportHeight+30), (carportLength-30),(carportHeight+30)));
+            //left shed beam to Middle Beam
+            svgSideways.append(String.format(lineTemplate,(carportLength-shedLength-30), (carportHeight+30), ((carportLength/2)-beamWidth/2),(carportHeight+30)));
+            //left beam to middle beam
+            svgSideways.append(String.format(lineTemplate,(carportX+80), (carportHeight+30), ((carportLength/2)-beamWidth/2),(carportHeight+30)));
+        } else{
+            //Left to right <----> incase of no shed
+            svgSideways.append(String.format(lineTemplate,(carportX), carportHeight+30, carportLength-30,carportHeight+30));
+
+        }
+
+
+
 
     }
 
