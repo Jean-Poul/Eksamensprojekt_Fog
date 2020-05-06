@@ -5,25 +5,40 @@ public class CustomerQuote {
     private int customerId;
     private String name;
     private String address;
-    private int zipcode;
+    private String zipcodeCity;
     private int phone;
     private String email;
     private String comment;
 
+    /**
+     * Constructor
+     * @param customerId
+     */
     public CustomerQuote(int customerId) {
         this.customerId = customerId;
     }
 
-    public CustomerQuote(int customerId, String name, String address, int zipcode, int phone, String email, String comment) {
+    /**
+     * Constructor
+     * @param customerId
+     * @param name
+     * @param address
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comment
+     */
+    public CustomerQuote(int customerId, String name, String address, String zipcodeCity, int phone, String email, String comment) {
         this.customerId = customerId;
         this.name = name;
         this.address = address;
-        this.zipcode = zipcode;
+        this.zipcodeCity = zipcodeCity;
         this.phone = phone;
         this.email = email;
         this.comment = comment;
     }
 
+    //Getters and setters
     public int getCustomerId() {
         return customerId;
     }
@@ -48,12 +63,12 @@ public class CustomerQuote {
         this.address = address;
     }
 
-    public int getZipcode() {
-        return zipcode;
+    public String getZipcodeCity() {
+        return zipcodeCity;
     }
 
     public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
+        this.zipcodeCity = zipcodeCity;
     }
 
     public int getPhone() {

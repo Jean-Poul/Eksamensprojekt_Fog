@@ -1,10 +1,20 @@
 package FunctionLayer;
 
+import java.sql.SQLException;
+
 public class Svg {
     //##########################################################
     //The class needs following information from database/carportCalculation.
     //##########################################################
-    CarportCalculation c = new CarportCalculation();
+
+    CarportCalculation c;
+    {
+        try {
+            c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     private double carportHeight = c.getCarportWidth();
     private double carportWidth = c.getCarportLength();
@@ -20,7 +30,7 @@ public class Svg {
 
     private double shedLength = c.getShedLength();
     private double shedWidth = c.getShedWidth();
-    private double shedX = 465; //Statisk lige nu
+    private double shedX; //Statisk lige nu
     private double shedY = 15; //Statisk lige nu
 
     private double noOfLaths = c.getNoOfLaths();
@@ -35,17 +45,26 @@ public class Svg {
     private double beamHight = 10;
     private double beamWidth = 10;
     private double beamX = 35;
-    private double beamY;
+    private double beamY = 35;
+
+    private double roofBargeHeigt = 6.5;
+    private double roofBargeWidth = carportWidth;
+    private double roofBargeX = 0;
+    private double roofBargeY = 0;
 
     private double windCrossX1;
     private double windCrossX2;
     private double windCrossY1;
     private double windCrossY2;
 
-    private double arrowLineX1;
-    private double arrowLineX2;
-    private double arrowLineY1;
-    private double arrowLineY2;
+    private double arrowLineX1 = 0;
+    private double arrowLineX2 = 0;
+    private double arrowLineY1 = 0;
+    private double arrowLineY2 = 0;
+
+    private double textX = 0;
+    private double textY = 0;
+    private double text = 0;
 
     //##########################################################
     //Variables for Svg.java
@@ -59,7 +78,7 @@ public class Svg {
     private double y1;
     private double x2;
     private double y2;
-    private int text;
+    //private double text;
     private StringBuilder svg = new StringBuilder();
 
     //##########################################################
@@ -74,11 +93,13 @@ public class Svg {
             "</marker>\n" +
             "</defs>";
     private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectRemTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #bababa\" />";
+    private final String rectShedTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #cfcfcf\" />";
     private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
     private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d cm</text>\n";
+    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %f cm</text>";
+    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %f cm</text>\n";
 
     //##########################################################
     //constructors
@@ -99,7 +120,7 @@ public class Svg {
         this.x1 = y2;
     }
 
-    public Svg(double x, double y, int text){
+    public Svg(double x, double y, double text){
         this.x = x;
         this.y = y;
         this.text = text;
@@ -109,31 +130,66 @@ public class Svg {
     //Methods for StringBuilder
     //##########################################################
     public void addCarport(){
+
+        //Carport
         svg.append(String.format(rectTemplate, carportX, carportY, carportHeight, carportWidth));
-    }
 
-    public void addShed(){
-        svg.append(String.format(rectTemplate, shedX, shedY, shedLength, shedWidth));
-    }
-
-    public void addRafts(){
-        for (int i=0; i <noOfRafts; i++) {
-            raftX=raftX+raftDistance;
-            svg.append(String.format(rectTemplate, raftX, raftY, raftLength, raftWidth));
+        //Shed
+        if(shedLength>0){
+            svg.append(String.format(rectShedTemplate, (shedX=(carportWidth-shedWidth)-15), shedY, shedLength, shedWidth));
+            svg.append(String.format(rectTemplate, shedX, shedY, beamHight, beamWidth));
+            svg.append(String.format(rectTemplate, shedX=carportWidth-25, shedY, beamHight, beamWidth));
+            svg.append(String.format(rectTemplate, shedX=(carportWidth-shedWidth)-15, shedY=(shedLength+5), beamHight, beamWidth));
+            svg.append(String.format(rectTemplate, shedX=carportWidth-25, shedY=(shedLength+5), beamHight, beamWidth));
         }
-    }
 
-    public void addLaths(){
+        //Remme
+        svg.append(String.format(rectRemTemplate, roofBargeX, roofBargeY=(carportHeight/noOfLaths)-1.25, roofBargeHeigt, roofBargeWidth));
+        svg.append(String.format(rectRemTemplate, roofBargeX, roofBargeY=(carportHeight-(carportHeight/noOfLaths))-1.25, roofBargeHeigt, roofBargeWidth));
+
+        //Laths
+        svg.append(String.format(rectTemplate, lathX, lathY, lathLength, lathWidth));
         for (int i=0; i <noOfLaths; i++) {
-            lathY=lathY+lathSpan;
+            lathY=lathY+(carportHeight/noOfLaths);
             svg.append(String.format(rectTemplate, lathX, lathY, lathLength, lathWidth));
         }
-    }
-    //Skal færdiggøres. Udregning af beam afstand??
-    public void addBeams(){
-        svg.append(String.format(rectTemplate, beamX, beamY, beamHight, beamWidth));
+
+        //Rafters
+        svg.append(String.format(rectTemplate, raftX, raftY, raftLength+5, raftWidth));
+        for (int i=0; i <noOfRafts; i++) {
+            raftX=raftX+(carportWidth/noOfRafts);
+            svg.append(String.format(rectTemplate, raftX, raftY, raftLength+5, raftWidth));
+        }
+
+        //Beams
+        svg.append(String.format(rectTemplate, beamX=(carportWidth-raftDistance)-2.25, beamY=(carportHeight/noOfLaths)-2.25, beamHight, beamWidth));
+        svg.append(String.format(rectTemplate, beamX=raftDistance-2.25, beamY=(lathSpan-3)-2.25, beamHight, beamWidth));
+        svg.append(String.format(rectTemplate, beamX=(carportWidth-raftDistance)-2.25, beamY=(carportHeight-(carportHeight/noOfLaths))-2.25, beamHight, beamWidth));
+        svg.append(String.format(rectTemplate, beamX=raftDistance-2.25, beamY=(carportHeight-(carportHeight/noOfLaths))-2.25, beamHight, beamWidth));
+        if(shedWidth>0){
+            svg.append(String.format(rectTemplate, beamX=(carportWidth/2)-2.25, beamY=(carportHeight/noOfLaths)-2.25, beamHight, beamWidth));
+            svg.append(String.format(rectTemplate, beamX=(carportWidth/2)-2.25, beamY=(carportHeight-(carportHeight/noOfLaths))-2.25, beamHight, beamWidth));
+        }
+
+        //Arrows
+        svg.append(String.format(lineTemplate, arrowLineX1, arrowLineY1=(carportHeight+30), arrowLineX2=(carportWidth), arrowLineY2=(carportHeight+30)));
+        svg.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportHeight)));
+        svg.append(String.format(lineTemplate, arrowLineX1=(carportWidth+30), arrowLineY1=15, arrowLineX2=(carportWidth+30), arrowLineY2=(shedLength+15)));
+        svg.append(String.format(lineTemplate, arrowLineX1=(carportWidth-shedWidth-15), arrowLineY1=-30, arrowLineX2=(carportWidth-15), arrowLineY2=-30));
+
+        //Measurements Text
+        svg.append(String.format(lowerTextTemplate, x=(carportWidth/2), y=(carportHeight+50), text=carportHeight));
+        svg.append(String.format(lowerTextTemplate, x=-50, y=(carportHeight/2), text=carportWidth));
+        svg.append(String.format(lowerTextTemplate, x=(carportWidth-(shedWidth/2)-15), y=-50, text=shedWidth));
+        svg.append(String.format(lowerTextTemplate, x=(carportWidth+50), y=(shedLength/2+15), text=shedLength));
+
+        //Wind Cross
+        svg.append(String.format(dotLineTemplate, windCrossX1=(raftDistance)+2.25, windCrossY1=(lathSpan), windCrossX2=(carportWidth-raftDistance), windCrossY2=(carportHeight-lathSpan)));
+        svg.append(String.format(dotLineTemplate, windCrossX1=(raftDistance)+2.25, windCrossY1=(carportHeight-lathSpan), windCrossX2=(carportWidth-raftDistance), windCrossY2=(lathSpan)));
+
     }
 
+    //Skal færdiggøres. Udregning af beam afstand?
     public void addLine(double x1, double y1, double x2, double y2){
         svg.append(String.format(lineTemplate, x1, y1, x2, y2));
     }
@@ -225,7 +281,7 @@ public class Svg {
         this.y2 = y2;
     }
 
-    public int getText() {
+    public double getText() {
         return text;
     }
 

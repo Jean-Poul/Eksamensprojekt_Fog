@@ -12,9 +12,6 @@ public class Drawing extends Command {
         Svg svg = new Svg(0, 0, 1000,1000,"0,0,1000,1000");
 
         svg.addCarport();
-        svg.addShed();
-        svg.addRafts();
-        svg.addLaths();
 
         /**
         //Mål på hele carport

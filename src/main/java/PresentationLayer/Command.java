@@ -15,13 +15,14 @@ abstract class Command {
         commands = new HashMap<>();
         commands.put( "login", new Login() );
         commands.put( "register", new Register() );
-        commands.put( "CarportCalcPage", new CarportCalcPage() );
+        commands.put( "carportCalcPage", new CarportCalcPage() );
         commands.put( "redirect", new Redirect() );
         commands.put( "drawing", new Drawing() );
         commands.put( "carportCustomize", new CarportCustomize() );
         commands.put( "drawingSideways", new DrawingSideways() );
         commands.put("midlertidigTest", new midlertidigTest());
         commands.put( "rejectQuote", new RejectQuote() );
+        commands.put( "quoteview", new QuoteView() );
     }
 
     static Command from( HttpServletRequest request ) {

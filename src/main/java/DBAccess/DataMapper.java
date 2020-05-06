@@ -12,7 +12,7 @@ import java.util.Map;
  * The purpose of DataMapper is to be able to make database queries
  *
  *  1. User
- *  2. User quotes
+ *  2. Create user quotes
  *  3. Select option
  *  4.
  */
@@ -64,37 +64,9 @@ public class DataMapper {
         }
     }
 
-
     /**
      *
-     * @return users
-     * @throws SQLException
-     */
-    public static List<User> getUserList() throws SQLException {
-        List<User> users = new ArrayList<>();
-        try {
-            Connection con = Connector.connection();
-            String SQL = "SELECT * FROM users";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("users_id");
-                String email = rs.getString("email");
-                String password = rs.getString("password");
-                String role = rs.getString("role");
-                User user = new User(id, email, password, role);
-                users.add(user);
-            }
-        } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
-        }
-
-        return users;
-    }
-
-    /**
-     *
-     * @return user
+     * @return userCount
      * @throws SQLException
      */
     public static int getUserSum() throws SQLException {
@@ -115,14 +87,14 @@ public class DataMapper {
     }
 
 
-    //##################
-    //2. User quote queries
-    //##################
+    //##############################
+    //2. Create user quote queries
+    //##############################
 
     /**
      *
      * @param name
-     * @param adress
+     * @param address
      * @param zipcodeCity
      * @param phone
      * @param email
@@ -130,13 +102,13 @@ public class DataMapper {
      * @return userId
      * @throws LoginSampleException
      */
-    public static int createUserQuote(String name,String adress,String zipcodeCity,int phone, String email,String comments) throws LoginSampleException {
+    public static int createUserQuote(String name,String address,String zipcodeCity,int phone, String email,String comments) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO user_proposition (name,adress,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?);";
+            String SQL = "INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, name);
-            ps.setString(2, adress);
+            ps.setString(2, address);
             ps.setString(3,zipcodeCity);
             ps.setInt(4,phone);
             ps.setString(5,email);
@@ -219,21 +191,31 @@ public class DataMapper {
     }
 
 
-    public static void deleteQuote(int qouteID) throws SQLException {
+    /**
+     *
+     * @param quoteID
+     * @throws SQLException
+     */
+    public static void deleteQuote(int quoteID) throws SQLException {
+
         try{
-            System.out.println(qouteID);
             Connection con = Connector.connection();
             String SQL = "DELETE from user_proposition WHERE user_proposition_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1, qouteID);
+            ps.setInt(1, quoteID);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex ) {
             throw new SQLException( ex.getMessage() );
         }
     }
 
-    public static List<CustomerQuote> CustomerQuote() throws SQLException {
-        List<CustomerQuote> customerQuote = new ArrayList<>();
+    /**
+     *
+     * @return customerQuoteId
+     * @throws SQLException
+     */
+    public static List<CustomerQuote> getCustomerQuoteID() throws SQLException {
+        List<CustomerQuote> customerQuoteId = new ArrayList<>();
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT user_proposition_id FROM user_proposition";
@@ -242,18 +224,21 @@ public class DataMapper {
             while (rs.next()) {
                 int userPropositionId = rs.getInt("user_proposition_id");
                 CustomerQuote cq = new CustomerQuote(userPropositionId);
-                customerQuote.add(cq);
-                System.out.println(cq.toString());
-                System.out.println(customerQuote.get(0).toString());
+                customerQuoteId.add(cq);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             throw new SQLException(ex.getMessage());
         }
 
-        return customerQuote;
+        return customerQuoteId;
     }
 
-    public static List<CustomerQuote> getCustomerQouteList() throws SQLException {
+    /**
+     *
+     * @return customerQuoteList
+     * @throws SQLException
+     */
+    public static List<CustomerQuote> getCustomerQuoteList() throws SQLException {
         List<CustomerQuote> customerQuoteList = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -263,12 +248,16 @@ public class DataMapper {
             while (rs.next()) {
                 int id = rs.getInt("user_proposition_id");
                 String name = rs.getString("name");
-                String address = rs.getString("adress");
+                String address = rs.getString("address");
+
                 int zipcode = rs.getInt("zipcodeCity");
+
+                String zipcodeCity = rs.getString("zipcodeCity");
+
                 int phone = rs.getInt("phone");
                 String email = rs.getString("email");
                 String comments = rs.getString("comments");
-                CustomerQuote cq = new CustomerQuote(id, name, address, zipcode, phone, email, comments);
+                CustomerQuote cq = new CustomerQuote(id, name, address, zipcodeCity, phone, email, comments);
                 customerQuoteList.add(cq);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -278,22 +267,29 @@ public class DataMapper {
         return customerQuoteList;
     }
 
-    public static int getQouteSum() throws SQLException {
-        int qouteCount = 0;
+    /**
+     *
+     * @return quoteCount
+     * @throws SQLException
+     */
+    public static int getQuoteSum() throws SQLException {
+        int quoteCount = 0;
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT count(user_proposition_id) FROM user_proposition";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                qouteCount = rs.getInt("count(user_proposition_id)");
+                quoteCount = rs.getInt("count(user_proposition_id)");
             }
         } catch (ClassNotFoundException | SQLException ex) {
             throw new SQLException(ex.getMessage());
         }
 
-        return qouteCount;
+        return quoteCount;
     }
+
+
 
     //##################
     //3. Select option queries
@@ -581,5 +577,79 @@ public class DataMapper {
         }
 
         return standardDimensions;
+    }
+
+    public static List<UserProposition> getAllUserPropositions() throws SQLException {
+        List<UserProposition> userProposition = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM user_proposition u\n" +
+                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int user_proposition_id = rs.getInt("user_proposition_id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String zipcodeCity = rs.getString("zipcodeCity");
+                int phone = rs.getInt("phone");
+                String email = rs.getString("email");
+                String comments = rs.getString("comments");
+                int orders_id = rs.getInt("orders_id");
+                String order_date = rs.getString("order_date");
+                String status = rs.getString("status");
+                int carport_width = rs.getInt("oc_width");
+                int carport_length = rs.getInt("oc_length");
+                int shed_width = rs.getInt("ots_width");
+                int shed_length = rs.getInt("ots_length");
+                String roof_type = rs.getString("roof_type");
+                String roof_material = rs.getString("roof_material");
+                int pitch = rs.getInt("pitch");
+                UserProposition up = new UserProposition(user_proposition_id,name,address,zipcodeCity,phone,email,comments,orders_id,order_date,status,carport_width,carport_length,shed_width,shed_length,roof_type,roof_material,pitch);
+                userProposition.add(up);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return userProposition;
+    }
+
+    public static List<UserProposition> getUserPropositions(int userId) throws SQLException {
+        List<UserProposition> userProposition = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM user_proposition u\n" +
+                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id\n" +
+                    "WHERE u.user_proposition_id = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int user_proposition_id = rs.getInt("user_proposition_id");
+                String name = rs.getString("name");
+                String address = rs.getString("address");
+                String zipcodeCity = rs.getString("zipcodeCity");
+                int phone = rs.getInt("phone");
+                String email = rs.getString("email");
+                String comments = rs.getString("comments");
+                int orders_id = rs.getInt("orders_id");
+                String order_date = rs.getString("order_date");
+                String status = rs.getString("status");
+                int carport_width = rs.getInt("oc_width");
+                int carport_length = rs.getInt("oc_length");
+                int shed_width = rs.getInt("ots_width");
+                int shed_length = rs.getInt("ots_length");
+                String roof_type = rs.getString("roof_type");
+                String roof_material = rs.getString("roof_material");
+                int pitch = rs.getInt("pitch");
+                UserProposition up = new UserProposition(user_proposition_id,name,address,zipcodeCity,phone,email,comments,orders_id,order_date,status,carport_width,carport_length,shed_width,shed_length,roof_type,roof_material,pitch);
+                userProposition.add(up);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+
+        return userProposition;
     }
 }

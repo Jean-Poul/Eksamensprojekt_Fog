@@ -16,7 +16,7 @@
                 <!-- Row -->
                 <div class="row">
 
-                    HUSK HENT SELV OG BRING UD?
+                    HUSK HENT SELV ELLER FOR BRAGT UD?
 
                 </div>
                 <!-- End row -->
