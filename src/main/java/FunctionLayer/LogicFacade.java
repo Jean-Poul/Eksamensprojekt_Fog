@@ -119,7 +119,7 @@ public class LogicFacade {
     public static List<UserProposition> getAllUserPropositions() throws SQLException {
         return DataMapper.getAllUserPropositions();
     }
-    
+
     //##################
     //Select option calls
     //##################
