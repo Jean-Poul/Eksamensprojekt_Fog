@@ -62,7 +62,6 @@ public class PriceCalculator {
 
         int listSize = log.getItemList().size();
 
-        
 
 
     }
