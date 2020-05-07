@@ -191,6 +191,11 @@ public class DataMapper {
         }
     }
 
+    /**
+     * Gets all items from DB and maps them to an array.
+     * @return ArrayList of all items from DB
+     * @throws SQLException
+     */
     public static List<Item> getItemList() throws SQLException {
         List<Item> itemList = new ArrayList<>();
         try {

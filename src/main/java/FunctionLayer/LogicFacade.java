@@ -230,6 +230,11 @@ public class LogicFacade {
         return DataMapper.getStandardDimensions();
     }
 
+    /**
+     *
+     * @return Arraylist of all items in DB
+     * @throws SQLException
+     */
     public static List<Item> getItemList() throws SQLException {
         return DataMapper.getItemList();
     }

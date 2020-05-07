@@ -104,6 +104,17 @@ public class PriceCalculator {
 
     }
 
+    /**
+     * Calculates the total carport price. Takes subtotals as param
+     * @param raft subtotal
+     * @param shedCladBoard subtotal
+     * @param shedLath subtotalsubtotal
+     * @param roofLath subtotal
+     * @param supportStrap subtotal
+     * @param roofClad subtotal
+     * @param sternBoard subtotal
+     * @param beam subtotal
+     */
     private void calculateCarportTotalPrice(double raft, double shedCladBoard, double shedLath,
                                             double roofLath, double supportStrap, double roofClad,
                                             double sternBoard, double beam) {
@@ -113,6 +124,12 @@ public class PriceCalculator {
     }
 
 
+    /**
+     * Takes item type from carport calculation and searches for equivilant in DB
+     * @param itemID
+     * @return
+     * @throws SQLException
+     */
     private Item itemSearch(int itemID) throws SQLException {
 
         for (int i = 0; i < log.getItemList().size(); i++) {
