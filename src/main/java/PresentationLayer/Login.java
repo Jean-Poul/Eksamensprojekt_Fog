@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * The purpose of Login is to have a user role before you can access the admin page
  *
- * @author kasper
  */
 public class Login extends Command {
 
@@ -21,24 +20,25 @@ public class Login extends Command {
         //Initializing session variable with current session
         HttpSession session = request.getSession();
 
-
-        //Initializing User & Lists with attributes from jsp
+        //Getting parameters from jsp to be able to login
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
+        //Initializing User to be able to login
         User user = LogicFacade.login(email, password);
 
+        //Initializing
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
-
-        //Singleton calls
+        //Singletons to initialize an instance of UserProposition
+        //if List is empty
         if (userProposition == null) {
             userProposition = LogicFacade.getAllUserPropositions();
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
 
-
-        //Attributes to grab on jsp site
+        //Attributes to use on jsp site
         session.setAttribute("user", user);
         session.setAttribute("role", user.getRole());
         session.setAttribute("email", email);

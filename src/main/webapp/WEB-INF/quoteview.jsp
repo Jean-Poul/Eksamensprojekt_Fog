@@ -210,7 +210,7 @@
 
                     <form class="btn btn-danger col-2 mx-2" name="deleteQuote" action="FrontController" method="post">
                         <input type="hidden" name="target" value="rejectQuote">
-                        <input type="hidden" name="quoteId" value="${info.user_proposition_id}">
+                        <input type="hidden" name="quoteID" value="${info.user_proposition_id}">
                         <input type="submit" class="btn text-white" value="Afvis"
                                onclick="return confirm('Er du sikker på at du vil slette?')"/>
                     </form>

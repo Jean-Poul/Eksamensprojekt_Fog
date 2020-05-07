@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class Redirect extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+        //Getting parameter from header href
         String destination = request.getParameter("destination");
 
+        //Switch case for navigating
         switch (destination) {
             case "customerpage":
                 request.setAttribute("message", "Kunde side");
@@ -31,6 +33,8 @@ public class Redirect extends Command {
                 request.setAttribute("message", "Denne side findes ikke");
                 break;
         }
+
+        //Return value for FrontController
         return destination;
     }
 }
