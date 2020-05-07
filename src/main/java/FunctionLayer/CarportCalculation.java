@@ -44,8 +44,8 @@ public class CarportCalculation {
     private int carportLength;
     private int carportWidth;
     private int customerRoofAngle;
-    private double shedLength;
-    private double shedWidth;
+    private int shedLength;
+    private int shedWidth;
 
     //  RAFT CALCULATIONS (Qty & Length [cm])
     private double raftLength;
@@ -59,7 +59,8 @@ public class CarportCalculation {
     private int noOfVerticalRafts;
 
     //  SHED CALCULATIONS [cm]
-    private int shedWallLaths;
+    private int noOfShedWallLaths = 12; //Assumption
+    private double shedWallLathsTotalLength;
     private int noOfCladdingBoardsTotal;
     private double claddingBoardOverlap = 2.5;
     private int noOfCladdingBoardsWidth;
@@ -158,7 +159,7 @@ public class CarportCalculation {
         calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
         noOfRafts(carportLength, raftDistance);
         calcRoofLaths(raftLength);
-        calculateShedWallLaths();
+        calculateShedWallLaths(shedLength, shedWidth);
         calcShedCladding(shedLength, shedWidth, shedCladdingBoardDim);
         calcRoofCladdingArea(carportLength, raftLength, roofTileLength, roofTileWidth, roofTrapezLength, roofTrapezWidth, customerRoofAngle);
         calcNoOfBeamsAndDim(shedLength);
@@ -186,7 +187,7 @@ public class CarportCalculation {
         System.out.println("Skur længde: " + shedLength + " cm");
         System.out.println("Skur bredde: " + shedWidth + " cm");
         System.out.println("Antal beklædningsbræt: " + noOfCladdingBoardsTotal + " stk." + "(" + noOfCladdingBoardsLength + "stk. pr. længde og " + noOfCladdingBoardsWidth + " i bredden)");
-        System.out.println("Antal løsholter: " + this.shedWallLaths + " stk");
+        System.out.println("Antal løsholter: " + this.noOfShedWallLaths + " stk");
 
         System.out.println("*****************************************");
         System.out.println("\t\t SPÆR \t\t");
@@ -254,10 +255,9 @@ public class CarportCalculation {
     /**
      * Outputs number of laths required for shed. Currently set to a fixed number of 12
      */
-    private void calculateShedWallLaths() {
+    private void calculateShedWallLaths(int shedLength, int shedWidth) {
         shedWallLathType = 29;
-
-        shedWallLaths = 12;
+        this.shedWallLathsTotalLength = ((shedLength + shedWidth) * 2) * noOfShedWallLaths;
     }
 
     /**
@@ -506,8 +506,8 @@ public class CarportCalculation {
         return totalNumberOfRoofTrapezPlates;
     }
 
-    public int getShedWallLaths() {
-        return shedWallLaths;
+    public int getNoOfShedWallLaths() {
+        return noOfShedWallLaths;
     }
 
     public int getNoOfCladdingBoardsTotal() {
@@ -584,5 +584,9 @@ public class CarportCalculation {
 
     public int getBeamType() {
         return beamType;
+    }
+
+    public double getShedWallLathsTotalLength() {
+        return shedWallLathsTotalLength;
     }
 }

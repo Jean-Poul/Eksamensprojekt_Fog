@@ -1,11 +1,7 @@
 package FunctionLayer;
 
-import sun.rmi.runtime.Log;
-
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Price calculator calculates the total price for the entire carport.
@@ -28,6 +24,7 @@ public class PriceCalculator {
     //  SHED CALCULATIONS [cm]
     private double totalShedWallLathLength;
     private int totalShedCladdingBoardLength;
+    private double totalShedWallLathPrice;
 
     //  ROOF CALCULATIONS [cm]
     private double totalLathsLength;
@@ -42,12 +39,14 @@ public class PriceCalculator {
     public PriceCalculator(CarportCalculation cpCalc) throws SQLException {
 
         //Rafters
-        this.totalRaftLength = (cpCalc.getRaftLength()/100) * cpCalc.getNoOfRafts();
+        this.totalRaftLength = ((cpCalc.getRaftLength() + cpCalc.getHorizontalRaftLength() + cpCalc.getVerticalRaftLength())/100) * cpCalc.getNoOfRafts();
         this.totalRaftPrice = itemSearch(cpCalc.getRaftType()).getPricePrUnit() * totalRaftLength;
-        System.out.println("Samlet pris for tagspær: " + df.format(totalRaftPrice));
+        System.out.println("Samlet kostpris for tagspær: " + df.format(totalRaftPrice) + " kr");
 
         //Shed - NOTE THAT DOOR IS NOT SUBTRACTED FROM SHED CLADDING
-        this.totalShedWallLathLength = ((cpCalc.getShedLength() + cpCalc.getShedWidth() * 2) * cpCalc.getShedWallLaths());
+        this.totalShedWallLathLength = cpCalc.getShedWallLathsTotalLength();
+        this.totalShedWallLathPrice = itemSearch(cpCalc.getShedWallLathType()).getPricePrUnit() * (totalShedWallLathLength / 100);
+        System.out.println("Samlet kostpris for løsholter: " + df.format(totalShedWallLathPrice) + " kr");
         this.totalShedCladdingBoardLength = cpCalc.getNoOfCladdingBoardsTotal();
 
         //Roof
