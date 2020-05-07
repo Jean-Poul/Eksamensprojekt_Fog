@@ -78,7 +78,7 @@ public class CarportCalculation {
 
     //  ASSORTED STRUCTURAL & ACCESSORIES
     private boolean roofHeavy;
-    private int sternBoardLength;
+    private double sternBoardLength;
     private String beamDimension;
     private int noOfBeams;
 
@@ -138,12 +138,19 @@ public class CarportCalculation {
             //this.raftDistance = log.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy(); //Out of bounds!?
             //this.raftDimension = log.getBeamDimensionHeavy(raftLength).get(0).getBeamDimensionHeavy();
             raftDistance = 1.0;
-            raftDimension = "45 x 150";
+            raftDimension = "45 x 195";
         } else {
             //this.raftDistance = log.getBeamDimensionLight(raftLength).get(0).getBeamSpacingLight();
             //this.raftDimension = log.getBeamDimensionLight(raftLength).get(0).getBeamDimensionLight();
             raftDistance = 1.0;
-            raftDimension = "45 x 150";
+            raftDimension = "45 x 120";
+        }
+
+        //Set rafttype depending on raftdistance table in database
+        if(raftDimension.equalsIgnoreCase("45 x 120")){
+            raftType = 20;
+        } else if (raftDimension.equalsIgnoreCase("45 x 195")){
+            raftType = 21;
         }
 
         //Begin calculations
@@ -223,8 +230,6 @@ public class CarportCalculation {
         verticalRaftLength = getCalcRoofHeight();
     }
 
-
-
     /**
      * Calculates the required amount of vertical boards for cladding the shed
      *
@@ -233,6 +238,8 @@ public class CarportCalculation {
      * @param SHED_CLADDING_BOARD_DIM the assumed cladding board dimensions.
      */
     private void calcShedCladding(double shedWidth, double shedLength, String SHED_CLADDING_BOARD_DIM) {
+        shedCladdingBoardType = 31; //Set cladding item no.
+
         String sCladBoardWidth = SHED_CLADDING_BOARD_DIM.substring(SHED_CLADDING_BOARD_DIM.length() - 3, SHED_CLADDING_BOARD_DIM.length());
         int cladBoardWidth = Integer.parseInt(sCladBoardWidth) / 10; //Convert to cm
 
@@ -249,6 +256,8 @@ public class CarportCalculation {
      * Outputs number of laths required for shed. Currently set to a fixed number of 12
      */
     private void calculateShedWallLaths() {
+        shedWallLathType = 29;
+
         shedWallLaths = 12;
     }
 
@@ -274,11 +283,13 @@ public class CarportCalculation {
             int totalNumberOfRoofTiles = rowsOfTiles * columnsOfTiles * 2; //Multiply by 2 to get both sides of the roof
             this.totalNumberOfRoofTiles = totalNumberOfRoofTiles;
             roofCladdingType = "tagsten";
+            roofCladType = 32;
         } else if (!raisedRoof) {
             double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TILE_WIDTH;
             int noOfTrapezPlates = (int) ((carportLength * carportWidth) / trapezPlateSquareArea);
             totalNumberOfRoofTrapezPlates = noOfTrapezPlates;
             roofCladdingType = "trapezplader";
+            roofCladType = 33;
         }
     }
 
@@ -295,8 +306,10 @@ public class CarportCalculation {
         }
         if (roofHeavy) {
             beamDimension = beamDimensionHeavy;
+            beamType = 23;
         } else if (!roofHeavy) {
             beamDimension = beamDimensionLight;
+            beamType = 22;
         }
     }
 
@@ -310,6 +323,7 @@ public class CarportCalculation {
 
         double totalSupportStrap = (carportLength * 2) + carportWidth;
         supportingStrapLength = totalSupportStrap;
+        supportStrapType = 25;
     }
 
     /**
@@ -329,8 +343,9 @@ public class CarportCalculation {
      * @param raftLength the calculated raftlength which matches the length of the roof stern.
      */
     private void calcSternBoardLength(double raftLength) {
+        sternBoardType = 30;
         double sternBoardsLength = this.carportLength * 2;
-        this.sternBoardLength = sternBoardLength;
+        this.sternBoardLength = sternBoardsLength;
     }
 
     /**
@@ -370,6 +385,8 @@ public class CarportCalculation {
      * @param calcRaftLength
      */
     private void calcRoofLaths(double calcRaftLength) {
+        roofLathType = 27;
+
         int bottomLathSpan = this.bottomLathSpan;
         int bottomLaths = this.bottomLaths;
         double topLathSpan = topLathGap;
@@ -478,7 +495,7 @@ public class CarportCalculation {
         return supportingStrapLength;
     }
 
-    public int getSternBoardLength() {
+    public double getSternBoardLength() {
         return sternBoardLength;
     }
 
@@ -554,7 +571,7 @@ public class CarportCalculation {
         return roofCladType;
     }
 
-    public int getSternBoardType() {
+    public double getSternBoardType() {
         return sternBoardType;
     }
 

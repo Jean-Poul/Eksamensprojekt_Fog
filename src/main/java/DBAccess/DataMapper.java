@@ -1,7 +1,9 @@
 package DBAccess;
 
 import FunctionLayer.*;
+import com.mysql.cj.protocol.Resultset;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,6 +70,8 @@ public class DataMapper {
     //##############################
     //2. Create user quote queries
     //##############################
+
+
 
     /**
      *
@@ -186,6 +190,33 @@ public class DataMapper {
             throw new SQLException( ex.getMessage() );
         }
     }
+
+    public static List<Item> getItemList() throws SQLException {
+        List<Item> itemList = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            con = Connector.connection();
+            String SQL = "SELECT * FROM item_list";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int item_list_id = rs.getInt("item_list_id");
+                String material_type = rs.getString("material_type");
+                String material = rs.getString("material");
+                String description = rs.getString("description");
+                int quantity = rs.getInt("quantity");
+                String unit = rs.getString("unit");
+                double price_per_unit = rs.getDouble("price_per_unit");
+                Item item = new Item(item_list_id, material_type, material, description, quantity, unit, price_per_unit);
+                itemList.add(item);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return itemList;
+    }
+
+
 
     /**
      *
