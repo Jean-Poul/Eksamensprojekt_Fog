@@ -15,7 +15,11 @@ import java.util.List;
 public class AdminRejectQuote extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        //Initializing session variable with current session
         HttpSession session = request.getSession();
+
+        //Initializing Lists with user proposition object
+
 
         String quoteID = request.getParameter("quoteID");
 

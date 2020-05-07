@@ -22,7 +22,7 @@
                         <p>Pris af solgte varer: <b>request på samlet værdi på solgte varer fra DB</b></p>
                     </div>
                     <div class="col border-dark rounded shadow px-3 py-3">
-                        <p>Brugernavn: <b>${sessionScope.email}</b> <b>${sessionScope.user}</b></p>
+                        <p>Brugernavn: <b>${sessionScope.email}</b></p>
                     </div>
                 </div>
             </div>
@@ -51,8 +51,8 @@
                         <th scope="col">Telefon:</th>
                         <th scope="col">Email:</th>
                         <th scope="col">Bemærkning:</th>
-                        <th scope="col">&nbsp;</th>
-                        <th scope="col">&nbsp;</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,15 +73,17 @@
                                     <input type="hidden" name="viewID" value="${view.user_proposition_id}">
                                     <input type="submit" class="btn text-white px-0 py-0" value="Åben">
                                 </form>
+                                <!-- End user overview button -->
                             </td>
                             <td>
+                                <!-- Delete user proposition -->
                                 <form class="btn btn-dark" name="deleteQuote" action="FrontController"
                                       method="post">
                                     <input type="hidden" name="target" value="adminRejectQuote">
                                     <input type="hidden" name="quoteID" value="${view.user_proposition_id}">
                                     <input type="submit" class="btn text-white px-0 py-0" value="Fjern">
                                 </form>
-                                <!-- End user overview button -->
+                                <!-- End delete user proposition button -->
                             </td>
                         </tr>
                     </c:forEach>
