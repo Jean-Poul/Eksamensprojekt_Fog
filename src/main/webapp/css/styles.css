@@ -28,14 +28,6 @@ header {
 /* Navigation */
 nav {
     background-image: linear-gradient(-90deg, #1d5e9a, #030343 );
-    /*
-    background: rgba(3,3,67,1);
-    background: -moz-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
-    background: -webkit-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
-    background: -o-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
-    background: -ms-linear-gradient(left, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
-    background: linear-gradient(to right, rgba(3,3,67,1) 0%, rgba(29,94,154,1) 19%, rgba(29,94,154,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#030343', endColorstr='#1d5e9a', GradientType=1 );*/
     padding: 0 !important;
     overflow: visible !important;
 }
@@ -59,7 +51,6 @@ nav a:hover {
 
 .logo {
     float: left;
-    /*position: absolute;*/
     border: none !important;
     margin-top: -50px;
 /* On screens that are 600px or less, set the background color to olive */
@@ -77,19 +68,6 @@ nav a:hover {
         float: left !important;
     }
 }
-
-.logo :hover {
-    /*background: none !important;
-    border: none !important;*/
-}
-/*
-.logoBackground {
-    background: #033F63;
-    position: absolute;
-    height: 136px;
-    width: 136px;
-    margin-left: 1em;
-}*/
 
 /* Table */
 .tabel-nav {

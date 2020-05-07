@@ -18,21 +18,24 @@ public class QuoteView extends Command {
         //Initializing session variable with current session
         HttpSession session = request.getSession();
 
-        //Initializing Lists with user proposition object
+        //Initializing Lists with UserProposition object
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
-        //Singletons to initialize an instance of UserProposition
+        //Getting parameter for viewing a customer quote on a specific id
+        String viewID = request.getParameter("viewID");
+
+        //Singletons for initializing an instance of UserProposition
         //if List is empty
         if ( userProposition == null ) {
-            String viewID = request.getParameter("viewID");
             userProposition = LogicFacade.getUserProposition(Integer.parseInt(viewID));
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
 
-        //Attributes to grab on jsp site
+        //Attributes to use on jsp site
         request.setAttribute("userproposition", userProposition);
 
+        //Return value for FrontController
         return "quoteview";
     }
 }

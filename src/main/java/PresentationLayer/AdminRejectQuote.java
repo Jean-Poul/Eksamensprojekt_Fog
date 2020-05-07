@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import FunctionLayer.CarportWidth;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.UserProposition;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- *
+ * AdminRejectQuote will delete a customer quote using a proposition id
  */
 public class AdminRejectQuote extends Command {
     @Override
@@ -18,16 +19,27 @@ public class AdminRejectQuote extends Command {
         //Initializing session variable with current session
         HttpSession session = request.getSession();
 
-        //Initializing Lists with user proposition object
+        //Initializing Lists with user proposition object & getting the parameter quoteID
+        List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
-
+        //Getting parameter for deleting a quote on a specific id
         String quoteID = request.getParameter("quoteID");
 
+        //Deleting a quote with quoteID
         LogicFacade.deleteQuote(Integer.parseInt(quoteID));
 
-        List<UserProposition> userProposition = LogicFacade.getAllUserPropositions();
+        //Singleton for initializing an instance of UserProposition
+        //if List is empty
+        if ( userProposition == null ) {
+            userProposition = LogicFacade.getAllUserPropositions();
+        } else {
+            userProposition = (List<UserProposition>) session.getAttribute("userProposition");
+        }
+
+        //Attributes to use on jsp site
         request.setAttribute("userpropositions", userProposition);
 
+        //Return value for FrontController
         return "adminpage";
     }
 }

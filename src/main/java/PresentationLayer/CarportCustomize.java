@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * CarportCustomize is used to get values from the database and populate select option on carportcustomize.jsp
+ */
 public class CarportCustomize extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws SQLException {
@@ -25,7 +28,8 @@ public class CarportCustomize extends Command {
         List<ShedWidth> shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
         List<ShedLength> shedLength = (List<ShedLength>) session.getAttribute("shedLength");
 
-        //Singletons for List to fill the select options
+        //Singletons for initializing instances of CarportWidth, CarportLength, RoofFlat, RoofRaised, RoofDegree, ShedWidth, ShedLength
+        //if List is empty
         if ( carportWidth == null ) {
             carportWidth = LogicFacade.getCarportWidth();
         } else {
@@ -71,7 +75,7 @@ public class CarportCustomize extends Command {
         }
 
 
-        //Attributes to grab on jsp site
+        //Attributes to use on jsp site
         request.setAttribute("carportwidth", carportWidth);
         request.setAttribute("carportlength", carportLength);
 
