@@ -19,7 +19,7 @@ public class midlertidigTest extends Command{
         CarportCalculation c = new CarportCalculation(1);
 
 
-        //PriceCalculator priceCalc = new PriceCalculator(); Comming soon
+        PriceCalculator priceCalc = new PriceCalculator(c);
 
         return "index";
     }

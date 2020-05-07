@@ -230,5 +230,8 @@ public class LogicFacade {
         return DataMapper.getStandardDimensions();
     }
 
+    public static List<Item> getItemList() throws SQLException {
+        return DataMapper.getItemList();
+    }
 
 }

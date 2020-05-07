@@ -29,7 +29,6 @@ public class CarportCalculation {
     String beamDimensionHeavy;
     String beamDimensionLight;
 
-
     //  ITEM TYPES GETTING ASSIGNED WITH CORRESPONDING ARTICLE NO. FROM DB (ASSIGMENT SHOULD BE DONE IN EACH METHOD)
     private int raftType;
     private int shedWallLathType;

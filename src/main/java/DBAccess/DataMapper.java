@@ -216,8 +216,6 @@ public class DataMapper {
         return itemList;
     }
 
-
-
     /**
      *
      * @param userId
