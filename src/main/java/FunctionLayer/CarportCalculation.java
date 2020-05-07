@@ -164,6 +164,7 @@ public class CarportCalculation {
         calcRoofCladdingArea(carportLength, raftLength, roofTileLength, roofTileWidth, roofTrapezLength, roofTrapezWidth, customerRoofAngle);
         calcNoOfBeamsAndDim(shedLength);
         calculateSupportingStrap(carportWidth, carportLength);
+        calcSternBoardLength(carportLength);
 
         //Test for console
         System.out.println("*****************************************");
@@ -180,6 +181,7 @@ public class CarportCalculation {
         System.out.println("Antal søjler " + noOfBeams);
         System.out.println("Søjle dimension: " + beamDimension);
         System.out.println("Sternbrædder totallængde: " + sternBoardLength);
+        System.out.println("Rem længde: " + supportingStrapLength);
 
         System.out.println("*****************************************");
         System.out.println("\t\t SKUR \t\t");
@@ -205,6 +207,7 @@ public class CarportCalculation {
         System.out.println("Taglægte længde: " + carportLength + " cm");
         System.out.println("Lægteafstand: " + df.format(lathSpan) + " cm");
         System.out.println("Antal " + roofCladdingType + " " + totalNumberOfRoofTiles);
+        System.out.println("\n");
     }
 
     /**
@@ -339,11 +342,11 @@ public class CarportCalculation {
     /**
      * Calculates the total length of stern boards
      *
-     * @param raftLength the calculated raftlength which matches the length of the roof stern.
+     * @param carportLength the calculated raftlength which matches the length of the roof stern.
      */
-    private void calcSternBoardLength(double raftLength) {
+    private void calcSternBoardLength(int carportLength) {
         sternBoardType = 30;
-        double sternBoardsLength = this.carportLength * 2;
+        double sternBoardsLength = carportLength * 2;
         this.sternBoardLength = sternBoardsLength;
     }
 
