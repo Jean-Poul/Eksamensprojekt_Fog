@@ -13,6 +13,10 @@ public class Item {
     private String unit;
     private double pricePrUnit;
 
+    public Item(){
+
+    }
+
     public Item(int itemListID, String materialType, String material, String description, int quantity, String unit, double pricePrUnit){
 
         this.itemListID = itemListID;

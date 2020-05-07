@@ -3,6 +3,7 @@ package FunctionLayer;
 import sun.rmi.runtime.Log;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +15,15 @@ import java.util.List;
 
 public class PriceCalculator {
 
-    LogicFacade log = new LogicFacade();
+    //Formats decimal numbers to two decimals.
+    DecimalFormat df = new DecimalFormat("#.##");
 
+    LogicFacade log = new LogicFacade();
+    Item item = new Item();
 
     //  RAFT CALCULATIONS (Qty & Length [cm])
     private double totalRaftLength; //Remember vertical and horizontal rafts!
+    private double totalRaftPrice;
 
     //  SHED CALCULATIONS [cm]
     private double totalShedWallLathLength;
@@ -36,9 +41,10 @@ public class PriceCalculator {
 
     public PriceCalculator(CarportCalculation cpCalc) throws SQLException {
 
-
         //Rafters
-        this.totalRaftLength = cpCalc.getRaftLength() * cpCalc.getNoOfRafts();
+        this.totalRaftLength = (cpCalc.getRaftLength()/100) * cpCalc.getNoOfRafts();
+        this.totalRaftPrice = itemSearch(cpCalc.getRaftType()).getPricePrUnit() * totalRaftLength;
+        System.out.println("Samlet pris for tagspær: " + df.format(totalRaftPrice));
 
         //Shed - NOTE THAT DOOR IS NOT SUBTRACTED FROM SHED CLADDING
         this.totalShedWallLathLength = ((cpCalc.getShedLength() + cpCalc.getShedWidth() * 2) * cpCalc.getShedWallLaths());
@@ -58,12 +64,15 @@ public class PriceCalculator {
 
     }
 
-    public void itemSearch(int itemID) throws SQLException {
+    public Item itemSearch(int itemID) throws SQLException {
 
-        int listSize = log.getItemList().size();
+        for(int i = 0; i < log.getItemList().size(); i++){
 
-
-
+            if(itemID == log.getItemList().get(i).getItemListID()){
+                this.item = log.getItemList().get(i);
+            }
+        }
+        return item;
     }
 
 
