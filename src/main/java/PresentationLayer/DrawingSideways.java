@@ -10,7 +10,7 @@ public class DrawingSideways extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        SvgSideways svgSideways = new SvgSideways(0.0, 0.0, 1000.0,1000.0,"0,0,1000,1000");
+        SvgSideways svgSideways = new SvgSideways();
 
 
         //ROOF

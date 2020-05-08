@@ -9,7 +9,7 @@ public class Drawing extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
-        Svg svg = new Svg(0, 0, 1000,1000,"0,0,1000,1000");
+        Svg svg = new Svg();
 
         svg.addCarport();
 

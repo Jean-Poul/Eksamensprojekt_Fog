@@ -119,7 +119,7 @@ public class SvgSideways {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
             "</marker>\n" +
@@ -145,13 +145,8 @@ public class SvgSideways {
     //##########################################################
     //constructors
     //##########################################################
-    public SvgSideways(double x, double y, double width, double height, String viewbox) {
-        this.width = width;
-        this.height = height;
-        this.viewbox = viewbox;
-        this.x = x;
-        this.y = y;
-        svgSideways.append(String.format(headerTemplate, x, y, height, width, viewbox));
+    public SvgSideways() {
+        svgSideways.append(String.format(headerTemplate));
     }
 
     public SvgSideways(double x1, double y1, double x2, double y2){
@@ -410,6 +405,7 @@ public class SvgSideways {
         res = res.replace("translate(100.100)","translate(100,100)");
         res = res.replace("M0.0 L12.6 L0.12 L0.0","M0,0 L12,6 L0,12 L0,0");
         res = res.replace("M0.6 L12.0 L12.12 L0.6","M0,6 L12,0 L12,12 L0,6");
+        res = res.replace("0.0.600.600","0,0,600,600");
         //String res = svgSideways.toString().replace("[^(100),(100)]+,",".");
         return res + "</svg>" ;
         //return svgSideways.toString() + "</svg>" ;
