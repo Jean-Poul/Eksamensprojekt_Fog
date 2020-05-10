@@ -93,13 +93,15 @@ public class CarportCalculation {
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
 
-    private LogicFacade log = new LogicFacade();
+    //private LogicFacade log = new LogicFacade();
 
     //Fetch standard dimensions from db (Assumptions)
-    private List<StandardDimensions> standardDimensions = log.getStandardDimensions();
+    //private List<StandardDimensions> standardDimensions = log.getStandardDimensions();
+    private List<StandardDimensions> standardDimensions = LogicFacade.getStandardDimensions();
 
     //Contains the roof slant angle and the corresponding factor to multiply with
-    private Map<Integer, Double> angleAndFactor = log.getPitchFactor();
+    //private Map<Integer, Double> angleAndFactor = log.getPitchFactor();
+    private Map<Integer, Double> angleAndFactor = LogicFacade.getPitchFactor();
 
     public CarportCalculation(int userID) throws SQLException {
 
@@ -119,11 +121,18 @@ public class CarportCalculation {
         this.beamDimensionHeavy = standardDimensions.get(0).getBeam_dimension_heavy();
         this.beamDimensionLight = standardDimensions.get(0).getBeam_dimension_light();
 
-        this.carportLength = log.getUserProposition(userID).get(0).getCarport_length();
-        this.carportWidth = log.getUserProposition(userID).get(0).getCarport_width();
-        this.customerRoofAngle = log.getUserProposition(userID).get(0).getPitch();
-        this.shedLength = log.getUserProposition(userID).get(0).getShed_length();
-        this.shedWidth = log.getUserProposition(userID).get(0).getShed_width();
+//        this.carportLength = log.getUserProposition(userID).get(0).getCarport_length();
+//        this.carportWidth = log.getUserProposition(userID).get(0).getCarport_width();
+//        this.customerRoofAngle = log.getUserProposition(userID).get(0).getPitch();
+//        this.shedLength = log.getUserProposition(userID).get(0).getShed_length();
+//        this.shedWidth = log.getUserProposition(userID).get(0).getShed_width();
+
+        this.carportLength = LogicFacade.getUserProposition(userID).get(0).getCarport_length();
+        this.carportWidth = LogicFacade.getUserProposition(userID).get(0).getCarport_width();
+        this.customerRoofAngle = LogicFacade.getUserProposition(userID).get(0).getPitch();
+        this.shedLength = LogicFacade.getUserProposition(userID).get(0).getShed_length();
+        this.shedWidth = LogicFacade.getUserProposition(userID).get(0).getShed_width();
+
 
         if (this.customerRoofAngle > 0) {
             this.raisedRoof = true;
@@ -137,6 +146,8 @@ public class CarportCalculation {
         if (roofHeavy) {
             //this.raftDistance = log.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy(); //Out of bounds!?
             //this.raftDimension = log.getBeamDimensionHeavy(raftLength).get(0).getBeamDimensionHeavy();
+//            LogicFacade.getBeamDimensionHeavy(raftLength).get(0).getBeamDimensionHeavy();
+//            LogicFacade.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy();
             raftDistance = 1.0;
             raftDimension = "45 x 195";
         } else {
