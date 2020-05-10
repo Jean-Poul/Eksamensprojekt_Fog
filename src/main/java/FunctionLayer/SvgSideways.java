@@ -33,9 +33,12 @@ public class SvgSideways {
 
     //Taghøjde
     private double roofHeigt = 90.0;
+    private int pitch = c.getCustomerRoofAngle();
     private double roofLength;
     private double roofX;
     private double roofY;
+
+
 
     //Tagtop
     private double roofRidgeHeight = 10.0;
@@ -58,7 +61,6 @@ public class SvgSideways {
 
     //Skur
     private double shedLength = c.getShedLength();
-    private double shedWidth = c.getShedWidth();
     private double shedX = carportLength-30-shedLength; //Statisk lige nu
     private double shedX2 = carportLength-30-shedLength+5;
     private double shedY = roofHeigt+15; //Statisk lige nu
@@ -72,13 +74,12 @@ public class SvgSideways {
     private double noOfLaths = (c.getNoOfLaths()/2);
     private double lathWidth = 4.5; //Statisk lige nu
     private double lathLength = c.getCarportLength();
-    private double lathSpan = c.getLathSpan();
+    //private double lathSpan = c.getLathSpan();   //overflødig pt
     private double lathX = 0;
     private double lathY = 0; //Statisk lige nu
 
     //Stolper
     private double noOfBeams = c.getNoOfBeams(); //Is this including shed beams?
-    private double beamDistance = 200 ; //Need calculation
     private double beamlength = 210;
 
     private double beamWidth = 10;
@@ -86,20 +87,19 @@ public class SvgSideways {
     private double beamY = 95.0;
 
     //Tagsten
-    private double numberOfRoofTiles;
-    private double roofTilesX1;
-    private double roofTilesX2;
-    private double roofTilesY1;
-    private double roofTilesY2;
+    private double roofTileHeight = 15.0;
+    private double roofTileWidth = 25.0;
+    private double roofTileColumns = Math.ceil(carportLength/roofTileWidth);
+    private double roofTileRows = roofHeigt/roofTileHeight;
+    private double roofTilesX1 = 5.0;
+    private double roofTilesY1 = 0.0;
+    private double roofTilesPx = roofTilesX1+(roofTileWidth/2);
+    private double roofTilesPy = roofTilesY1+10.0;
 
-    //pile
-    private double arrowLineX1;
-    private double arrowLineX2;
-    private double arrowLineY1;
-    private double arrowLineY2;
+
+
 
     private double carportHeight = (roofHeigt+beamlength+5);
-    private int carportHeightInt = (int) carportHeight;
 
     //##########################################################
     //Variables for Svg.java
@@ -113,6 +113,8 @@ public class SvgSideways {
     private double y1;
     private double x2;
     private double y2;
+    private double x3;
+    private double y3;
     private int text;
     private StringBuilder svgSideways = new StringBuilder();
 
@@ -132,7 +134,8 @@ public class SvgSideways {
     private final String rectTemplateShed = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #f58f00\" />";
     private final String rectTemplateShed2 = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #e88700\" />";
     private final String rectTemplatelaths = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #f5e400\" />";
-
+    private final String rectTemplateTile = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #742727\" />";
+    private final String rectTemplateHiddenTile = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#ffffff; fill: #ffffff\" />";
     private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
     private final String lineNoArrowTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
@@ -141,6 +144,7 @@ public class SvgSideways {
     private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d cm</text>\n";
     private final String roofTileTemplate1 = "<path d=\"M 350 350 Q 362.5 360 375 350\" style=\"stroke:#000000; fill: #ffffff\"/>";
     private final String roofTileTemplate2 = "<path d=\"M 350 370 Q 362.5 380 375 370\" style=\"stroke:#000000; fill: #ffffff\"/>";
+    private final String roofTileTemplate = "<path d=\"M 350 370 Q 362.5 380 375 370\" style=\"stroke:#000000; fill: #742727\"/>";
 
     //##########################################################
     //constructors
@@ -149,7 +153,7 @@ public class SvgSideways {
         svgSideways.append(String.format(headerTemplate));
     }
 
-    public SvgSideways(double x1, double y1, double x2, double y2){
+    /*public SvgSideways(double x1, double y1, double x2, double y2){
         this.x1 = x1;
         this.x1 = y1;
         this.x1 = x2;
@@ -162,6 +166,9 @@ public class SvgSideways {
         this.text = text;
     }
 
+*/
+
+
     //##########################################################
     //Methods for StringBuilder
     //##########################################################
@@ -169,6 +176,8 @@ public class SvgSideways {
     //Roof builder
 
     public void addRoof(){
+
+        if (pitch != 0){
 
 
         //rafters
@@ -191,7 +200,7 @@ public class SvgSideways {
         //waterboard @ windwagoo
         svgSideways.append(String.format(rectTemplateRoof, (carportX-5), (carportY+70), 2.5, 10.0));
         svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), (carportY+70), 2.5, 10.0));
-
+        }
         //fascia board  // Sternbræt
         svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
 
@@ -306,6 +315,42 @@ public class SvgSideways {
 
 
     }
+
+    public void addRooftiles(){
+
+
+        roofTilesY1=10;
+        //looper rows igennem
+        for (int iR=0; iR < roofTileRows-1; iR++) {
+
+            //tegner første colonne
+            svgSideways.append(String.format(rectTemplateTile,roofTilesX1,roofTilesY1,roofTileHeight,roofTileWidth));
+            //tegner tagsten i x-aksens retning
+            for (int iC=0; iC < roofTileColumns-2; iC++) {
+
+                roofTilesX1=roofTilesX1+roofTileWidth;
+                svgSideways.append(String.format(rectTemplateTile,roofTilesX1,roofTilesY1,roofTileHeight,roofTileWidth));
+                }
+            roofTilesX1 = 5;
+            roofTilesY1 += roofTileHeight;
+        }
+
+        //Tegner vindskede og sternbræt igen for at forhindre overlap
+        svgSideways.append(String.format(rectTemplateHiddenTile,(carportLength+5.0),0.0,roofHeigt,25.0));
+            //Windwagoo
+            svgSideways.append(String.format(rectTemplateRoof, (carportX-5), carportY, (roofHeigt-5), 10.0));
+            svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), carportY, (roofHeigt-5), 10.0));
+            //waterboard @ windwagoo
+            svgSideways.append(String.format(rectTemplateRoof, (carportX-5), (carportY+70), 2.5, 10.0));
+            svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), (carportY+70), 2.5, 10.0));
+            //fascia board  // Sternbræt
+            svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
+
+
+    }
+
+
+
 
     //##########################################################
     //Getters/Setters/toString()
