@@ -1,9 +1,28 @@
-# Skabelon til Java webprojekter
+<img src="https://github.com/Jean-Poul/Eksamensprojekt_Fog/blob/Production/Img/FogLogo.png" height="100px" width="100px">
 
-Denne skabelon anvendes på 2. semester på datamatikeruddannelsen i Lyngby og på Bornholm. Den er baseret på et command pattern.
+<br>
 
-## Dokumentation
+# Fog Carport designer
 
-Her kan man beskrive hvad projektet består af og hvordan man kan installere det på localhost og på en produktionsserver.
+<br>
 
+####2. Semester, CPH Business Lyngby</h2>
+Web applikation udført med Java i en command-pattern skabelon.
 
+**OBS: Den nyeste version af programmet ligger på *Production* branch**
+
+<br>
+
+##### Hold E, Gruppe 666
+
+Alexander Pihl [Github](https://github.com/AlexanderPihl)
+
+Jean-Poul Wilhelm Luplau Leth-Møller [Github](https://github.com/Jean-Poul)
+
+Morten Rahbek Rasmussen [GitHub](https://github.com/Amazingh0rse)
+
+Mick Kristian Strellner Larsen [GitHub](https://github.com/MivleDK)
+
+Per Kringelbach [Github](https://github.com/cph-pk)
+
+<br>

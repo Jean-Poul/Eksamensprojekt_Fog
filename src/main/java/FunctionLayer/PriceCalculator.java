@@ -20,6 +20,8 @@ public class PriceCalculator {
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#,##0.00");
 
+    //private double cmTom;
+
     //  RAFT CALCULATIONS (Qty & Length [cm])
     private double totalRaftLength; //Remember vertical and horizontal rafts!
     private double totalRaftPrice;
