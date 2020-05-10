@@ -6,7 +6,7 @@
 
 <br>
 
-####2. Semester, CPH Business Lyngby</h2>
+#### 2. Semester, CPH Business Lyngby</h2>
 Web applikation udført med Java i en command-pattern skabelon.
 
 **OBS: Den nyeste version af programmet ligger på *Production* branch**
