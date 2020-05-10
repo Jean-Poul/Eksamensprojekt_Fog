@@ -13,7 +13,7 @@ Web applikation udført med Java i en command-pattern skabelon.
 
 <br>
 
-##### Hold E, Gruppe 666
+#### Hold E, Gruppe 666
 
 Alexander Pihl [Github](https://github.com/AlexanderPihl)
 
