@@ -79,17 +79,13 @@ public class LogicFacade {
     /**
      *
      * @param orders_id
-     * @param material_type
-     * @param material
-     * @param description
-     * @param length
+     * @param item_list_id
      * @param quantity
-     * @param unit
      * @param total_price
      * @throws LoginSampleException
      */
-    public static void createQuoteOrderline(int orders_id,String material_type,String material,String description,int length,int quantity,String unit,double total_price) throws LoginSampleException {
-        DataMapper.createQuoteOrderline(orders_id,material_type,material,description,length,quantity,unit,total_price);
+    public static void createQuoteOrderline(int orders_id,int item_list_id,int quantity,double total_price) throws LoginSampleException {
+        DataMapper.createQuoteOrderline(orders_id,item_list_id,quantity,total_price);
     }
 
     /**

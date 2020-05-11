@@ -15,8 +15,8 @@ import java.util.Map;
  *
  *  1. User
  *  2. Create user quotes
- *  3. Select option
- *  4.
+ *  3. Queries for Quote view
+ *  4. Select option
  */
 
 public class DataMapper {
@@ -70,8 +70,6 @@ public class DataMapper {
     //##############################
     //2. Create user quote queries
     //##############################
-
-
 
     /**
      *
@@ -144,34 +142,29 @@ public class DataMapper {
     /**
      *
      * @param orders_id
-     * @param material_type
-     * @param material
-     * @param description
-     * @param length
+     * @param item_list_id
      * @param quantity
-     * @param unit
      * @param total_price
      * @throws LoginSampleException
      */
-    public static void createQuoteOrderline(int orders_id, String material_type, String material, String description, int length, int quantity, String unit, double total_price) throws LoginSampleException {
+    public static void createQuoteOrderline(int orders_id, int item_list_id, int quantity, double total_price) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orderline (orders_id,material_type,material,description,length,quantity,unit,total_price) VALUES (?,?,?,?,?,?,?,?);";
+            String SQL = "INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orders_id);
-            ps.setString(2, material_type);
-            ps.setString(3, material);
-            ps.setString(4, description);
-            ps.setInt(5, length);
-            ps.setInt(6, quantity);
-            ps.setString(7, unit);
-            ps.setDouble(8, total_price);
+            ps.setInt(2, item_list_id);
+            ps.setInt(3, quantity);
+            ps.setDouble(4, total_price);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
     }
 
+    //##############################
+    //3. Queries for Quote view
+    //##############################
 
     /**
      *
@@ -309,9 +302,9 @@ public class DataMapper {
 
 
 
-    //##################
-    //3. Select option queries
-    //##################
+    //#############################
+    //4. Select option queries
+    //#############################
 
     /**
      *

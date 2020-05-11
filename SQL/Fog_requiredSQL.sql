@@ -1,9 +1,10 @@
 -- Required SQL for FogDB
 USE fogdb;
 
--- ------------------------------------------------------------------------------------------------------
--- Insert static records to tables in `users`, `measurement_units`, `roof`, `roof_pitch` and `item_list`
--- ------------------------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------------------------
+-- Insert static records to tables in `users`, `measurement_units`, `roof`, `roof_pitch`, `rafter_spacing` and `item_list`
+-- + One dummy user_proposition, orders record
+-- ------------------------------------------------------------------------------------------------------------------------
 LOCK TABLES users WRITE;
 INSERT INTO users (email,password,role) VALUES ('admin@fog.dk','1234','admin');
 UNLOCK TABLES;
@@ -128,7 +129,7 @@ INSERT INTO rafter_spacing (category,beam_dimension,beam_spacing,rafter_length) 
 UNLOCK TABLES;
 
 LOCK TABLES item_list WRITE;
-INSERT INTO item_list (material_type,material,description,quantity,unit,price_per_unit) VALUES ('Tilbehør til spær:','universal 190 mm højre','Til montering af spær på rem','1','','46.00'),
+INSERT INTO item_list (material_type,material,description,amounts,unit,price_per_unit) VALUES ('Tilbehør til spær:','universal 190 mm højre','Til montering af spær på rem','1','','46.00'),
 																							   ('Tilbehør til spær:','universal 190 mm venstre','Til montering af spær på rem','1','','46.00'),
                                                                                                ('Tilbehør til spær:','Hulplade 1,5 mm – 100 x 300 1,5.','Til samling af spær','2','','36.00'),
                                                                                                ('Tilbehør til spær:','hulbånd 1x20 mm. 10 mtr.','Til vindkryds på spær','1','','574.00'),
@@ -169,9 +170,9 @@ INSERT INTO standard_dimensions (bottom_lathspan,bottom_laths,top_lath_gap,avg_l
 UNLOCK TABLES;
 
 LOCK TABLES user_proposition WRITE;
-INSERT INTO user_proposition VALUES ('1','Hans Gummi','Gummivej 2', '3490 Kvistgård', '12116644', 'gummigeden@gmail.com','');
+INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES ('Hans Gummi','Gummivej 2', '3490 Kvistgård', '12116644', 'gummigeden@gmail.com','');
 UNLOCK TABLES;
 
 LOCK TABLES orders WRITE;
-INSERT INTO orders VALUES ('1','1','2020-05-05 18:26:00','Forespørgsel','450','510','420','300','rejst','Eternittag B6 - Teglrød','25');
+INSERT INTO orders (user_proposition_id,order_date,status,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES ('1','2020-05-05 18:26:00','Forespørgsel','450','510','420','300','rejst','Eternittag B6 - Teglrød','25');
 UNLOCK TABLES;
