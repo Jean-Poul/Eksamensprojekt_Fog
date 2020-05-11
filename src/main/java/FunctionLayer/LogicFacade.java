@@ -116,6 +116,48 @@ public class LogicFacade {
         return DataMapper.getAllUserPropositions();
     }
 
+    /**
+     *
+     * @param orderID
+     * @param status
+     * @throws LoginSampleException
+     */
+    public static void updateStatus(int orderID, String status) throws LoginSampleException {
+        DataMapper.updateStatus(orderID,status);
+    }
+
+    /**
+     *
+     * @param userID
+     * @param name
+     * @param address
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comments
+     * @throws LoginSampleException
+     */
+    public static void updateQuoteUserProposition(int userID, String name, String address, String zipcodeCity, int phone, String email, String comments) throws LoginSampleException {
+        DataMapper.updateQuoteUserProposition(userID,name,address,zipcodeCity,phone,email,comments);
+    }
+
+    /**
+     * 
+     * @param orderID
+     * @param oc_width
+     * @param oc_length
+     * @param ots_width
+     * @param ots_length
+     * @param roof_type
+     * @param roof_material
+     * @param pitch
+     * @throws LoginSampleException
+     */
+    public static void updateQuoteOrders(int orderID, int oc_width, int oc_length, int ots_width, int ots_length, String roof_type, String roof_material, int pitch) throws LoginSampleException {
+        DataMapper.updateQuoteOrders(orderID,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
+    }
+
+
     //##################
     //Select option calls
     //##################

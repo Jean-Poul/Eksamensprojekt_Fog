@@ -16,7 +16,8 @@ import java.util.Map;
  *  1. User
  *  2. Create user quotes
  *  3. Queries for Quote view
- *  4. Select option
+ *  4. Queries for Quote update
+ *  5. Select option
  */
 
 public class DataMapper {
@@ -299,11 +300,66 @@ public class DataMapper {
         return userProposition;
     }
 
+    //#############################
+    //4. Queries for Quote update
+    //#############################
 
+    public static void updateStatus(int orderID, String status) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE orders SET status = ? WHERE orders_id = ?;";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ps.setString(1, status);
+            ps.setInt(2, orderID);
+            ps.executeUpdate();
+
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
+    }
+
+    public static void updateQuoteUserProposition(int userID, String name, String address, String zipcodeCity, int phone, String email, String comments) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE user_proposition SET name = ?, address = ?, zipcodeCity = ?, phone = ?, email = ?, comments = ? WHERE user_proposition_id = ?;";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ps.setString(1, name);
+            ps.setString(2, address);
+            ps.setString(3, zipcodeCity);
+            ps.setInt(4, phone);
+            ps.setString(5, email);
+            ps.setString(6, comments);
+            ps.setInt(7, userID);
+            ps.executeUpdate();
+
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
+    }
+
+    public static void updateQuoteOrders(int orderID, int oc_width, int oc_length, int ots_width, int ots_length, String roof_type, String roof_material, int pitch) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE orders SET oc_width = ?, oc_length = ?, ots_width = ?, ots_length = ?, roof_type = ?, roof_material = ?, pitch = ? WHERE orders_id = ?;";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ps.setInt(1, oc_width);
+            ps.setInt(2, oc_length);
+            ps.setInt(3, ots_width);
+            ps.setInt(4, ots_length);
+            ps.setString(5, roof_type);
+            ps.setString(6, roof_material);
+            ps.setInt(7, pitch);
+            ps.setInt(8, orderID);
+            ps.executeUpdate();
+
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
+    }
 
 
     //#############################
-    //4. Select option queries
+    //5. Select option queries
     //#############################
 
     /**
