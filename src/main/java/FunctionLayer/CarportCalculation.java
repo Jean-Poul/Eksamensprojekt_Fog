@@ -13,7 +13,7 @@ import java.util.*;
 public class CarportCalculation {
 
     //User data (In order to reference what user ID the calculation belongs to
-    int userID;
+    int orderID;
     //int userPropositionID;
 
     //Standard dimensions - retrieved from DB (Assumptions)
@@ -103,9 +103,9 @@ public class CarportCalculation {
     //private Map<Integer, Double> angleAndFactor = log.getPitchFactor();
     private Map<Integer, Double> angleAndFactor = LogicFacade.getPitchFactor();
 
-    public CarportCalculation(int userID) throws SQLException {
+    public CarportCalculation(int orderID) throws SQLException {
 
-        this.userID = userID;
+        this.orderID = orderID;
         //this.userPropositionID = user_proposition_Id; //How do we get this (Remember to add to parameter)?
 
         //Set standard dimensions from database (Assumptions)
@@ -121,17 +121,17 @@ public class CarportCalculation {
         this.beamDimensionHeavy = standardDimensions.get(0).getBeam_dimension_heavy();
         this.beamDimensionLight = standardDimensions.get(0).getBeam_dimension_light();
 
-//        this.carportLength = log.getUserProposition(userID).get(0).getCarport_length();
-//        this.carportWidth = log.getUserProposition(userID).get(0).getCarport_width();
-//        this.customerRoofAngle = log.getUserProposition(userID).get(0).getPitch();
-//        this.shedLength = log.getUserProposition(userID).get(0).getShed_length();
-//        this.shedWidth = log.getUserProposition(userID).get(0).getShed_width();
+//        this.carportLength = log.getUserProposition(orderID).get(0).getCarport_length();
+//        this.carportWidth = log.getUserProposition(orderID).get(0).getCarport_width();
+//        this.customerRoofAngle = log.getUserProposition(orderID).get(0).getPitch();
+//        this.shedLength = log.getUserProposition(orderID).get(0).getShed_length();
+//        this.shedWidth = log.getUserProposition(orderID).get(0).getShed_width();
 
-        this.carportLength = LogicFacade.getUserProposition(userID).get(0).getCarport_length();
-        this.carportWidth = LogicFacade.getUserProposition(userID).get(0).getCarport_width();
-        this.customerRoofAngle = LogicFacade.getUserProposition(userID).get(0).getPitch();
-        this.shedLength = LogicFacade.getUserProposition(userID).get(0).getShed_length();
-        this.shedWidth = LogicFacade.getUserProposition(userID).get(0).getShed_width();
+        this.carportLength = LogicFacade.getUserProposition(orderID).get(0).getCarport_length();
+        this.carportWidth = LogicFacade.getUserProposition(orderID).get(0).getCarport_width();
+        this.customerRoofAngle = LogicFacade.getUserProposition(orderID).get(0).getPitch();
+        this.shedLength = LogicFacade.getUserProposition(orderID).get(0).getShed_length();
+        this.shedWidth = LogicFacade.getUserProposition(orderID).get(0).getShed_width();
 
 
         if (this.customerRoofAngle > 0) {

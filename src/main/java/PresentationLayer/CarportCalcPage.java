@@ -94,6 +94,8 @@ public class CarportCalcPage extends Command {
 
         // Her skal der laves beregninger og insættes i ordrerlinje?????
 
+
+
 //        CreateCalculatedQuote carportCalculation = new CreateCalculatedQuote();
 //        carportCalculation;
 
