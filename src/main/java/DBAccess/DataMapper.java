@@ -203,10 +203,10 @@ public class DataMapper {
                 String material_type = rs.getString("material_type");
                 String material = rs.getString("material");
                 String description = rs.getString("description");
-                int quantity = rs.getInt("quantity");
+                int amounts = rs.getInt("amounts");
                 String unit = rs.getString("unit");
                 double price_per_unit = rs.getDouble("price_per_unit");
-                Item item = new Item(item_list_id, material_type, material, description, quantity, unit, price_per_unit);
+                Item item = new Item(item_list_id, material_type, material, description, amounts, unit, price_per_unit);
                 itemList.add(item);
             }
         } catch (ClassNotFoundException e) {
