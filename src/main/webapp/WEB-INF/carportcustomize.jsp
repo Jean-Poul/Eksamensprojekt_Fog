@@ -164,6 +164,7 @@
 <!-- End footer -->
 
 <!-- script for raised/flat roof + validate -->
+<!--
 <script>
     $(document).ready(function () {
         $('#RoofOption').on('change', function () {
@@ -188,8 +189,9 @@
         });
     });
 </script>
-
+-->
 <!-- validation of shed option -->
+<!--
 <script>
     $(document).ready(function () {
         $("#ShedWidth,#ShedLength").on('change', function () {
@@ -211,8 +213,9 @@
         });
     });
 </script>
-
+-->
 <!-- validate shed width option, so shed width is lower than carport width -->
+<!--
 <script>
     $(document).ready(function () {
         $("#CarportWidth").on('change', function () {
@@ -251,8 +254,9 @@
         });
     });
 </script>
-
+-->
 <!-- validate shed length option, so shed length is lower than carport length -->
+<!--
 <script>
     $(document).ready(function () {
         $("#CarportLength").on('change', function () {
@@ -291,8 +295,9 @@
         });
     });
 </script>
-
+-->
 <!-- user-validation -->
+<!--
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
@@ -313,3 +318,4 @@
         }, false);
     })();
 </script>
+-->
