@@ -54,7 +54,7 @@ public class SvgFront {
     private double beamY = 35;
 
     private double roofHeight = c.getCalcRoofHeight();
-    private double roofAngle = c.getCalcAngle();
+    private double roofAngle = c.getCustomerRoofAngle();
     private double roofRaftLath = c.getRaftLength();
 
     private double arrowLineX1 = 0;
@@ -89,10 +89,13 @@ public class SvgFront {
     private final String beamTemplate = "<rect transform=\"translate(100,200)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
     private final String lineTemplate = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
+    private final String lineNoArrowTemplate = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; />";
     private final String raftTemplate = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke-width:10; stroke:#000000; stroke-linecap:round\"/>";
     private final String lowerTextTemplate = "<text transform=\"translate(100,200)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %f cm</text>\n";
+    private final String lowerAngelTextTemplate = "<text transform=\"translate(100,200)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d °</text>";
+    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %d cm</text>\n";
     private final String pathTemplate = "<text transform=\"translate(100,200)\" <path d=\"M50,50 L100,50 L100,100\" style=\"stroke: #006666; fill:none;\"/>";
+    private final String circleTemplate = "<circle cx=\"40\" cy=\"40\" r=\"24\"style=\"stroke: #ffffff; fill: #000000\"/>";
 
     //##########################################################
     //constructors
@@ -122,10 +125,19 @@ public class SvgFront {
         svgFront.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportHeight)));
         svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 210));
 
-        // arrow
-        svgFront.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportHeight)));
-        svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 210));
+        //Leftside raft arrow
+        svgFront.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftLength/2, (-roofHeight)-30));
+        svgFront.append(String.format(lowerTextTemplate, raftLength/4, -roofHeight, text= (int) raftLength/2));
 
+        //Roof arrow
+        svgFront.append(String.format(lineTemplate, (carportWidth /2)+5, (arrowLineY1=0)-roofHeight, (carportWidth /2)+5, arrowLineY2=0.0));
+        svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth/2), y=-(roofHeight-30) ,text= (int)roofAngle));
+        svgFront.append(String.format(lowerTextTemplate, carportWidth/2, y=-(roofHeight/2) ,text= (int)roofHeight));
+
+        //svgFront.append(String.format(lineNoArrowTemplate, (carportWidth /2)+5, arrowLineY1=0-roofHeight, (carportWidth /2)+5, 0));
+
+        //Circle
+        //svgFront.append(String.format(circleTemplate));
     }
 
 
