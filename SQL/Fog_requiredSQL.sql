@@ -160,8 +160,8 @@ INSERT INTO item_list (material_type,material,description,amounts,unit,price_per
                                                                                                ('Lægter, stern og løsholter','45x95','45x95 mm ubh. Løsholte','1','m','17.95'),
                                                                                                ('Lægter, stern og løsholter','25x200','25x200 Bræt til stern trykimpr.','1','m','49.95'),
                                                                                                ('Lægter, stern og løsholter','19x100','19x100 Beklædning af skur','1','m','9.95'),
-                                                                                               ('Tag','20,4 x 23,6','20,4 x 23,6 tagsten "Gammel dansk"','1','stk','17.95'),
-                                                                                               ('Tag','109 x 240','109 x 240 Trapez tagplade','1','stk','84.95');
+                                                                                               ('Tag','20,4 x 23,6','20,4 x 23,6 tagsten','1','stk','17.95'),
+                                                                                               ('Tag','109 x 240','109 x 240 tagplade','1','stk','84.95');
 
 UNLOCK TABLES;
 
@@ -175,4 +175,15 @@ UNLOCK TABLES;
 
 LOCK TABLES orders WRITE;
 INSERT INTO orders (user_proposition_id,order_date,status,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES ('1','2020-05-05 18:26:00','Forespørgsel','450','510','420','300','rejst','Eternittag B6 - Teglrød','25');
+UNLOCK TABLES;
+
+LOCK TABLES orderline WRITE;
+INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES('1','21','6','2126'),
+																		  ('1','29','12','3101.76'),
+                                                                          ('1','31','152','3781'),
+                                                                          ('1','26','18','2088.45'),
+                                                                          ('1','25','14.7','660.76'),
+                                                                          ('1','32','450','8077.50'),
+                                                                          ('1','30','10.2','509.49'),
+                                                                          ('1','23','8','3180');
 UNLOCK TABLES;

@@ -148,14 +148,14 @@ public class DataMapper {
      * @param total_price
      * @throws LoginSampleException
      */
-    public static void createQuoteOrderline(int orders_id, int item_list_id, int quantity, double total_price) throws LoginSampleException {
+    public static void createQuoteOrderline(int orders_id, int item_list_id, double quantity, double total_price) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orders_id);
             ps.setInt(2, item_list_id);
-            ps.setInt(3, quantity);
+            ps.setDouble(3, quantity);
             ps.setDouble(4, total_price);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -646,4 +646,38 @@ public class DataMapper {
         return standardDimensions;
     }
 
+    /**
+     *
+     * @param orderID
+     * @return List of calculated items for order
+     * @throws SQLException
+     */
+    public static List<ItemList> getAllItemList(int orderID) throws SQLException {
+        List<ItemList> orderItemList = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            con = Connector.connection();
+            String SQL = "SELECT o.orders_id,material_type,quantity,unit,description,total_price FROM user_proposition u\n" +
+                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id\n" +
+                    "INNER JOIN orderline ol on o.orders_id = ol.orders_id\n" +
+                    "INNER JOIN item_list il on ol.item_list_id = il.item_list_id\n" +
+                    "WHERE ol.orders_id = ?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                int orders_id = rs.getInt("orders_id");
+                String material_type = rs.getString("material_type");
+                double quantity = rs.getDouble("quantity");
+                String unit = rs.getString("unit");
+                String description = rs.getString("description");
+                double total_price = rs.getDouble("total_price");
+                ItemList itemList = new ItemList(orders_id,material_type,quantity,unit,description,total_price);
+                orderItemList.add(itemList);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new SQLException(ex.getMessage());
+        }
+        return orderItemList;
+    }
 }

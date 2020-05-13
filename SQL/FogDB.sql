@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`orderline` (
   `orderline_id` INT(11) NOT NULL AUTO_INCREMENT,
   `orders_id` INT(11) NOT NULL,
   `item_list_id` INT(11) NOT NULL,
-  `quantity` INT(11) NOT NULL,
+  `quantity` DECIMAL(10,2) NOT NULL,
   `total_price` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`orderline_id`),
   INDEX `fk_orderline_orders_idx` (`orders_id` ASC) VISIBLE,

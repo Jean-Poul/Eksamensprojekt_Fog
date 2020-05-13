@@ -84,7 +84,7 @@ public class LogicFacade {
      * @param total_price
      * @throws LoginSampleException
      */
-    public static void createQuoteOrderline(int orders_id,int item_list_id,int quantity,double total_price) throws LoginSampleException {
+    public static void createQuoteOrderline(int orders_id,int item_list_id,double quantity,double total_price) throws LoginSampleException {
         DataMapper.createQuoteOrderline(orders_id,item_list_id,quantity,total_price);
     }
 
@@ -114,6 +114,16 @@ public class LogicFacade {
      */
     public static List<UserProposition> getAllUserPropositions() throws SQLException {
         return DataMapper.getAllUserPropositions();
+    }
+
+    /**
+     *
+     * @param orderID
+     * @return List of calculated items for order
+     * @throws SQLException
+     */
+    public static List<ItemList> getAllItemList(int orderID) throws SQLException {
+        return DataMapper.getAllItemList(orderID);
     }
 
     /**
@@ -158,9 +168,9 @@ public class LogicFacade {
     }
 
 
-    //##################
+    //####################
     //Select option calls
-    //##################
+    //####################
 
     /**
      *

@@ -103,6 +103,17 @@ SELECT * FROM user_proposition u
 INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id
 WHERE u.user_proposition_id = '1';
 
+-- ---------------------------------
+-- query for item list in one order
+-- ---------------------------------
+SELECT o.orders_id,material_type,quantity,unit,description,total_price FROM user_proposition u
+INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id
+INNER JOIN orderline ol on o.orders_id = ol.orders_id
+INNER JOIN item_list il on ol.item_list_id = il.item_list_id
+WHERE ol.orders_id = '1';
+
+
+
 -- --------------------------
 -- Update status in orders
 -- --------------------------
