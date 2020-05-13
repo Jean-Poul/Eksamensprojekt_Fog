@@ -201,8 +201,7 @@ public class SvgSideways {
         svgSideways.append(String.format(rectTemplateRoof, (carportX-5), (carportY+70), 2.5, 10.0));
         svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), (carportY+70), 2.5, 10.0));
         }
-        //fascia board  // Sternbræt
-        svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
+
 
     }
 
@@ -246,6 +245,8 @@ public class SvgSideways {
 
 
         }
+        //fascia board  // Sternbræt
+        svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
     }
 
     public void addLines(){

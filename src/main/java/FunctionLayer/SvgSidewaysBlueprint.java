@@ -201,8 +201,7 @@ public class SvgSidewaysBlueprint {
         svgSidewaysBlueprint.append(String.format(rectTemplateRoof, (carportX-5), (carportY+70), 2.5, 10.0));
         svgSidewaysBlueprint.append(String.format(rectTemplateRoof, (carportLength-5), (carportY+70), 2.5, 10.0));
         }
-        //fascia board  // Sternbræt
-        svgSidewaysBlueprint.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
+
 
     }
 
@@ -246,6 +245,8 @@ public class SvgSidewaysBlueprint {
 
 
         }
+        //fascia board  // Sternbræt
+        svgSidewaysBlueprint.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
     }
 
     public void addLines(){
@@ -263,8 +264,11 @@ public class SvgSidewaysBlueprint {
 
         //Arrows & measurements
         //Height
-        svgSidewaysBlueprint.append(String.format(lineTemplate, (carportX-70),0.0,(carportX-70),carportHeight));
-        svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportX-73), y=(carportHeight/2), text= (int) carportHeight));
+        if (pitch != 0){
+            svgSidewaysBlueprint.append(String.format(lineTemplate, (carportX-70),0.0,(carportX-70),carportHeight));
+            svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportX-73), y=(carportHeight/2), text= (int) carportHeight));
+        }
+
 
         svgSidewaysBlueprint.append(String.format(lineTemplate,(carportX-35), (roofHeigt+5), (carportX-35),carportHeight));
         svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportX-38), y=(roofHeigt+(beamlength/2)), text= (int) beamlength));
