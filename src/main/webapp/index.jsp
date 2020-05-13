@@ -46,6 +46,11 @@
                             <input class="btn btn-info" type="submit" value="test drawing">
                         </form>
                         <br>
+                        <form name="testDrawingFront" action="FrontController" method="POST">
+                            <input type="hidden" name="target" value="drawingFront">
+                            <input class="btn btn-info" type="submit" value="test drawingFront">
+                        </form>
+                        <br>
                         <form name="testDrawingSideways" action="FrontController" method="POST">
                             <input type="hidden" name="target" value="drawingSideways">
                             <input class="btn btn-info" type="submit" value="test drawingSideways">
@@ -98,7 +103,7 @@
                                 </a>
                             </div>
                         </div>
-                            <!-- End carousel -->
+                        <!-- End carousel -->
                     </section>
                     <!-- End section -->
                 </div>
