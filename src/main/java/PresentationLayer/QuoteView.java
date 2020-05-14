@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -33,6 +34,8 @@ public class QuoteView extends Command {
         List<ShedWidth> shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
         List<ShedLength> shedLength = (List<ShedLength>) session.getAttribute("shedLength");
 
+        //
+        String totalPrice = request.getParameter("price");
 
         // Getting parameter for viewing a customer quote on a specific id
         String viewID = request.getParameter("viewID");
@@ -93,6 +96,18 @@ public class QuoteView extends Command {
             shedLength = (List<ShedLength>) session.getAttribute("shedLength");
         }
 
+        if (totalPrice == null){
+            CarportCalculation cp = new CarportCalculation(Integer.parseInt(viewID));
+            double price = 0;
+            try {
+                price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            totalPrice = String.valueOf(price);
+        }
 
         // Attributes to use on jsp site
         request.setAttribute("userproposition", userProposition);
@@ -106,6 +121,9 @@ public class QuoteView extends Command {
 
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
+
+
+        request.setAttribute("totalPrice", totalPrice);
 
 
         // Return value for FrontController

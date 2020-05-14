@@ -2,7 +2,6 @@ package FunctionLayer;
 
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 /**
  * Price calculator calculates the total price for the entire carport.
@@ -20,7 +19,10 @@ public class PriceCalculator {
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#,##0.00");
 
-    //private double cmTom;
+    //Danish tax
+    double addTax = 1.25;
+    double subtractTax = 1.20;
+    double orderCoverage;
 
     //  RAFT CALCULATIONS (Qty & Length [cm])
     private double totalRaftLength; //Remember vertical and horizontal rafts!
@@ -48,9 +50,15 @@ public class PriceCalculator {
     private double totalBeamPrice;
 
     //Total price
-    private double totalCarportPrice;
+    private double totalCarportCostNoTax;
+    private double totalCarportPriceCostWithTax;
+    private double totalCarportPriceCoverage;
 
-    public PriceCalculator(CarportCalculation cpCalc) throws SQLException {
+
+
+    public PriceCalculator(CarportCalculation cpCalc) throws SQLException, LoginSampleException, ClassNotFoundException {
+
+        this.orderCoverage = LogicFacade.getOrderCoverage(cpCalc.orderID);
 
         //Rafters
         this.totalRaftLength = ((cpCalc.getRaftLength() + cpCalc.getHorizontalRaftLength() + cpCalc.getVerticalRaftLength()) / 100) * cpCalc.getNoOfRafts();
@@ -101,7 +109,9 @@ public class PriceCalculator {
                 totalSternBoardPrice, totalBeamPrice);
 
         System.out.println("\n========================================");
-        System.out.println("Den samlede kostpris er: " + df.format(totalCarportPrice) + " kr");
+        System.out.println("Samlet kostpris u. moms: " + df.format(totalCarportCostNoTax) + " kr");
+        System.out.println("Samlet kostpris m. moms: " + df.format(totalCarportPriceCostWithTax) + " kr");
+        System.out.println("Salgspris med " + orderCoverage +"% dækning " + df.format(totalCarportPriceCoverage) + " kr");
         System.out.println("========================================");
 
     }
@@ -121,7 +131,9 @@ public class PriceCalculator {
                                             double roofLath, double supportStrap, double roofClad,
                                             double sternBoard, double beam) {
 
-        totalCarportPrice = raft + shedCladBoard + shedLath + roofLath + supportStrap + roofClad + sternBoard + beam;
+        totalCarportCostNoTax = raft + shedCladBoard + shedLath + roofLath + supportStrap + roofClad + sternBoard + beam;
+        totalCarportPriceCostWithTax = totalCarportCostNoTax * addTax;
+        totalCarportPriceCoverage = totalCarportPriceCostWithTax * ((this.orderCoverage / 100) + 1);
 
     }
 
@@ -132,7 +144,7 @@ public class PriceCalculator {
      * @return
      * @throws SQLException
      */
-    private Item itemSearch(int itemID) throws SQLException {
+    private Item itemSearch(int itemID) throws SQLException, LoginSampleException {
 
         for (int i = 0; i < log.getItemList().size(); i++) {
 
@@ -141,5 +153,85 @@ public class PriceCalculator {
             }
         }
         return item;
+    }
+
+    public double getTotalRaftLength() {
+        return totalRaftLength;
+    }
+
+    public double getTotalRaftPrice() {
+        return totalRaftPrice;
+    }
+
+    public double getTotalShedWallLathLength() {
+        return totalShedWallLathLength;
+    }
+
+    public double getTotalShedCladdingBoardLength() {
+        return totalShedCladdingBoardLength;
+    }
+
+    public double getTotalShedCladdingBoardPrice() {
+        return totalShedCladdingBoardPrice;
+    }
+
+    public double getTotalShedWallLathPrice() {
+        return totalShedWallLathPrice;
+    }
+
+    public double getTotalLathsLength() {
+        return totalLathsLength;
+    }
+
+    public double getTotalSupportingStrapLength() {
+        return totalSupportingStrapLength;
+    }
+
+    public int getTotalNumberOfRoofTiles() {
+        return totalNumberOfRoofTiles;
+    }
+
+    public int getTotalNumberOfRoofTrapezPlates() {
+        return totalNumberOfRoofTrapezPlates;
+    }
+
+    public double getTotalRoofLathPrice() {
+        return totalRoofLathPrice;
+    }
+
+    public double getTotalSupportingStrapPrice() {
+        return totalSupportingStrapPrice;
+    }
+
+    public double getTotalRoofCladPrice() {
+        return totalRoofCladPrice;
+    }
+
+    public double getTotalSternBoardLength() {
+        return totalSternBoardLength;
+    }
+
+    public double getTotalNoOfBeamLength() {
+        return totalNoOfBeamLength;
+    }
+
+    public double getTotalSternBoardPrice() {
+        return totalSternBoardPrice;
+    }
+
+    public double getTotalBeamPrice() {
+        return totalBeamPrice;
+    }
+
+    public double getTotalCarportCostNoTax() {
+        return totalCarportCostNoTax;
+    }
+
+    public double getTotalCarportPriceCostWithTax() {
+        return totalCarportPriceCostWithTax;
+    }
+
+    public double getTotalCarportPriceCoverage() {
+        return totalCarportPriceCoverage;
     }
 }

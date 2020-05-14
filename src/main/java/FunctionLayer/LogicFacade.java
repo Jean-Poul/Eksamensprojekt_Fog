@@ -177,6 +177,9 @@ public class LogicFacade {
         DataMapper.updateQuantityOrderline(orderlineID,quantity);
     }
 
+    public static int getOrderCoverage(int orderID) throws SQLException, ClassNotFoundException, LoginSampleException {
+        return DataMapper.getOrderCoverage(orderID);
+    }
 
     //######################
     // Select option calls #

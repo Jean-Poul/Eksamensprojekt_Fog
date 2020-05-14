@@ -304,8 +304,7 @@
                                     <input type="hidden" name="target" value="">
                                     <div class="form-group">
                                         <label for="quotePrice">Pris</label>
-                                        <input class="form-control" id="quotePrice" type="text" name="price"
-                                               value="">
+                                        <input class="form-control" id="quotePrice" type="text" name="totalPrice" value="${requestScope.totalPrice}">
                                     </div>
                                     <!-- Update button -->
                                     <input class="btn btn-dark btn-block" type="submit" value="Opdater"

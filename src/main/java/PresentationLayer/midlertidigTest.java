@@ -18,7 +18,11 @@ public class midlertidigTest extends Command{
         //Constructor SHOULD receive specific orderID instead of userID
         CarportCalculation c = new CarportCalculation(1);
 
-        PriceCalculator priceCalc = new PriceCalculator(c);
+        try {
+            PriceCalculator priceCalc = new PriceCalculator(c);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         return "index";
     }
