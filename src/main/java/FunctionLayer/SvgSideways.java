@@ -254,17 +254,6 @@ public class SvgSideways {
         //Horizontal line
         svgSideways.append(String.format(lineNoArrowTemplate, carportX-15,(carportHeight),carportLength+15,(carportHeight)));
 
-        //Diagonal line left
-        svgSideways.append(String.format(lineNoArrowTemplate, carportX,(roofHeigt+15),carportX,(carportHeight+15)));
-
-        //Diagonal line right
-        svgSideways.append(String.format(lineNoArrowTemplate, carportLength,(roofHeigt+15),carportLength,(carportHeight+15)));
-
-
-
-
-
-
     }
 
     public void addRooftiles(){
