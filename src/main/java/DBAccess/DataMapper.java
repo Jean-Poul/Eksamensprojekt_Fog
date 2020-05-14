@@ -676,7 +676,7 @@ public class DataMapper {
         try {
             Connection con = Connector.connection();
             con = Connector.connection();
-            String SQL = "SELECT o.orders_id,material_type,quantity,unit,description,total_price FROM user_proposition u\n" +
+            String SQL = "SELECT ol.orderline_id,o.orders_id,material_type,quantity,unit,description,total_price FROM user_proposition u\n" +
                     "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id\n" +
                     "INNER JOIN orderline ol on o.orders_id = ol.orders_id\n" +
                     "INNER JOIN item_list il on ol.item_list_id = il.item_list_id\n" +
@@ -685,13 +685,14 @@ public class DataMapper {
             ps.setInt(1, orderID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                int orderline_id = rs.getInt("orderline_id");
                 int orders_id = rs.getInt("orders_id");
                 String material_type = rs.getString("material_type");
                 double quantity = rs.getDouble("quantity");
                 String unit = rs.getString("unit");
                 String description = rs.getString("description");
                 double total_price = rs.getDouble("total_price");
-                ItemList itemList = new ItemList(orders_id,material_type,quantity,unit,description,total_price);
+                ItemList itemList = new ItemList(orderline_id,orders_id,material_type,quantity,unit,description,total_price);
                 orderItemList.add(itemList);
             }
         } catch (ClassNotFoundException | SQLException ex) {

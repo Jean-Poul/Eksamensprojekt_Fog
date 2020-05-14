@@ -2,6 +2,7 @@ package FunctionLayer;
 
 public class ItemList {
 
+    private int orderline_id;
     private int orders_id;
     private String material_type;
     private double quantity;
@@ -9,13 +10,22 @@ public class ItemList {
     private String description;
     private double total_price;
 
-    public ItemList(int orders_id, String material_type, double quantity, String unit, String description, double total_price) {
+    public ItemList(int orderline_id, int orders_id, String material_type, double quantity, String unit, String description, double total_price) {
+        this.orderline_id = orderline_id;
         this.orders_id = orders_id;
         this.material_type = material_type;
         this.quantity = quantity;
         this.unit = unit;
         this.description = description;
         this.total_price = total_price;
+    }
+
+    public int getOrderline_id() {
+        return orderline_id;
+    }
+
+    public void setOrderline_id(int orderline_id) {
+        this.orderline_id = orderline_id;
     }
 
     public int getOrders_id() {
