@@ -217,6 +217,7 @@ public class SvgSidewaysBlueprint {
         svgSidewaysBlueprint.append(String.format(rectTemplate, (beamX+80), (beamY), beamlength, beamWidth));
         svgSidewaysBlueprint.append(String.format(rectTemplate, (carportLength-40), (beamY), beamlength, beamWidth));
 
+
         if (shedLength>0){
             svgSidewaysBlueprint.append(String.format(rectTemplate, (carportLength-shedLength-30), (beamY), beamlength, beamWidth));
             svgSidewaysBlueprint.append(String.format(rectTemplate, ((carportLength/2)-beamWidth/2), (beamY), beamlength, beamWidth));
@@ -245,8 +246,8 @@ public class SvgSidewaysBlueprint {
 
 
         }
-        //fascia board  // Sternbræt
-        svgSidewaysBlueprint.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
+
+
     }
 
     public void addLines(){
@@ -317,7 +318,8 @@ public class SvgSidewaysBlueprint {
         }
 
 
-
+        //fascia board  // Sternbræt
+        svgSidewaysBlueprint.append(String.format(rectTemplate, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
 
     }
 
