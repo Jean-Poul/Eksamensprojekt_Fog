@@ -1,5 +1,8 @@
 package FunctionLayer;
 
+/**
+ * Class for instantiating instances of a user proposition with quote information
+ */
 public class UserProposition {
 
     private int user_proposition_id;

@@ -5,7 +5,7 @@ package FunctionLayer;
  */
 public class RoofRaised {
 
-    String RoofRaisedOptions;
+    private String RoofRaisedOptions;
 
     /**
      * Constructor

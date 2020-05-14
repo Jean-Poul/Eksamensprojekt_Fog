@@ -18,7 +18,7 @@
             <!-- Group cards -->
             <div class="card-group">
                 <!-- Standard card -->
-                <section class="card border-dark">
+                <section class="card border-dark shadow mr-3">
                     <div class="card-body">
                         <img class="card-img img-fluid" src="images/filler.png" alt="Standard byg">
                         <h2 class="card-title">Overskrift</h2>
@@ -38,14 +38,14 @@
                             Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged
                             on her anchor belay broadside.
                         </p>
-                        <a class="card-link btn btn-dark stretched-link"
+                        <a class="card-link btn btn-dark btn-block"
                            href="FrontController?target=redirect&destination=carportstandard">Standard</a>
                     </div>
                 </section>
                 <!-- End standard card -->
 
                 <!-- Customize card -->
-                <section class="card border-dark">
+                <section class="card border-dark shadow ml-3">
                     <div class="card-body">
                         <img class="card-img img-fluid" src="images/filler.png" alt="Byg selv">
                         <h2 class="card-title">Overskrift</h2>
@@ -67,7 +67,7 @@
                         </p>
                         <form action="FrontController" method="POST">
                             <input type="hidden" name="target" value="carportCustomize">
-                            <button class="btn btn-dark stretched-link" type="submit">Byg selv</button>
+                            <button class="btn btn-dark btn-block" type="submit">Byg selv</button>
                         </form>
                     </div>
                 </section>

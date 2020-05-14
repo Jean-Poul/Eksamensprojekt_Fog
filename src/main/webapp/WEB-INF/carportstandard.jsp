@@ -31,8 +31,6 @@
                                     Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged on her anchor belay broadside.
                                 </p>
                                 <a class="card-link btn btn-dark" href="#">Se mere</a>
-                                <a class="card-link btn btn-dark" href="#">Tilføj til kurv</a>
-                                <a class="card-link btn btn-dark" href="#">Gå til kurv</a>
                             </div>
                         </section>
                         <!-- End left card -->
@@ -53,8 +51,6 @@
                                 </p>
                                 <div class="list-group list-group-flush">
                                     <a class="list-group-item btn btn-dark" href="#">Se mere</a>
-                                <a class="list-group-item btn btn-dark" href="#">Tilføj til kurv</a>
-                                <a class="list-group-item btn btn-dark" href="#">Gå til kurv</a>
                                 </div>
                             </div>
                         </section>

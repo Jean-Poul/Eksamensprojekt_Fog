@@ -16,7 +16,7 @@ import java.util.List;
 public class Login extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         //Initializing session variable with current session
         HttpSession session = request.getSession();
 

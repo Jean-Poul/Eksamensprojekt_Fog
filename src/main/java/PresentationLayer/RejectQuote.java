@@ -16,30 +16,35 @@ import java.util.List;
 public class RejectQuote extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
-        //Initializing session variable with current session
+        // Initializing session variable with current session
         HttpSession session = request.getSession();
 
-        //Initializing Lists with user proposition object & getting the parameter quoteID
+
+        // Initializing Lists with UserProposition object
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
-        //Getting parameter for deleting a quote on a specific id
+
+        // Getting parameter of current user proposition id
         String quoteID = request.getParameter("quoteID");
 
-        //Deleting a quote with quoteID
+
+        // Deleting a quote with parameter quoteID
         LogicFacade.deleteQuote(Integer.parseInt(quoteID));
 
-        //Singleton for initializing an instance of UserProposition
-        //if List is empty
+
+        // Singleton for initializing an instance of UserProposition
+        // if List is empty
         if ( userProposition == null ) {
             userProposition = LogicFacade.getAllUserPropositions();
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
 
-        //Attributes to use on jsp site
+
+        // Attributes to use on jsp site
         request.setAttribute("userpropositions", userProposition);
 
-        //Return value for FrontController
+        // Return value for FrontController
         return "adminpage";
     }
 }

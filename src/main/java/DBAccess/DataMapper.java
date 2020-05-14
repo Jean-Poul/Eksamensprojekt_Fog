@@ -1,9 +1,7 @@
 package DBAccess;
 
 import FunctionLayer.*;
-import com.mysql.cj.protocol.Resultset;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,14 +16,20 @@ import java.util.Map;
  *  3. Queries for Quote view
  *  4. Queries for Quote update
  *  5. Select option
+ *
  */
 
 public class DataMapper {
 
     //##################
-    //1. User queries
+    // 1. User queries #
     //##################
 
+    /**
+     *
+     * @param user
+     * @throws LoginSampleException
+     */
     public static void createUser( User user ) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
@@ -44,6 +48,13 @@ public class DataMapper {
         }
     }
 
+    /**
+     *
+     * @param email
+     * @param password
+     * @return user
+     * @throws LoginSampleException
+     */
     public static User login( String email, String password ) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
@@ -68,9 +79,9 @@ public class DataMapper {
     }
 
 
-    //##############################
-    //2. Create user quote queries
-    //##############################
+    //###############################
+    // 2. Create user quote queries #
+    //###############################
 
     /**
      *
@@ -86,7 +97,7 @@ public class DataMapper {
     public static int createUserQuote(String name,String address,String zipcodeCity,int phone, String email,String comments) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?);";
+            String SQL = "INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, name);
             ps.setString(2, address);
@@ -120,7 +131,7 @@ public class DataMapper {
     public static int createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width, int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES (?,?,?,?,?,?,?,?);";
+            String SQL = "INSERT INTO orders (user_proposition_id,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, user_proposition_id);
             ps.setInt(2, oc_width);
@@ -151,7 +162,7 @@ public class DataMapper {
     public static void createQuoteOrderline(int orders_id, int item_list_id, double quantity, double total_price) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES (?,?,?,?);";
+            String SQL = "INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orders_id);
             ps.setInt(2, item_list_id);
@@ -163,16 +174,16 @@ public class DataMapper {
         }
     }
 
-    //##############################
-    //3. Queries for Quote view
-    //##############################
+    //############################
+    // 3. Queries for Quote view #
+    //############################
 
     /**
      *
      * @param quoteID
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static void deleteQuote(int quoteID) throws SQLException {
+    public static void deleteQuote(int quoteID) throws LoginSampleException {
 
         try{
             Connection con = Connector.connection();
@@ -181,16 +192,16 @@ public class DataMapper {
             ps.setInt(1, quoteID);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex ) {
-            throw new SQLException( ex.getMessage() );
+            throw new LoginSampleException( ex.getMessage() );
         }
     }
 
     /**
      * Gets all items from DB and maps them to an array.
      * @return ArrayList of all items from DB
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<Item> getItemList() throws SQLException {
+    public static List<Item> getItemList() throws LoginSampleException {
         List<Item> itemList = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -209,9 +220,10 @@ public class DataMapper {
                 Item item = new Item(item_list_id, material_type, material, description, amounts, unit, price_per_unit);
                 itemList.add(item);
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
         }
+
         return itemList;
     }
 
@@ -219,15 +231,15 @@ public class DataMapper {
      *
      * @param userId
      * @return userProposition
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<UserProposition> getUserProposition(int userId) throws SQLException {
+    public static List<UserProposition> getUserProposition(int userId) throws LoginSampleException {
         List<UserProposition> userProposition = new ArrayList<>();
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT * FROM user_proposition u\n" +
                     "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id\n" +
-                    "WHERE u.user_proposition_id = ?;";
+                    "WHERE u.user_proposition_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
@@ -253,7 +265,7 @@ public class DataMapper {
                 userProposition.add(up);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException (ex.getMessage());
         }
 
         return userProposition;
@@ -262,14 +274,14 @@ public class DataMapper {
     /**
      *
      * @return userProposition
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<UserProposition> getAllUserPropositions() throws SQLException {
+    public static List<UserProposition> getAllUserPropositions() throws LoginSampleException {
         List<UserProposition> userProposition = new ArrayList<>();
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT * FROM user_proposition u\n" +
-                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id;";
+                    "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -294,20 +306,26 @@ public class DataMapper {
                 userProposition.add(up);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return userProposition;
     }
 
-    //#############################
-    //4. Queries for Quote update
-    //#############################
+    //##############################
+    // 4. Queries for Quote update #
+    //##############################
 
+    /**
+     *
+     * @param orderID
+     * @param status
+     * @throws LoginSampleException
+     */
     public static void updateStatus(int orderID, String status) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE orders SET status = ? WHERE orders_id = ?;";
+            String SQL = "UPDATE orders SET status = ? WHERE orders_id = ?";
             PreparedStatement ps = con.prepareStatement( SQL );
             ps.setString(1, status);
             ps.setInt(2, orderID);
@@ -318,10 +336,21 @@ public class DataMapper {
         }
     }
 
+    /**
+     *
+     * @param userID
+     * @param name
+     * @param address
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comments
+     * @throws LoginSampleException
+     */
     public static void updateQuoteUserProposition(int userID, String name, String address, String zipcodeCity, int phone, String email, String comments) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE user_proposition SET name = ?, address = ?, zipcodeCity = ?, phone = ?, email = ?, comments = ? WHERE user_proposition_id = ?;";
+            String SQL = "UPDATE user_proposition SET name = ?, address = ?, zipcodeCity = ?, phone = ?, email = ?, comments = ? WHERE user_proposition_id = ?";
             PreparedStatement ps = con.prepareStatement( SQL );
             ps.setString(1, name);
             ps.setString(2, address);
@@ -333,14 +362,26 @@ public class DataMapper {
             ps.executeUpdate();
 
         } catch ( SQLException | ClassNotFoundException ex ) {
-            throw new LoginSampleException( ex.getMessage() );
+            throw new LoginSampleException ( ex.getMessage() );
         }
     }
 
+    /**
+     *
+     * @param orderID
+     * @param oc_width
+     * @param oc_length
+     * @param ots_width
+     * @param ots_length
+     * @param roof_type
+     * @param roof_material
+     * @param pitch
+     * @throws LoginSampleException
+     */
     public static void updateQuoteOrders(int orderID, int oc_width, int oc_length, int ots_width, int ots_length, String roof_type, String roof_material, int pitch) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE orders SET oc_width = ?, oc_length = ?, ots_width = ?, ots_length = ?, roof_type = ?, roof_material = ?, pitch = ? WHERE orders_id = ?;";
+            String SQL = "UPDATE orders SET oc_width = ?, oc_length = ?, ots_width = ?, ots_length = ?, roof_type = ?, roof_material = ?, pitch = ? WHERE orders_id = ?";
             PreparedStatement ps = con.prepareStatement( SQL );
             ps.setInt(1, oc_width);
             ps.setInt(2, oc_length);
@@ -377,16 +418,16 @@ public class DataMapper {
         }
     }
 
-    //#############################
-    //5. Select option queries
-    //#############################
+    //###########################
+    // 5. Select option queries #
+    //###########################
 
     /**
      *
      * @return carportWidth
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<CarportWidth> getCarportWidth() throws SQLException {
+    public static List<CarportWidth> getCarportWidth() throws LoginSampleException {
         List<CarportWidth> carportWidth = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -399,7 +440,7 @@ public class DataMapper {
                 carportWidth.add(cw);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return carportWidth;
@@ -408,9 +449,9 @@ public class DataMapper {
     /**
      *
      * @return carportLength
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<CarportLength> getCarportLength() throws SQLException {
+    public static List<CarportLength> getCarportLength() throws LoginSampleException {
         List<CarportLength> carportLength = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -423,7 +464,7 @@ public class DataMapper {
                 carportLength.add(cl);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return carportLength;
@@ -432,9 +473,9 @@ public class DataMapper {
     /**
      *
      * @return roofFlat
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<RoofFlat> getRoofFlat() throws SQLException {
+    public static List<RoofFlat> getRoofFlat() throws LoginSampleException {
         List<RoofFlat> roofFlat = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -447,7 +488,7 @@ public class DataMapper {
                 roofFlat.add(rf);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return roofFlat;
@@ -456,9 +497,9 @@ public class DataMapper {
     /**
      *
      * @return roofRaised
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<RoofRaised> getRoofRaised() throws SQLException {
+    public static List<RoofRaised> getRoofRaised() throws LoginSampleException {
         List<RoofRaised> roofRaised = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -471,7 +512,7 @@ public class DataMapper {
                 roofRaised.add(rfo);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return roofRaised;
@@ -480,9 +521,9 @@ public class DataMapper {
     /**
      *
      * @return roofDegree
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<RoofDegree> getRoofDegree() throws SQLException {
+    public static List<RoofDegree> getRoofDegree() throws LoginSampleException {
         List<RoofDegree> roofDegree = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -495,7 +536,7 @@ public class DataMapper {
                 roofDegree.add(rd);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return roofDegree;
@@ -504,9 +545,9 @@ public class DataMapper {
     /**
      *
      * @return shedWidth
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<ShedWidth> getShedWidth() throws SQLException {
+    public static List<ShedWidth> getShedWidth() throws LoginSampleException {
         List<ShedWidth> shedWidth = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -519,7 +560,7 @@ public class DataMapper {
                 shedWidth.add(sw);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return shedWidth;
@@ -528,9 +569,9 @@ public class DataMapper {
     /**
      *
      * @return shedLength
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<ShedLength> getShedLength() throws SQLException {
+    public static List<ShedLength> getShedLength() throws LoginSampleException {
         List<ShedLength> shedLength = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -543,7 +584,7 @@ public class DataMapper {
                 shedLength.add(sl);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return shedLength;
@@ -555,14 +596,14 @@ public class DataMapper {
      *
      * @param rafterLength
      * @return beam-dimension and beam-spacing for light roof
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws SQLException {
+    public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws LoginSampleException {
         List<BeamDimensionLight> beamDimensionLight = new ArrayList<>();
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'let' and rafter_length >= ?" +
-                    "ORDER BY rafter_length ASC LIMIT 1;";
+                    "ORDER BY rafter_length ASC LIMIT 1";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setDouble(1, rafterLength);
             ResultSet rs = ps.executeQuery();
@@ -573,7 +614,7 @@ public class DataMapper {
                 beamDimensionLight.add(bd);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return beamDimensionLight;
@@ -583,14 +624,14 @@ public class DataMapper {
      *
      * @param rafterLength
      * @return beam-dimension and beam-spacing for heavy roof
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws SQLException {
+    public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws LoginSampleException {
         List<BeamDimensionHeavy> beamDimensionHeavy = new ArrayList<>();
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT beam_dimension,beam_spacing FROM rafter_spacing WHERE category = 'tung' and rafter_length >= ?" +
-                    "ORDER BY rafter_length ASC LIMIT 1;";
+                    "ORDER BY rafter_length ASC LIMIT 1";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setDouble(1, rafterLength);
             ResultSet rs = ps.executeQuery();
@@ -601,7 +642,7 @@ public class DataMapper {
                 beamDimensionHeavy.add(bd);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException (ex.getMessage());
         }
 
         return beamDimensionHeavy;
@@ -610,14 +651,14 @@ public class DataMapper {
     /**
      *
      * @return HashMap of pitch and factor
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static Map<Integer, Double> getPitchFactor() throws SQLException {
+    public static Map<Integer, Double> getPitchFactor() throws LoginSampleException {
         Map<Integer, Double> pitchFactor = new HashMap<>();
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT pitch,factor FROM roof_pitch;";
+            String SQL = "SELECT pitch,factor FROM roof_pitch";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -626,7 +667,7 @@ public class DataMapper {
                 pitchFactor.put(pitch,factor);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
         return pitchFactor;
     }
@@ -634,13 +675,13 @@ public class DataMapper {
     /**
      *
      * @return List of standard dimensions
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<StandardDimensions> getStandardDimensions() throws SQLException {
+    public static List<StandardDimensions> getStandardDimensions() throws LoginSampleException {
         List<StandardDimensions> standardDimensions = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM standard_dimensions;";
+            String SQL = "SELECT * FROM standard_dimensions";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -659,7 +700,7 @@ public class DataMapper {
                 standardDimensions.add(sd);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
 
         return standardDimensions;
@@ -669,9 +710,9 @@ public class DataMapper {
      *
      * @param orderID
      * @return List of calculated items for order
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<ItemList> getAllItemList(int orderID) throws SQLException {
+    public static List<ItemList> getAllItemList(int orderID) throws LoginSampleException {
         List<ItemList> orderItemList = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -696,7 +737,7 @@ public class DataMapper {
                 orderItemList.add(itemList);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new SQLException(ex.getMessage());
+            throw new LoginSampleException(ex.getMessage());
         }
         return orderItemList;
     }

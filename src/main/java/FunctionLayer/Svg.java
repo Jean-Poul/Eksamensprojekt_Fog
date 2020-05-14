@@ -1,6 +1,5 @@
 package FunctionLayer;
 
-import java.sql.SQLException;
 
 public class Svg {
     //##########################################################
@@ -10,7 +9,7 @@ public class Svg {
     {
         try {
             c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
-        } catch (SQLException e) {
+        } catch (LoginSampleException e) {
             e.printStackTrace();
         }
     }
@@ -102,6 +101,15 @@ public class Svg {
     public Svg() {
         svg.append(String.format(headerTemplate));
     }
+
+    public Svg(double x, double y, double width, double height) {
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;
+        svg.append(String.format(headerTemplate, x, y, height, width));
+    }
+
 
     //##########################################################
     //Method for StringBuilder

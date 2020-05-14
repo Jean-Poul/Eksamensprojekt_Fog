@@ -9,14 +9,14 @@
     <!-- Row -->
     <div class="row">
 
-        <!-- Main -->
-        <main role="main">
             <!-- Section -->
             <section class="col-12">
 
                 <!-- Login form -->
-                <div class="container">
-                    <h3>Login</h3>
+                <div class="container d-flex justify-content-center mt-5">
+
+                    <div class="col-4 p-3 rounded-lg shadow">
+                    <h3 class="text-primary text-center">Login</h3>
                     <form name="login" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="login">
                         <div class="form-group">
@@ -28,16 +28,15 @@
                             <label for="InputPassword">Password</label>
                             <input type="password" class="form-control" id="InputPassword" name="password" value="1234">
                         </div>
-                        <button type="submit" class="btn btn-primary">Log ind</button>
+                        <button type="submit" class="btn btn-primary btn-block">Log ind</button>
                     </form>
+                    </div>
 
                 </div>
                 <!-- End login form -->
 
             </section>
             <!-- End section -->
-        </main>
-        <!-- End main -->
     </div>
     <!-- End row -->
 </div>

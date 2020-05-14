@@ -25,7 +25,11 @@ abstract class Command {
         commands.put("midlertidigTest", new midlertidigTest());
         commands.put( "rejectQuote", new RejectQuote() );
         commands.put( "quoteView", new QuoteView() );
+        commands.put( "updateQuoteUser", new UpdateQuoteUser() );
+        commands.put( "updateQuoteOrder", new UpdateQuoteOrder() );
         commands.put( "adminRejectQuote", new AdminRejectQuote() );
+        commands.put( "returnAdmin", new ReturnAdmin() );
+        commands.put( "editItemList", new EditItemList() );
     }
 
     static Command from( HttpServletRequest request ) {

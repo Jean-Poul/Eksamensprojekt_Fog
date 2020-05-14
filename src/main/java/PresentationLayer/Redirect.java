@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Redirect helps with managing the navigation of the site while not having to make a java class for each page
+ * Redirect helps with managing the navigation of the site while not having to make a java class and form for each link
  */
 public class Redirect extends Command {
     @Override

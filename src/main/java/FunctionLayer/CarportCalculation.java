@@ -1,6 +1,5 @@
 package FunctionLayer;
 
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -103,7 +102,7 @@ public class CarportCalculation {
     //private Map<Integer, Double> angleAndFactor = log.getPitchFactor();
     private Map<Integer, Double> angleAndFactor = LogicFacade.getPitchFactor();
 
-    public CarportCalculation(int orderID) throws SQLException {
+    public CarportCalculation(int orderID) throws LoginSampleException {
 
         this.orderID = orderID;
         //this.userPropositionID = user_proposition_Id; //How do we get this (Remember to add to parameter)?

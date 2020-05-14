@@ -12,9 +12,9 @@ import java.util.Map;
  */
 public class LogicFacade {
 
-    //##################
-    //User calls
-    //##################
+    //##############
+    // User calls ##
+    //##############
 
     /**
      *
@@ -40,9 +40,9 @@ public class LogicFacade {
         return user;
     }
 
-    //##################
-    //User quote calls
-    //##################
+    //####################
+    // User quote calls ##
+    //####################
 
     /**
      *
@@ -91,9 +91,9 @@ public class LogicFacade {
     /**
      *
      * @param quoteID
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static void deleteQuote(int quoteID) throws SQLException {
+    public static void deleteQuote(int quoteID) throws LoginSampleException {
         DataMapper.deleteQuote(quoteID);
     }
 
@@ -101,18 +101,18 @@ public class LogicFacade {
      *
      * @param userId
      * @return DataMapper.getUserPropositions(userId)
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<UserProposition> getUserProposition(int userId) throws SQLException {
+    public static List<UserProposition> getUserProposition(int userId) throws LoginSampleException {
         return DataMapper.getUserProposition(userId);
     }
 
     /**
      *
      * @return DataMapper.getAllUserPropositions()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<UserProposition> getAllUserPropositions() throws SQLException {
+    public static List<UserProposition> getAllUserPropositions() throws LoginSampleException {
         return DataMapper.getAllUserPropositions();
     }
 
@@ -120,9 +120,9 @@ public class LogicFacade {
      *
      * @param orderID
      * @return List of calculated items for order
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<ItemList> getAllItemList(int orderID) throws SQLException {
+    public static List<ItemList> getAllItemList(int orderID) throws LoginSampleException {
         return DataMapper.getAllItemList(orderID);
     }
 
@@ -178,85 +178,85 @@ public class LogicFacade {
     }
 
 
-    //####################
-    //Select option calls
-    //####################
+    //######################
+    // Select option calls #
+    //######################
 
     /**
      *
      * @return DimensionMapper.getCarportWidth()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<CarportWidth> getCarportWidth() throws SQLException {
+    public static List<CarportWidth> getCarportWidth() throws LoginSampleException {
         return DataMapper.getCarportWidth();
     }
 
     /**
      *
      * @return DimensionMapper.getCarportLength()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<CarportLength> getCarportLength() throws SQLException {
+    public static List<CarportLength> getCarportLength() throws LoginSampleException {
         return DataMapper.getCarportLength();
     }
 
     /**
      *
      * @return DimensionMapper.getRoofFlat()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<RoofFlat> getRoofFlat() throws SQLException {
+    public static List<RoofFlat> getRoofFlat() throws LoginSampleException {
         return DataMapper.getRoofFlat();
     }
 
     /**
      *
      * @return DimensionMapper.getRoofRaised()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<RoofRaised> getRoofRaised() throws SQLException {
+    public static List<RoofRaised> getRoofRaised() throws LoginSampleException {
         return DataMapper.getRoofRaised();
     }
 
     /**
      *
      * @return DimensionMapper.getRoofDegree()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<RoofDegree> getRoofDegree() throws SQLException {
+    public static List<RoofDegree> getRoofDegree() throws LoginSampleException {
         return DataMapper.getRoofDegree();
     }
 
     /**
      *
      * @return DimensionMapper.getShedWidth()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<ShedWidth> getShedWidth() throws SQLException {
+    public static List<ShedWidth> getShedWidth() throws LoginSampleException {
         return DataMapper.getShedWidth();
     }
 
     /**
      *
      * @return DimensionMapper.getShedLength()
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<ShedLength> getShedLength() throws SQLException {
+    public static List<ShedLength> getShedLength() throws LoginSampleException {
         return DataMapper.getShedLength();
     }
 
 
-    //##################
-    // Carport calculation
-    //##################
+    //######################
+    // Carport calculation #
+    //######################
 
     /**
      *
      * @param rafterLength
      * @return beam-dimension and beam-spacing for light roof
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws SQLException {
+    public static List<BeamDimensionLight> getBeamDimensionLight(double rafterLength) throws LoginSampleException {
         return DataMapper.getBeamDimensionLight(rafterLength);
     }
 
@@ -264,36 +264,36 @@ public class LogicFacade {
      *
      * @param rafterLength
      * @return beam-dimension and beam-spacing for heavy roof
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws SQLException {
+    public static List<BeamDimensionHeavy> getBeamDimensionHeavy(double rafterLength) throws LoginSampleException {
         return DataMapper.getBeamDimensionHeavy(rafterLength);
     }
 
     /**
      *
      * @return HashMap of pitch and factor
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static Map<Integer,Double> getPitchFactor() throws SQLException {
+    public static Map<Integer,Double> getPitchFactor() throws LoginSampleException {
         return DataMapper.getPitchFactor();
     }
 
     /**
      *
      * @return List of standard dimensions
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<StandardDimensions> getStandardDimensions() throws SQLException {
+    public static List<StandardDimensions> getStandardDimensions() throws LoginSampleException {
         return DataMapper.getStandardDimensions();
     }
 
     /**
      *
      * @return Arraylist of all items in DB
-     * @throws SQLException
+     * @throws LoginSampleException
      */
-    public static List<Item> getItemList() throws SQLException {
+    public static List<Item> getItemList() throws LoginSampleException {
         return DataMapper.getItemList();
     }
 

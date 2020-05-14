@@ -14,34 +14,26 @@
 
             <!-- Counters -->
             <div class="container d-flex justify-content-center my-3">
-                <div class="row">
-                    <div class="col border-dark rounded shadow px-3 py-3">
-                        <p>Antal forespørgsler: <b>${fn:length(requestScope.userpropositions)}</b></p>
-                    </div>
-                    <div class="col border-dark rounded shadow mx-5 px-3 py-3">
-                        <p>Pris af solgte varer: <b>request på samlet værdi på solgte varer fra DB</b></p>
-                    </div>
-                    <div class="col border-dark rounded shadow px-3 py-3">
-                        <p>Brugernavn: <b>${sessionScope.email}</b></p>
-                    </div>
+
+                <div class="col rounded-lg shadow px-3 py-3 text-center">
+                    <p class="text-primary">Antal forespørgsler</p> <br>
+                    <h3><span class="badge badge-primary">${fn:length(requestScope.userpropositions)}</span></h3>
                 </div>
+                <div class="col rounded-lg shadow mx-5 px-3 py-3 text-center">
+                    <p class="text-primary">Pris af solgte vare</p> <br> <b>request på samlet værdi på solgte varer fra
+                    DB</b>
+                </div>
+                <div class="col rounded-lg shadow px-3 py-3 text-center">
+                    <p class="text-primary">Brugernavn</p> <br>
+                    <h3><span class="badge badge-primary">${sessionScope.email}</span></h3>
+                </div>
+
             </div>
             <!-- End counters -->
 
-            <!-- Table over customer quotes -->
-            <div class="container">
-                        <div class="input-group w-25">
-                        <input type="text" class="form-control" placeholder="Søg">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button">
-                                <i class="fa fa-search">icon</i>
-                            </button>
-                        </div>
-                        </div>
-
-
-
-                <table class="table table-striped">
+            <div class="container my-5">
+                <!-- Table over customer quotes -->
+                <table class="table table-striped" id="myTable">
                     <thead>
                     <tr>
                         <th scope="col">Kunde id:</th>
@@ -81,7 +73,8 @@
                                       method="post">
                                     <input type="hidden" name="target" value="adminRejectQuote">
                                     <input type="hidden" name="quoteID" value="${view.user_proposition_id}">
-                                    <input type="submit" class="btn text-white px-0 py-0" value="Fjern">
+                                    <input type="submit" class="btn text-white px-0 py-0" value="Fjern"
+                                           onclick="return confirm('Er du sikker på at du vil slette?')"/>
                                 </form>
                                 <!-- End delete user proposition button -->
                             </td>
@@ -89,52 +82,37 @@
                     </c:forEach>
                     </tbody>
                 </table>
-
+                <!-- End table over customer quotes -->
             </div>
-            <!-- End table over customer quotes -->
-
-            <!-- Table navigation -->
-            <div class="container">
-                <nav class="mt-5 tabel-nav" aria-label="Tabel navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#"><</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#">></a></li>
-                    </ul>
-                </nav>
-            </div>
-            <!-- End table navigation -->
 
             <!-- Create employee -->
-            <div class="container d-flex justify-content-center">
-                <div class="col-4"></div>
-                <div class="col-4">
-                <h3>Opret medarbejder</h3>
-                <form name="register" action="FrontController" method="POST">
-                    <input type="hidden" name="target" value="register">
-                    <div class="form-group">
-                        <label for="InputEmail">Email adresse</label>
-                        <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                               name="email" value="somewhere@nowhere.com">
-                        <small id="emailHelp" class="form-text text-muted">Vi deler din email med alle!</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="InputPassword1">Password</label>
-                        <input type="password" class="form-control" id="InputPassword1" name="password1" value="bebop">
-                    </div>
-                    <div class="form-group">
-                        <label for="InputPassword2">Gentag password</label>
-                        <input type="password" class="form-control" id="InputPassword2" name="password2"
-                               value="rocksteady">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Opret</button>
-                </form>
+            <div class="container d-flex justify-content-center mb-3">
+
+                <div class="col-4 p-3 rounded-lg shadow">
+                    <h3 class="text-primary text-center">Opret medarbejder</h3>
+                    <form name="register" action="FrontController" method="POST">
+                        <input type="hidden" name="target" value="register">
+                        <div class="form-group">
+                            <label for="InputEmail">Email adresse</label>
+                            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
+                                   name="email" value="somewhere@nowhere.com">
+                            <small id="emailHelp" class="form-text text-muted">Vi deler din email med alle!</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword1">Password</label>
+                            <input type="password" class="form-control" id="InputPassword1" name="password1"
+                                   value="bebop">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputPassword2">Gentag password</label>
+                            <input type="password" class="form-control" id="InputPassword2" name="password2"
+                                   value="rocksteady">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Opret</button>
+                    </form>
+
                 </div>
-                <div class="col-4"></div>
-            </div>
-            <!-- End employee -->
+                <!-- End employee -->
 
         </section>
         <!-- End section -->
@@ -147,3 +125,8 @@
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
 
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>

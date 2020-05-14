@@ -10,7 +10,7 @@ public class SvgFront {
     {
         try {
             c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
-        } catch (SQLException e) {
+        } catch (LoginSampleException e) {
             e.printStackTrace();
         }
     }

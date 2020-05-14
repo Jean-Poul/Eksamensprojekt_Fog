@@ -11,13 +11,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
     <!-- External CSS -->
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon"/>
     <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png">
@@ -51,10 +48,9 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <!-- <div class="logoBackground navbar-brand my-3"></div>-->
 
         <!-- Logo d-none d-sm-inline-block -->
-        <a class="logo navbar-brand ml-5" href="index.jsp" title="Logo">
+        <a class="logo navbar-brand ml-5" href="FrontController?target=redirect&destination=index" title="Logo">
 
             <img heigth="90" width="90" src="images/logo.png" alt="Fog logo">
         </a>
@@ -73,14 +69,14 @@
             <!-- Navigation links -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link px-5" href="index.jsp">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white px-5" href="FrontController?target=redirect&destination=index">Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
+                    <a class="nav-link text-white px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
                 </li>
             </ul>
 
-            <a class="nav-link my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind
+            <a class="nav-link text-white my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind
                 </a>
             <!-- End navigation links -->
 

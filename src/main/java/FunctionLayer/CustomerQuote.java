@@ -1,5 +1,8 @@
 package FunctionLayer;
 
+/**
+ * Class for instantiating instances of a customer quote with user information
+ */
 public class CustomerQuote {
 
     private int customerId;
