@@ -357,6 +357,25 @@ public class DataMapper {
         }
     }
 
+    /**
+     * Update quantity in orderline
+     * @param orderlineID
+     * @param quantity
+     * @throws LoginSampleException
+     */
+    public static void updateQuantityOrderline(int orderlineID, double quantity) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE orderline SET quantity = ? WHERE orderline_id = ?";
+            PreparedStatement ps = con.prepareStatement( SQL );
+            ps.setDouble(1, quantity);
+            ps.setInt(2, orderlineID);
+            ps.executeUpdate();
+
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            throw new LoginSampleException( ex.getMessage() );
+        }
+    }
 
     //#############################
     //5. Select option queries
@@ -680,4 +699,6 @@ public class DataMapper {
         }
         return orderItemList;
     }
+
+
 }

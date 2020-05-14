@@ -167,6 +167,16 @@ public class LogicFacade {
         DataMapper.updateQuoteOrders(orderID,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
     }
 
+    /**
+     * Update quantity in orderline
+     * @param orderlineID
+     * @param quantity
+     * @throws LoginSampleException
+     */
+    public static void updateQuantityOrderline(int orderlineID, double quantity) throws LoginSampleException {
+        DataMapper.updateQuantityOrderline(orderlineID,quantity);
+    }
+
 
     //####################
     //Select option calls
