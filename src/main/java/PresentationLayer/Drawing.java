@@ -66,49 +66,49 @@ public class Drawing extends Command {
         request.setAttribute("userproposition", userProposition);
 
 
-        //MANGLER COMMENTS FRA DE ANDRE*********************************************************
-
         try {
-        Svg svg = new Svg();
 
-        svg.addCarport();
+            //Initializing instance of Svg class
+            Svg svg = new Svg();
 
-        request.setAttribute("svgDrawing", svg.toString());
+            //Calling Method: addCarport(); to draw
+            svg.addCarport();
 
+            //Attributes to use on jsp site
+            request.setAttribute("svgDrawing", svg.toString());
 
-        SvgSideways svgSideways = new SvgSideways();
+            //Initializing instance of Svg class
+            SvgSideways svgSideways = new SvgSideways();
 
-
-
+            //Initializing instance of Svg class
             SvgFront svgFront = new SvgFront();
 
+            //Calling Method: addCarportFront(); to draw
             svgFront.addCarportFront();
 
+            //Attributes to use on jsp site
             request.setAttribute("svgDrawingFront", svgFront.toString());
 
+            //Calling methods to draw
+            svgSideways.addCarport();
+            svgSideways.addRoof();
+            svgSideways.addLines();
+            svgSideways.addRooftiles();
 
-        //ROOF
+            // Attributes to use on jsp site
+            request.setAttribute("svgdrawingSideways", svgSideways.toString());
 
-        svgSideways.addCarport();
-        svgSideways.addRoof();
-        svgSideways.addLines();
-        svgSideways.addRooftiles();
+            //Initializing instance of SvgSidewaysBlueprint class
+            SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint();
 
-        request.setAttribute("svgdrawingSideways", svgSideways.toString());
+            //Calling methods to draw
+            svgSidewaysBlueprint.addCarport();
+            svgSidewaysBlueprint.addRoof();
+            svgSidewaysBlueprint.addLines();
 
+            // Attributes to use on jsp site
+            request.setAttribute("svgdrawingSidewaysBlueprint", svgSidewaysBlueprint.toString());
 
-        SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint();
-
-
-        //ROOF
-
-
-        svgSidewaysBlueprint.addCarport();
-        svgSidewaysBlueprint.addRoof();
-        svgSidewaysBlueprint.addLines();
-
-
-        request.setAttribute("svgdrawingSidewaysBlueprint", svgSidewaysBlueprint.toString());
         }
 
         catch (NullPointerException ex) {

@@ -93,7 +93,6 @@ public class Svg {
             "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
     private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
     private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
-    private final String upperTextTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%f,%f) rotate(-90)\"> %f cm</text>\n";
 
     //##########################################################
     //constructors
@@ -127,6 +126,7 @@ public class Svg {
                 svg.append(String.format(rectTemplate, carportLength -25, lathSpan, beamHight, beamWidth));
                 svg.append(String.format(rectTemplate, (carportLength -shedWidth)-15, (shedLength-(lathSpan-24)), beamHight, beamWidth));
                 svg.append(String.format(rectTemplate, carportLength -25, (shedLength-(lathSpan-24)), beamHight, beamWidth));
+
                 //Arrows
                 svg.append(String.format(lineTemplate, arrowLineX1=(carportLength +35), lathSpan, arrowLineX2=(carportLength +35), arrowLineY2=(carportWidth-lathSpan)));
                 svg.append(String.format(lineTemplate, arrowLineX1=(carportLength -shedWidth-15), arrowLineY1=-30, arrowLineX2=(carportLength -15), arrowLineY2=-30));
@@ -261,9 +261,7 @@ public class Svg {
         res = res.replace("M0.0 L12.6 L0.12 L0.0","M0,0 L12,6 L0,12 L0,0");
         res = res.replace("M0.6 L12.0 L12.12 L0.6","M0,6 L12,0 L12,12 L0,6");
         res = res.replace("0.0.600.600","0,0,600,600");
-        //String res = svg.toString().replace("[^(100),(100)]+," , ".");
         return res + "</svg>" ;
-        //return svg.toString() + "</svg>" ;
     }
 
 }
