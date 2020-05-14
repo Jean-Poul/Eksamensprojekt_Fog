@@ -177,6 +177,8 @@ public class CarportCalculation {
         calculateSupportingStrap(carportWidth, carportLength);
         calcSternBoardLength(carportLength);
 
+        /*
+
         //Test for console
         System.out.println("*****************************************");
         System.out.println("\t\t KUNDENS VALG \t\t");
@@ -219,6 +221,9 @@ public class CarportCalculation {
         System.out.println("Lægteafstand: " + df.format(lathSpan) + " cm");
         System.out.println("Antal " + roofCladdingType + " " + totalNumberOfRoofTiles);
         System.out.println("\n");
+
+        */
+
     }
 
     /**
