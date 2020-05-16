@@ -77,12 +77,12 @@ public class CarportCustomize extends Command {
 
 
         // Attributes to use on jsp site
-        request.setAttribute("carportwidth", carportWidth);
-        request.setAttribute("carportlength", carportLength);
+        request.setAttribute("carportWidth", carportWidth);
+        request.setAttribute("carportLength", carportLength);
 
-        request.setAttribute("roofflat", roofFlat);
-        request.setAttribute("roofraised", roofRaised);
-        request.setAttribute("roofdegree", roofDegree);
+        request.setAttribute("roofFlat", roofFlat);
+        request.setAttribute("roofRaised", roofRaised);
+        request.setAttribute("roofDegree", roofDegree);
 
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);

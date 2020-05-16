@@ -4,6 +4,7 @@ html {
     padding: 0;
     height: 100%;
 }
+
 body {
     height: 100%;
     margin: 0;
@@ -13,17 +14,20 @@ body {
     box-sizing: border-box;
 }
 
+
 /* Header */
 header {
     height: 25vh;
     background: url(../images/header.jpg) no-repeat center;
     background-size: cover;
 }
+
 .headerText{
     float: right;
     color: #1D5E9A;
     font-family: 'Caveat', cursive;
 }
+
 
 /* Navigation */
 nav {
@@ -32,12 +36,13 @@ nav {
     overflow: visible !important;
     font-family: 'Open Sans', sans-serif;
 }
-nav a {
+
+.effects {
     text-align: center;
     transition: .5s;
 }
 
-nav a::before {
+.effects::before {
     content: '';
     top: 0;
     left: 0;
@@ -50,17 +55,16 @@ nav a::before {
     z-index: -1;
 }
 
-nav a:hover {
+.effects:hover {
     color: #000000;
     box-shadow: 0 0 5px #ffffff;
     text-shadow: 0 0 5px #ffffff;
 }
 
-nav a:hover::before {
+.effects:hover::before {
     transform: scale(1.1);
     box-shadow: 0 0 15px #ffffff;
 }
-
 
 #menContainer{
     margin: 0 auto !important;
@@ -83,17 +87,6 @@ nav a:hover::before {
     background-color: lightgray;
 }
 
-@media screen and (max-width: 992px) {
-    .logo {
-        float: left !important;
-    }
-}
-
-/* Table */
-
-
-/* SVG */
-
 
 /* Footer */
 footer {
@@ -104,6 +97,7 @@ footer a:hover {
     text-decoration: none;
     color: #FAFAFF;
 }
+
 
 /* Print */
 .print-footer {
@@ -117,9 +111,16 @@ footer a:hover {
 
 @media print {
     #page-view {
-
         background-color: #ffffff;
     }
     .view-on-print {display: block;}
     .hide-on-print {display: none;}
+}
+
+
+/* Media */
+@media screen and (max-width: 992px) {
+    .logo {
+        float: left !important;
+    }
 }

@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class midlertidigTest extends Command{
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
         //Constructor SHOULD receive specific orderID instead of userID
         CarportCalculation c = new CarportCalculation(1);

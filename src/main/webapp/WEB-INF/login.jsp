@@ -8,20 +8,20 @@
 <div class="container min-vh-100">
     <!-- Row -->
     <div class="row">
+        <!-- Section -->
+        <section class="col-12">
 
-            <!-- Section -->
-            <section class="col-12">
+            <!-- Login form -->
+            <div class="container d-flex justify-content-center mt-5">
 
-                <!-- Login form -->
-                <div class="container d-flex justify-content-center mt-5">
-
-                    <div class="col-4 p-3 rounded-lg shadow">
+                <div class="col-4 p-3 rounded-lg shadow">
                     <h3 class="text-primary text-center">Login</h3>
                     <form name="login" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="login">
                         <div class="form-group">
                             <label for="InputEmail">Email adresse</label>
-                            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" value="admin@fog.dk">
+                            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
+                                   name="email" value="admin@fog.dk">
                             <small id="emailHelp" class="form-text text-muted">Vi deler din email med alle!</small>
                         </div>
                         <div class="form-group">
@@ -30,13 +30,13 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Log ind</button>
                     </form>
-                    </div>
-
                 </div>
-                <!-- End login form -->
 
-            </section>
-            <!-- End section -->
+            </div>
+            <!-- End login form -->
+
+        </section>
+        <!-- End section -->
     </div>
     <!-- End row -->
 </div>

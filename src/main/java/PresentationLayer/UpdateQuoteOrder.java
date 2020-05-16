@@ -5,16 +5,29 @@ import FunctionLayer.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.List;
 
 
 /**
- * UpdateQuoteOrder will update the currently viewed order while updating the jsp site
+ * UpdateQuoteOrder will update the current order while updating quoteview.jsp
  */
 public class UpdateQuoteOrder extends Command {
+    // Initialize variables to be able to update an order
+    private String rFlat;
+    private String rRaised;
+    private String roofType;
+    private int oID = 0;
+    private int carpWidth = 0;
+    private int carpLength = 0;
+    private int pitch;
+    private int roofDegrees = 0;
+    private int shedW = 0;
+    private int shedL = 0;
+    private int vID = 0;
+
+
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session
         HttpSession session = request.getSession();
 
@@ -40,65 +53,80 @@ public class UpdateQuoteOrder extends Command {
 
 
         // Getting parameters to be able to populate select options
-        int orderID = Integer.parseInt(request.getParameter("orderID"));
-        int cWidth = Integer.parseInt(request.getParameter("carportWidth"));
-        int cLength = Integer.parseInt(request.getParameter("carportLength"));
+        String orderID = request.getParameter("orderID");
+        String cWidth = request.getParameter("carportWidth");
+        String cLength = request.getParameter("carportLength");
         String sWidth = request.getParameter("shedWidth");
         String sLength = request.getParameter("shedLength");
-        String rFlat = request.getParameter("roofFlat");
-        String rRaised = request.getParameter("roofRaised");
+        rFlat = request.getParameter("roofFlat");
+        rRaised = request.getParameter("roofRaised");
         String roofOptionDegrees = request.getParameter("roofOptionDegrees");
 
 
         // Roof option 0 or 1 for switch case
-        int roofOption = Integer.parseInt(request.getParameter("roofOption"));
+        String roofOption = request.getParameter("roofOption");
 
 
-        // Initialize variables to be able to update an order
-        String roofType = null;
-        int pitch;
-        int orderId;
-        int roofDegrees = 0;
-        int shedW = 0;
-        int shedL = 0;
+        // Check if viewID is not empty and parse it to an int
+        if (!viewID.isEmpty()) {
+            vID = Integer.parseInt(viewID);
+        }
 
 
-        // Check if roofOptionDegrees is not empty and parse to int
-        if(!roofOptionDegrees.isEmpty()) {
+        // Check if orderID is not empty and parse it to an int
+        if (!orderID.isEmpty()) {
+            oID = Integer.parseInt(orderID);
+        }
+
+
+        // Check if cWidth is not empty and parse it to an int
+        if (!cWidth.isEmpty()) {
+            carpWidth = Integer.parseInt(cWidth);
+        }
+
+
+        // Check if cLength is not empty and parse it to an int
+        if (!cLength.isEmpty()) {
+            carpLength = Integer.parseInt(cLength);
+        }
+
+
+        // Check if roofOptionDegrees is not empty and parse it to an int
+        if (!roofOptionDegrees.isEmpty()) {
             roofDegrees = Integer.parseInt(roofOptionDegrees);
         }
 
 
-        // Check if sWidth is not empty and parse to int
-        if(!sWidth.isEmpty()) {
+        // Check if sWidth is not empty and parse it to an int
+        if (!sWidth.isEmpty()) {
             shedW = Integer.parseInt(sWidth);
         }
 
 
-        // Check if sLength is not empty and parse to int
-        if(!sLength.isEmpty()) {
+        // Check if sLength is not empty and parse it to an int
+        if (!sLength.isEmpty()) {
             shedL = Integer.parseInt(sLength);
         }
 
 
-        // Insert into order using switch case to choose between flat or raised roof (0 or 1 from roofOption)
+        // Switch case to choose between flat or raised roof (0 or 1 from roofOption)
         switch (roofOption) {
-            case 0:
+            case "0":
                 pitch = 0;
                 roofType = "fladt";
-                LogicFacade.updateQuoteOrders(orderID, cWidth, cLength, shedW, shedL, roofType, rFlat, pitch);
+                LogicFacade.updateQuoteOrders(oID, carpWidth, carpLength, shedW, shedL, roofType, rFlat, pitch);
                 break;
-            case 1:
+            case "1":
                 roofType = "rejst";
-                LogicFacade.updateQuoteOrders(orderID, cWidth, cLength, shedW, shedL, roofType, rRaised, roofDegrees);;
+                LogicFacade.updateQuoteOrders(oID, carpWidth, carpLength, shedW, shedL, roofType, rRaised, roofDegrees);
                 break;
         }
 
 
         // Singleton for initializing an instance of UserProposition
         // if List is empty
-        if ( userProposition == null ) {
-            userProposition = LogicFacade.getUserProposition(Integer.parseInt(viewID));
+        if (userProposition == null) {
+            userProposition = LogicFacade.getUserProposition(vID);
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
@@ -106,45 +134,45 @@ public class UpdateQuoteOrder extends Command {
 
         // Singletons for initializing instances of CarportWidth, CarportLength, RoofFlat, RoofRaised, RoofDegree, ShedWidth, ShedLength
         // if List is empty
-        if ( carportWidth == null ) {
+        if (carportWidth == null) {
             carportWidth = LogicFacade.getCarportWidth();
         } else {
             carportWidth = (List<CarportWidth>) session.getAttribute("carportWidth");
         }
 
-        if ( carportLength == null ) {
+        if (carportLength == null) {
             carportLength = LogicFacade.getCarportLength();
         } else {
             carportLength = (List<CarportLength>) session.getAttribute("carportLength");
         }
 
 
-        if ( roofFlat == null ) {
+        if (roofFlat == null) {
             roofFlat = LogicFacade.getRoofFlat();
         } else {
             roofFlat = (List<RoofFlat>) session.getAttribute("roofFlat");
         }
 
-        if ( roofRaised == null ) {
+        if (roofRaised == null) {
             roofRaised = LogicFacade.getRoofRaised();
         } else {
             roofRaised = (List<RoofRaised>) session.getAttribute("roofRaised");
         }
 
-        if ( roofDegree == null ) {
+        if (roofDegree == null) {
             roofDegree = LogicFacade.getRoofDegree();
         } else {
             roofDegree = (List<RoofDegree>) session.getAttribute("roofDegree");
         }
 
 
-        if ( shedWidth == null ) {
+        if (shedWidth == null) {
             shedWidth = LogicFacade.getShedWidth();
         } else {
             shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
         }
 
-        if ( shedLength == null ) {
+        if (shedLength == null) {
             shedLength = LogicFacade.getShedLength();
         } else {
             shedLength = (List<ShedLength>) session.getAttribute("shedLength");
@@ -152,14 +180,14 @@ public class UpdateQuoteOrder extends Command {
 
 
         // Attributes to use on jsp site
-        request.setAttribute("userproposition", userProposition);
+        request.setAttribute("userProposition", userProposition);
 
-        request.setAttribute("carportwidth", carportWidth);
-        request.setAttribute("carportlength", carportLength);
+        request.setAttribute("carportWidth", carportWidth);
+        request.setAttribute("carportLength", carportLength);
 
-        request.setAttribute("roofflat", roofFlat);
-        request.setAttribute("roofraised", roofRaised);
-        request.setAttribute("roofdegree", roofDegree);
+        request.setAttribute("roofFlat", roofFlat);
+        request.setAttribute("roofRaised", roofRaised);
+        request.setAttribute("roofDegree", roofDegree);
 
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);

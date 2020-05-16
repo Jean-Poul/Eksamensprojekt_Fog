@@ -5,21 +5,24 @@ import FunctionLayer.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
  * QuoteView is used to populate info fields with user quote information on quoteview.jsp
  */
 public class QuoteView extends Command {
+    // Initialize variable to be able to parse a String to an int
+    private int vID = 0;
+    private int oID = 0;
+
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session
         HttpSession session = request.getSession();
 
 
-        // Initializing Lists with UserProposition object
+        // Initializing List with UserProposition object
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
 
@@ -34,17 +37,31 @@ public class QuoteView extends Command {
         List<ShedWidth> shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
         List<ShedLength> shedLength = (List<ShedLength>) session.getAttribute("shedLength");
 
-        //
-        String totalPrice = request.getParameter("price");
 
-        // Getting parameter for viewing a customer quote on a specific id
+        // Getting parameter for viewing a customer quote on a user proposition id
         String viewID = request.getParameter("viewID");
+
+
+        // Getting parameter for calculating price on an order id
+        String orderID = request.getParameter("orderID");
+
+
+        // Check if viewID is not empty and parse it to an int
+        if (!viewID.isEmpty()) {
+            vID = Integer.parseInt(viewID);
+        }
+
+
+        // Check if orderID is not empty and parse it to an int
+        if (!orderID.isEmpty()) {
+            oID = Integer.parseInt(orderID);
+        }
 
 
         // Singleton for initializing an instance of UserProposition
         // if List is empty
-        if ( userProposition == null ) {
-            userProposition = LogicFacade.getUserProposition(Integer.parseInt(viewID));
+        if (userProposition == null) {
+            userProposition = LogicFacade.getUserProposition(vID);
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
@@ -52,76 +69,81 @@ public class QuoteView extends Command {
 
         // Singletons for initializing instances of CarportWidth, CarportLength, RoofFlat, RoofRaised, RoofDegree, ShedWidth, ShedLength
         // if List is empty
-        if ( carportWidth == null ) {
+        if (carportWidth == null) {
             carportWidth = LogicFacade.getCarportWidth();
         } else {
             carportWidth = (List<CarportWidth>) session.getAttribute("carportWidth");
         }
 
-        if ( carportLength == null ) {
+        if (carportLength == null) {
             carportLength = LogicFacade.getCarportLength();
         } else {
             carportLength = (List<CarportLength>) session.getAttribute("carportLength");
         }
 
 
-        if ( roofFlat == null ) {
+        if (roofFlat == null) {
             roofFlat = LogicFacade.getRoofFlat();
         } else {
             roofFlat = (List<RoofFlat>) session.getAttribute("roofFlat");
         }
 
-        if ( roofRaised == null ) {
+        if (roofRaised == null) {
             roofRaised = LogicFacade.getRoofRaised();
         } else {
             roofRaised = (List<RoofRaised>) session.getAttribute("roofRaised");
         }
 
-        if ( roofDegree == null ) {
+        if (roofDegree == null) {
             roofDegree = LogicFacade.getRoofDegree();
         } else {
             roofDegree = (List<RoofDegree>) session.getAttribute("roofDegree");
         }
 
 
-        if ( shedWidth == null ) {
+        if (shedWidth == null) {
             shedWidth = LogicFacade.getShedWidth();
         } else {
             shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
         }
 
-        if ( shedLength == null ) {
+        if (shedLength == null) {
             shedLength = LogicFacade.getShedLength();
         } else {
             shedLength = (List<ShedLength>) session.getAttribute("shedLength");
         }
 
-        if (totalPrice == null){
-            CarportCalculation cp = new CarportCalculation(Integer.parseInt(viewID));
+
+//**************************** SKAL KØRES PÅ oID
+        String totalPrice = request.getParameter("price");
+        if (totalPrice == null) {
             double price = 0;
             try {
+                CarportCalculation cp = new CarportCalculation(vID);
                 price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
-            } catch (SQLException e) {
+            } catch (LoginSampleException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
             totalPrice = String.valueOf(price);
         }
 
+
         // Attributes to use on jsp site
-        request.setAttribute("userproposition", userProposition);
+        request.setAttribute("userProposition", userProposition);
 
-        request.setAttribute("carportwidth", carportWidth);
-        request.setAttribute("carportlength", carportLength);
+        request.setAttribute("carportWidth", carportWidth);
+        request.setAttribute("carportLength", carportLength);
 
-        request.setAttribute("roofflat", roofFlat);
-        request.setAttribute("roofraised", roofRaised);
-        request.setAttribute("roofdegree", roofDegree);
+        request.setAttribute("roofFlat", roofFlat);
+        request.setAttribute("roofRaised", roofRaised);
+        request.setAttribute("roofDegree", roofDegree);
 
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
-
 
         request.setAttribute("totalPrice", totalPrice);
 

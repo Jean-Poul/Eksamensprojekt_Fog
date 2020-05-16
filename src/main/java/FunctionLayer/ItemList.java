@@ -20,6 +20,7 @@ public class ItemList {
         this.total_price = total_price;
     }
 
+    // Getters and setters
     public int getOrderline_id() {
         return orderline_id;
     }

@@ -21,7 +21,7 @@
             </div>
             <!-- End back button -->
 
-            <c:forEach var="info" items="${requestScope.userproposition}">
+            <c:forEach var="info" items="${requestScope.userProposition}">
             <!-- Customer info -->
             <div class="accordion" id="cardid">
 
@@ -73,7 +73,7 @@
                                     <div class="form-group">
                                         <label for="quoteStatus">Status</label>
                                         <select class="custom-select" id="quoteStatus" name="status">
-                                            <option value="${info.status}">${info.status}</option>
+                                            <option>Vælg status</option>
                                             <option>Forespørgsel</option>
                                             <option>Tilbud</option>
                                             <option>Godkend</option>
@@ -170,7 +170,7 @@
                                         <label for="CarportWidth">Carport bredde</label>
                                         <select class="custom-select" id="CarportWidth" name="carportWidth">
                                             <option value="${info.carport_width}">${info.carport_width}</option>
-                                            <c:forEach var="cWidth" items="${requestScope.carportwidth}">
+                                            <c:forEach var="cWidth" items="${requestScope.carportWidth}">
                                                 <option value="${cWidth.carportWidthOption}">${cWidth.carportWidthOption}</option>
                                             </c:forEach>
                                         </select>
@@ -180,7 +180,7 @@
                                         <label for="CarportLength">Carport længde</label>
                                         <select class="custom-select" id="CarportLength" name="carportLength">
                                             <option value="${info.carport_length}">${info.carport_length}</option>
-                                            <c:forEach var="cLength" items="${requestScope.carportlength}">
+                                            <c:forEach var="cLength" items="${requestScope.carportLength}">
                                                 <option value="${cLength.carportLengthOptions}">${cLength.carportLengthOptions}</option>
                                             </c:forEach>
                                         </select>
@@ -198,8 +198,8 @@
                                         <div class="form-group">
                                             <label for="RoofFlat">Tag</label>
                                             <select class="custom-select" id="RoofFlat" name="roofFlat" required>
-                                                <option value="${info.roof_material}">${info.roof_material}</option>
-                                                <c:forEach var="rFlat" items="${requestScope.roofflat}">
+                                                <option>Vælg materiale</option>
+                                                <c:forEach var="rFlat" items="${requestScope.roofFlat}">
                                                     <option value="${rFlat.roofFlatOptions}">${rFlat.roofFlatOptions}</option>
                                                 </c:forEach>
                                             </select>
@@ -210,8 +210,8 @@
                                         <div class="form-group">
                                             <label for="RoofRaised">Tag</label>
                                             <select class="custom-select" id="RoofRaised" name="roofRaised">
-                                                <option value="${info.roof_material}">${info.roof_material}</option>
-                                                <c:forEach var="rRaised" items="${requestScope.roofraised}">
+                                                <option>Vælg materiale</option>
+                                                <c:forEach var="rRaised" items="${requestScope.roofRaised}">
                                                     <option value="${rRaised.roofRaisedOptions}">${rRaised.roofRaisedOptions}</option>
                                                 </c:forEach>
                                             </select>
@@ -221,8 +221,8 @@
                                             <label for="RoofOptionDegrees">Taghældning</label>
                                             <select class="custom-select" id="RoofOptionDegrees"
                                                     name="roofOptionDegrees">
-                                                <option value="${info.pitch}">${info.pitch}</option>
-                                                <c:forEach var="degree" items="${requestScope.roofdegree}">
+                                                <option>Vælg hældning</option>
+                                                <c:forEach var="degree" items="${requestScope.roofDegree}">
                                                     <option value="${degree.roofDegreeOption}">${degree.roofDegreeOption}
                                                         grader
                                                     </option>
@@ -304,7 +304,8 @@
                                     <input type="hidden" name="target" value="">
                                     <div class="form-group">
                                         <label for="quotePrice">Pris</label>
-                                        <input class="form-control" id="quotePrice" type="text" name="totalPrice" value="${requestScope.totalPrice}">
+                                        <input class="form-control" id="quotePrice" type="text" name="totalPrice"
+                                               value="${requestScope.totalPrice}">
                                     </div>
                                     <!-- Update button -->
                                     <input class="btn btn-dark btn-block" type="submit" value="Opdater"

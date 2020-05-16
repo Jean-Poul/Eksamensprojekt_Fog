@@ -9,13 +9,14 @@ public class CarportLength {
 
     /**
      * Constructor
+     *
      * @param carportLengthOptions
      */
     public CarportLength(int carportLengthOptions) {
         this.carportLengthOptions = carportLengthOptions;
     }
 
-    //Getters and setters
+    // Getters and setters
     public int getCarportLengthOptions() {
         return carportLengthOptions;
     }

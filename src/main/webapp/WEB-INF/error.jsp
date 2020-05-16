@@ -8,25 +8,25 @@
 <div class="container min-vh-100">
     <!-- Row -->
     <div class="row">
-            <!-- Section -->
-            <section class="col-12">
+        <!-- Section -->
+        <section class="col-12">
 
-                <!-- Alert container -->
-                <div class="alert alert-danger my-5 shadow" role="alert">
-                    <!-- Error message -->
-                    <c:if test="${requestScope.error!= null}">
+            <!-- Alert container -->
+            <div class="alert alert-danger my-5 shadow" role="alert">
+                <!-- Error message -->
+                <c:if test="${requestScope.error!= null}">
 
-                        <h3 class="text-center my-3">Der opstod en fejl</h3>
-                        <p class="text-center my-5">${requestScope.error}</p>
+                    <h3 class="text-center my-3">Der opstod en fejl</h3>
+                    <p class="text-center my-5">${requestScope.error}</p>
 
-                    </c:if>
-                    <!-- End error message -->
-                </div>
-                <!-- End alert container -->
+                </c:if>
+                <!-- End error message -->
+            </div>
+            <!-- End alert container -->
 
 
-            </section>
-            <!-- End section -->
+        </section>
+        <!-- End section -->
     </div>
     <!-- End row -->
 </div>

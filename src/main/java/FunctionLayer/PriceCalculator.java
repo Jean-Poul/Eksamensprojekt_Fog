@@ -56,7 +56,7 @@ public class PriceCalculator {
 
 
 
-    public PriceCalculator(CarportCalculation cpCalc) throws SQLException, LoginSampleException, ClassNotFoundException {
+    public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
 
         this.orderCoverage = LogicFacade.getOrderCoverage(cpCalc.orderID);
 
@@ -144,7 +144,7 @@ public class PriceCalculator {
      * @return
      * @throws SQLException
      */
-    private Item itemSearch(int itemID) throws SQLException, LoginSampleException {
+    private Item itemSearch(int itemID) throws LoginSampleException {
 
         for (int i = 0; i < log.getItemList().size(); i++) {
 

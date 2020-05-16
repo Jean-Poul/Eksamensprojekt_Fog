@@ -15,6 +15,7 @@ public class CustomerQuote {
 
     /**
      * Constructor
+     *
      * @param customerId
      */
     public CustomerQuote(int customerId) {
@@ -23,6 +24,7 @@ public class CustomerQuote {
 
     /**
      * Constructor
+     *
      * @param customerId
      * @param name
      * @param address
@@ -41,7 +43,7 @@ public class CustomerQuote {
         this.comment = comment;
     }
 
-    //Getters and setters
+    // Getters and setters
     public int getCustomerId() {
         return customerId;
     }

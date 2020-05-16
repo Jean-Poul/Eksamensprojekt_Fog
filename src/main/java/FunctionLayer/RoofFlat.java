@@ -9,13 +9,14 @@ public class RoofFlat {
 
     /**
      * Constructor
+     *
      * @param roofFlatOptions
      */
     public RoofFlat(String roofFlatOptions) {
         this.roofFlatOptions = roofFlatOptions;
     }
 
-    //Getters and setters
+    // Getters and setters
     public String getRoofFlatOptions() {
         return roofFlatOptions;
     }

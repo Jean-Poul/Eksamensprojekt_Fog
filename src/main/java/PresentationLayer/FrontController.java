@@ -8,7 +8,6 @@ package PresentationLayer;
 import FunctionLayer.LoginSampleException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +44,7 @@ public class FrontController extends HttpServlet {
             } else {
                 request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
             }
-        } catch ( UnsupportedEncodingException | LoginSampleException | SQLException ex) {
+        } catch ( UnsupportedEncodingException | LoginSampleException ex) {
             request.setAttribute( "error", ex.getMessage() );
             request.getRequestDispatcher( "/WEB-INF/error.jsp" ).forward( request, response );
         }

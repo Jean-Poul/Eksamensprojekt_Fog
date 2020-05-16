@@ -9,13 +9,14 @@ public class ShedWidth {
 
     /**
      * Constructor
+     *
      * @param shedWidthOption
      */
     public ShedWidth(int shedWidthOption) {
         this.shedWidthOption = shedWidthOption;
     }
 
-    //Getters and setters
+    // Getters and setters
     public int getShedWidthOption() {
         return shedWidthOption;
     }

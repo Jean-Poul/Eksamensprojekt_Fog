@@ -17,11 +17,11 @@
 
                 <div class="col rounded-lg shadow px-3 py-3 text-center">
                     <p class="text-primary">Antal forespørgsler</p> <br>
-                    <h3><span class="badge badge-primary">${fn:length(requestScope.userpropositions)}</span></h3>
+                    <h3><span class="badge badge-primary">${fn:length(requestScope.userProposition)}</span></h3>
                 </div>
                 <div class="col rounded-lg shadow mx-5 px-3 py-3 text-center">
-                    <p class="text-primary">Pris af solgte vare</p> <br> <b>request på samlet værdi på solgte varer fra
-                    DB</b>
+                    <p class="text-primary">Klokken er nu</p> <br>
+                    <h3><span class="badge badge-primary" id="time"></span></h3>
                 </div>
                 <div class="col rounded-lg shadow px-3 py-3 text-center">
                     <p class="text-primary">Brugernavn</p> <br>
@@ -48,7 +48,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="view" items="${requestScope.userpropositions}">
+                    <c:forEach var="view" items="${requestScope.userProposition}">
                         <tr>
                             <th scope="row">${view.user_proposition_id}</th>
                             <td>${view.name}</td>
@@ -62,6 +62,7 @@
                                 <form class="btn btn-dark" name="viewQuote" action="FrontController"
                                       method="post">
                                     <input type="hidden" name="target" value="quoteView">
+                                    <input type="hidden" name="orderID" value="${view.orders_id}">
                                     <input type="hidden" name="viewID" value="${view.user_proposition_id}">
                                     <input type="submit" class="btn text-white px-0 py-0" value="Åben">
                                 </form>
@@ -95,24 +96,25 @@
                         <div class="form-group">
                             <label for="InputEmail">Email adresse</label>
                             <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                                   name="email" value="somewhere@nowhere.com">
+                                   name="email" value="opret@mig.nu">
                             <small id="emailHelp" class="form-text text-muted">Vi deler din email med alle!</small>
                         </div>
                         <div class="form-group">
                             <label for="InputPassword1">Password</label>
                             <input type="password" class="form-control" id="InputPassword1" name="password1"
-                                   value="bebop">
+                                   value="hemmelig">
                         </div>
                         <div class="form-group">
                             <label for="InputPassword2">Gentag password</label>
                             <input type="password" class="form-control" id="InputPassword2" name="password2"
-                                   value="rocksteady">
+                                   value="hemmelig">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Opret</button>
                     </form>
-
                 </div>
-                <!-- End employee -->
+
+            </div>
+            <!-- End employee -->
 
         </section>
         <!-- End section -->
@@ -129,4 +131,27 @@
     $(document).ready(function () {
         $('#myTable').DataTable();
     });
+</script>
+
+<script>
+
+    (function () {
+        function checkTime(i) {
+            return (i < 10) ? "0" + i : i;
+        }
+
+        function startTime() {
+            var today = new Date(),
+                h = checkTime(today.getHours()),
+                m = checkTime(today.getMinutes()),
+                s = checkTime(today.getSeconds());
+            document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+            t = setTimeout(function () {
+                startTime()
+            }, 500);
+        }
+
+        startTime();
+    })();
+
 </script>

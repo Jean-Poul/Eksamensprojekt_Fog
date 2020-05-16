@@ -2,7 +2,6 @@ package PresentationLayer;
 
 import FunctionLayer.LoginSampleException;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +40,6 @@ abstract class Command {
     }
 
     abstract String execute( HttpServletRequest request, HttpServletResponse response )
-            throws LoginSampleException, SQLException;
+            throws LoginSampleException;
 
 }

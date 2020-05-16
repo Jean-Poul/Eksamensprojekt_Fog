@@ -7,20 +7,23 @@ import FunctionLayer.UserProposition;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
- * RejectQuote will reject and delete a customer quote using a proposition id
+ * RejectQuote will reject and delete a customer quote using a user proposition id
  */
 public class RejectQuote extends Command {
+    // Initialize variable to be able to parse a String to an int
+    private int qID;
+
+
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, SQLException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session
         HttpSession session = request.getSession();
 
 
-        // Initializing Lists with UserProposition object
+        // Initializing List with UserProposition object
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
 
@@ -28,8 +31,14 @@ public class RejectQuote extends Command {
         String quoteID = request.getParameter("quoteID");
 
 
-        // Deleting a quote with parameter quoteID
-        LogicFacade.deleteQuote(Integer.parseInt(quoteID));
+        // Check if quoteID is not empty and parse it to an int
+        if(!quoteID.isEmpty()) {
+            qID = Integer.parseInt(quoteID);
+        }
+
+
+        // Deleting a quote with quoteID
+        LogicFacade.deleteQuote(qID);
 
 
         // Singleton for initializing an instance of UserProposition
@@ -41,8 +50,9 @@ public class RejectQuote extends Command {
         }
 
 
-        // Attributes to use on jsp site
-        request.setAttribute("userpropositions", userProposition);
+        // Attribute to use on jsp site
+        request.setAttribute("userProposition", userProposition);
+
 
         // Return value for FrontController
         return "adminpage";

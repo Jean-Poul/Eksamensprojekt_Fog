@@ -9,13 +9,14 @@ public class RoofDegree {
 
     /**
      * Constructor
+     *
      * @param roofDegreeOption
      */
     public RoofDegree(int roofDegreeOption) {
         this.roofDegreeOption = roofDegreeOption;
     }
 
-    //Getters and setters
+    // Getters and setters
     public int getRoofDegreeOption() {
         return roofDegreeOption;
     }

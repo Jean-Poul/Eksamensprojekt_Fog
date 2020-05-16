@@ -14,7 +14,8 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Open+Sans&display=swap"
+          rel="stylesheet">
     <!-- Favicon -->
     <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon"/>
     <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png">
@@ -69,15 +70,19 @@
             <!-- Navigation links -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white px-5" href="FrontController?target=redirect&destination=index">Home<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white px-5 effects"
+                       href="FrontController?target=redirect&destination=index">Home<span
+                                class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white px-5" href="FrontController?target=redirect&destination=customerpage">Bestil</a>
+                    <a class="nav-link text-white px-5 effects"
+                       href="FrontController?target=redirect&destination=customerpage">Bestil</a>
                 </li>
             </ul>
 
-            <a class="nav-link text-white my-2 my-sm-0 px-5" href="FrontController?target=redirect&destination=login">Log ind
-                </a>
+            <a class="nav-link text-white my-2 my-sm-0 px-5 effects"
+               href="FrontController?target=redirect&destination=login">Log ind
+            </a>
             <!-- End navigation links -->
 
         </div>

@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * The purpose of LogicFacade is to call Mapper classes safely without doing it directly from other methods in other classes
- *
  */
 public class LogicFacade {
 
@@ -17,26 +16,24 @@ public class LogicFacade {
     //##############
 
     /**
-     *
      * @param email
      * @param password
-     * @return UserMapper.login( email, password )
+     * @return UserMapper.login(email, password)
      * @throws LoginSampleException
      */
-    public static User login( String email, String password ) throws LoginSampleException {
-        return DataMapper.login( email, password );
+    public static User login(String email, String password) throws LoginSampleException {
+        return DataMapper.login(email, password);
     }
 
     /**
-     *
      * @param email
      * @param password
      * @return user
      * @throws LoginSampleException
      */
-    public static User createUser( String email, String password ) throws LoginSampleException {
+    public static User createUser(String email, String password) throws LoginSampleException {
         User user = new User(email, password, "customer");
-        DataMapper.createUser( user );
+        DataMapper.createUser(user);
         return user;
     }
 
@@ -45,7 +42,6 @@ public class LogicFacade {
     //####################
 
     /**
-     *
      * @param name
      * @param address
      * @param zipcodeCity
@@ -55,12 +51,11 @@ public class LogicFacade {
      * @return userId
      * @throws LoginSampleException
      */
-    public static int createUserQuote(String name,String address,String zipcodeCity, int phone, String email,String comments) throws LoginSampleException {
-        return DataMapper.createUserQuote(name,address,zipcodeCity,phone,email,comments);
+    public static int createUserQuote(String name, String address, String zipcodeCity, int phone, String email, String comments) throws LoginSampleException {
+        return DataMapper.createUserQuote(name, address, zipcodeCity, phone, email, comments);
     }
 
     /**
-     *
      * @param user_proposition_id
      * @param oc_width
      * @param oc_length
@@ -72,24 +67,22 @@ public class LogicFacade {
      * @return orderId
      * @throws LoginSampleException
      */
-    public static int createQuoteOrder(int user_proposition_id,int oc_width,int oc_length,int ots_width,int ots_length,String roof_type,String roof_material,int pitch) throws LoginSampleException {
+    public static int createQuoteOrder(int user_proposition_id, int oc_width, int oc_length, int ots_width, int ots_length, String roof_type, String roof_material, int pitch) throws LoginSampleException {
         return DataMapper.createQuoteOrder(user_proposition_id, oc_width, oc_length, ots_width, ots_length, roof_type, roof_material, pitch);
     }
 
     /**
-     *
      * @param orders_id
      * @param item_list_id
      * @param quantity
      * @param total_price
      * @throws LoginSampleException
      */
-    public static void createQuoteOrderline(int orders_id,int item_list_id,double quantity,double total_price) throws LoginSampleException {
-        DataMapper.createQuoteOrderline(orders_id,item_list_id,quantity,total_price);
+    public static void createQuoteOrderline(int orders_id, int item_list_id, double quantity, double total_price) throws LoginSampleException {
+        DataMapper.createQuoteOrderline(orders_id, item_list_id, quantity, total_price);
     }
 
     /**
-     *
      * @param quoteID
      * @throws LoginSampleException
      */
@@ -98,7 +91,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @param userId
      * @return DataMapper.getUserPropositions(userId)
      * @throws LoginSampleException
@@ -108,7 +100,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DataMapper.getAllUserPropositions()
      * @throws LoginSampleException
      */
@@ -117,7 +108,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @param orderID
      * @return List of calculated items for order
      * @throws LoginSampleException
@@ -127,17 +117,15 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @param orderID
      * @param status
      * @throws LoginSampleException
      */
     public static void updateStatus(int orderID, String status) throws LoginSampleException {
-        DataMapper.updateStatus(orderID,status);
+        DataMapper.updateStatus(orderID, status);
     }
 
     /**
-     *
      * @param userID
      * @param name
      * @param address
@@ -148,11 +136,10 @@ public class LogicFacade {
      * @throws LoginSampleException
      */
     public static void updateQuoteUserProposition(int userID, String name, String address, String zipcodeCity, int phone, String email, String comments) throws LoginSampleException {
-        DataMapper.updateQuoteUserProposition(userID,name,address,zipcodeCity,phone,email,comments);
+        DataMapper.updateQuoteUserProposition(userID, name, address, zipcodeCity, phone, email, comments);
     }
 
     /**
-     *
      * @param orderID
      * @param oc_width
      * @param oc_length
@@ -164,20 +151,21 @@ public class LogicFacade {
      * @throws LoginSampleException
      */
     public static void updateQuoteOrders(int orderID, int oc_width, int oc_length, int ots_width, int ots_length, String roof_type, String roof_material, int pitch) throws LoginSampleException {
-        DataMapper.updateQuoteOrders(orderID,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch);
+        DataMapper.updateQuoteOrders(orderID, oc_width, oc_length, ots_width, ots_length, roof_type, roof_material, pitch);
     }
 
     /**
      * Update quantity in orderline
+     *
      * @param orderlineID
      * @param quantity
      * @throws LoginSampleException
      */
     public static void updateQuantityOrderline(int orderlineID, double quantity) throws LoginSampleException {
-        DataMapper.updateQuantityOrderline(orderlineID,quantity);
+        DataMapper.updateQuantityOrderline(orderlineID, quantity);
     }
 
-    public static int getOrderCoverage(int orderID) throws SQLException, ClassNotFoundException, LoginSampleException {
+    public static int getOrderCoverage(int orderID) throws LoginSampleException {
         return DataMapper.getOrderCoverage(orderID);
     }
 
@@ -186,7 +174,6 @@ public class LogicFacade {
     //######################
 
     /**
-     *
      * @return DimensionMapper.getCarportWidth()
      * @throws LoginSampleException
      */
@@ -195,7 +182,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DimensionMapper.getCarportLength()
      * @throws LoginSampleException
      */
@@ -204,7 +190,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DimensionMapper.getRoofFlat()
      * @throws LoginSampleException
      */
@@ -213,7 +198,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DimensionMapper.getRoofRaised()
      * @throws LoginSampleException
      */
@@ -222,7 +206,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DimensionMapper.getRoofDegree()
      * @throws LoginSampleException
      */
@@ -231,7 +214,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DimensionMapper.getShedWidth()
      * @throws LoginSampleException
      */
@@ -240,7 +222,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return DimensionMapper.getShedLength()
      * @throws LoginSampleException
      */
@@ -254,7 +235,6 @@ public class LogicFacade {
     //######################
 
     /**
-     *
      * @param rafterLength
      * @return beam-dimension and beam-spacing for light roof
      * @throws LoginSampleException
@@ -264,7 +244,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @param rafterLength
      * @return beam-dimension and beam-spacing for heavy roof
      * @throws LoginSampleException
@@ -274,16 +253,14 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return HashMap of pitch and factor
      * @throws LoginSampleException
      */
-    public static Map<Integer,Double> getPitchFactor() throws LoginSampleException {
+    public static Map<Integer, Double> getPitchFactor() throws LoginSampleException {
         return DataMapper.getPitchFactor();
     }
 
     /**
-     *
      * @return List of standard dimensions
      * @throws LoginSampleException
      */
@@ -292,7 +269,6 @@ public class LogicFacade {
     }
 
     /**
-     *
      * @return Arraylist of all items in DB
      * @throws LoginSampleException
      */

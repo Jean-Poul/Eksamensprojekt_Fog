@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletResponse;
  * Redirect helps with managing the navigation of the site while not having to make a java class and form for each link
  */
 public class Redirect extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-        //Getting parameter from header href
+        // Getting parameter from header href
         String destination = request.getParameter("destination");
 
-        //Switch case for navigating
+
+        // Switch case for navigation
         switch (destination) {
             case "customerpage":
                 request.setAttribute("message", "Kunde side");
@@ -27,6 +29,7 @@ public class Redirect extends Command {
                 break;
             case "index":
                 request.setAttribute("message", "Index side");
+                // Terminate current session
                 request.getSession().invalidate();
                 break;
             default:
@@ -34,7 +37,8 @@ public class Redirect extends Command {
                 break;
         }
 
-        //Return value for FrontController
+
+        // Return value for FrontController
         return destination;
     }
 }

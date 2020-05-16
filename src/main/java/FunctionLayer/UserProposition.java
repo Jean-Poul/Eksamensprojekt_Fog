@@ -23,6 +23,25 @@ public class UserProposition {
     private String roof_material;
     private int pitch;
 
+    /**
+     * @param user_proposition_id
+     * @param name
+     * @param address
+     * @param zipcodeCity
+     * @param phone
+     * @param email
+     * @param comments
+     * @param orders_id
+     * @param order_date
+     * @param status
+     * @param carport_width
+     * @param carport_length
+     * @param shed_width
+     * @param shed_length
+     * @param roof_type
+     * @param roof_material
+     * @param pitch
+     */
     public UserProposition(int user_proposition_id, String name, String address, String zipcodeCity, int phone, String email, String comments, int orders_id, String order_date, String status, int carport_width, int carport_length, int shed_width, int shed_length, String roof_type, String roof_material, int pitch) {
         this.user_proposition_id = user_proposition_id;
         this.name = name;
@@ -43,6 +62,7 @@ public class UserProposition {
         this.pitch = pitch;
     }
 
+    // Getters and setters
     public int getUser_proposition_id() {
         return user_proposition_id;
     }

@@ -9,13 +9,14 @@ public class ShedLength {
 
     /**
      * Constructor
+     *
      * @param shedLengthOption
      */
     public ShedLength(int shedLengthOption) {
         this.shedLengthOption = shedLengthOption;
     }
 
-    //Getters and setters
+    // Getters and setters
     public int getShedLengthOption() {
         return shedLengthOption;
     }

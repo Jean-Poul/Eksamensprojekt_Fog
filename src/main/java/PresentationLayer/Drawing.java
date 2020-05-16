@@ -11,17 +11,22 @@ import java.util.List;
  * Drawing class will show a table of a item list on the current order and show the blueprints of carport + shed
  */
 public class Drawing extends Command {
+    // Initialize variable to be able to parse a String to an int
+    private int vID = 0;
+    private int oID = 0;
+
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session
         HttpSession session = request.getSession();
 
 
-        // Initializing Lists with UserProposition object
+        // Initializing List with UserProposition object
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
 
-        // Initializing Lists with ItemList object
+        // Initializing List with ItemList object
         List<ItemList> itemList = (List<ItemList>) session.getAttribute("itemList");
 
 
@@ -33,87 +38,73 @@ public class Drawing extends Command {
         String orderID = request.getParameter("orderID");
 
 
-        // Initialize variable to be able to parse a String to an int
-        int oID = 0;
+        // Check if viewID is not empty and parse to int
+        if (!viewID.isEmpty()) {
+            vID = Integer.parseInt(viewID);
+        }
 
 
         // Check if orderID is not empty and parse to int
-        if(!orderID.isEmpty()) {
+        if (!orderID.isEmpty()) {
             oID = Integer.parseInt(orderID);
         }
 
 
-        // Singleton for initializing an instance of UserProposition
+        // Singleton for initializing an instance of UserProposition with a user proposition id
         // if List is empty
-        if ( userProposition == null ) {
-            userProposition = LogicFacade.getUserProposition(Integer.parseInt(viewID));
+        if (userProposition == null) {
+            userProposition = LogicFacade.getUserProposition(vID);
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
 
 
-        // Singleton for initializing an instance of ItemList
+        // Singleton for initializing an instance of ItemList with an order id
         // if List is empty
-        if ( itemList == null ) {
+        if (itemList == null) {
             itemList = LogicFacade.getAllItemList(oID);
         } else {
             itemList = (List<ItemList>) session.getAttribute("itemList");
         }
 
 
+        // Initializing instances of SVG classes to be able to show drawings
+        Svg svg = new Svg();
+        SvgFront svgFront = new SvgFront();
+        SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint();
+        SvgSideways svgSideways = new SvgSideways();
+
+
+        // Calling Method: addCarport(); to draw eagle view
+        svg.addCarport();
+
+
+        // Calling Method: addCarportFront(); to draw front view
+        svgFront.addCarportFront();
+
+
+        // Calling methods to draw sideways view in blueprint form
+        svgSidewaysBlueprint.addCarport();
+        svgSidewaysBlueprint.addRoof();
+        svgSidewaysBlueprint.addLines();
+
+
+        // Calling methods to draw sideways view in colors
+        svgSideways.addCarport();
+        svgSideways.addRoof();
+        svgSideways.addLines();
+        svgSideways.addRooftiles();
+
+
         // Attributes to use on jsp site
-        request.setAttribute("itemlist", itemList);
-        request.setAttribute("userproposition", userProposition);
+        request.setAttribute("itemList", itemList);
+        request.setAttribute("userProposition", userProposition);
 
+        request.setAttribute("svgDrawing", svg.toString());
+        request.setAttribute("svgDrawingFront", svgFront.toString());
+        request.setAttribute("svgDrawingSideways", svgSideways.toString());
+        request.setAttribute("svgDrawingSidewaysBlueprint", svgSidewaysBlueprint.toString());
 
-        try {
-
-            //Initializing instance of Svg class
-            Svg svg = new Svg();
-
-            //Calling Method: addCarport(); to draw
-            svg.addCarport();
-
-            //Attributes to use on jsp site
-            request.setAttribute("svgDrawing", svg.toString());
-
-            //Initializing instance of Svg class
-            SvgSideways svgSideways = new SvgSideways();
-
-            //Initializing instance of Svg class
-            SvgFront svgFront = new SvgFront();
-
-            //Calling Method: addCarportFront(); to draw
-            svgFront.addCarportFront();
-
-            //Attributes to use on jsp site
-            request.setAttribute("svgDrawingFront", svgFront.toString());
-
-            //Calling methods to draw
-            svgSideways.addCarport();
-            svgSideways.addRoof();
-            svgSideways.addLines();
-            svgSideways.addRooftiles();
-
-            // Attributes to use on jsp site
-            request.setAttribute("svgdrawingSideways", svgSideways.toString());
-
-            //Initializing instance of SvgSidewaysBlueprint class
-            SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint();
-
-            //Calling methods to draw
-            svgSidewaysBlueprint.addCarport();
-            svgSidewaysBlueprint.addRoof();
-            svgSidewaysBlueprint.addLines();
-
-            // Attributes to use on jsp site
-            request.setAttribute("svgdrawingSidewaysBlueprint", svgSidewaysBlueprint.toString());
-
-        }
-
-        catch (NullPointerException ex) {
-            ex.getMessage();
-        }
 
         // Return value for FrontController
         return "drawing";

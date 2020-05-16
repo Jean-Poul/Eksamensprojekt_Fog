@@ -416,7 +416,7 @@ public class DataMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 coverage = rs.getInt("coverage");
             }
         } catch (SQLException | ClassNotFoundException ex) {

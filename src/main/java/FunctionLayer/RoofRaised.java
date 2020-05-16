@@ -9,13 +9,14 @@ public class RoofRaised {
 
     /**
      * Constructor
+     *
      * @param roofRaisedOptions
      */
     public RoofRaised(String roofRaisedOptions) {
         RoofRaisedOptions = roofRaisedOptions;
     }
 
-    //Getters and setters
+    // Getters and setters
     public String getRoofRaisedOptions() {
         return RoofRaisedOptions;
     }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- *  The returnAdmin class makes sure the proposition list is updated when returning to adminpage.jsp from qouteview.jsp
+ * The ReturnAdmin class makes sure the proposition list is updated when returning to adminpage.jsp from quoteview.jsp
  */
 public class ReturnAdmin extends Command {
     @Override
@@ -32,8 +32,9 @@ public class ReturnAdmin extends Command {
         }
 
 
-        // Attributes to use on jsp site
-        request.setAttribute("userpropositions", userProposition);
+        // Attribute to use on jsp site
+        request.setAttribute("userProposition", userProposition);
+
 
         // Return value for FrontController
         return "adminpage";
