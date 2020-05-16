@@ -5,6 +5,7 @@ import FunctionLayer.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -116,6 +117,7 @@ public class QuoteView extends Command {
 
 //**************************** SKAL KØRES PÅ oID
         String totalPrice = request.getParameter("price");
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
         if (totalPrice == null) {
             double price = 0;
             try {
@@ -128,7 +130,7 @@ public class QuoteView extends Command {
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-            totalPrice = String.valueOf(price);
+            totalPrice = String.valueOf(decimalFormat.format(price));
         }
 
 
