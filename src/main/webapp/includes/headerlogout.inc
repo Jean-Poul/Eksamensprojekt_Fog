@@ -69,12 +69,12 @@
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form action="FrontController" method="post" style="width: 100%; margin-bottom: 0px" class="form-inline">
-                <input type="hidden" name="target" id="target" value="adminpage">
+                <input type="hidden" name="target" id="target" value="returnAdmin">
             <!-- Navigation links -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <!--<input type="submit" class="nav-link btn btn-link px-5" value="Forspørgelsesoversigt" />-->
-                    <button type="submit" class="nav-link btn btn-link px-5" value="adminpage">Forspørgelsesoversigt</button>
+                    <button type="submit" class="nav-link btn btn-link px-5" value="returnAdmin">Forspørgelsesoversigt</button>
                 </li>
                 <!-- Dropdown -->
                 <li class="nav-item dropdown active">
