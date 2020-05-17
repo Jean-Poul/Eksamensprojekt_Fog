@@ -161,7 +161,10 @@ INSERT INTO item_list (material_type,material,description,amounts,unit,price_per
                                                                                                ('Lægter, stern og løsholter','25x200','25x200 Bræt til stern trykimpr.','1','m','24.95'),
                                                                                                ('Lægter, stern og løsholter','19x100','19x100 Beklædning af skur','1','m','4.95'),
                                                                                                ('Tag','20,4 x 23,6','20,4 x 23,6 tagsten','1','stk','8.95'),
-                                                                                               ('Tag','109 x 240','109 x 240 tagplade','1','stk','42.50');
+                                                                                               ('Tag','109 x 240','109 x 240 tagplade','1','stk','42.50'),
+                                                                                               ('Beslagspakke','Beslag','Diverse beslag til hele carporten','1','stk','399.95'),
+                                                                                               ('Dør kit','Dør kit','Komplet dør sæt til skuret','1','stk','599.95');
+                                                                                               
 
 UNLOCK TABLES;
 
