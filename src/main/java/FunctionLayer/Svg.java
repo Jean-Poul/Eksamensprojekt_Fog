@@ -78,37 +78,80 @@ public class Svg {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
-            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
-            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
-            "</marker>\n" +
-            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
-            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
-            "</marker>\n" +
-            "</defs>";
-    private final String rectTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String rectRemTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #bababa\" />";
-    private final String rectShedTemplate = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #cfcfcf\" />";
-    private final String lineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
-            "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
-    private final String dotLineTemplate = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String lowerTextTemplate = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
+    private final String headerTemplate1    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,500,500\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+                                            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "</defs>";
+    private final String headerTemplate2    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+                                            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "</defs>";
+    private final String headerTemplate3    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,700,700\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+                                            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "</defs>";
+    private final String headerTemplate4    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,800,800\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+                                            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "</defs>";
+    private final String headerTemplate5    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,1000,1000\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+                                            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                                            "</marker>\n" +
+                                            "</defs>";
+
+    private final String rectTemplate       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectRemTemplate    = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #bababa\" />";
+    private final String rectShedTemplate   = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #cfcfcf\" />";
+    private final String lineTemplate       = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
+                                                "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
+    private final String dotLineTemplate    = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String lowerTextTemplate  = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
 
     //##########################################################
     //constructors
     //##########################################################
+
     public Svg() {
-        svg.append(String.format(headerTemplate));
-    }
+        if(shedWidth<400||shedLength<400) {
+            svg.append(String.format(headerTemplate1));
+        }
 
-    public Svg(double x, double y, double width, double height) {
-        this.width = width;
-        this.height = height;
-        this.x = x;
-        this.y = y;
-        svg.append(String.format(headerTemplate, x, y, height, width));
-    }
+        if(shedLength>400 && shedLength>400||shedWidth<500 && shedWidth>500) {
+            svg.append(String.format(headerTemplate1));
+        }
 
+        if(shedLength>500 && shedLength>500||shedWidth<600||shedLength<600) {
+            svg.append(String.format(headerTemplate2));
+        }
+
+        if(shedLength>600 && shedLength>600||shedWidth<700||shedLength<700) {
+            svg.append(String.format(headerTemplate3));
+        }
+
+        if(shedLength>700 && shedLength>700||shedWidth<800||shedLength<800) {
+            svg.append(String.format(headerTemplate4));
+        }
+    }
 
     //##########################################################
     //Method for StringBuilder
@@ -133,19 +176,19 @@ public class Svg {
                 svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-15), y=-33, text= (int) shedWidth));
                 svg.append(String.format(lowerTextTemplate, (carportLength +33), y=(shedLength/2+15), text= (int) shedLength));
 
-            }else{
-                svg.append(String.format(rectShedTemplate, ((carportLength - shedWidth) - 15), shedY + lathSpan, shedLength, shedWidth));
-                svg.append(String.format(rectTemplate, (carportLength-shedWidth)-15, shedY+lathSpan, beamHight, beamWidth));
-                svg.append(String.format(rectTemplate, carportLength -25, shedY+lathSpan, beamHight, beamWidth));
-                svg.append(String.format(rectTemplate, (carportLength -shedWidth)-15, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
-                svg.append(String.format(rectTemplate, carportLength -25, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
+                }else{
+                    svg.append(String.format(rectShedTemplate, ((carportLength - shedWidth) - 15), shedY + lathSpan, shedLength, shedWidth));
+                    svg.append(String.format(rectTemplate, (carportLength-shedWidth)-15, shedY+lathSpan, beamHight, beamWidth));
+                    svg.append(String.format(rectTemplate, carportLength -25, shedY+lathSpan, beamHight, beamWidth));
+                    svg.append(String.format(rectTemplate, (carportLength -shedWidth)-15, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
+                    svg.append(String.format(rectTemplate, carportLength -25, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
 
-                //Arrows
-                svg.append(String.format(lineTemplate, arrowLineX1=(carportLength +35), lathSpan, arrowLineX2=(carportLength +35), arrowLineY2=(carportWidth-lathSpan)));
-                svg.append(String.format(lineTemplate, arrowLineX1=(carportLength -shedWidth-15), arrowLineY1=-30, arrowLineX2=(carportLength -15), arrowLineY2=-30));
-                svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-15), y=-33, text= (int) shedWidth));
-                svg.append(String.format(lowerTextTemplate, (carportLength +33), y=(shedLength/2+15), text= (int) shedLength));
-            }
+                    //Arrows
+                    svg.append(String.format(lineTemplate, arrowLineX1=(carportLength +35), lathSpan, arrowLineX2=(carportLength +35), arrowLineY2=(carportWidth-lathSpan)));
+                    svg.append(String.format(lineTemplate, arrowLineX1=(carportLength -shedWidth-15), arrowLineY1=-30, arrowLineX2=(carportLength -15), arrowLineY2=-30));
+                    svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-15), y=-33, text= (int) shedWidth));
+                    svg.append(String.format(lowerTextTemplate, (carportLength +33), y=(shedLength/2+15), text= (int) shedLength));
+                }
         }
 
         //Remme
@@ -179,9 +222,10 @@ public class Svg {
         //Lower arrow
         if(shedLength>carportWidth-(2*(lathSpan))){
             svg.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1=(carportWidth +30), arrowLineX2=(carportLength), arrowLineY2=(carportWidth +30)));
-        }else{
-            svg.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=(carportWidth +30), arrowLineX2=(carportLength), arrowLineY2=(carportWidth +30)));
-        }
+            }else{
+                svg.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=(carportWidth +30), arrowLineX2=(carportLength), arrowLineY2=(carportWidth +30)));
+                }
+
         //Lower arrow
         svg.append(String.format(lowerTextTemplate, x=(carportLength /2), y=(carportWidth +50), text= (int) carportLength));
 
@@ -195,7 +239,7 @@ public class Svg {
 
         //Lath measurements
         svg.append(String.format(lineTemplate, carportLength+10, arrowLineY1=lathSpan, carportLength+10, arrowLineY2=0));
-        svg.append(String.format(lowerTextTemplate, carportLength+40, lathSpan/2, text= (int) raftDistance));
+        svg.append(String.format(lowerTextTemplate, carportLength+40, lathSpan/2, text= (int) lathSpan));
 
         //Wind Cross
         svg.append(String.format(dotLineTemplate, windCrossX1=(raftDistance)+2.25, windCrossY1=(lathSpan), windCrossX2=(carportLength -raftDistance), windCrossY2=(carportWidth -lathSpan)));
@@ -261,6 +305,7 @@ public class Svg {
         res = res.replace("M0.0 L12.6 L0.12 L0.0","M0,0 L12,6 L0,12 L0,0");
         res = res.replace("M0.6 L12.0 L12.12 L0.6","M0,6 L12,0 L12,12 L0,6");
         res = res.replace("0.0.600.600","0,0,600,600");
+        res = res.replace("0.0.600.700","0,0,700,600");
         return res + "</svg>" ;
     }
 
