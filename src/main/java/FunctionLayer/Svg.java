@@ -134,13 +134,13 @@ public class Svg {
     public Svg() {
         if(carportWidth<400||carportLength<400) {
             svg.append(String.format(headerTemplate1));
-            }else if(carportWidth>400 && carportLength>400||carportWidth<500 && carportLength>500) {
+            }else if(carportWidth<500 && carportLength>500) {
                 svg.append(String.format(headerTemplate2));
-                }else if(carportWidth>500 && carportLength>500||carportWidth<600||carportLength<600) {
+                }else if(carportWidth<600&&carportLength<600) {
                     svg.append(String.format(headerTemplate3));
-                    }else if(carportWidth>600 && carportLength>600||carportWidth<700||carportLength<700) {
+                    }else if(carportWidth<700&&carportLength<700) {
                         svg.append(String.format(headerTemplate4));
-                        }else if(carportWidth>700 && carportLength>700||carportWidth<800||carportLength<800) {
+                        }else if(carportWidth<800&&carportLength<800) {
                             svg.append(String.format(headerTemplate5));
                             }
     }
