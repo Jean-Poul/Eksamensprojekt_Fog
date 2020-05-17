@@ -21,6 +21,9 @@ public class Redirect extends Command {
             case "customerpage":
                 request.setAttribute("message", "Kunde side");
                 break;
+            case "adminpage":
+                request.setAttribute("message", "Admin side");
+                break;
             case "carportstandard":
                 request.setAttribute("message", "Standard byg");
                 break;

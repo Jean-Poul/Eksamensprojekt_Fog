@@ -129,4 +129,75 @@ UPDATE user_proposition SET name = '', address = '', zipcodeCity = '', phone = '
 -- --------------------------
 UPDATE orders SET oc_width = '', oc_length = '', ots_width = '', ots_length = '', roof_type = '', roof_material = '', pitch = '' WHERE orders_id = '1';
 
+-- ------------------------------
+-- Update quantity in orderline
+-- ------------------------------
+UPDATE orderline SET quantity = '12' WHERE orderline_id = '2';
+
+-- ---------------------
+-- insert into orders
+-- ---------------------
 INSERT INTO orders (oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES ('','','','','','','');
+
+-- #################################################################
+-- Queries for Admin-page CRUD
+-- #################################################################
+-- CRUD for table measurement_units --
+-- create:
+INSERT INTO measurement_units (units,c_width,c_length,ts_width,ts_length) VALUES ('','','','','');
+-- read:
+SELECT * FROM measurement_units ORDER BY units ASC;
+-- update:
+UPDATE measurement_units SET units = '', c_width = '', c_length = '', ts_width = '', ts_length = '' WHERE measurement_units_id = '';
+-- delete:
+DELETE FROM measurement_units WHERE measurement_units_id = '';
+
+-- CRUD for table item_list --
+-- create:
+INSERT INTO item_list (material_type,material,description,amounts,unit,price_per_unit) VALUES ('','','','','','');
+-- read:
+SELECT * FROM item_list ORDER BY item_list_id ASC;
+-- update:
+UPDATE item_list SET material_type = '', material = '', description = '', amounts = '', unit = '', price_per_unit = '' WHERE item_list_id = '';
+-- delete:
+DELETE FROM item_list WHERE item_list_id = '';
+
+-- CRUD for table rafter_spacing --
+-- create:
+INSERT INTO rafter_spacing (category,beam_dimension,beam_spacing,rafter_length) VALUES ('','','','');
+-- read:
+SELECT * FROM rafter_spacing ORDER BY category ASC, beam_dimension ASC;
+-- update:
+UPDATE rafter_spacing SET category = '', beam_dimension = '', beam_spacing = '', rafter_length = '' WHERE rafter_spacing_id = '';
+-- delete:
+DELETE FROM rafter_spacing WHERE rafter_spacing_id = '';
+
+-- CRUD for table roof --
+-- create:
+INSERT INTO roof (roof_type,roof_category,roof_material) VALUES ('','','');
+-- read:
+SELECT * FROM roof ORDER BY roof_type ASC, roof_category ASC, roof_material ASC;
+-- update:
+UPDATE roof SET roof_type = '', roof_category = '', roof_material = '' WHERE roof_id = '';
+-- delete:
+DELETE FROM roof WHERE roof_id = '';
+
+-- CRUD for table roof_pitch --
+-- create:
+INSERT INTO roof_pitch (pitch,factor) VALUES ('','');
+-- read:
+SELECT * FROM roof_pitch ORDER BY pitch ASC;
+-- update:
+UPDATE roof_pitch SET pitch = '', factor = '' WHERE roof_pitch_id = '';
+-- delete:
+DELETE FROM roof_pitch WHERE roof_pitch_id = '';
+
+-- CRUD for table standart_dimensions
+-- create: 
+-- No create for standart_dimension
+-- read:
+SELECT * FROM standard_dimensions;
+-- update:
+UPDATE standard_dimensions SET bottom_lathspan = '', bottom_laths = '', top_lath_gap = '', avg_lath_span = '', roof_tile_length = '', roof_tile_width = '', roof_trapez_length = '', roof_trapez_width = '', shed_claddeing_board_dim = '', beam_dimension_heavy = '', beam_dimension_light = '' WHERE standard_dimensions_id = ''; 
+-- delete: 
+-- No delete for standart_dimension

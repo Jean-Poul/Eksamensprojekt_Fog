@@ -68,16 +68,27 @@
 
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+            <form action="FrontController" method="post" style="width: 100%; margin-bottom: 0px" class="form-inline">
+                <input type="hidden" name="target" id="target" value="adminpage">
             <!-- Navigation links -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-white px-5 effects"
-                       href="FrontController?target=redirect&destination=index">Home</span></a>
+                    <!--<input type="submit" class="nav-link btn btn-link px-5" value="Forspørgelsesoversigt" />-->
+                    <button type="submit" class="nav-link btn btn-link px-5" value="adminpage">Forspørgelsesoversigt</button>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white px-5 effects"
-                       href="FrontController?target=redirect&destination=customerpage">Bestil</a>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu">
+                        <button type="submit" class="dropdown-item" value="measurementUnits" onclick="change(this.value)">Måleenheder</button>
+                        <button type="submit" class="dropdown-item" value="itemList" onclick="change(this.value)">Vareliste</button>
+                        <button type="submit" class="dropdown-item" value="rafterSpacing" onclick="change(this.value)">Rafterafstand</button>
+                        <button type="submit" class="dropdown-item" value="roof" onclick="change(this.value)">Tagbeklædning</button>
+                        <button type="submit" class="dropdown-item" value="roofPitch" onclick="change(this.value)">Taghældning</button>
+                        <button type="submit" class="dropdown-item" value="standartDimensions" onclick="change(this.value)">Standardmål</button>
+                    </div>
                 </li>
             </ul>
 
@@ -85,7 +96,7 @@
                 ud
                 <span class="sr-only">(current)</span></a>
             <!-- End navigation links -->
-
+            </form>
         </div>
         <!-- End collapse -->
     </nav>
