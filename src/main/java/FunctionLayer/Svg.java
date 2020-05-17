@@ -78,7 +78,7 @@ public class Svg {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
-    private final String headerTemplate1    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,500,500\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate1    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,550,550\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
@@ -86,7 +86,7 @@ public class Svg {
                                             "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
                                             "</defs>";
-    private final String headerTemplate2    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate2    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,650,650\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
@@ -94,7 +94,7 @@ public class Svg {
                                             "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
                                             "</defs>";
-    private final String headerTemplate3    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,700,700\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate3    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,750,750\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
@@ -102,7 +102,7 @@ public class Svg {
                                             "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
                                             "</defs>";
-    private final String headerTemplate4    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,800,800\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate4    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,850,850\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
@@ -110,7 +110,7 @@ public class Svg {
                                             "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
                                             "</defs>";
-    private final String headerTemplate5    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,1000,1000\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate5    = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,950,950\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
                                             "</marker>\n" +
@@ -132,25 +132,17 @@ public class Svg {
     //##########################################################
 
     public Svg() {
-        if(shedWidth<400||shedLength<400) {
+        if(carportWidth<400||carportLength<400) {
             svg.append(String.format(headerTemplate1));
-        }
-
-        if(shedLength>400 && shedLength>400||shedWidth<500 && shedWidth>500) {
-            svg.append(String.format(headerTemplate1));
-        }
-
-        if(shedLength>500 && shedLength>500||shedWidth<600||shedLength<600) {
-            svg.append(String.format(headerTemplate2));
-        }
-
-        if(shedLength>600 && shedLength>600||shedWidth<700||shedLength<700) {
-            svg.append(String.format(headerTemplate3));
-        }
-
-        if(shedLength>700 && shedLength>700||shedWidth<800||shedLength<800) {
-            svg.append(String.format(headerTemplate4));
-        }
+            }else if(carportWidth>400 && carportLength>400||carportWidth<500 && carportLength>500) {
+                svg.append(String.format(headerTemplate2));
+                }else if(carportWidth>500 && carportLength>500||carportWidth<600||carportLength<600) {
+                    svg.append(String.format(headerTemplate3));
+                    }else if(carportWidth>600 && carportLength>600||carportWidth<700||carportLength<700) {
+                        svg.append(String.format(headerTemplate4));
+                        }else if(carportWidth>700 && carportLength>700||carportWidth<800||carportLength<800) {
+                            svg.append(String.format(headerTemplate5));
+                            }
     }
 
     //##########################################################
@@ -304,8 +296,11 @@ public class Svg {
         res = res.replace("translate(100.100)","translate(100,100)");
         res = res.replace("M0.0 L12.6 L0.12 L0.0","M0,0 L12,6 L0,12 L0,0");
         res = res.replace("M0.6 L12.0 L12.12 L0.6","M0,6 L12,0 L12,12 L0,6");
-        res = res.replace("0.0.600.600","0,0,600,600");
-        res = res.replace("0.0.600.700","0,0,700,600");
+        res = res.replace("0.0.550.550","0,0,550,550");
+        res = res.replace("0.0.650.650","0,0,650,650");
+        res = res.replace("0.0.750.750","0,0,750,750");
+        res = res.replace("0.0.850.850","0,0,850,850");
+        res = res.replace("0.0.950.950","0,0,950,950");
         return res + "</svg>" ;
     }
 
