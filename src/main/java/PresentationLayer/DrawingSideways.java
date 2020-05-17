@@ -12,10 +12,6 @@ public class DrawingSideways extends Command {
 
         SvgSideways svgSideways = new SvgSideways();
 
-
-        //ROOF
-
-
         svgSideways.addCarport();
         svgSideways.addRoof();
         svgSideways.addLines();
