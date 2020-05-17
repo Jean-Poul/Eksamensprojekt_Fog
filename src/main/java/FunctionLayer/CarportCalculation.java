@@ -37,6 +37,14 @@ public class CarportCalculation {
     private int roofCladType;
     private int sternBoardType;
     private int beamType;
+    private int doorKit;
+    private int bracketKit;
+    private int screwKitRoofRaised;
+    private int screwKitTrapez;
+    private int screwKitGenericRoofBrackets;
+    private int screwKitGenericRoofLaths;
+    private int screwKitShedDoorCladdingInside;
+    private int screwKitShedDoorCladdingOutside;
 
     //  CUSTOMER SELECTED CRITERIA [cm]
     private boolean raisedRoof; //If true, then roofHeavy is true as well (Is set in constructor)
@@ -132,13 +140,27 @@ public class CarportCalculation {
         this.shedLength = LogicFacade.getUserProposition(orderID).get(0).getShed_length();
         this.shedWidth = LogicFacade.getUserProposition(orderID).get(0).getShed_width();
 
+        //Assign accessories that follow all types of carports
+        this.screwKitGenericRoofBrackets = 9;
+        this.screwKitGenericRoofLaths = 10;
+        this.bracketKit = 34;
 
+        //Determine if there's a shed and assign according item packs
+        if (this.shedLength > 0){
+            this.screwKitShedDoorCladdingInside = 12;
+            this.screwKitShedDoorCladdingOutside = 11;
+            this.doorKit = 35;
+        }
+
+        //Determine if roof is raised or flat and assign according screw packs
         if (this.customerRoofAngle > 0) {
             this.raisedRoof = true;
             this.roofHeavy = true;
+            this.screwKitRoofRaised = 8;
         } else {
             this.raisedRoof = false;
             this.roofHeavy = false;
+            this.screwKitTrapez = 13;
         }
 
         //[FIX] TEMPORARY FIX UNTIL RAFTDISTANCES WORKS
