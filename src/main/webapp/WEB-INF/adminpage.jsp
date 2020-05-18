@@ -97,7 +97,7 @@
                             <label for="InputEmail">Email adresse</label>
                             <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
                                    name="email" value="opret@mig.nu">
-                            <small id="emailHelp" class="form-text text-muted">Vi deler din email med alle!</small>
+                            <small id="emailHelp" class="form-text text-muted">Bruger til login som medarbejder</small>
                         </div>
                         <div class="form-group">
                             <label for="InputPassword1">Password</label>
