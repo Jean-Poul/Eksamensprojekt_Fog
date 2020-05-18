@@ -12,13 +12,16 @@ import java.util.List;
  * QuoteView is used to populate info fields with user quote information on quoteview.jsp
  */
 public class QuoteView extends Command {
-    // Initialize variable to be able to parse a String to an int
+    // Initialize variable to be able to parse a String to an int and calculate price
+    private double price = 0;
     private int vID = 0;
     private int oID = 0;
+    private String totalPrice;
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session
         HttpSession session = request.getSession();
 
@@ -45,6 +48,10 @@ public class QuoteView extends Command {
 
         // Getting parameter for calculating price on an order id
         String orderID = request.getParameter("orderID");
+
+
+        // Getting parameter and initializing variable for showing total price
+        totalPrice = request.getParameter("price");
 
 
         // Check if viewID is not empty and parse it to an int
@@ -115,22 +122,16 @@ public class QuoteView extends Command {
         }
 
 
-//**************************** SKAL KØRES PÅ oID
-        String totalPrice = request.getParameter("price");
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        // Passing orderID to CarportCalculation and passing CarportCalculation to PriceCalculator
+        // to be able to calculate total price of an order
         if (totalPrice == null) {
-            double price = 0;
-            try {
-                CarportCalculation cp = new CarportCalculation(oID);
-                price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
-            } catch (LoginSampleException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
+
+            CarportCalculation cp = new CarportCalculation(oID);
+            price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
+
             totalPrice = String.valueOf(decimalFormat.format(price));
+        } else {
+            totalPrice = decimalFormat.format(session.getAttribute("price"));
         }
 
 

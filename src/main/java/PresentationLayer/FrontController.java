@@ -44,7 +44,7 @@ public class FrontController extends HttpServlet {
             } else {
                 request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
             }
-        } catch ( UnsupportedEncodingException | LoginSampleException ex) {
+        } catch (UnsupportedEncodingException | LoginSampleException | ClassNotFoundException ex) {
             request.setAttribute( "error", ex.getMessage() );
             request.getRequestDispatcher( "/WEB-INF/error.jsp" ).forward( request, response );
         }

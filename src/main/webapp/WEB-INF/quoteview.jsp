@@ -11,15 +11,14 @@
     <div class="row">
         <!-- Section -->
         <section class="col-12">
-
             <c:forEach var="info" items="${requestScope.userProposition}">
             <!-- Customer info -->
             <div class="accordion mt-5" id="cardid">
                 <!-- Back button -->
-                    <form class="form-group" name="back" action="FrontController" method="POST">
-                        <input type="hidden" name="target" value="returnAdmin">
-                        <input class="btn btn-primary text-white" type="submit" value="Tilbage">
-                    </form>
+                <form class="form-group" name="back" action="FrontController" method="POST">
+                    <input type="hidden" name="target" value="returnAdmin">
+                    <input class="btn btn-primary text-white" type="submit" value="Tilbage">
+                </form>
                 <!-- End back button -->
 
                 <div class="card">
@@ -367,6 +366,7 @@
             <!-- End total price -->
             <!-- Navigate button choices -->
             <div class="container d-flex justify-content-center my-5">
+
                 <form class="form-group" name="" action="FrontController" method="POST">
                     <input type="hidden" name="target" value="">
                     <input class="btn btn-success text-white" type="submit" value="Se tilbud">
@@ -385,11 +385,10 @@
                     <input class="btn btn-danger text-white" type="submit" value="Slet forespørgsel"
                            onclick="return confirm('Er du sikker på at du vil slette?')"/>
                 </form>
-                </c:forEach>
 
             </div>
             <!-- End navigate button choices -->
-
+            </c:forEach>
         </section>
         <!-- End section -->
     </div>

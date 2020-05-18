@@ -80,35 +80,35 @@
             <div class="container">
 
                 <!-- SVG drawing sideways with color -->
-                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
-                    <h5 class="text-primary">Færdig udgave af ordre</h5>
-                    <div class="container bg-light">
+                <div class="col border-dark shadow my-5 p-5">
+                    <h5 class="text-primary text-center mb-5">Færdig udgave af ordre</h5>
+                    <div class="container bg-light d-flex justify-content-center">
                         ${requestScope.svgDrawingSideways}
                     </div>
                 </div>
                 <!-- End svg drawing sideways with color -->
 
                 <!-- SVG drawing sideways -->
-                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
-                    <h5 class="text-primary">Arbejdstegning fra siden</h5>
-                    <div class="container bg-light">
+                <div class="col border-dark shadow my-5 p-5">
+                    <h5 class="text-primary text-center mb-5">Arbejdstegning fra siden</h5>
+                    <div class="container bg-light d-flex justify-content-center">
                         ${requestScope.svgDrawingSidewaysBlueprint}
                     </div>
                 </div>
                 <!-- End sideways -->
 
-                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
+                <div class="col border-dark shadow my-5 p-5">
                     <!-- SVG drawing from top -->
-                    <h5 class="text-primary">Arbejdstegning ovenfra</h5>
-                    <div class="container bg-light">
+                    <h5 class="text-primary text-center mb-5">Arbejdstegning ovenfra</h5>
+                    <div class="container bg-light d-flex justify-content-center">
                         ${requestScope.svgDrawing}
                     </div>
                 </div>
                 <!-- End svg drawing from top -->
                 <!-- SVG drawing from the front -->
-                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
-                    <h5 class="text-primary text-center">Arbejdstegning forfra</h5>
-                    <div class="container bg-light">
+                <div class="col border-dark shadow my-5 p-5">
+                    <h5 class="text-primary text-center mb-5">Arbejdstegning forfra</h5>
+                    <div class="container bg-light d-flex justify-content-center">
                         ${requestScope.svgDrawingFront}
                     </div>
                 </div>

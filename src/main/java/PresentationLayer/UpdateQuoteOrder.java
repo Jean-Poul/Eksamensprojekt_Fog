@@ -5,6 +5,7 @@ import FunctionLayer.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -13,9 +14,8 @@ import java.util.List;
  */
 public class UpdateQuoteOrder extends Command {
     // Initialize variables to be able to update an order
-    private String rFlat;
-    private String rRaised;
-    private String roofType;
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
+    private double price = 0;
     private int oID = 0;
     private int carpWidth = 0;
     private int carpLength = 0;
@@ -24,10 +24,14 @@ public class UpdateQuoteOrder extends Command {
     private int shedW = 0;
     private int shedL = 0;
     private int vID = 0;
+    private String rFlat;
+    private String rRaised;
+    private String roofType;
+    private String totalPrice;
 
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session
         HttpSession session = request.getSession();
 
@@ -66,6 +70,9 @@ public class UpdateQuoteOrder extends Command {
         // Roof option 0 or 1 for switch case
         String roofOption = request.getParameter("roofOption");
 
+        // Getting parameter and initializing variable for showing total price
+        totalPrice = request.getParameter("price");
+
 
         // Check if viewID is not empty and parse it to an int
         if (!viewID.isEmpty()) {
@@ -92,13 +99,9 @@ public class UpdateQuoteOrder extends Command {
 
 
         // Check if roofOptionDegrees is not empty and parse it to an int
-        try {
             if (!roofOptionDegrees.isEmpty()) {
                 roofDegrees = Integer.parseInt(roofOptionDegrees);
             }
-        } catch (NumberFormatException ex) {
-            ex.getMessage();
-        }
 
 
         // Check if sWidth is not empty and parse it to an int
@@ -183,6 +186,19 @@ public class UpdateQuoteOrder extends Command {
         }
 
 
+        // Passing orderID to CarportCalculation and passing CarportCalculation to PriceCalculator
+        // to be able to calculate total price of an order
+        if (totalPrice == null) {
+
+            CarportCalculation cp = new CarportCalculation(oID);
+            price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
+
+            totalPrice = String.valueOf(decimalFormat.format(price));
+        } else {
+            totalPrice = decimalFormat.format(session.getAttribute("price"));
+        }
+
+
         // Attributes to use on jsp site
         request.setAttribute("userProposition", userProposition);
 
@@ -195,6 +211,8 @@ public class UpdateQuoteOrder extends Command {
 
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
+
+        request.setAttribute("totalPrice", totalPrice);
 
 
         // Return value for FrontController
