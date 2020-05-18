@@ -168,6 +168,27 @@ public class DataMapper {
         }
     }
 
+    /**
+     * Inserts the total carport price w. tax and w/o coverage to order in DB
+     *
+     * @param carportTotalPriceWithTax Total price for carport
+     * @param propositionID specific order ID
+     * @throws LoginSampleException
+     */
+    public static void insertTotalPrice(double carportTotalPriceWithTax, int propositionID) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE orders SET offer_price = ? WHERE orders_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setDouble(1, carportTotalPriceWithTax);
+            ps.setInt(2, propositionID);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
     //############################
     // 3. Queries for Quote view #
     //############################

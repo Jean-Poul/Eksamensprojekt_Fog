@@ -1,9 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.CarportCalculation;
-import FunctionLayer.CreateCalculatedQuote;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,7 +55,7 @@ public class CarportCalcPage extends Command {
         // initialize variables
         String roofType = null;
         int pitch;
-        int orderId;
+        int orderId = 0;
         int roofDegrees = 0;
         int shedW = 0;
         int shedL = 0;
@@ -91,13 +88,13 @@ public class CarportCalcPage extends Command {
                 break;
         }
 
+        CarportCalculation cpCalc = new CarportCalculation(orderId);
 
-        // Her skal der laves beregninger og insættes i ordrerlinje?????
-
-
-
-//        CreateCalculatedQuote carportCalculation = new CreateCalculatedQuote();
-//        carportCalculation;
+        try {
+            PriceCalculator pcCalc = new PriceCalculator(cpCalc);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // Create date for proposition receipt
         Locale dk = new Locale("da","DK");

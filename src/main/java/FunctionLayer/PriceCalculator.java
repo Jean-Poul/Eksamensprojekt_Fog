@@ -19,6 +19,8 @@ public class PriceCalculator {
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#,##0.00");
 
+    int orderID;
+
     //Danish tax
     double addTax = 1.25;
     double subtractTax = 1.20;
@@ -57,6 +59,8 @@ public class PriceCalculator {
 
 
     public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
+
+        this.orderID = cpCalc.getOrderID();
 
         this.orderCoverage = LogicFacade.getOrderCoverage(cpCalc.orderID);
 
@@ -108,6 +112,8 @@ public class PriceCalculator {
                 totalRoofLathPrice, totalSupportingStrapPrice, totalRoofCladPrice,
                 totalSternBoardPrice, totalBeamPrice);
 
+        costPriceToDB(totalCarportPriceCostWithTax, orderID);
+
         System.out.println("\n========================================");
         System.out.println("Samlet kostpris u. moms: " + df.format(totalCarportCostNoTax) + " kr");
         System.out.println("Samlet kostpris m. moms: " + df.format(totalCarportPriceCostWithTax) + " kr");
@@ -137,6 +143,17 @@ public class PriceCalculator {
 
     }
 
+    /**
+     * Inserts the total carport price w. tax and w/o coverage to order in DB
+     *
+     * @param totalCarportPriceCostWithTax Total cost price for carport with tax and without coverage
+     * @param orderID specific order ID
+     * @throws LoginSampleException
+     */
+    private void costPriceToDB(double totalCarportPriceCostWithTax, int orderID) throws LoginSampleException {
+        LogicFacade.insertTotalCarportPrice(totalCarportPriceCostWithTax, orderID);
+
+    }
 
     /**
      * Takes item type from carport calculation and searches for equivilant in DB
