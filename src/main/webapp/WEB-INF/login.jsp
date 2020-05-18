@@ -14,7 +14,7 @@
             <!-- Login form -->
             <div class="container d-flex justify-content-center mt-5">
 
-                <div class="col-4 p-3 rounded-lg shadow">
+                <div class="col-4 p-5 rounded-lg shadow">
                     <h3 class="text-primary text-center">Login</h3>
                     <form name="login" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="login">
@@ -22,7 +22,7 @@
                             <label for="InputEmail">Email adresse</label>
                             <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
                                    name="email" value="admin@fog.dk">
-                            <small id="emailHelp" class="form-text text-muted">Bruger til login</small>
+                            <small id="emailHelp" class="form-text text-muted">Brugernavn</small>
                         </div>
                         <div class="form-group">
                             <label for="InputPassword">Password</label>

@@ -12,18 +12,15 @@
         <!-- Section -->
         <section class="col-12">
 
-            <!-- Back button -->
-            <div class="container d-flex justify-content-center my-5">
-                <form class="btn btn-primary col-2 mx-2" name="back" action="FrontController" method="POST">
-                    <input type="hidden" name="target" value="returnAdmin">
-                    <input class="btn text-white" type="submit" value="Tilbage">
-                </form>
-            </div>
-            <!-- End back button -->
-
             <c:forEach var="info" items="${requestScope.userProposition}">
             <!-- Customer info -->
-            <div class="accordion" id="cardid">
+            <div class="accordion mt-5" id="cardid">
+                <!-- Back button -->
+                    <form class="form-group" name="back" action="FrontController" method="POST">
+                        <input type="hidden" name="target" value="returnAdmin">
+                        <input class="btn btn-primary text-white" type="submit" value="Tilbage">
+                    </form>
+                <!-- End back button -->
 
                 <div class="card">
                     <div class="card-header" id="idheading">
@@ -61,15 +58,15 @@
                             <!-- Middle column -->
                             <div class="col bg-light">
 
-                                <p>.<b>${info.user_proposition_id}</b></p>
-                                <p>.<b>${info.name}</b></p>
-                                <p>.<b>${info.order_date}</b></p>
-                                <p>.<b>${info.address}</b></p>
-                                <p>.<b>${info.zipcodeCity}</b></p>
-                                <p>.<b>${info.email}</b></p>
-                                <p>.<b>${info.phone}</b></p>
-                                <p>.<b>${info.comments}</b></p>
-                                <p>.<b>${info.status}</b></p>
+                                <p><b>${info.user_proposition_id}</b></p>
+                                <p><b>${info.name}</b></p>
+                                <p><b>${info.order_date}</b></p>
+                                <p><b>${info.address}</b></p>
+                                <p><b>${info.zipcodeCity}</b></p>
+                                <p><b>${info.email}</b></p>
+                                <p><b>${info.phone}</b></p>
+                                <p><b>${info.comments}</b>.</p>
+                                <p><b>${info.status}</b></p>
 
                             </div>
                             <!-- End middle column -->
@@ -130,7 +127,7 @@
                                     </div>
                                     <!-- End right column -->
                                     <!-- Update button -->
-                                    <input class="btn btn-dark btn-block" type="submit" value="Opdater"
+                                    <input class="btn btn-success btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
                                     <!-- End update button -->
                                 </form>
@@ -182,14 +179,14 @@
                             <!-- Middle column -->
                             <div class="col bg-light">
 
-                                <p>.<b>${info.orders_id}</b></p>
-                                <p>.<b>${info.carport_width}</b></p>
-                                <p>.<b>${info.carport_length}</b></p>
-                                <p>.<b>${info.roof_type}</b></p>
-                                <p>.<b>${info.roof_material}</b></p>
-                                <p>.<b>${info.pitch}</b></p>
-                                <p>.<b>${info.shed_width}</b></p>
-                                <p>.<b>${info.shed_length}</b></p>
+                                <p><b>${info.orders_id}</b></p>
+                                <p><b>${info.carport_width}</b></p>
+                                <p><b>${info.carport_length}</b></p>
+                                <p><b>${info.roof_type}</b></p>
+                                <p><b>${info.roof_material}</b></p>
+                                <p><b>${info.pitch}</b></p>
+                                <p><b>${info.shed_width}</b></p>
+                                <p><b>${info.shed_length}</b></p>
 
                             </div>
                             <!-- End middle column -->
@@ -294,7 +291,7 @@
                                     </div>
                                     <!-- End select options -->
                                     <!-- Update button -->
-                                    <input class="btn btn-dark btn-block" type="submit" value="Opdater"
+                                    <input class="btn btn-success btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
                                     <!-- End update button -->
                                     <!-- End right column -->
@@ -356,7 +353,7 @@
                                                value="${requestScope.totalPrice}">
                                     </div>
                                     <!-- Update button -->
-                                    <input class="btn btn-dark btn-block" type="submit" value="Opdater"
+                                    <input class="btn btn-success btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
                                     <!-- End update button -->
                                 </form>
@@ -369,23 +366,23 @@
             </div>
             <!-- End total price -->
             <!-- Navigate button choices -->
-            <div class="container d-flex justify-content-center my-3">
-                <form class="btn btn-success col-2 mx-2" name="" action="FrontController" method="POST">
+            <div class="container d-flex justify-content-center my-5">
+                <form class="form-group" name="" action="FrontController" method="POST">
                     <input type="hidden" name="target" value="">
-                    <input class="btn text-white" type="submit" value="Se tilbud">
+                    <input class="btn btn-success text-white" type="submit" value="Se tilbud">
                 </form>
 
-                <form class="btn btn-primary col mx-2" name="drawingView" action="FrontController" method="POST">
+                <form class="form-group mx-5" name="drawingView" action="FrontController" method="POST">
                     <input type="hidden" name="target" value="drawing">
                     <input type="hidden" name="orderID" value="${info.orders_id}">
                     <input type="hidden" name="viewID" value="${info.user_proposition_id}">
-                    <input class="btn text-white" type="submit" value="Se tegning & stykliste">
+                    <input class="btn btn-info text-white" type="submit" value="Se tegning & stykliste">
                 </form>
 
-                <form class="btn btn-danger col-2 mx-2" name="deleteQuote" action="FrontController" method="post">
+                <form class="form-group" name="deleteQuote" action="FrontController" method="post">
                     <input type="hidden" name="target" value="rejectQuote">
                     <input type="hidden" name="quoteID" value="${info.user_proposition_id}">
-                    <input class="btn text-white" type="submit" value="Slet forespørgsel"
+                    <input class="btn btn-danger text-white" type="submit" value="Slet forespørgsel"
                            onclick="return confirm('Er du sikker på at du vil slette?')"/>
                 </form>
                 </c:forEach>
