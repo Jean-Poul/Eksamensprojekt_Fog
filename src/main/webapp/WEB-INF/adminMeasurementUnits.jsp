@@ -48,6 +48,22 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach var="element" items="${requestScope.measurementUnits}">
+            <tr>
+                <td>${element.units}</td>
+                <td class="text-center chbx">${element.c_width}</td>
+                <td class="text-center chbx">${element.c_length}</td>
+                <td class="text-center chbx">${element.ts_width}</td>
+                <td class="text-center chbx">${element.ts_length}</td>
+                <td class="text-right">
+                    <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+                    <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
+                    <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
+                </td>
+            </tr>
+        </c:forEach>
+
+        <!--
         <tr>
             <td>180</td>
             <td class="text-center"></td>
@@ -84,6 +100,8 @@
                 <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
             </td>
         </tr>
+        -->
+
         </tbody>
     </table>
     <button class="btn btn-sm btn-success add-new"><span class="fa fa-plus"></span> Tilføj ny</button>
@@ -91,6 +109,15 @@
 <!-- Footer -->
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.chbx').each(function () {
+            $("td:contains('1').chbx").html('<span class="fa fa-check"></span>');
+            $("td:contains('0').chbx").html('');
+        });
+    });
+</script>
+
 <script type="text/javascript">
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();

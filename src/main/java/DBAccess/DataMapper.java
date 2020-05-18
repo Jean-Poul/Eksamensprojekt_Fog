@@ -16,6 +16,7 @@ import java.util.Map;
  * 3. Queries for Quote view
  * 4. Queries for Quote update
  * 5. Select option
+ * 6. All Admin queries for CRUD
  */
 
 public class DataMapper {
@@ -757,5 +758,31 @@ public class DataMapper {
         return orderItemList;
     }
 
+//########################################
+// 6. All Admin queries for CRUD
+//########################################
+
+    public static List<MeasurementUnits> getMeasurementUnits() throws LoginSampleException {
+        List<MeasurementUnits> measurementUnits = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM measurement_units ORDER BY units ASC";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int measurement_units_id = rs.getInt("measurement_units_id");
+                int units = rs.getInt("units");
+                int c_width = rs.getInt("c_width");
+                int c_length = rs.getInt( "c_length");
+                int ts_width = rs.getInt("ts_width");
+                int ts_length = rs.getInt( "ts_length");
+                MeasurementUnits mu = new MeasurementUnits(measurement_units_id,units,c_width,c_length,ts_width,ts_length);
+                measurementUnits.add(mu);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return measurementUnits;
+    }
 
 }

@@ -287,4 +287,12 @@ public class LogicFacade {
         return DataMapper.getItemList();
     }
 
+    //############################
+    // All Admin queries for CRUD
+    //############################
+
+    public static List<MeasurementUnits> getMeasurementUnits() throws LoginSampleException {
+        return DataMapper.getMeasurementUnits();
+    }
+
 }
