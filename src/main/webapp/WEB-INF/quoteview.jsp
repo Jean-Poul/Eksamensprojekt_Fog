@@ -43,19 +43,37 @@
                          aria-labelledby="idheading"
                     >
                         <div class="card-body d-flex">
+                            <!-- Left column -->
                             <div class="col">
 
-                                <p>Bruger id: <b>${info.user_proposition_id}</b></p>
-                                <p>Fornavn: <b>${info.name}</b></p>
-                                <p>Ordre dato: <b>${info.order_date}</b></p>
-                                <p>Order status: <b>${info.status}</b></p>
-                                <p>Adresse: <b>${info.address}</b></p>
-                                <p>Postnummer: <b>${info.zipcodeCity}</b></p>
-                                <p>Email: <b>${info.email}</b></p>
-                                <p>Telefon: <b>${info.phone}</b></p>
-                                <p>Bemærkning: <b>${info.comments}</b></p>
+                                <p class="text-primary">Bruger id:</p>
+                                <p class="text-primary">Fornavn:</p>
+                                <p class="text-primary">Ordre dato:</p>
+                                <p class="text-primary">Adresse:</p>
+                                <p class="text-primary">Postnummer:</p>
+                                <p class="text-primary">Email:</p>
+                                <p class="text-primary">Telefon:</p>
+                                <p class="text-primary">Bemærkning:</p>
+                                <p class="text-primary">Order status:</p>
 
                             </div>
+                            <!-- End left column -->
+                            <!-- Middle column -->
+                            <div class="col bg-light">
+
+                                <p>.<b>${info.user_proposition_id}</b></p>
+                                <p>.<b>${info.name}</b></p>
+                                <p>.<b>${info.order_date}</b></p>
+                                <p>.<b>${info.address}</b></p>
+                                <p>.<b>${info.zipcodeCity}</b></p>
+                                <p>.<b>${info.email}</b></p>
+                                <p>.<b>${info.phone}</b></p>
+                                <p>.<b>${info.comments}</b></p>
+                                <p>.<b>${info.status}</b></p>
+
+                            </div>
+                            <!-- End middle column -->
+                            <!-- Right column -->
                             <div class="col">
                                 <form class="form-group card-link" name="updateCustomerInfo" action="FrontController"
                                       method="post">
@@ -68,18 +86,6 @@
                                         <label for="quoteName">Fornavn</label>
                                         <input class="form-control" id="quoteName" type="text" name="name"
                                                value="${info.name}">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="quoteStatus">Status</label>
-                                        <select class="custom-select" id="quoteStatus" name="status">
-                                            <option>Vælg status</option>
-                                            <option>Forespørgsel</option>
-                                            <option>Tilbud</option>
-                                            <option>Godkend</option>
-                                            <option>Afvis</option>
-                                            <option>Ordre</option>
-                                        </select>
                                     </div>
 
                                     <div class="form-group">
@@ -110,6 +116,19 @@
                                         <input class="form-control" id="quoteComment" type="text" name="comments"
                                                value="${info.comments}">
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="quoteStatus">Status</label>
+                                        <select class="custom-select" id="quoteStatus" name="status">
+                                            <option value="${info.status}">${info.status}</option>
+                                            <option>Forespørgsel</option>
+                                            <option>Tilbud</option>
+                                            <option>Godkend</option>
+                                            <option>Afvis</option>
+                                            <option>Ordre</option>
+                                        </select>
+                                    </div>
+                                    <!-- End right column -->
                                     <!-- Update button -->
                                     <input class="btn btn-dark btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
@@ -146,17 +165,35 @@
                          aria-labelledby="quoteheading"
                     >
                         <div class="card-body d-flex">
+                            <!-- Left column -->
                             <div class="col">
-                                <p>Ordre id: <b>${info.orders_id}</b></p>
-                                <p>Carport bredde: <b>${info.carport_width}</b></p>
-                                <p>Carport længde: <b>${info.carport_length}</b></p>
-                                <p>Tag type: <b>${info.roof_type}</b></p>
-                                <p>Tag materiale: <b>${info.roof_material}</b></p>
-                                <p>Tag vinkel: <b>${info.pitch}</b></p>
-                                <p>Redskabsrum bredde: <b>${info.shed_width}</b></p>
-                                <p>Redskabsrum længde: <b>${info.shed_length}</b></p>
-                            </div>
 
+                                <p class="text-primary">Ordre id:</p>
+                                <p class="text-primary">Carport bredde:</p>
+                                <p class="text-primary">Carport længde:</p>
+                                <p class="text-primary">Tag type:</p>
+                                <p class="text-primary">Tag materiale:</p>
+                                <p class="text-primary">Tag vinkel:</p>
+                                <p class="text-primary">Redskabsrum bredde:</p>
+                                <p class="text-primary">Redskabsrum længde:</p>
+
+                            </div>
+                            <!-- End left column -->
+                            <!-- Middle column -->
+                            <div class="col bg-light">
+
+                                <p>.<b>${info.orders_id}</b></p>
+                                <p>.<b>${info.carport_width}</b></p>
+                                <p>.<b>${info.carport_length}</b></p>
+                                <p>.<b>${info.roof_type}</b></p>
+                                <p>.<b>${info.roof_material}</b></p>
+                                <p>.<b>${info.pitch}</b></p>
+                                <p>.<b>${info.shed_width}</b></p>
+                                <p>.<b>${info.shed_length}</b></p>
+
+                            </div>
+                            <!-- End middle column -->
+                            <!-- Right column -->
                             <div class="col">
                                 <form class="form-group card-link" name="updateCustomerOrder" action="FrontController"
                                       method="post">
@@ -189,6 +226,7 @@
                                     <div class="form-group">
                                         <label for="RoofOption">Tag type</label>
                                         <select class="custom-select" id="RoofOption" name="roofOption">
+                                            <option value="${info.roof_type}">${info.roof_type}</option>
                                             <option value="0">Carport med fladt tag</option>
                                             <option value="1">Carport med rejsning</option>
                                         </select>
@@ -198,7 +236,7 @@
                                         <div class="form-group">
                                             <label for="RoofFlat">Tag</label>
                                             <select class="custom-select" id="RoofFlat" name="roofFlat" required>
-                                                <option>Vælg materiale</option>
+                                                <option value="${info.roof_material}">${info.roof_material}</option>
                                                 <c:forEach var="rFlat" items="${requestScope.roofFlat}">
                                                     <option value="${rFlat.roofFlatOptions}">${rFlat.roofFlatOptions}</option>
                                                 </c:forEach>
@@ -210,7 +248,7 @@
                                         <div class="form-group">
                                             <label for="RoofRaised">Tag</label>
                                             <select class="custom-select" id="RoofRaised" name="roofRaised">
-                                                <option>Vælg materiale</option>
+                                                <option value="${info.roof_material}">${info.roof_material}</option>
                                                 <c:forEach var="rRaised" items="${requestScope.roofRaised}">
                                                     <option value="${rRaised.roofRaisedOptions}">${rRaised.roofRaisedOptions}</option>
                                                 </c:forEach>
@@ -221,7 +259,7 @@
                                             <label for="RoofOptionDegrees">Taghældning</label>
                                             <select class="custom-select" id="RoofOptionDegrees"
                                                     name="roofOptionDegrees">
-                                                <option>Vælg hældning</option>
+                                                <option value="${info.pitch}">${info.pitch}</option>
                                                 <c:forEach var="degree" items="${requestScope.roofDegree}">
                                                     <option value="${degree.roofDegreeOption}">${degree.roofDegreeOption}
                                                         grader
@@ -259,6 +297,7 @@
                                     <input class="btn btn-dark btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
                                     <!-- End update button -->
+                                    <!-- End right column -->
                                 </form>
                             </div>
 
@@ -292,11 +331,20 @@
                          aria-labelledby="priceheading"
                     >
                         <div class="card-body d-flex">
+                            <!-- Left column -->
                             <div class="col">
-                                <p>Pris inkl. moms</p>
-                                <p><b>pris request her: PRIS MANGLER</b></p>
-                            </div>
 
+                                <p class="text-primary">Pris inkl. moms</p>
+                                <p class="text-primary"><b>pris request her: PRIS MANGLER</b></p>
+
+                            </div>
+                            <!-- End left column -->
+                            <!-- Middle column -->
+                            <div class="col bg-light">
+
+                            </div>
+                            <!-- End middle column -->
+                            <!-- Right column -->
                             <div class="col">
                                 <form class="form-group card-link" name="" action="FrontController"
                                       method="post">
@@ -313,6 +361,7 @@
                                     <!-- End update button -->
                                 </form>
                             </div>
+                            <!-- End right column -->
                         </div>
                     </div><!-- card collapse -->
                 </div><!-- card -->
