@@ -30,6 +30,11 @@ abstract class Command {
         commands.put( "returnAdmin", new ReturnAdmin() );
         commands.put( "editItemList", new EditItemList() );
         commands.put( "adminMeasurementUnits", new AdminMeasurementUnits() );
+        commands.put( "adminItemList", new AdminItemList() );
+        commands.put( "adminRafterSpacing", new AdminRafterSpacing() );
+        commands.put( "adminRoof", new AdminRoof() );
+        commands.put( "adminRoofPitch", new AdminRoofPitch() );
+        commands.put( "adminStandartDimensions", new AdminStandartDimensions() );
     }
 
     static Command from( HttpServletRequest request ) {

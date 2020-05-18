@@ -85,11 +85,11 @@
                     </a>
                     <div class="dropdown-menu">
                         <button type="submit" class="dropdown-item" value="adminMeasurementUnits" onclick="change(this.value)">Måleenheder</button>
-                        <button type="submit" class="dropdown-item" value="itemList" onclick="change(this.value)">Vareliste</button>
-                        <button type="submit" class="dropdown-item" value="rafterSpacing" onclick="change(this.value)">Rafterafstand</button>
-                        <button type="submit" class="dropdown-item" value="roof" onclick="change(this.value)">Tagbeklædning</button>
-                        <button type="submit" class="dropdown-item" value="roofPitch" onclick="change(this.value)">Taghældning</button>
-                        <button type="submit" class="dropdown-item" value="standartDimensions" onclick="change(this.value)">Standardmål</button>
+                        <button type="submit" class="dropdown-item" value="adminItemList" onclick="change(this.value)">Vareliste</button>
+                        <button type="submit" class="dropdown-item" value="adminRafterSpacing" onclick="change(this.value)">Rafterafstand</button>
+                        <button type="submit" class="dropdown-item" value="adminRoof" onclick="change(this.value)">Tagbeklædning</button>
+                        <button type="submit" class="dropdown-item" value="adminRoofPitch" onclick="change(this.value)">Taghældning</button>
+                        <button type="submit" class="dropdown-item" value="adminStandartDimensions" onclick="change(this.value)">Standardmål</button>
                     </div>
                 </li>
             </ul>
