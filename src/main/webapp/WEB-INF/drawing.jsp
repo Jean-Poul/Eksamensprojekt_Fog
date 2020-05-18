@@ -31,7 +31,7 @@
                         <th scope="col">Ordrelinje id:</th>
                         <th scope="col">Ordre id:</th>
                         <th scope="col">Materiale:</th>
-                        <th scope="col">Antal:</th>
+                        <th scope="col">Længde:</th>
                         <th scope="col">Mål/Enhed:</th>
                         <th scope="col">Beskrivelse:</th>
                         <th scope="col">Total pris:</th>
