@@ -121,7 +121,7 @@ public class QuoteView extends Command {
         if (totalPrice == null) {
             double price = 0;
             try {
-                CarportCalculation cp = new CarportCalculation(vID);
+                CarportCalculation cp = new CarportCalculation(oID);
                 price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
             } catch (LoginSampleException e) {
                 e.printStackTrace();

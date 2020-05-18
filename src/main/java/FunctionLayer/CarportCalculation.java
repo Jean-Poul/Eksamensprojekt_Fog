@@ -140,7 +140,7 @@ public class CarportCalculation {
         this.shedLength = LogicFacade.getUserProposition(orderID).get(0).getShed_length();
         this.shedWidth = LogicFacade.getUserProposition(orderID).get(0).getShed_width();
 
-        //Assign accessories that follow all types of carports
+        //Asosign accessories that follow all types of carprts
         this.screwKitGenericRoofBrackets = 9;
         this.screwKitGenericRoofLaths = 10;
         this.bracketKit = 34;
@@ -150,6 +150,9 @@ public class CarportCalculation {
             this.screwKitShedDoorCladdingInside = 12;
             this.screwKitShedDoorCladdingOutside = 11;
             this.doorKit = 35;
+        } else {
+            this.shedLength = 0;
+            this.shedWidth = 0;
         }
 
         //Determine if roof is raised or flat and assign according screw packs
@@ -161,6 +164,7 @@ public class CarportCalculation {
             this.raisedRoof = false;
             this.roofHeavy = false;
             this.screwKitTrapez = 13;
+            this.customerRoofAngle = 0;
         }
 
         //[FIX] TEMPORARY FIX UNTIL RAFTDISTANCES WORKS
