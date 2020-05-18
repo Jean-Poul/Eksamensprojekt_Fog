@@ -29,6 +29,7 @@ abstract class Command {
         commands.put( "adminRejectQuote", new AdminRejectQuote() );
         commands.put( "returnAdmin", new ReturnAdmin() );
         commands.put( "editItemList", new EditItemList() );
+        commands.put( "adminMeasurementUnits", new AdminMeasurementUnits() );
     }
 
     static Command from( HttpServletRequest request ) {

@@ -18,6 +18,8 @@
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Open+Sans&display=swap"
           rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Favicon -->
     <link href="/images/favicon/favicon.ico?" rel="icon" type="image/x-icon"/>
     <link rel="icon" type="image/png" href="images/favicon/favicon-16x16.png">
@@ -82,7 +84,7 @@
                         Admin
                     </a>
                     <div class="dropdown-menu">
-                        <button type="submit" class="dropdown-item" value="measurementUnits" onclick="change(this.value)">Måleenheder</button>
+                        <button type="submit" class="dropdown-item" value="adminMeasurementUnits" onclick="change(this.value)">Måleenheder</button>
                         <button type="submit" class="dropdown-item" value="itemList" onclick="change(this.value)">Vareliste</button>
                         <button type="submit" class="dropdown-item" value="rafterSpacing" onclick="change(this.value)">Rafterafstand</button>
                         <button type="submit" class="dropdown-item" value="roof" onclick="change(this.value)">Tagbeklædning</button>
