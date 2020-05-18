@@ -13,7 +13,6 @@ public class CarportCalculation {
 
     //User data (In order to reference what user ID the calculation belongs to
     int orderID;
-    //int userPropositionID;
 
     //Standard dimensions - retrieved from DB (Assumptions)
     int bottomLathSpan;
@@ -633,4 +632,9 @@ public class CarportCalculation {
     public double getShedWallLathsTotalLength() {
         return shedWallLathsTotalLength;
     }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
 }

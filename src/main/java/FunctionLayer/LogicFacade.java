@@ -169,6 +169,17 @@ public class LogicFacade {
         return DataMapper.getOrderCoverage(orderID);
     }
 
+    /**
+     * Inserts the total carport price w. tax and w/o coverage to order in DB
+     *
+     * @param totalCarportPriceWithTax Total price for carport
+     * @param orderID specific order ID
+     * @throws LoginSampleException
+     */
+    public static void insertTotalCarportPrice(double totalCarportPriceWithTax, int orderID) throws LoginSampleException {
+        DataMapper.insertTotalPrice(totalCarportPriceWithTax, orderID);
+    }
+
     //######################
     // Select option calls #
     //######################
