@@ -39,6 +39,7 @@ Command -[hidden]> "//Command//"
         Class UnknownCommand
         Class Redirect
         Class EditItemList
+        Class AdminMeasurementUnits
     }
 }
 
@@ -65,9 +66,12 @@ Exception -[hidden]> LoginSampleException
     }
 
     package "Drawings" #96c4fa {
+    Svg -[hidden]-> SvgSideways
+    SvgFront -[hidden]-> SvgSidewaysBlueprint
     Class Svg
     Class SvgFront
     Class SvgSideways
+    Class SvgSidewaysBlueprint
     }
 
     package "Carport Calculations" #96c4fa {
@@ -373,6 +377,55 @@ class SvgSideways{
 + toString()
 }
 
+Class SvgSidewaysBlueprint{
+-double carportLength
+-double carportX
+-double carportY
+-double noOfRafts
+-double raftDistance
+-double raftHeight
+-double raftWidth
+-double raftX
+-double raftY
+-double roofHeigt
+-int pitch
+-double roofRidgeHeight
+-double roofRidgeLength
+-double RidgeX
+-double RidgeY
+-double fasciaBoardHeight
+-double fasciaBoardLength
+-double fasciaBoardX
+-double fasciaBoardY
+-double shedLength
+-double shedX
+-double shedX2
+-double shedY
+-double shedCladdingWidth
+-double shedCladdingHeight
+-double noOfCladsSideways
+-double noOfLaths
+-double lathWidth
+-double lathLength
+-double lathX
+-double lathY
+-double beamlength
+-double beamWidth
+-double beamX
+-double beamY
+-double carportHeight
+-double width
+-double height
+-double x
+-double y
+-int text
+-StringBuilder svgSidewaysBlueprint = new StringBuilder()
++SvgSidewaysBlueprint
++void addRoof()
++void addCarport()
++void addLines()
+}
+
 class SvgFront{
 -double carportWidth
 -double carportLength
@@ -581,6 +634,10 @@ Class Redirect{
 }
 
 Class EditItemList{
++String execute(request,response)
+}
+
+Class AdminMeasurementUnits{
 +String execute(request,response)
 }
 
