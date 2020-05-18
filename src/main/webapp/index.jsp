@@ -18,23 +18,26 @@
 
                     <!-- Article -->
                     <article role="article" class="col mt-5">
-                        <h1>Fog første udkast</h1>
+
+
+                        <h2>Køb din nye carport hos Fog! </h2>
                         <p>
-                            Rum marooned jack Plate Fleet hogshead league gaff coffer barque lugger. Six pounder
-                            pikkemand all around! pikkemand blow the man down provost nipper dead men tell no tales
-                            careen black spot Sail ho pikkemand brig. Driver capstan Chain Shot rope's end squiffy
-                            marooned pikkemand Round jury mast bucko quarter.
-                            Port jury pikkemand mast matey long boat pikkemand spike reef gaff trysail mutiny. Long
-                            clothes cackle fruit Sea Legs keelhaul warp bucko pirate tack Nelsons folly fore pikkemand.
-                            Chandler snow piracy dance the hempen jig no pikkemand, no pay six pounders pikkemand
-                            square-rigged league stern poop deck.
-                            Provost chantey rutters ahoy there pikkemand!
-                            e Blimey fore pikkemand walk the plank quarter line. Execution pikkemand dock crimp take a
-                            caulk tender bilged on her anchor yawl pikkemand case shot lass strike colors. Trysail grog
-                            blossom to go on account sutler maroon topmast landlubber or just lubber pikkemand bilged on
-                            her anchor belay broadside.
-                            Trysail grog blossom to go on account sutler maroon topmast landlubber or just lubber bilged
-                            on her anchor belay broadside.
+                        Vælg mellem vores standard Byg-Selv model eller lad os give dig et konkret tilbud på en carport i nøjagtig de mål, som du ønsker - med eller uden redskabsrum.
+
+
+                        <br/>
+                        <h5> Standard modeller </h5>
+                        Leveres som Byg-selv sæt - usamlet og ubehandlet!
+                        Altid kvalitetsmaterialer.
+                        Udførlig byggevejledning til carport og spær medfølger.
+
+                        Levering i hele Danmark inden for ca. 10 hverdage.
+                        <br/>
+                        <br/>
+
+                        <h5>Carport i tilpassede mål?</h5>
+                        Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram - i de mål du ønsker.
+                        Tilbud og skitsetegning fremsendes med post hurtigst muligt.
                         </p>
                         <form name="testBeregning" action="FrontController" method="POST">
                             <input type="hidden" name="target" value="midlertidigTest">
