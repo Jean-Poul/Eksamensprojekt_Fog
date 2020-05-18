@@ -92,8 +92,12 @@ public class UpdateQuoteOrder extends Command {
 
 
         // Check if roofOptionDegrees is not empty and parse it to an int
-        if (!roofOptionDegrees.isEmpty()) {
-            roofDegrees = Integer.parseInt(roofOptionDegrees);
+        try {
+            if (!roofOptionDegrees.isEmpty()) {
+                roofDegrees = Integer.parseInt(roofOptionDegrees);
+            }
+        } catch (NumberFormatException ex) {
+            ex.getMessage();
         }
 
 

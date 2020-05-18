@@ -19,8 +19,6 @@ abstract class Command {
         commands.put( "drawing", new Drawing() );
         commands.put( "drawingFront", new DrawingFront() );
         commands.put( "carportCustomize", new CarportCustomize() );
-        commands.put( "drawingSideways", new DrawingSideways() );
-        commands.put( "drawingSidewaysBlueprint", new DrawingSidewaysBlueprint() );
         commands.put("midlertidigTest", new midlertidigTest());
         commands.put( "rejectQuote", new RejectQuote() );
         commands.put( "quoteView", new QuoteView() );
