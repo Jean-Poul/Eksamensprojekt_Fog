@@ -13,18 +13,18 @@
         <section class="col-12">
 
             <!-- Counters -->
-            <div class="container d-flex justify-content-center my-3">
+            <div class="container d-flex justify-content-center my-5">
 
                 <div class="col rounded-lg shadow px-3 py-3 text-center">
-                    <p class="text-primary">Antal forespørgsler</p> <br>
+                    <h4 class="text-primary">Antal forespørgsler</h4> <br>
                     <h3><span class="badge badge-primary">${fn:length(requestScope.userProposition)}</span></h3>
                 </div>
                 <div class="col rounded-lg shadow mx-5 px-3 py-3 text-center">
-                    <p class="text-primary">Klokken er nu</p> <br>
+                    <h4 class="text-primary">Klokken er nu</h4> <br>
                     <h3><span class="badge badge-primary" id="time"></span></h3>
                 </div>
                 <div class="col rounded-lg shadow px-3 py-3 text-center">
-                    <p class="text-primary">Brugernavn</p> <br>
+                    <h4 class="text-primary">Brugernavn</h4> <br>
                     <h3><span class="badge badge-primary">${sessionScope.email}</span></h3>
                 </div>
 
@@ -59,22 +59,22 @@
                             <td>${view.comments}</td>
                             <td>
                                 <!-- User overview button -->
-                                <form class="btn btn-dark" name="viewQuote" action="FrontController"
+                                <form class="form-group" name="viewQuote" action="FrontController"
                                       method="post">
                                     <input type="hidden" name="target" value="quoteView">
                                     <input type="hidden" name="orderID" value="${view.orders_id}">
                                     <input type="hidden" name="viewID" value="${view.user_proposition_id}">
-                                    <input type="submit" class="btn text-white px-0 py-0" value="Åben">
+                                    <input type="submit" class="btn btn-success text-white" value="Åben">
                                 </form>
                                 <!-- End user overview button -->
                             </td>
                             <td>
                                 <!-- Delete user proposition -->
-                                <form class="btn btn-dark" name="deleteQuote" action="FrontController"
+                                <form class="form-group" name="deleteQuote" action="FrontController"
                                       method="post">
                                     <input type="hidden" name="target" value="adminRejectQuote">
                                     <input type="hidden" name="quoteID" value="${view.user_proposition_id}">
-                                    <input type="submit" class="btn text-white px-0 py-0" value="Fjern"
+                                    <input type="submit" class="btn btn-warning text-white" value="Fjern"
                                            onclick="return confirm('Er du sikker på at du vil slette?')"/>
                                 </form>
                                 <!-- End delete user proposition button -->
@@ -87,9 +87,9 @@
             </div>
 
             <!-- Create employee -->
-            <div class="container d-flex justify-content-center mb-3">
+            <div class="container d-flex justify-content-center my-5">
 
-                <div class="col-4 p-3 rounded-lg shadow">
+                <div class="col-4 p-5 rounded-lg shadow">
                     <h3 class="text-primary text-center">Opret medarbejder</h3>
                     <form name="register" action="FrontController" method="POST">
                         <input type="hidden" name="target" value="register">
@@ -97,7 +97,7 @@
                             <label for="InputEmail">Email adresse</label>
                             <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
                                    name="email" value="opret@mig.nu">
-                            <small id="emailHelp" class="form-text text-muted">Bruger til login som medarbejder</small>
+                            <small id="emailHelp" class="form-text text-muted">Brugernavn</small>
                         </div>
                         <div class="form-group">
                             <label for="InputPassword1">Password</label>
@@ -127,12 +127,17 @@
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
 
+<!-- Admin layout/functions for table -->
+
 <script>
+
     $(document).ready(function () {
         $('#myTable').DataTable();
     });
+
 </script>
 
+<!-- Realtime clock -->
 <script>
 
     (function () {

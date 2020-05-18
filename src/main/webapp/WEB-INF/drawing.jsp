@@ -11,21 +11,20 @@
         <!-- Section -->
         <section class="col-12">
             <c:forEach var="back" items="${requestScope.userProposition}">
-                <!-- Back button -->
-                <div class="container d-flex justify-content-center my-5">
-                    <form class="btn btn-primary col-2 mx-2" name="back" action="FrontController" method="POST">
-                        <input type="hidden" name="target" value="quoteView">
-                        <input type="hidden" name="viewID" value="${back.user_proposition_id}">
-                        <input type="hidden" name="orderID" value="${back.orders_id}">
-                        <input class="btn text-white" type="submit" value="Tilbage">
-                    </form>
-                </div>
-                <!-- End back button -->
-
             <!-- Table container -->
-            <div class="container my-5">
+            <div class="container mt-5">
+                <!-- Back button -->
+
+                <form class="form-group" name="back" action="FrontController" method="POST">
+                    <input type="hidden" name="target" value="quoteView">
+                    <input type="hidden" name="viewID" value="${back.user_proposition_id}">
+                    <input type="hidden" name="orderID" value="${back.orders_id}">
+                    <input class="btn btn-primary text-white" type="submit" value="Tilbage">
+                </form>
+
+                <!-- End back button -->
                 <!-- Table over customer quotes -->
-                <table class="table table-striped" id="myTable">
+                <table class="table table-striped" id="myTableDrawings">
                     <thead>
                     <tr>
                         <th scope="col">Ordrelinje id:</th>
@@ -62,7 +61,7 @@
                                     </div>
 
                                     <!-- Update button -->
-                                    <input class="form-control btn btn-dark btn-block" type="submit" value="Rediger"
+                                    <input class="form-control btn btn-success btn-block" type="submit" value="Rediger"
                                            onclick="return confirm('Er du sikker på at du vil redigere?')"/>
                                     <!-- End update button -->
                                 </form>
@@ -78,36 +77,44 @@
             <!-- End table container -->
 
             <!-- SVG container -->
-            <div class="container d-flex justify-content-center">
-                <!-- SVG drawing from top -->
-                <div class="container border-dark shadow">
-                    <h5 class="text-primary">Set ovenfra</h5>
-                    ${requestScope.svgDrawing}
+            <div class="container">
+
+                <!-- SVG drawing sideways with color -->
+                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
+                    <h5 class="text-primary">Færdig udgave af ordre</h5>
+                    <div class="container bg-light">
+                        ${requestScope.svgDrawingSideways}
+                    </div>
+                </div>
+                <!-- End svg drawing sideways with color -->
+
+                <!-- SVG drawing sideways -->
+                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
+                    <h5 class="text-primary">Arbejdstegning fra siden</h5>
+                    <div class="container bg-light">
+                        ${requestScope.svgDrawingSidewaysBlueprint}
+                    </div>
+                </div>
+                <!-- End sideways -->
+
+                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
+                    <!-- SVG drawing from top -->
+                    <h5 class="text-primary">Arbejdstegning ovenfra</h5>
+                    <div class="container bg-light">
+                        ${requestScope.svgDrawing}
+                    </div>
                 </div>
                 <!-- End svg drawing from top -->
                 <!-- SVG drawing from the front -->
-                <div class="container border-dark shadow">
-                    <h5 class="text-primary">Set forfra</h5>
-                    ${requestScope.svgDrawingFront}
+                <div class="col border-dark shadow d-flex justify-content-center my-5 p-5">
+                    <h5 class="text-primary text-center">Arbejdstegning forfra</h5>
+                    <div class="container bg-light">
+                        ${requestScope.svgDrawingFront}
+                    </div>
                 </div>
                 <!-- End svg drawing from the front -->
             </div>
-            <div class="container d-flex justify-content-center">
-                <!-- SVG drawing sideways -->
-                <div class="container border-dark shadow">
-                    <h5 class="text-primary">Set fra siden blueprint</h5>
-                    ${requestScope.svgDrawingSidewaysBlueprint}
-                </div>
-                <!-- End sideways -->
-                <!-- SVG drawing sideways with color -->
-                <div class="container border-dark shadow">
-                    <h5 class="text-primary">Set fra siden</h5>
-                    ${requestScope.svgDrawingSideways}
-                </div>
-                <!-- End svg drawing sideways with color -->
-            </div>
-            <!-- End svg container -->
-
+            <!-- End SVG container -->
         </section>
         <!-- End section -->
     </div>
@@ -119,8 +126,13 @@
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
 
+<!-- item list layout/functions for table -->
 
-
+<script>
+    $(document).ready(function () {
+        $('#myTableDrawings').DataTable();
+    });
+</script>
 
 
 
