@@ -154,12 +154,17 @@ public class CarportCalculation {
             this.shedWidth = 0;
         }
 
+
+
         //Determine if roof is raised or flat and assign according screw packs
         if (this.customerRoofAngle > 0) {
             this.raisedRoof = true;
             this.roofHeavy = true;
             this.screwKitRoofRaised = 8;
+            calcRoofAngle(customerRoofAngle);
+            calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
         } else {
+            this.raftLength = carportWidth;
             this.raisedRoof = false;
             this.roofHeavy = false;
             this.screwKitTrapez = 13;
@@ -189,9 +194,9 @@ public class CarportCalculation {
         }
 
         //Begin calculations
-        calcRoofAngle(customerRoofAngle);
+
         calcRoofHeight(customerRoofAngle, carportWidth);
-        calcRaftLength(carportWidth, customerRoofAngle, calcAngle);
+
         noOfRafts(carportLength, raftDistance);
         calcRoofLaths(raftLength);
         calculateShedWallLaths(shedLength, shedWidth);
