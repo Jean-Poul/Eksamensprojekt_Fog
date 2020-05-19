@@ -1,6 +1,7 @@
 package DBAccess;
 
 import FunctionLayer.*;
+import com.mysql.cj.protocol.Resultset;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -173,7 +174,7 @@ public class DataMapper {
      * Inserts the total carport price w. tax and w/o coverage to order in DB
      *
      * @param carportTotalPriceWithTax Total price for carport
-     * @param propositionID specific order ID
+     * @param propositionID            specific order ID
      * @throws LoginSampleException
      */
     public static void insertTotalPrice(double carportTotalPriceWithTax, int propositionID) throws LoginSampleException {
@@ -449,6 +450,36 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
         return coverage;
+    }
+
+    public static void updateOrderCoverage(int coverage, int orderID) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE orders SET coverage = ? WHERE orders_id =?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, coverage);
+            ps.setInt(2, orderID);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    public static double getOrderTotalPrice(int orderID) throws LoginSampleException {
+        double totalCarportPrice = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT offer_price FROM orders WHERE orders_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                totalCarportPrice = rs.getDouble("offer_price");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return totalCarportPrice;
     }
 
     //###########################
@@ -777,10 +808,10 @@ public class DataMapper {
                 int measurement_units_id = rs.getInt("measurement_units_id");
                 int units = rs.getInt("units");
                 int c_width = rs.getInt("c_width");
-                int c_length = rs.getInt( "c_length");
+                int c_length = rs.getInt("c_length");
                 int ts_width = rs.getInt("ts_width");
-                int ts_length = rs.getInt( "ts_length");
-                MeasurementUnits mu = new MeasurementUnits(measurement_units_id,units,c_width,c_length,ts_width,ts_length);
+                int ts_length = rs.getInt("ts_length");
+                MeasurementUnits mu = new MeasurementUnits(measurement_units_id, units, c_width, c_length, ts_width, ts_length);
                 measurementUnits.add(mu);
             }
         } catch (ClassNotFoundException | SQLException ex) {

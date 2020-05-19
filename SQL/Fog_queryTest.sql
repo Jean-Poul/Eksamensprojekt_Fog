@@ -112,8 +112,6 @@ INNER JOIN orderline ol on o.orders_id = ol.orders_id
 INNER JOIN item_list il on ol.item_list_id = il.item_list_id
 WHERE ol.orders_id = '1';
 
-
-
 -- --------------------------
 -- Update status in orders
 -- --------------------------

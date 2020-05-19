@@ -2,7 +2,6 @@ package FunctionLayer;
 
 import DBAccess.DataMapper;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -169,6 +168,10 @@ public class LogicFacade {
         return DataMapper.getOrderCoverage(orderID);
     }
 
+    public static void updateOrderCoverage(int coverage, int orderID) throws LoginSampleException {
+        DataMapper.updateOrderCoverage(coverage, orderID);
+    }
+
     /**
      * Inserts the total carport price w. tax and w/o coverage to order in DB
      *
@@ -178,6 +181,10 @@ public class LogicFacade {
      */
     public static void insertTotalCarportPrice(double totalCarportPriceWithTax, int orderID) throws LoginSampleException {
         DataMapper.insertTotalPrice(totalCarportPriceWithTax, orderID);
+    }
+
+    public static double getTotalCarportPrice(int orderID) throws LoginSampleException {
+     return DataMapper.getOrderTotalPrice(orderID);
     }
 
     //######################

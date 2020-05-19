@@ -14,6 +14,7 @@ import java.util.List;
 public class QuoteView extends Command {
     // Initialize variable to be able to parse a String to an int and calculate price
     private double price = 0;
+    private int coverage = 0;
     private int vID = 0;
     private int oID = 0;
     private String totalPrice;
@@ -122,13 +123,12 @@ public class QuoteView extends Command {
         }
 
 
-        // Passing orderID to CarportCalculation and passing CarportCalculation to PriceCalculator
-        // to be able to calculate total price of an order
+        // Gets the order coverage and price by passing oID to database.
+        // Adds the coverage to the price, to be displayed on the site
         if (totalPrice == null) {
-
-            CarportCalculation cp = new CarportCalculation(oID);
-            price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
-
+            coverage = LogicFacade.getOrderCoverage(oID);
+            double coverageCalc = (coverage / 100) + 1;
+            price = (LogicFacade.getTotalCarportPrice(oID) * coverageCalc);
             totalPrice = String.valueOf(decimalFormat.format(price));
         } else {
             totalPrice = decimalFormat.format(session.getAttribute("price"));
@@ -148,6 +148,7 @@ public class QuoteView extends Command {
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
 
+        request.setAttribute("quoteCoverage", coverage);
         request.setAttribute("totalPrice", totalPrice);
 
 

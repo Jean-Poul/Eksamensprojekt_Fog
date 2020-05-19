@@ -24,6 +24,7 @@ abstract class Command {
         commands.put( "quoteView", new QuoteView() );
         commands.put( "updateQuoteUser", new UpdateQuoteUser() );
         commands.put( "updateQuoteOrder", new UpdateQuoteOrder() );
+        commands.put( "updateQuotePrice", new UpdateQuotePrice() );
         commands.put( "adminRejectQuote", new AdminRejectQuote() );
         commands.put( "returnAdmin", new ReturnAdmin() );
         commands.put( "editItemList", new EditItemList() );

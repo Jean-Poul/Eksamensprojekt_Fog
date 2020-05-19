@@ -114,11 +114,11 @@ public class PriceCalculator {
 
         costPriceToDB(totalCarportPriceCostWithTax, orderID);
 
-        System.out.println("\n========================================");
-        System.out.println("Samlet kostpris u. moms: " + df.format(totalCarportCostNoTax) + " kr");
-        System.out.println("Samlet kostpris m. moms: " + df.format(totalCarportPriceCostWithTax) + " kr");
-        System.out.println("Salgspris med " + orderCoverage +"% dækning " + df.format(totalCarportPriceCoverage) + " kr");
-        System.out.println("========================================");
+//        System.out.println("\n========================================");
+//        System.out.println("Samlet kostpris u. moms: " + df.format(totalCarportCostNoTax) + " kr");
+//        System.out.println("Samlet kostpris m. moms: " + df.format(totalCarportPriceCostWithTax) + " kr");
+//        System.out.println("Salgspris med " + orderCoverage +"% dækning " + df.format(totalCarportPriceCoverage) + " kr");
+//        System.out.println("========================================");
 
     }
 

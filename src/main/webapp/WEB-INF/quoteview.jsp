@@ -193,7 +193,6 @@
                             <div class="col">
                                 <form class="form-group card-link" name="updateCustomerOrder" action="FrontController"
                                       method="post">
-
                                     <input type="hidden" name="target" value="updateQuoteOrder">
                                     <input type="hidden" name="orderID" value="${info.orders_id}">
                                     <input type="hidden" name="quoteID" value="${info.user_proposition_id}">
@@ -321,78 +320,75 @@
                         </h5>
                     </div><!-- card header -->
 
-                    <div id="priceinfo"
-                         class="collapse show"
-                         data-parent="#priceid"
-                         aria-labelledby="priceheading"
-                    >
+                    <div id="priceinfo" class="collapse show" data-parent="#priceid" aria-labelledby="priceheading">
                         <div class="card-body d-flex">
                             <!-- Left column -->
                             <div class="col">
 
-                                <p class="text-primary">Pris inkl. moms</p>
-                                <p class="text-primary"><b>pris request her: PRIS MANGLER</b></p>
+                                <p class="text-primary">Pris inkl. moms og dækningsgrad</p>
 
                             </div>
                             <!-- End left column -->
                             <!-- Middle column -->
-                            <div class="col bg-light">
+                            <form class="form-group card-link" name="updateCustomerPrice" action="FrontController" method="post">
+                                <input type="hidden" name="target" value="updateQuotePrice">
+                                <input type="hidden" name="orderID" value="${info.orders_id}">
 
-                            </div>
-                            <!-- End middle column -->
-                            <!-- Right column -->
-                            <div class="col">
-                                <form class="form-group card-link" name="" action="FrontController"
-                                      method="post">
-
-                                    <input type="hidden" name="target" value="">
+                                <div class="col bg-light">
+                                    <input class="form-control" id="quoteCoverage" type="text" name="quoteCoverage"
+                                           value="${requestScope.quoteCoverage}">
+                                </div>
+                                <!-- End middle column -->
+                                <!-- Right column -->
+                                <div class="col">
                                     <div class="form-group">
                                         <label for="quotePrice">Pris</label>
                                         <input class="form-control" id="quotePrice" type="text" name="totalPrice"
-                                               value="${requestScope.totalPrice}">
+                                               value="${requestScope.totalPrice}" disabled>
                                     </div>
                                     <!-- Update button -->
                                     <input class="btn btn-success btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
                                     <!-- End update button -->
-                                </form>
-                            </div>
-                            <!-- End right column -->
+                                </div>
+                            </form>
                         </div>
-                    </div><!-- card collapse -->
-                </div><!-- card -->
+                        <!-- End right column -->
+                    </div>
+                </div><!-- card collapse -->
+            </div><!-- card -->
 
-            </div>
-            <!-- End total price -->
-            <!-- Navigate button choices -->
-            <div class="container d-flex justify-content-center my-5">
-
-                <form class="form-group" name="" action="FrontController" method="POST">
-                    <input type="hidden" name="target" value="">
-                    <input class="btn btn-success text-white" type="submit" value="Se tilbud">
-                </form>
-
-                <form class="form-group mx-5" name="drawingView" action="FrontController" method="POST">
-                    <input type="hidden" name="target" value="drawing">
-                    <input type="hidden" name="orderID" value="${info.orders_id}">
-                    <input type="hidden" name="viewID" value="${info.user_proposition_id}">
-                    <input class="btn btn-info text-white" type="submit" value="Se tegning & stykliste">
-                </form>
-
-                <form class="form-group" name="deleteQuote" action="FrontController" method="post">
-                    <input type="hidden" name="target" value="rejectQuote">
-                    <input type="hidden" name="quoteID" value="${info.user_proposition_id}">
-                    <input class="btn btn-danger text-white" type="submit" value="Slet forespørgsel"
-                           onclick="return confirm('Er du sikker på at du vil slette?')"/>
-                </form>
-
-            </div>
-            <!-- End navigate button choices -->
-            </c:forEach>
-        </section>
-        <!-- End section -->
     </div>
-    <!-- End row -->
+    <!-- End total price -->
+    <!-- Navigate button choices -->
+    <div class="container d-flex justify-content-center my-5">
+
+        <form class="form-group" name="" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="">
+            <input class="btn btn-success text-white" type="submit" value="Se tilbud">
+        </form>
+
+        <form class="form-group mx-5" name="drawingView" action="FrontController" method="POST">
+            <input type="hidden" name="target" value="drawing">
+            <input type="hidden" name="orderID" value="${info.orders_id}">
+            <input type="hidden" name="viewID" value="${info.user_proposition_id}">
+            <input class="btn btn-info text-white" type="submit" value="Se tegning & stykliste">
+        </form>
+
+        <form class="form-group" name="deleteQuote" action="FrontController" method="post">
+            <input type="hidden" name="target" value="rejectQuote">
+            <input type="hidden" name="quoteID" value="${info.user_proposition_id}">
+            <input class="btn btn-danger text-white" type="submit" value="Slet forespørgsel"
+                   onclick="return confirm('Er du sikker på at du vil slette?')"/>
+        </form>
+
+    </div>
+    <!-- End navigate button choices -->
+    </c:forEach>
+    </section>
+    <!-- End section -->
+</div>
+<!-- End row -->
 </div>
 <!-- End container -->
 
