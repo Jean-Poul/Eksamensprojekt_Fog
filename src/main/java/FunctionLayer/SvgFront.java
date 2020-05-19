@@ -102,18 +102,19 @@ public class SvgFront {
     public void addCarportFront() {
 
         //Beam
-        svgFront.append(String.format(beamTemplate, carportX, carportY, carportHeight, beamWidth));
-        svgFront.append(String.format(beamTemplate, carportWidth, carportY, carportHeight, beamWidth));
+                                                    //Temp (30) fix for distance until raftVerticalLength works
+        svgFront.append(String.format(beamTemplate, carportX+30, carportY, carportHeight, beamWidth));
+        svgFront.append(String.format(beamTemplate, carportWidth-30, carportY, carportHeight, beamWidth));
 
         if(roofAngle>0) {
             //Raft
             svgFront.append(String.format(raftTemplate, carportX, carportX + 5, (raftLength / 2) + 5, 0 - roofHeight));
             svgFront.append(String.format(raftTemplate, (raftLength / 2) + 5, 0 - roofHeight, carportWidth + 10, carportY + 5));
             //Lath
-            svgFront.append(String.format(rectTemplate, carportX, carportY, beamWidth, carportWidth + 10));
+            svgFront.append(String.format(rectTemplate, carportX, carportY, beamWidth, raftLength+10));
             }else{
                 //Lath
-                svgFront.append(String.format(lathTemplate, carportX, carportY, beamWidth, carportWidth + 10));
+                svgFront.append(String.format(lathTemplate, carportX, carportY, beamWidth, raftLength+10));
             }
 
         //Leftside arrow
@@ -129,8 +130,8 @@ public class SvgFront {
             svgFront.append(String.format(lineTemplate, (carportWidth / 2) + 5, (arrowLineY1 = 0) - roofHeight, (carportWidth / 2) + 5, arrowLineY2 = 0.0));
             svgFront.append(String.format(lowerAngelTextTemplate, x = 90, y = -6, text = (int) roofAngle));
             svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - 80, y = -6, text = (int) roofAngle));
-            svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((roofHeight / 2) + 2), text = (int) roofHeight));
-            svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth / 2) - 5, y = -(((roofHeight / 4) * 3) - 5), text = (int) roofTopAngel));
+            svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((roofHeight / 5) + 2), text = (int) roofHeight));
+            svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth / 2) - 5, y = -(((roofHeight / 4) * 3)-10), text = (int) roofTopAngel));
         }
 
         //Bottom Line

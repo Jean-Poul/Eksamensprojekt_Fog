@@ -21,6 +21,7 @@ public class Svg {
 
     private double noOfRafts = c.getNoOfRafts();
     private double raftDistance = c.getAvgRaftDistance();
+    private double raftDistance2 = c.getAvgRaftDistance();
     private double raftLength = c.getCarportWidth();
     private double raftWidth = 4.5;
     private double raftX = 0;
