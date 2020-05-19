@@ -30,6 +30,11 @@
     table.table td .add {
         display: none;
     }
+    form {
+        display:inline;
+        margin:0;
+        padding:0;
+    }
 </style>
 
 <h1 class="text-center mt-5">Admin</h1>
@@ -50,57 +55,30 @@
         <tbody>
         <c:forEach var="element" items="${requestScope.measurementUnits}">
             <tr>
+                <form name="update" id="update_${element.measurementUnitsId}" action="FrontController" method="post">
+                    <input type="hidden" name="target" value="adminMeasurementUnits">
+                    <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
                 <td>${element.units}</td>
                 <td class="text-center chbx">${element.c_width}</td>
                 <td class="text-center chbx">${element.c_length}</td>
                 <td class="text-center chbx">${element.ts_width}</td>
                 <td class="text-center chbx">${element.ts_length}</td>
+                </form>
                 <td class="text-right">
-                    <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+
+
+                    <button type="submit" form="update_${element.measurementUnitsId}" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+
                     <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                    <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
+                    <form name="delete" action="FrontController" method="post">
+                        <input type="hidden" name="target" value="adminMeasurementUnits">
+                        <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
+                        <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm('Er du sikker på at du vil slette?')"><span class="fa fa-trash"></span> slet</button>
+                    </form>
+
                 </td>
             </tr>
         </c:forEach>
-
-        <!--
-        <tr>
-            <td>180</td>
-            <td class="text-center"></td>
-            <td class="text-center"></td>
-            <td class="text-center"></td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
-        <tr>
-            <td>210</td>
-            <td class="text-center"></td>
-            <td class="text-center"></td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
-        <tr>
-            <td>240</td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-center"><span class="fa fa-check"></span></td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
-        -->
 
         </tbody>
     </table>
@@ -111,6 +89,7 @@
 <!-- End footer -->
 <script type="text/javascript">
     $(document).ready(function() {
+        // Change 1 and 0 on page load
         $('.chbx').each(function () {
             $("td:contains('1').chbx").html('<span class="fa fa-check"></span>');
             $("td:contains('0').chbx").html('');
@@ -121,7 +100,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
-        var actions = $("table td:last-child").html();
+        //var actions = $("table td:last-child").html();
         // Append table with add row form on add new button click
         $(".add-new").click(function(){
             $(this).attr("disabled", "disabled");
@@ -133,7 +112,12 @@
                 '<td class="text-center"><input type="checkbox" class="checkbox" name="c_length"></td>' +
                 '<td class="text-center"><input type="checkbox" class="checkbox" name="ts_width"></td>' +
                 '<td class="text-center"><input type="checkbox" class="checkbox" name="ts_length"></td>' +
-                '<td class="text-right">' + actions + '</td>' +
+                '<td class="text-right">' +
+                '<form name="insert" action="FrontController" method="post">\n' +
+                '<input type="hidden" name="target" value="adminMeasurementUnits">\n' +
+                '<button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>\n' +
+                '</form>' +
+                '<button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button></td>' +
                 '</tr>';
             $("table").append(row);
             $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();

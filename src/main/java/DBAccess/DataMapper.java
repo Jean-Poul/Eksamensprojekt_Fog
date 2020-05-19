@@ -276,7 +276,9 @@ public class DataMapper {
                 String roof_type = rs.getString("roof_type");
                 String roof_material = rs.getString("roof_material");
                 int pitch = rs.getInt("pitch");
-                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch);
+                int coverage = rs.getInt("coverage");
+                double offer_price = rs.getDouble("offer_price");
+                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price);
                 userProposition.add(up);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -316,7 +318,9 @@ public class DataMapper {
                 String roof_type = rs.getString("roof_type");
                 String roof_material = rs.getString("roof_material");
                 int pitch = rs.getInt("pitch");
-                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch);
+                int coverage = rs.getInt("coverage");
+                double offer_price = rs.getDouble("offer_price");
+                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price);
                 userProposition.add(up);
             }
         } catch (ClassNotFoundException | SQLException ex) {
