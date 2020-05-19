@@ -71,8 +71,8 @@ public class Drawing extends Command {
         // Initializing instances of SVG classes to be able to show drawings
         Svg svg = new Svg(oID);
         SvgFront svgFront = new SvgFront();
-        SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint();
-        SvgSideways svgSideways = new SvgSideways();
+        SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint(oID);
+        SvgSideways svgSideways = new SvgSideways(oID);
 
 
         // Calling Method: addCarport(); to draw eagle view

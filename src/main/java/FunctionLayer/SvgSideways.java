@@ -1,27 +1,39 @@
 package FunctionLayer;
 
 public class SvgSideways {
+
     //##########################################################
-    //The class needs following information from database/carportCalculation.
+    //constructor
     //##########################################################
 
     CarportCalculation c;
-    {
-        try {
-            c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
-        } catch (LoginSampleException e) {
-            e.printStackTrace();
-        }
-    }
+    public SvgSideways(int orderID) throws LoginSampleException {
 
+        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+
+
+        this.carportLength = c.getCarportLength();
+        this.noOfRafts = c.getNoOfRafts();
+        this.raftDistance = c.getAvgRaftDistance();
+        this.pitch = c.getCustomerRoofAngle();
+        this.shedLength = c.getShedLength();
+        this.noOfLaths = c.getNoOfLaths()/2;
+        this.lathLength = c.getCarportLength();
+        this.noOfBeams = c.getNoOfBeams();
+
+
+        svgSideways.append(String.format(headerTemplate));
+
+
+    }
     //Sætter carport længden
-    private double carportLength = c.getCarportLength();
+    private double carportLength;
     private double carportX = 0;
     private double carportY = 0;
 
     //Spær
-    private double noOfRafts = c.getNoOfRafts();
-    private double raftDistance = c.getAvgRaftDistance();
+    private double noOfRafts;
+    private double raftDistance;
     private double raftHeight = 87.5;
     private double raftWidth = 4.5;
     private double raftX = 0;
@@ -29,38 +41,34 @@ public class SvgSideways {
 
     //Taghøjde
     private double roofHeigt = 90.0;
-    private int pitch = c.getCustomerRoofAngle();
+    private int pitch;
 
     //Tagtop
     private double roofRidgeHeight = 7.5;
-    private double roofRidgeLength = carportLength;
     private double RidgeX = 0.0;
-    private double RidgeY = 0.0 ;
+    private double RidgeY = 0.0;
 
     //Sternbræt
     private double fasciaBoardHeight = 15.0;
-    private double fasciaBoardLength = carportLength;
     private double fasciaBoardX = 0.0;
     private double fasciaBoardY = 80.0;
 
     //Skur
-    private double shedLength = c.getShedLength();
-    private double shedX = carportLength-30-shedLength;
-    private double shedX2 = carportLength-30-shedLength+5;
+    private double shedLength;
     private double shedY = roofHeigt+15;
     private double shedCladdingWidth = 10.0;
     private double shedCladdingHeight = 200;
-    private double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
+
 
     //Lægter
-    private double noOfLaths = (c.getNoOfLaths()/2);
+    private double noOfLaths;;
     private double lathWidth = 4.5;
-    private double lathLength = c.getCarportLength();
+    private double lathLength;
     private double lathX = 0;
     private double lathY = 0;
 
     //Stolper
-    private double noOfBeams = c.getNoOfBeams();
+    private double noOfBeams;
     private double beamlength = 210;
     private double beamWidth = 10;
     private double beamX = 0.0;
@@ -69,7 +77,7 @@ public class SvgSideways {
     //Tagsten
     private double roofTileHeight = 15.0;
     private double roofTileWidth = 25.0;
-    private double roofTileColumns = Math.ceil(carportLength/roofTileWidth);
+    //
     private double roofTileRows = roofHeigt/roofTileHeight;
     private double roofTilesX1 = 5.0;
     private double roofTilesY1 = 0.0;
@@ -90,9 +98,9 @@ public class SvgSideways {
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
     private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
-            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
-            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" + "</marker>\n" + "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
-            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" + "</marker>\n" +"</defs>";
+                                                "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                                "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" + "</marker>\n" + "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                                "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" + "</marker>\n" +"</defs>";
     private final String rectTemplate           = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #f58f00\" />";
     private final String rectTemplateRoof       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #f58f00\" />";
     private final String rectTemplateShed       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #f58f00\" />";
@@ -104,12 +112,7 @@ public class SvgSideways {
 
 
 
-    //##########################################################
-    //constructors
-    //##########################################################
-    public SvgSideways() {
-        svgSideways.append(String.format(headerTemplate));
-    }
+
 
     //##########################################################
     //Methods for StringBuilder
@@ -131,7 +134,7 @@ public class SvgSideways {
                 svgSideways.append(String.format(rectTemplatelaths, (lathX), (lathY), lathWidth, lathLength));
             }
             //Roofridge
-            svgSideways.append(String.format(rectTemplateRoof, RidgeX, (RidgeY+2.5), roofRidgeHeight, roofRidgeLength));
+            svgSideways.append(String.format(rectTemplateRoof, RidgeX, (RidgeY+2.5), roofRidgeHeight, carportLength));
             //Windwagoo
             svgSideways.append(String.format(rectTemplateRoof, (carportX-5), carportY, (roofHeigt-5), 10.0));
             svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), carportY, (roofHeigt-5), 10.0));
@@ -143,12 +146,15 @@ public class SvgSideways {
 
     //carport builder
     public void addCarport(){
+        double shedX =  (carportLength-30-shedLength);
+        double shedX2 = (carportLength-30-shedLength+5);
+        double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
 
         //BEAMS - STOLPER
         svgSideways.append(String.format(rectTemplate, (beamX+80), (beamY), beamlength, beamWidth));
         svgSideways.append(String.format(rectTemplate, (carportLength-40), (beamY), beamlength, beamWidth));
 
-        //checker om der er skur, og tegner derefter skuret
+        //checker om der er skur, og tegner derefter skuret stolper
         if (shedLength>0){
             svgSideways.append(String.format(rectTemplate, (carportLength-shedLength-30), (beamY), beamlength, beamWidth));
             svgSideways.append(String.format(rectTemplate, ((carportLength/2)-beamWidth/2), (beamY), beamlength, beamWidth));
@@ -177,7 +183,7 @@ public class SvgSideways {
             }
         }
         //fascia board  // Sternbræt
-        svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
+        svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, carportLength));
     }
 
     public void addLines(){
@@ -188,6 +194,8 @@ public class SvgSideways {
     }
 
     public void addRooftiles() {
+
+        double roofTileColumns = Math.ceil(carportLength/roofTileWidth);
 
         if (pitch != 0) {
             roofTilesY1 = 10;
@@ -214,7 +222,7 @@ public class SvgSideways {
             svgSideways.append(String.format(rectTemplateRoof, (carportX - 5), (carportY + 70), 2.5, 10.0));
             svgSideways.append(String.format(rectTemplateRoof, (carportLength - 5), (carportY + 70), 2.5, 10.0));
             //fascia board  // Sternbræt
-            svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, fasciaBoardLength));
+            svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, carportLength));
         }
     }
 
