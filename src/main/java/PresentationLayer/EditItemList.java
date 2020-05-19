@@ -100,7 +100,7 @@ public class EditItemList extends Command {
 
 
         // Initializing instances of SVG classes to be able to show drawings
-        Svg svg = new Svg();
+        Svg svg = new Svg(oID);
         SvgFront svgFront = new SvgFront();
         SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint();
         SvgSideways svgSideways = new SvgSideways();

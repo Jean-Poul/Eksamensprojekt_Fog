@@ -2,44 +2,76 @@ package FunctionLayer;
 
 
 public class Svg {
+
     //##########################################################
-    //The class needs following information from database/carportCalculation.
+    //constructors
     //##########################################################
+
     CarportCalculation c;
-    {
-        try {
-            c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
-        } catch (LoginSampleException e) {
-            e.printStackTrace();
+
+    public Svg(int orderID) throws LoginSampleException {
+
+        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+
+        this.carportWidth = c.getCarportWidth();
+        this.carportLength = c.getCarportLength();
+        this.noOfRafts = c.getNoOfRafts();
+        this.raftDistance = c.getAvgRaftDistance();
+        this.raftDistance2 = c.getAvgRaftDistance();
+        this.raftLength = c.getCarportWidth();
+        this.shedLength = c.getShedWidth();
+        this.shedWidth = c.getShedLength();
+        this.noOfLaths = c.getNoOfLaths();
+        this.lathWidth = c.getCarportLength();
+        this.lathSpan = c.getLathSpan();
+        this.noOfBeams = c.getNoOfBeams();
+        this.roofBargeWidth = c.getCarportLength();
+
+
+        //If else for handling viewbox size
+        if(carportWidth<400 && carportLength<400) {
+            svg.append(String.format(headerTemplate1));
+        }else if(carportWidth<500 && carportLength>500) {
+            svg.append(String.format(headerTemplate2));
+        }else if(carportWidth<600 && carportLength<600) {
+            svg.append(String.format(headerTemplate3));
+        }else if(carportWidth<700 && carportLength<700) {
+            svg.append(String.format(headerTemplate4));
+        }else if(carportWidth<800 && carportLength<800) {
+            svg.append(String.format(headerTemplate5));
         }
     }
 
-    private double carportWidth = c.getCarportWidth();
-    private double carportLength = c.getCarportLength();
+    //##########################################################
+    //The class needs following information from database/carportCalculation.
+    //##########################################################
+
+    private double carportWidth;
+    private double carportLength;
     private double carportX = 0;
     private double carportY = 0;
 
-    private double noOfRafts = c.getNoOfRafts();
-    private double raftDistance = c.getAvgRaftDistance();
-    private double raftDistance2 = c.getAvgRaftDistance();
-    private double raftLength = c.getCarportWidth();
+    private double noOfRafts;
+    private double raftDistance;
+    private double raftDistance2;
+    private double raftLength;
     private double raftWidth = 4.5;
     private double raftX = 0;
     private double raftY = 0;
 
-    private double shedLength = c.getShedWidth();
-    private double shedWidth = c.getShedLength();
+    private double shedLength;
+    private double shedWidth;
     private double shedX = 0;
     private double shedY = 0;
 
-    private double noOfLaths = c.getNoOfLaths();
+    private double noOfLaths;
     private double lathLength = 4.5;
-    private double lathWidth = c.getCarportLength();
-    private double lathSpan = c.getLathSpan();
+    private double lathWidth;
+    private double lathSpan;
     private double lathX = 0;
     private double lathY = 0;
 
-    private double noOfBeams = c.getNoOfBeams();
+    private double noOfBeams;
     private double beamDistance; //Need calculation
     private double beamHight = 10;
     private double beamWidth = 10;
@@ -47,7 +79,7 @@ public class Svg {
     private double beamY = 35;
 
     private double roofBargeHeigt = 6.5;
-    private double roofBargeWidth = c.getCarportLength();
+    private double roofBargeWidth;
     private double roofBargeX = 0;
     private double roofBargeY = 0;
 
@@ -129,25 +161,6 @@ public class Svg {
     private final String lowerTextTemplate  = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
 
     //##########################################################
-    //constructors
-    //##########################################################
-
-    public Svg() {
-        //If else for handling viewbox size
-        if(carportWidth<400 && carportLength<400) {
-            svg.append(String.format(headerTemplate1));
-            }else if(carportWidth<500 && carportLength>500) {
-                svg.append(String.format(headerTemplate2));
-                }else if(carportWidth<600 && carportLength<600) {
-                    svg.append(String.format(headerTemplate3));
-                    }else if(carportWidth<700 && carportLength<700) {
-                        svg.append(String.format(headerTemplate4));
-                        }else if(carportWidth<800 && carportLength<800) {
-                            svg.append(String.format(headerTemplate5));
-                            }
-    }
-
-    //##########################################################
     //Method for StringBuilder
     //##########################################################
     public void addCarport(){
@@ -224,7 +237,7 @@ public class Svg {
         svg.append(String.format(lowerTextTemplate, x=(carportLength /2), y=(carportWidth +50), text= (int) carportLength));
 
         //Leftside arrow
-        svg.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportWidth)));
+        svg.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2 = -30, arrowLineY2=(carportWidth)));
         svg.append(String.format(lowerTextTemplate, x=-33, y=(carportWidth /2), text= (int) carportWidth));
 
         //Raft measurements
