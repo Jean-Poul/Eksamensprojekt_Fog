@@ -18,7 +18,6 @@ abstract class Command {
         commands.put( "redirect", new Redirect() );
         commands.put( "drawing", new Drawing() );
         commands.put( "carportCustomize", new CarportCustomize() );
-        commands.put("midlertidigTest", new midlertidigTest());
         commands.put( "rejectQuote", new RejectQuote() );
         commands.put( "quoteView", new QuoteView() );
         commands.put( "updateQuoteUser", new UpdateQuoteUser() );

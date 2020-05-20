@@ -39,10 +39,7 @@
                         Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram - i de mål du ønsker.
                         Tilbud og skitsetegning fremsendes med post hurtigst muligt.
                         </p>
-                        <form name="testBeregning" action="FrontController" method="POST">
-                            <input type="hidden" name="target" value="midlertidigTest">
-                            <input class="btn btn-info" type="submit" value="Test CarportCalculation & PriceCalculator">
-                        </form>
+
                         <br>
                         <form name="testDrawing" action="FrontController" method="POST">
                             <input type="hidden" name="target" value="drawing">

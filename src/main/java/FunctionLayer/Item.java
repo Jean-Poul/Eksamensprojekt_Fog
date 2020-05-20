@@ -9,9 +9,11 @@ public class Item {
     private String materialType;
     private String material;
     private String description;
-    private int quantity;
+    double quantity;
     private String unit;
     private double pricePrUnit;
+    private int ordersID;
+    private double totalPrice;
 
     public Item(){
 
@@ -26,6 +28,13 @@ public class Item {
         this.quantity = quantity;
         this.unit = unit;
         this.pricePrUnit = pricePrUnit;
+    }
+
+    public Item(int ordersID, int itemListID, double quantity, double totalPrice){
+        this.ordersID = ordersID;
+        this.itemListID = itemListID;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
 
     }
 
@@ -61,7 +70,7 @@ public class Item {
         this.description = description;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
@@ -83,5 +92,21 @@ public class Item {
 
     public void setPricePrUnit(double pricePrUnit) {
         this.pricePrUnit = pricePrUnit;
+    }
+
+    public int getOrdersID() {
+        return ordersID;
+    }
+
+    public void setOrdersID(int ordersID) {
+        this.ordersID = ordersID;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

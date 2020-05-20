@@ -194,7 +194,6 @@ public class CarportCalculation {
         }
 
         //Begin calculations
-
         calcRoofHeight(customerRoofAngle, carportWidth);
 
         noOfRafts(carportLength, raftDistance);
@@ -205,53 +204,6 @@ public class CarportCalculation {
         calcNoOfBeamsAndDim(shedLength);
         calculateSupportingStrap(carportWidth, carportLength);
         calcSternBoardLength(carportLength);
-
-        /*
-
-        //Test for console
-        System.out.println("*****************************************");
-        System.out.println("\t\t KUNDENS VALG \t\t");
-        System.out.println("*****************************************");
-        System.out.println("Carport længde: " + carportLength + " cm");
-        System.out.println("Carport bredde: " + carportWidth + " cm");
-        System.out.println("Rejst tag?: " + raisedRoof );
-
-        System.out.println("*****************************************");
-        System.out.println("\t\t BYGGETEKNISK \t\t");
-        System.out.println("*****************************************");
-        System.out.println("Så systemet et tungt tag?: " + roofHeavy);
-        System.out.println("Antal søjler " + noOfBeams);
-        System.out.println("Søjle dimension: " + beamDimension);
-        System.out.println("Sternbrædder totallængde: " + sternBoardLength);
-        System.out.println("Rem længde: " + supportingStrapLength);
-
-        System.out.println("*****************************************");
-        System.out.println("\t\t SKUR \t\t");
-        System.out.println("*****************************************");
-        System.out.println("Skur længde: " + shedLength + " cm");
-        System.out.println("Skur bredde: " + shedWidth + " cm");
-        System.out.println("Antal beklædningsbræt: " + noOfCladdingBoardsTotal + " stk." + "(" + noOfCladdingBoardsLength + "stk. pr. længde og " + noOfCladdingBoardsWidth + " i bredden)");
-        System.out.println("Antal løsholter: " + this.noOfShedWallLaths + " stk");
-
-        System.out.println("*****************************************");
-        System.out.println("\t\t SPÆR \t\t");
-        System.out.println("*****************************************");
-        System.out.println("Spærlængde: " + df.format(raftLength) + " cm");
-        System.out.println("Spærdimension " + raftDimension + " mm");
-        System.out.println("Antal spær: " + df.format(noOfRafts) + " stk");
-        System.out.println("Systemet udregner spærafstand: " + (avgRaftDistance) + " cm");
-
-        System.out.println("*****************************************");
-        System.out.println("\t\t TAGKONSTRUKTION \t\t");
-        System.out.println("*****************************************");
-        System.out.println("Tagkonstruktionens højde: " + df.format(calcRoofHeight) + " cm");
-        System.out.println("Antal Taglægter: " + noOfLaths + " stk");
-        System.out.println("Taglægte længde: " + carportLength + " cm");
-        System.out.println("Lægteafstand: " + df.format(lathSpan) + " cm");
-        System.out.println("Antal " + roofCladdingType + " " + totalNumberOfRoofTiles);
-        System.out.println("\n");
-
-        */
 
     }
 
@@ -618,7 +570,7 @@ public class CarportCalculation {
         return roofCladType;
     }
 
-    public double getSternBoardType() {
+    public int getSternBoardType() {
         return sternBoardType;
     }
 
@@ -642,4 +594,67 @@ public class CarportCalculation {
         return orderID;
     }
 
+    public int getDoorKit() {
+        return doorKit;
+    }
+
+    public void setDoorKit(int doorKit) {
+        this.doorKit = doorKit;
+    }
+
+    public int getBracketKit() {
+        return bracketKit;
+    }
+
+    public void setBracketKit(int bracketKit) {
+        this.bracketKit = bracketKit;
+    }
+
+    public int getScrewKitRoofRaised() {
+        return screwKitRoofRaised;
+    }
+
+    public void setScrewKitRoofRaised(int screwKitRoofRaised) {
+        this.screwKitRoofRaised = screwKitRoofRaised;
+    }
+
+    public int getScrewKitTrapez() {
+        return screwKitTrapez;
+    }
+
+    public void setScrewKitTrapez(int screwKitTrapez) {
+        this.screwKitTrapez = screwKitTrapez;
+    }
+
+    public int getScrewKitGenericRoofBrackets() {
+        return screwKitGenericRoofBrackets;
+    }
+
+    public void setScrewKitGenericRoofBrackets(int screwKitGenericRoofBrackets) {
+        this.screwKitGenericRoofBrackets = screwKitGenericRoofBrackets;
+    }
+
+    public int getScrewKitGenericRoofLaths() {
+        return screwKitGenericRoofLaths;
+    }
+
+    public void setScrewKitGenericRoofLaths(int screwKitGenericRoofLaths) {
+        this.screwKitGenericRoofLaths = screwKitGenericRoofLaths;
+    }
+
+    public int getScrewKitShedDoorCladdingInside() {
+        return screwKitShedDoorCladdingInside;
+    }
+
+    public void setScrewKitShedDoorCladdingInside(int screwKitShedDoorCladdingInside) {
+        this.screwKitShedDoorCladdingInside = screwKitShedDoorCladdingInside;
+    }
+
+    public int getScrewKitShedDoorCladdingOutside() {
+        return screwKitShedDoorCladdingOutside;
+    }
+
+    public void setScrewKitShedDoorCladdingOutside(int screwKitShedDoorCladdingOutside) {
+        this.screwKitShedDoorCladdingOutside = screwKitShedDoorCladdingOutside;
+    }
 }
