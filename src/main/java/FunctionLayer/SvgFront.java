@@ -1,23 +1,42 @@
 package FunctionLayer;
 
 public class SvgFront {
+
     //##########################################################
-    //The class needs following information from database/carportCalculation.
+    //constructors
     //##########################################################
+
     CarportCalculation c;
-    {
-        try {
-            c = new CarportCalculation(1); //Henter dummy forespørgsel fra database igennem carportcalc
-        } catch (LoginSampleException e) {
-            e.printStackTrace();
-        }
+
+    public SvgFront(int orderID) throws LoginSampleException {
+
+        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+
+        this.carportWidth = c.getCarportWidth();
+        this.carportLength = c.getCarportLength();
+        this.noOfRafts = c.getNoOfRafts();
+        this.raftDistance = c.getAvgRaftDistance();
+        this.raftLength = c.getCarportWidth();
+        this.shedLength = c.getShedWidth();
+        this.shedWidth = c.getShedLength();
+        this.noOfLaths = c.getNoOfLaths();
+        this.lathWidth = c.getCarportLength();
+        this.lathSpan = c.getLathSpan();
+        this.noOfBeams = c.getNoOfBeams();
+        this.roofHeight = c.getCalcRoofHeight();
+        this.roofAngle = c.getCustomerRoofAngle();
+        this.roofRaftLath = c.getRaftLength();
+
+
+        //Viewbox
+        svgFront.append(String.format(headerTemplate));
     }
 
     //##########################################################
     //Variables for SvgFront.java
     //##########################################################
-    private double carportWidth = c.getCarportWidth();
-    private double carportLength = c.getCarportLength();
+    private double carportWidth;
+    private double carportLength;
     private double carportX = 0;
     private double carportY = 0;
 
@@ -25,29 +44,29 @@ public class SvgFront {
     private double roofHeigt = 90.0;
     private double carportHeight = roofHeigt+beamlength+5;
 
-    private double noOfRafts = c.getNoOfRafts();
-    private double raftDistance = c.getAvgRaftDistance();
-    private double raftLength = c.getCarportWidth();
+    private double noOfRafts;
+    private double raftDistance;
+    private double raftLength;
     private double raftWidth = 4.5;
 
-    private double shedLength = c.getShedWidth();
-    private double shedWidth = c.getShedLength();
+    private double shedLength;
+    private double shedWidth;
 
-    private double noOfLaths = c.getNoOfLaths();
+    private double noOfLaths;
     private double lathLength = 4.5;
-    private double lathWidth = c.getCarportLength();
-    private double lathSpan = c.getLathSpan();
+    private double lathWidth;
+    private double lathSpan;
 
-    private double noOfBeams = c.getNoOfBeams();
+    private double noOfBeams;
     private double beamHight = 10;
     private double beamWidth = 10;
     private double beamX = 35;
     private double beamY = 35;
 
-    private double roofHeight = c.getCalcRoofHeight();
-    private double roofAngle = c.getCustomerRoofAngle();
-    private double roofRaftLath = c.getRaftLength();
-    private double roofTopAngel = 180-(2*roofAngle);
+    private double roofHeight;
+    private double roofAngle;
+    private double roofRaftLath;
+    private double roofTopAngel;
 
     private double arrowLineX1 = 0;
     private double arrowLineX2 = 0;
@@ -86,13 +105,6 @@ public class SvgFront {
     private final String raftTemplate           = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke-width:10; stroke:#000000; stroke-linecap:round\"/>";
     private final String lowerTextTemplate      = "<text transform=\"translate(100,200)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
     private final String lowerAngelTextTemplate = "<text transform=\"translate(100,200)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d °</text>";
-
-    //##########################################################
-    //constructors
-    //##########################################################
-    public SvgFront() {
-        svgFront.append(String.format(headerTemplate));
-    }
 
     //##########################################################
     //Method for StringBuilder

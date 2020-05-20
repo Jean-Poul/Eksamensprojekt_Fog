@@ -70,7 +70,7 @@ public class Drawing extends Command {
 
         // Initializing instances of SVG classes to be able to show drawings
         Svg svg = new Svg(oID);
-        SvgFront svgFront = new SvgFront();
+        SvgFront svgFront = new SvgFront(oID);
         SvgSidewaysBlueprint svgSidewaysBlueprint = new SvgSidewaysBlueprint(oID);
         SvgSideways svgSideways = new SvgSideways(oID);
 
