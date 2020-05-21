@@ -71,7 +71,7 @@ public class SvgSideways {
     private double noOfBeams;
     private double beamlength = 210;
     private double beamWidth = 10;
-    private double beamX = 0.0;
+
     private double beamY = 95.0;
 
     //Tagsten
@@ -97,7 +97,7 @@ public class SvgSideways {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
-    private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"900\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                                 "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                                 "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" + "</marker>\n" + "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
                                                 "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" + "</marker>\n" +"</defs>";
@@ -107,7 +107,7 @@ public class SvgSideways {
     private final String rectTemplateShed2      = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #e88700\" />";
     private final String rectTemplatelaths      = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #f5e400\" />";
     private final String rectTemplateTile       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #742727\" />";
-    private final String rectTemplateHiddenTile = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#ffffff; fill: #ffffff\" />";
+    private final String rectTemplateHiddenTile = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#ffffff; fill: #f8f9fa\" />";
     private final String lineNoArrowTemplate    = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
 
 
@@ -125,7 +125,7 @@ public class SvgSideways {
             //rafters / lægter
             for (int i=0; i <noOfRafts; i++) {
                 raftX=raftX+raftDistance;
-                svgSideways.append(String.format(rectTemplateRoof, (raftX-2.5), (raftY+2.5), raftHeight, raftWidth));
+                svgSideways.append(String.format(rectTemplateRoof, (raftX), (raftY+2.5), raftHeight, raftWidth));
             }
 
             //laths
@@ -151,7 +151,7 @@ public class SvgSideways {
         double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
 
         //BEAMS - STOLPER
-        svgSideways.append(String.format(rectTemplate, (beamX+80), (beamY), beamlength, beamWidth));
+        svgSideways.append(String.format(rectTemplate, (raftDistance), (beamY), beamlength, beamWidth));
         svgSideways.append(String.format(rectTemplate, (carportLength-40), (beamY), beamlength, beamWidth));
 
         //checker om der er skur, og tegner derefter skuret stolper

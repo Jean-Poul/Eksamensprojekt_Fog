@@ -12,7 +12,7 @@
         <section class="col-12">
 
             <div class="mt-5 mb-4">
-                <h1>Fog første udkast</h1>
+                <h1>Vælg carport</h1>
             </div>
 
             <!-- Group cards -->

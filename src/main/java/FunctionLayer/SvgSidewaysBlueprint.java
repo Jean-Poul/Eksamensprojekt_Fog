@@ -88,7 +88,7 @@ public class SvgSidewaysBlueprint {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
-    private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"900\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
             "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
             "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" + "</marker>\n" + "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
             "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" + "</marker>\n" + "</defs>";
@@ -116,7 +116,7 @@ public class SvgSidewaysBlueprint {
             //rafters
             for (int i=0; i <noOfRafts; i++) {
                 raftX=raftX+raftDistance;
-                svgSidewaysBlueprint.append(String.format(rectTemplateRoof, (raftX-2.5), (raftY+2.5), raftHeight, raftWidth));
+                svgSidewaysBlueprint.append(String.format(rectTemplateRoof, (raftX), (raftY+2.5), raftHeight, raftWidth));
             }
 
             //laths  / lægter
@@ -143,7 +143,7 @@ public class SvgSidewaysBlueprint {
         double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
 
         //BEAMS - STOLPER
-        svgSidewaysBlueprint.append(String.format(rectTemplate, (beamX+80), (beamY), beamlength, beamWidth));
+        svgSidewaysBlueprint.append(String.format(rectTemplate, (raftDistance), (beamY), beamlength, beamWidth));
         svgSidewaysBlueprint.append(String.format(rectTemplate, (carportLength-40), (beamY), beamlength, beamWidth));
 
         //checker om der er skur, og tegner derefter skuret stolper
@@ -204,8 +204,8 @@ public class SvgSidewaysBlueprint {
             svgSidewaysBlueprint.append(String.format(lineTemplate,(carportX), carportHeight+30, carportLength,carportHeight+30));
             svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportLength/2), y=(carportHeight+50), text= (int) carportLength));
             //Leftside  -> left beam
-            svgSidewaysBlueprint.append(String.format(lineTemplate,(carportX), carportHeight+60, (carportX+80),carportHeight+60));
-            svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=carportX+40, y=(carportHeight+80), text= 80));
+            svgSidewaysBlueprint.append(String.format(lineTemplate,(carportX), carportHeight+60, (raftDistance),carportHeight+60));
+            svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=raftDistance/2, y=(carportHeight+80), text= (int) raftDistance));
 
             //Shed right beam ----> right side
             svgSidewaysBlueprint.append(String.format(lineTemplate,(carportLength-30.0), (carportHeight+60), carportLength,(carportHeight+60)));
@@ -234,11 +234,11 @@ public class SvgSidewaysBlueprint {
                         }
 
                 //left beam to middle beam
-                svgSidewaysBlueprint.append(String.format(lineTemplate,(carportX+80), (carportHeight+60), ((carportLength/2)-beamWidth/2),(carportHeight+60)));
+                svgSidewaysBlueprint.append(String.format(lineTemplate,(raftDistance), (carportHeight+60), ((carportLength/2)-beamWidth/2),(carportHeight+60)));
                 svgSidewaysBlueprint.append(String.format(lowerTextTemplate,
-                        x=(carportX+80) + Math.abs(((((carportLength/2)-beamWidth/2)-(carportX+80))/2)),
+                        x=(carportX+80) + Math.abs(((((carportLength/2)-beamWidth/2)-(raftDistance))/2)),
                         y=(carportHeight+80),
-                        text= (int) Math.abs((((carportLength/2)-beamWidth/2)-(carportX+80)))));
+                        text= (int) Math.abs((((carportLength/2)-beamWidth/2)-(raftDistance)))));
             }
 
             //fascia board  // Sternbræt
