@@ -214,7 +214,7 @@ public class CarportCalculation {
      * @param customerRoofAngle   Customer selected roof slant angle.
      * @param calculatedRoofAngle The calculated upper roof angle (Comes from calcRoofAngle().
      */
-    private void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
+    public void calcRaftLength(double carportWidth, int customerRoofAngle, int calculatedRoofAngle) {
 
         //Determine sloped raft length
         double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
@@ -237,7 +237,7 @@ public class CarportCalculation {
      * @param shedLength              The customer selected shed length
      * @param SHED_CLADDING_BOARD_DIM the assumed cladding board dimensions.
      */
-    private void calcShedCladding(double shedWidth, double shedLength, String SHED_CLADDING_BOARD_DIM) {
+    public void calcShedCladding(double shedWidth, double shedLength, String SHED_CLADDING_BOARD_DIM) {
         shedCladdingBoardType = 31; //Set cladding item no.
 
         String sCladBoardWidth = SHED_CLADDING_BOARD_DIM.substring(SHED_CLADDING_BOARD_DIM.length() - 3, SHED_CLADDING_BOARD_DIM.length());
@@ -255,7 +255,7 @@ public class CarportCalculation {
     /**
      * Outputs number of laths required for shed. Currently set to a fixed number of 12
      */
-    private void calculateShedWallLaths(int shedLength, int shedWidth) {
+    public void calculateShedWallLaths(int shedLength, int shedWidth) {
         shedWallLathType = 29;
         this.shedWallLathsTotalLength = ((shedLength + shedWidth) * 2) * noOfShedWallLaths;
     }
@@ -270,7 +270,7 @@ public class CarportCalculation {
      * @param ROOF_TRAPEZ_LENGTH Length of a roof trapez plate (Assumed value from FOG website)
      * @param ROOF_TRAPEZ_WIDTH  Width of a roof trapez plate (Assumed value from FOG website)
      */
-    private void calcRoofCladdingArea(int carportLength, double calcRaftLength, double ROOF_TILE_LENGTH, double ROOF_TILE_WIDTH, double ROOF_TRAPEZ_LENGTH, double ROOF_TRAPEZ_WIDTH, int customerRoofAngle) {
+    public void calcRoofCladdingArea(int carportLength, double calcRaftLength, double ROOF_TILE_LENGTH, double ROOF_TILE_WIDTH, double ROOF_TRAPEZ_LENGTH, double ROOF_TRAPEZ_WIDTH, int customerRoofAngle) {
 
         if (customerRoofAngle > 0) {
             raisedRoof = true;
@@ -297,7 +297,7 @@ public class CarportCalculation {
      *
      * @param shedLength The user selected shed length
      */
-    private void calcNoOfBeamsAndDim(double shedLength) {
+    public void calcNoOfBeamsAndDim(double shedLength) {
         if (shedLength > 0) {
             noOfBeams = 8;
         } else {
@@ -318,7 +318,7 @@ public class CarportCalculation {
      * @param carportWidth  The customer selected carport width
      * @param carportLength The customer selected carport length
      */
-    private void calculateSupportingStrap(double carportWidth, double carportLength) {
+    public void calculateSupportingStrap(double carportWidth, double carportLength) {
 
         double totalSupportStrap = (carportLength * 2) + carportWidth;
         supportingStrapLength = totalSupportStrap;
@@ -330,7 +330,7 @@ public class CarportCalculation {
      *
      * @param customerRoofAngle The customer selected roof slant angle
      */
-    private void calcRoofAngle(int customerRoofAngle) {
+    public void calcRoofAngle(int customerRoofAngle) {
         int triangleAngleSum = 180;
         int calcAngle = triangleAngleSum - (customerRoofAngle * 2);
         this.calcAngle = calcAngle;
@@ -341,7 +341,7 @@ public class CarportCalculation {
      *
      * @param carportLength the calculated raftlength which matches the length of the roof stern.
      */
-    private void calcSternBoardLength(int carportLength) {
+    public void calcSternBoardLength(int carportLength) {
         sternBoardType = 30;
         double sternBoardsLength = carportLength * 2;
         this.sternBoardLength = sternBoardsLength;
@@ -353,7 +353,7 @@ public class CarportCalculation {
      * @param carportLength The customer selected carport length
      * @param raftDistance  The calculated raft distance
      */
-    private void noOfRafts(double carportLength, double raftDistance) {
+    public void noOfRafts(double carportLength, double raftDistance) {
 
         //Determine no. of sloped rafts
         int noOfRafts = (int) Math.ceil(carportLength / (raftDistance * 100)); //Convert raftdistance to cm
@@ -372,7 +372,7 @@ public class CarportCalculation {
      * @param customerRoofAngle The customer selected roof slant angle.
      * @param carportWidth      The customer selected carport width.
      */
-    private void calcRoofHeight(int customerRoofAngle, double carportWidth) {
+    public void calcRoofHeight(int customerRoofAngle, double carportWidth) {
         double custRoofAngleRadian = Math.toRadians(customerRoofAngle);
         double calcRoofHeight = (Math.tan(custRoofAngleRadian) * (carportWidth / 2));
         this.calcRoofHeight = calcRoofHeight;
@@ -383,7 +383,7 @@ public class CarportCalculation {
      *
      * @param calcRaftLength
      */
-    private void calcRoofLaths(double calcRaftLength) {
+    public void calcRoofLaths(double calcRaftLength) {
         roofLathType = 27;
 
         int bottomLathSpan = this.bottomLathSpan;
