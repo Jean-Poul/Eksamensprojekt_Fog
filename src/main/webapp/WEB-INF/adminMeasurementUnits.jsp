@@ -73,24 +73,17 @@
                     <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
                     <input type="hidden" id="queryChoice" name="queryChoice" value="2">
 
-                    <button onclick="submitRowAsForm('tr_${element.measurementUnitsId}')" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+                    <button class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
                     <button type="button" class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
                     <button type="submit" form="delete" id="${element.measurementUnitsId}" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm('Er du sikker på at du vil slette?')"><span class="fa fa-trash"></span> slet</button>
-                    <!--
-                    <form name="delete" action="FrontController" method="post">
-                        <input type="hidden" name="target" value="adminMeasurementUnitsDB">
-                        <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
-                        <input type="hidden" name="queryChoice" value="delete">
-                        <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm('Er du sikker på at du vil slette?')"><span class="fa fa-trash"></span> slet</button>
-                    </form>
--->
+
                 </td>
             </tr>
         </c:forEach>
 
         </tbody>
     </table>
-    <!--</form>-->
+
     <button class="btn btn-sm btn-success add-new"><span class="fa fa-plus"></span> Tilføj ny</button>
 </div>
 <!-- Footer -->
@@ -114,7 +107,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
-        //var actions = $("table td:last-child").html();
+
         // Append table with add row form on add new button click
         $(".add-new").click(function(){
             $(this).attr("disabled", "disabled");
@@ -128,27 +121,28 @@
                 '<td class="text-center"><input type="checkbox" class="checkbox" value ="1" name="ts_length"></td>' +
                 '<td class="text-right"><input type="hidden" name="target" value="adminMeasurementUnitsDB">' +
                 '<input type="hidden" id="queryChoice" name="queryChoice" value="1">' +
-                '<button onclick="submitRowAsForm(\'tr_0\')" class="add btn btn-sm btn-success mr-1" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>' +
+                '<button class="add btn btn-sm btn-success mr-1" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>' +
                 '<button type="submit" form="delete" id="0" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm(\'Er du sikker på at du vil slette?\')"><span class="fa fa-trash"></span> slet</button></td>' +
                 '</tr>';
             $("table").append(row);
             $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-            //$("table tbody tr").eq(index + 1).find(".delete").attr("disabled", true);
             $('[data-toggle="tooltip"]').tooltip();
         });
         // Add row on add button click
         $(document).on("click", ".add", function(){
             var empty = false;
+            var trId = $(this).closest('tr').attr('id'); // get id from tr onclick="submitRowAsForm('tr_0')"
             var input = $(this).parents("tr").find('input[type="text"]');
             var inputCheck = $(this).parents("tr").find('input[type="checkbox"]');
             input.each(function(){
                 var number = input.val().trim();
                 if (number === "" || number !== "" && !$.isNumeric(number)) {
-                    //if(!$(this).val()){
                     $(this).addClass("error");
                     empty = true;
                 } else {
                     $(this).removeClass("error");
+                    // if validated submit row
+                    submitRowAsForm(trId);
                 }
             });
 
@@ -171,11 +165,7 @@
         });
         // Edit row on edit button click
         $(document).on("click", ".edit", function(){
-            /*
-            $(this).parents("tr").find("td:not(:last-child)").each(function(){
-                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-            });
-            */
+
             $(this).parents("tr").find("td:eq(0)").each(function () {
                 $(this).html('<input type="text" class="form-control" name="units" id="units" value="' + $(this).text() + '">');
             });
@@ -211,13 +201,11 @@
             $(this).parents("tr").find(".add, .edit").toggle();
             $(".add-new, .edit").attr("disabled", "disabled");
         });
-        // Delete row on delete button click
 
+        // Delete row on delete button click
         $(document).on("click", ".delete", function(){
             var uid = $(this).attr('id');
             $('#measurementUnitId').val(uid);
-            //$(this).parents("tr").remove();
-            //$(".add-new, .edit").removeAttr("disabled");
         });
 
 
@@ -241,8 +229,8 @@
             }
 
         });
-        form.style.display = "none";
-        document.body.appendChild(form);
+        form.style.display = "none"; // needed for firefox
+        document.body.appendChild(form); // needed for firefox
         form.submit(); // NOW SUBMIT THE FORM THAT WE'VE JUST CREATED AND POPULATED
     }
 </script>
