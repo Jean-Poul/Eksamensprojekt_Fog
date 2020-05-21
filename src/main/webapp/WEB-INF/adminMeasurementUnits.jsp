@@ -41,6 +41,14 @@
 <div class="container mb-5 mt-5">
     <h2>Måleenheder</h2>
     <p>Her kan der rettes, slettes og tilføjes nye måleenheder til carport bredde og længe, og skur bredde og længde:</p>
+
+    <!-- Delete row form -->
+    <form name="delete" id="delete" action="FrontController" method="post">
+        <input type="hidden" name="target" value="adminMeasurementUnitsDB">
+        <input type="hidden" name="measurementUnitId" id="measurementUnitId" value="">
+        <input type="hidden" name="queryChoice" value="3">
+    </form>
+
     <table class="table table-sm">
         <thead>
         <tr>
@@ -54,34 +62,35 @@
         </thead>
         <tbody>
         <c:forEach var="element" items="${requestScope.measurementUnits}">
-            <tr>
-                <form name="update" id="update_${element.measurementUnitsId}" action="FrontController" method="post">
-                    <input type="hidden" name="target" value="adminMeasurementUnits">
-                    <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
+            <tr id="tr_${element.measurementUnitsId}">
                 <td>${element.units}</td>
                 <td class="text-center chbx">${element.c_width}</td>
                 <td class="text-center chbx">${element.c_length}</td>
                 <td class="text-center chbx">${element.ts_width}</td>
                 <td class="text-center chbx">${element.ts_length}</td>
-                </form>
                 <td class="text-right">
+                    <input type="hidden" name="target" value="adminMeasurementUnitsDB">
+                    <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
+                    <input type="hidden" id="queryChoice" name="queryChoice" value="2">
 
-
-                    <button type="submit" form="update_${element.measurementUnitsId}" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-
-                    <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
+                    <button onclick="submitRowAsForm('tr_${element.measurementUnitsId}')" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+                    <button type="button" class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
+                    <button type="submit" form="delete" id="${element.measurementUnitsId}" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm('Er du sikker på at du vil slette?')"><span class="fa fa-trash"></span> slet</button>
+                    <!--
                     <form name="delete" action="FrontController" method="post">
-                        <input type="hidden" name="target" value="adminMeasurementUnits">
+                        <input type="hidden" name="target" value="adminMeasurementUnitsDB">
                         <input type="hidden" name="measurementUnitId" value="${element.measurementUnitsId}">
+                        <input type="hidden" name="queryChoice" value="delete">
                         <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm('Er du sikker på at du vil slette?')"><span class="fa fa-trash"></span> slet</button>
                     </form>
-
+-->
                 </td>
             </tr>
         </c:forEach>
 
         </tbody>
     </table>
+    <!--</form>-->
     <button class="btn btn-sm btn-success add-new"><span class="fa fa-plus"></span> Tilføj ny</button>
 </div>
 <!-- Footer -->
@@ -96,7 +105,12 @@
         });
     });
 </script>
-
+<script>
+    function changeChoice(val)
+    {
+        document.getElementById("queryChoice").value=val;
+    }
+</script>
 <script type="text/javascript">
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
@@ -106,21 +120,20 @@
             $(this).attr("disabled", "disabled");
             $(".edit").attr("disabled", true);
             var index = $("table tbody tr:last-child").index();
-            var row = '<tr>' +
-                '<td><input type="text" class="form-control" name="unit" id="unit"></td>' +
-                '<td class="text-center"><input type="checkbox" class="checkbox" name="c_width"></td>' +
-                '<td class="text-center"><input type="checkbox" class="checkbox" name="c_length"></td>' +
-                '<td class="text-center"><input type="checkbox" class="checkbox" name="ts_width"></td>' +
-                '<td class="text-center"><input type="checkbox" class="checkbox" name="ts_length"></td>' +
-                '<td class="text-right">' +
-                '<form name="insert" action="FrontController" method="post">\n' +
-                '<input type="hidden" name="target" value="adminMeasurementUnits">\n' +
-                '<button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>\n' +
-                '</form>' +
-                '<button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button></td>' +
+            var row = '<tr id="tr_0">' +
+                '<td><input type="text" class="form-control" name="units" id="units"></td>' +
+                '<td class="text-center"><input type="checkbox" class="checkbox" value ="1" name="c_width"></td>' +
+                '<td class="text-center"><input type="checkbox" class="checkbox" value ="1" name="c_length"></td>' +
+                '<td class="text-center"><input type="checkbox" class="checkbox" value ="1" name="ts_width"></td>' +
+                '<td class="text-center"><input type="checkbox" class="checkbox" value ="1" name="ts_length"></td>' +
+                '<td class="text-right"><input type="hidden" name="target" value="adminMeasurementUnitsDB">' +
+                '<input type="hidden" id="queryChoice" name="queryChoice" value="1">' +
+                '<button onclick="submitRowAsForm(\'tr_0\')" class="add btn btn-sm btn-success mr-1" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>' +
+                '<button type="submit" form="delete" id="0" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm(\'Er du sikker på at du vil slette?\')"><span class="fa fa-trash"></span> slet</button></td>' +
                 '</tr>';
             $("table").append(row);
             $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+            //$("table tbody tr").eq(index + 1).find(".delete").attr("disabled", true);
             $('[data-toggle="tooltip"]').tooltip();
         });
         // Add row on add button click
@@ -164,34 +177,34 @@
             });
             */
             $(this).parents("tr").find("td:eq(0)").each(function () {
-                $(this).html('<input type="text" class="form-control" pattern="[0-9]+" name="unit" id="unit" value="' + $(this).text() + '">');
+                $(this).html('<input type="text" class="form-control" name="units" id="units" value="' + $(this).text() + '">');
             });
             $(this).parents("tr").find("td:eq(1)").each(function () {
                 if($(this).is("td:empty")) {
-                    $(this).html('<input type="checkbox" class="checkbox" name="c_width" id="c_width">');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="c_width" id="c_width">');
                 } else {
-                    $(this).html('<input type="checkbox" class="checkbox" name="c_width" id="c_width" checked>');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="c_width" id="c_width" checked>');
                 }
             });
             $(this).parents("tr").find("td:eq(2)").each(function () {
                 if($(this).is("td:empty")) {
-                    $(this).html('<input type="checkbox" class="checkbox" name="c_length" id="c_length">');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="c_length" id="c_length">');
                 } else {
-                    $(this).html('<input type="checkbox" class="checkbox" name="c_length" id="c_length" checked>');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="c_length" id="c_length" checked>');
                 }
             });
             $(this).parents("tr").find("td:eq(3)").each(function () {
                 if($(this).is("td:empty")) {
-                    $(this).html('<input type="checkbox" class="checkbox" name="ts_width" id="ts_width">');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="ts_width" id="ts_width">');
                 } else {
-                    $(this).html('<input type="checkbox" class="checkbox" name="ts_width" id="ts_width" checked>');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="ts_width" id="ts_width" checked>');
                 }
             });
             $(this).parents("tr").find("td:eq(4)").each(function () {
                 if($(this).is("td:empty")) {
-                    $(this).html('<input type="checkbox" class="checkbox" name="ts_length" id="ts_length">');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="ts_length" id="ts_length">');
                 } else {
-                    $(this).html('<input type="checkbox" class="checkbox" name="ts_length" id="ts_length" checked>');
+                    $(this).html('<input type="checkbox" class="checkbox" value="1" name="ts_length" id="ts_length" checked>');
                 }
             });
 
@@ -199,9 +212,38 @@
             $(".add-new, .edit").attr("disabled", "disabled");
         });
         // Delete row on delete button click
+
         $(document).on("click", ".delete", function(){
-            $(this).parents("tr").remove();
-            $(".add-new, .edit").removeAttr("disabled");
+            var uid = $(this).attr('id');
+            $('#measurementUnitId').val(uid);
+            //$(this).parents("tr").remove();
+            //$(".add-new, .edit").removeAttr("disabled");
         });
+
+
     });
 </script>
+
+<script>
+    function submitRowAsForm(idRow) {
+        form = document.createElement("form"); // CREATE A NEW FORM TO DUMP ELEMENTS INTO FOR SUBMISSION
+        form.method = "post"; // CHOOSE FORM SUBMISSION METHOD, "GET" OR "POST"
+        form.action = "FrontController"; // TELL THE FORM WHAT PAGE TO SUBMIT TO
+        $("#"+idRow+" td").children().each(function() { // GRAB ALL CHILD ELEMENTS OF <TD>'S IN THE ROW IDENTIFIED BY idRow, CLONE THEM, AND DUMP THEM IN OUR FORM
+            if(this.type.substring(0,6) == "select") { // JQUERY DOESN'T CLONE <SELECT> ELEMENTS PROPERLY, SO HANDLE THAT
+                input = document.createElement("input"); // CREATE AN ELEMENT TO COPY VALUES TO
+                input.type = "hidden";
+                input.name = this.name; // GIVE ELEMENT SAME NAME AS THE <SELECT>
+                input.value = this.value; // ASSIGN THE VALUE FROM THE <SELECT>
+                form.appendChild(input);
+            } else { // IF IT'S NOT A SELECT ELEMENT, JUST CLONE IT.
+                $(this).clone().appendTo(form);
+            }
+
+        });
+        form.style.display = "none";
+        document.body.appendChild(form);
+        form.submit(); // NOW SUBMIT THE FORM THAT WE'VE JUST CREATED AND POPULATED
+    }
+</script>
+

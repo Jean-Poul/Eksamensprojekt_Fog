@@ -797,6 +797,11 @@ public class DataMapper {
 // 6. All Admin queries for CRUD
 //########################################
 
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
     public static List<MeasurementUnits> getMeasurementUnits() throws LoginSampleException {
         List<MeasurementUnits> measurementUnits = new ArrayList<>();
         try {
@@ -818,6 +823,77 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
         return measurementUnits;
+    }
+
+    /**
+     *
+     * @param units
+     * @param c_width
+     * @param c_length
+     * @param ts_width
+     * @param ts_length
+     * @throws LoginSampleException
+     */
+    public static void createMeasurementUnits(int units, int c_width, int c_length, int ts_width, int ts_length) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO measurement_units (units,c_width,c_length,ts_width,ts_length) VALUES (?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, units);
+            ps.setInt(2, c_width);
+            ps.setInt(3, c_length);
+            ps.setInt(4, ts_width);
+            ps.setInt(5, ts_length);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param measurement_units_id
+     * @param units
+     * @param c_width
+     * @param c_length
+     * @param ts_width
+     * @param ts_length
+     * @throws LoginSampleException
+     */
+    public static void updateMeasurementUnits(int measurement_units_id, int units, int c_width, int c_length, int ts_width, int ts_length) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE measurement_units SET units = ?, c_width = ?, c_length = ?, ts_width = ?, ts_length = ? WHERE measurement_units_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, units);
+            ps.setInt(2, c_width);
+            ps.setInt(3, c_length);
+            ps.setInt(4, ts_width);
+            ps.setInt(5, ts_length);
+            ps.setInt(6, measurement_units_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param measurement_units_id
+     * @throws LoginSampleException
+     */
+    public static void deleteMeasurementUnits(int measurement_units_id) throws LoginSampleException {
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM measurement_units WHERE measurement_units_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, measurement_units_id);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
     }
 
 }

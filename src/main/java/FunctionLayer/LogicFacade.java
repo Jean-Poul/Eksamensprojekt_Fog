@@ -298,8 +298,48 @@ public class LogicFacade {
     // All Admin queries for CRUD
     //############################
 
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
     public static List<MeasurementUnits> getMeasurementUnits() throws LoginSampleException {
         return DataMapper.getMeasurementUnits();
     }
 
+    /**
+     *
+     * @param units
+     * @param c_width
+     * @param c_length
+     * @param ts_width
+     * @param ts_length
+     * @throws LoginSampleException
+     */
+    public static void createMeasurementUnits(int units, int c_width, int c_length, int ts_width, int ts_length) throws LoginSampleException {
+        DataMapper.createMeasurementUnits(units,c_width,c_length,ts_width,ts_length);
+    }
+
+    /**
+     *
+     * @param measurement_units_id
+     * @param units
+     * @param c_width
+     * @param c_length
+     * @param ts_width
+     * @param ts_length
+     * @throws LoginSampleException
+     */
+    public static void updateMeasurementUnits(int measurement_units_id, int units, int c_width, int c_length, int ts_width, int ts_length) throws LoginSampleException {
+        DataMapper.updateMeasurementUnits(measurement_units_id,units,c_width,c_length,ts_width,ts_length);
+    }
+
+    /**
+     *
+     * @param measurement_units_id
+     * @throws LoginSampleException
+     */
+    public static void deleteMeasurementUnits(int measurement_units_id) throws LoginSampleException {
+        DataMapper.deleteMeasurementUnits(measurement_units_id);
+    }
 }

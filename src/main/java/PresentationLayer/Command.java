@@ -32,6 +32,7 @@ abstract class Command {
         commands.put( "adminRoof", new AdminRoof() );
         commands.put( "adminRoofPitch", new AdminRoofPitch() );
         commands.put( "adminStandartDimensions", new AdminStandartDimensions() );
+        commands.put( "adminMeasurementUnitsDB", new AdminMeasurementUnitsDB() );
     }
 
     static Command from( HttpServletRequest request ) {
