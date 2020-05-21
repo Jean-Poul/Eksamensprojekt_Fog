@@ -793,9 +793,13 @@ public class DataMapper {
         return orderItemList;
     }
 
-//########################################
-// 6. All Admin queries for CRUD
-//########################################
+    //########################################
+    // 6. All Admin queries for CRUD
+    //########################################
+
+    //----------------------------------------
+    // CRUD for Measurement Units
+    //----------------------------------------
 
     /**
      *
@@ -896,4 +900,31 @@ public class DataMapper {
         }
     }
 
+    //----------------------------------------
+    // CRUD for Item List
+    //----------------------------------------
+
+    public static List<ItemList> getItemListAdmin() throws LoginSampleException {
+        List<ItemList> itemLists = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM item_list ORDER BY item_list_id ASC;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int item_list_id = rs.getInt("item_list_id");
+                String material_type = rs.getString("material_type");
+                String material = rs.getString("material");
+                String description = rs.getString("description");
+                int amounts = rs.getInt("amounts");
+                String unit = rs.getString("unit");
+                double price_per_unit = rs.getDouble("price_per_unit");
+                ItemList il = new ItemList(item_list_id,material_type,material,description,amounts,unit,price_per_unit);
+                itemLists.add(il);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return itemLists;
+    }
 }

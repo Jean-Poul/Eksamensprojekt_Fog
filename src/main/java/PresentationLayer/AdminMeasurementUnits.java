@@ -21,7 +21,7 @@ public class AdminMeasurementUnits extends Command {
         List<MeasurementUnits> measurementUnits = (List<MeasurementUnits>) session.getAttribute("measurementUnits");
 
 
-        // Singleton to initialize an instance of UserProposition
+        // Singleton to initialize an instance of MeasurementUnits
         // if List is empty
         if (measurementUnits == null) {
             measurementUnits = LogicFacade.getMeasurementUnits();

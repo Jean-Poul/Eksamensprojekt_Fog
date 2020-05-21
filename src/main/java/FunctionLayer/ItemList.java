@@ -2,6 +2,10 @@ package FunctionLayer;
 
 public class ItemList {
 
+    private int item_list_id;
+    private String material;
+    private int amounts;
+    private double price_per_unit;
     private int orderline_id;
     private int orders_id;
     private String material_type;
@@ -10,6 +14,7 @@ public class ItemList {
     private String description;
     private double total_price;
 
+    // Constructor
     public ItemList(int orderline_id, int orders_id, String material_type, double quantity, String unit, String description, double total_price) {
         this.orderline_id = orderline_id;
         this.orders_id = orders_id;
@@ -18,6 +23,17 @@ public class ItemList {
         this.unit = unit;
         this.description = description;
         this.total_price = total_price;
+    }
+
+    // Constructor for admin
+    public ItemList(int item_list_id,String material_type,String material,String description,int amounts,String unit,double price_per_unit) {
+        this.item_list_id = item_list_id;
+        this.material_type = material_type;
+        this.material = material;
+        this.description = description;
+        this.amounts = amounts;
+        this.unit = unit;
+        this.price_per_unit = price_per_unit;
     }
 
     // Getters and setters
@@ -76,4 +92,20 @@ public class ItemList {
     public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
+
+    public int getItem_list_id() { return item_list_id; }
+
+    public void setItem_list_id(int item_list_id) { this.item_list_id = item_list_id; }
+
+    public String getMaterial() { return material; }
+
+    public void setMaterial(String material) { this.material = material; }
+
+    public int getAmounts() { return amounts; }
+
+    public void setAmounts(int amounts) { this.amounts = amounts; }
+
+    public double getPrice_per_unit() { return price_per_unit; }
+
+    public void setPrice_per_unit(double price_per_unit) { this.price_per_unit = price_per_unit; }
 }

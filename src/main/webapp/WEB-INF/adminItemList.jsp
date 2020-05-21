@@ -49,45 +49,22 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach var="element" items="${requestScope.itemList}">
         <tr>
-            <td>Tilbehør til spær:</td>
-            <td>universal 190 mm højre</td>
-            <td>Til montering af spær på rem</td>
-            <td>1</td>
-            <td></td>
-            <td>46.00</td>
+            <td>${element.material_type}</td>
+            <td>${element.material}</td>
+            <td>${element.description}</td>
+            <td>${element.amounts}</td>
+            <td>${element.unit}</td>
+            <td>${element.price_per_unit}</td>
             <td class="text-right">
                 <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
                 <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
                 <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
             </td>
         </tr>
-        <tr>
-            <td>Tilbehør til tværgående løsholter:</td>
-            <td>vinkelbeslag 35mm</td>
-            <td>til montering af løsholter (stk. pr. løsholter - afhænger af højde)</td>
-            <td>2</td>
-            <td></td>
-            <td>7.00</td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Tilbehør til stolper:</td>
-            <td>bræddebolt 10 x 120 mm.</td>
-            <td>Til montering af rem på stolper (stk. pr stolpe, 4 i samling)</td>
-            <td>2</td>
-            <td>stk</td>
-            <td>11.70</td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
+        </c:forEach>
+        
         </tbody>
     </table>
     <button class="btn btn-sm btn-success add-new"><span class="fa fa-plus"></span> Tilføj ny</button>

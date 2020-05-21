@@ -294,9 +294,13 @@ public class LogicFacade {
         return DataMapper.getItemList();
     }
 
-    //############################
+    //########################################
     // All Admin queries for CRUD
-    //############################
+    //########################################
+
+    //----------------------------------------
+    // CRUD for Measurement Units
+    //----------------------------------------
 
     /**
      *
@@ -342,4 +346,18 @@ public class LogicFacade {
     public static void deleteMeasurementUnits(int measurement_units_id) throws LoginSampleException {
         DataMapper.deleteMeasurementUnits(measurement_units_id);
     }
+
+    //----------------------------------------
+    // CRUD for Item List
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<ItemList> getItemListAdmin() throws LoginSampleException {
+        return DataMapper.getItemListAdmin();
+    }
+
 }
