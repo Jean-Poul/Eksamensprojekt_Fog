@@ -1,8 +1,7 @@
 package FunctionLayer;
 
 /**
- * Contains methods for calculating every dimension of the total carport solution.
- * The calculations are used to generate drawings, bill-of-material and the final quote.
+ * Contains Constructor and method for generating drawing based of the CarPortCalculation class.
  *
  * @author group
  */
