@@ -360,4 +360,41 @@ public class LogicFacade {
         return DataMapper.getItemListAdmin();
     }
 
+    /**
+     *
+     * @param material_type
+     * @param material
+     * @param description
+     * @param amounts
+     * @param unit
+     * @param price_per_unit
+     * @throws LoginSampleException
+     */
+    public static void createItemList(String material_type, String material, String description, int amounts, String unit, double price_per_unit) throws LoginSampleException {
+        DataMapper.createItemList(material_type,material,description,amounts,unit,price_per_unit);
+    }
+
+    /**
+     *
+     * @param item_list_id
+     * @param material_type
+     * @param material
+     * @param description
+     * @param amounts
+     * @param unit
+     * @param price_per_unit
+     * @throws LoginSampleException
+     */
+    public static void updateItemList(int item_list_id, String material_type, String material, String description, int amounts, String unit, double price_per_unit) throws LoginSampleException {
+        DataMapper.updateItemList(item_list_id,material_type,material,description,amounts,unit,price_per_unit);
+    }
+
+    /**
+     *
+     * @param item_list_id
+     * @throws LoginSampleException
+     */
+    public static void deleteItemList(int item_list_id) throws LoginSampleException {
+        DataMapper.deleteItemList(item_list_id);
+    }
 }

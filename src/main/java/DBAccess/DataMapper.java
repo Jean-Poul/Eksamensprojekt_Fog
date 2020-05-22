@@ -904,11 +904,16 @@ public class DataMapper {
     // CRUD for Item List
     //----------------------------------------
 
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
     public static List<ItemList> getItemListAdmin() throws LoginSampleException {
         List<ItemList> itemLists = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM item_list ORDER BY item_list_id ASC;";
+            String SQL = "SELECT * FROM item_list ORDER BY material_type ASC;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -926,5 +931,80 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
         return itemLists;
+    }
+
+    /**
+     *
+     * @param material_type
+     * @param material
+     * @param description
+     * @param amounts
+     * @param unit
+     * @param price_per_unit
+     * @throws LoginSampleException
+     */
+    public static void createItemList(String material_type, String material, String description, int amounts, String unit, double price_per_unit) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO item_list (material_type,material,description,amounts,unit,price_per_unit) VALUES (?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, material_type);
+            ps.setString(2, material);
+            ps.setString(3, description);
+            ps.setInt(4, amounts);
+            ps.setString(5, unit);
+            ps.setDouble(6, price_per_unit);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param item_list_id
+     * @param material_type
+     * @param material
+     * @param description
+     * @param amounts
+     * @param unit
+     * @param price_per_unit
+     * @throws LoginSampleException
+     */
+    public static void updateItemList(int item_list_id, String material_type, String material, String description, int amounts, String unit, double price_per_unit) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE item_list SET material_type = ?, material = ?, description = ?, amounts = ?, unit = ?, price_per_unit = ? WHERE item_list_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, material_type);
+            ps.setString(2, material);
+            ps.setString(3, description);
+            ps.setInt(4, amounts);
+            ps.setString(5, unit);
+            ps.setDouble(6, price_per_unit);
+            ps.setInt(7, item_list_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param item_list_id
+     * @throws LoginSampleException
+     */
+    public static void deleteItemList(int item_list_id) throws LoginSampleException {
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM item_list WHERE item_list_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, item_list_id);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
     }
 }

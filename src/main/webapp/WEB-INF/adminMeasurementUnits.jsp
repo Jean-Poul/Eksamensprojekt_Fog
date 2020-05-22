@@ -89,6 +89,7 @@
 <!-- Footer -->
 <%@include file="../includes/footer.inc" %>
 <!-- End footer -->
+
 <script type="text/javascript">
     $(document).ready(function() {
         // Change 1 and 0 on page load
