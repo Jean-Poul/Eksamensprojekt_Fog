@@ -12,7 +12,11 @@
         <section class="col-12">
 
             <div class="my-5 text-center">
+<<<<<<< Updated upstream:src/main/webapp/WEB-INF/Customer/customerpage.jsp
                 <h1 class="text-primary">Vælg carport</h1>
+=======
+                <h1 class="text-primary">Bestil den carport du altid har drømt om</h1>
+>>>>>>> Stashed changes:src/main/webapp/WEB-INF/customerpage.jsp
             </div>
 
             <!-- Group cards -->
