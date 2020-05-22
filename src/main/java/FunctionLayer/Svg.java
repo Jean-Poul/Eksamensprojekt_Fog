@@ -1,5 +1,11 @@
 package FunctionLayer;
 
+/**
+ * Contains methods for calculating every dimension of the total carport solution.
+ * The calculations are used to generate drawings, bill-of-material and the final quote.
+ *
+ * @author group
+ */
 
 public class Svg {
 
@@ -9,6 +15,11 @@ public class Svg {
 
     CarportCalculation c;
 
+    /**
+     *
+     * @param orderID
+     * @throws LoginSampleException
+     */
     public Svg(int orderID) throws LoginSampleException {
 
         c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
@@ -160,6 +171,9 @@ public class Svg {
     private final String dotLineTemplate    = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
     private final String lowerTextTemplate  = "<text transform=\"translate(100,100)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
 
+    /**
+     * Draws Carport top view.
+     */
     //##########################################################
     //Method for StringBuilder
     //##########################################################

@@ -1,5 +1,12 @@
 package FunctionLayer;
 
+/**
+ * Contains methods for calculating every dimension of the total carport solution.
+ * The calculations are used to generate drawings, bill-of-material and the final quote.
+ *
+ * @author group
+ */
+
 public class SvgFront {
 
     //##########################################################
@@ -8,6 +15,11 @@ public class SvgFront {
 
     CarportCalculation c;
 
+    /**
+     *
+     * @param orderID
+     * @throws LoginSampleException
+     */
     public SvgFront(int orderID) throws LoginSampleException {
 
         c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
@@ -31,7 +43,7 @@ public class SvgFront {
         //Viewbox
 
         //If else for handling viewbox size
-        if(carportWidth<600 && carportLength<600) {
+        if(carportWidth<600) {
             svgFront.append(String.format(headerTemplate1));
         }else {
             svgFront.append(String.format(headerTemplate2));
@@ -124,7 +136,12 @@ public class SvgFront {
     //Method for StringBuilder
     //##########################################################
 
-    //Making CarportFront Drawing
+    /**
+     * Draws CarportFront with templates and stringbuilder
+     */
+    //##########################################################
+    //Method for StringBuilder
+    //##########################################################
     public void addCarportFront() {
 
         //Beam
