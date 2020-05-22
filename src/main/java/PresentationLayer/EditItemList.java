@@ -1,6 +1,13 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Drawings.Svg;
+import FunctionLayer.Drawings.SvgFront;
+import FunctionLayer.Drawings.SvgSideways;
+import FunctionLayer.Drawings.SvgSidewaysBlueprint;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Tables.ItemList;
+import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -99,6 +106,7 @@ public class EditItemList extends Command {
         }
 
 
+
         // Initializing instances of SVG classes to be able to show drawings
         Svg svg = new Svg(oID);
         SvgFront svgFront = new SvgFront(oID);
@@ -138,6 +146,6 @@ public class EditItemList extends Command {
 
 
         // Return value for FrontController
-        return "drawing";
+        return "adminDrawing";
     }
 }

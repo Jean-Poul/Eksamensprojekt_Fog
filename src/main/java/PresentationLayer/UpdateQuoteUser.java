@@ -1,6 +1,8 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,7 @@ public class UpdateQuoteUser extends Command {
     // Initialize variables to be able to update a proposition and calculate price
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private double price = 0;
+    private int coverage = 0;
     private int vID = 0;
     private int qID = 0;
     private int oID = 0;
@@ -43,7 +46,7 @@ public class UpdateQuoteUser extends Command {
 
 
         // Getting parameter and initializing variable for showing total price
-        totalPrice = request.getParameter("price");
+        totalPrice = request.getParameter("totalPrice");
 
 
         // Getting parameters from input fields
@@ -97,26 +100,26 @@ public class UpdateQuoteUser extends Command {
         }
 
 
-        // Passing orderID to CarportCalculation and passing CarportCalculation to PriceCalculator
-        // to be able to calculate total price of an order
+        // Gets the order coverage and price by passing oID to database.
+        // Adds the coverage to the price, to be displayed on the site
         if (totalPrice == null) {
-
-            CarportCalculation cp = new CarportCalculation(oID);
-            price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
-
+            coverage = LogicFacade.getOrderCoverage(oID);
+            double coverageCalc = (coverage / 100) + 1;
+            price = (LogicFacade.getTotalCarportPrice(oID) * coverageCalc);
             totalPrice = String.valueOf(decimalFormat.format(price));
         } else {
-            totalPrice = decimalFormat.format(session.getAttribute("price"));
+            totalPrice = decimalFormat.format(session.getAttribute("totalPrice"));
         }
 
 
         // Attributes to use on jsp site
         request.setAttribute("userProposition", userProposition);
 
+        request.setAttribute("quoteCoverage", coverage);
         request.setAttribute("totalPrice", totalPrice);
 
 
         // Return value for FrontController
-        return "quoteview";
+        return "adminQuoteView";
     }
 }

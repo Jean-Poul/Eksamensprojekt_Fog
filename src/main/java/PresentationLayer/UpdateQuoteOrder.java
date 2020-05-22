@@ -1,6 +1,10 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Measurements.*;
+import FunctionLayer.Measurements.RoofRaised;
+import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,15 +14,16 @@ import java.util.List;
 
 
 /**
- * UpdateQuoteOrder will update the current order while updating quoteview.jsp
+ * UpdateQuoteOrder will update the current order while updating adminQuoteView.jsp
  */
 public class UpdateQuoteOrder extends Command {
     // Initialize variables to be able to update an order
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private double price = 0;
-    private int oID = 0;
     private int carpWidth = 0;
     private int carpLength = 0;
+    private int coverage = 0;
+    private int oID = 0;
     private int pitch;
     private int roofDegrees = 0;
     private int shedW = 0;
@@ -71,7 +76,7 @@ public class UpdateQuoteOrder extends Command {
         String roofOption = request.getParameter("roofOption");
 
         // Getting parameter and initializing variable for showing total price
-        totalPrice = request.getParameter("price");
+        totalPrice = request.getParameter("totalPrice");
 
 
         // Check if viewID is not empty and parse it to an int
@@ -186,16 +191,15 @@ public class UpdateQuoteOrder extends Command {
         }
 
 
-        // Passing orderID to CarportCalculation and passing CarportCalculation to PriceCalculator
-        // to be able to calculate total price of an order
+        // Gets the order coverage and price by passing oID to database.
+        // Adds the coverage to the price, to be displayed on the site
         if (totalPrice == null) {
-
-            CarportCalculation cp = new CarportCalculation(oID);
-            price = new PriceCalculator(cp).getTotalCarportPriceCoverage();
-
+            coverage = LogicFacade.getOrderCoverage(oID);
+            double coverageCalc = (coverage / 100) + 1;
+            price = (LogicFacade.getTotalCarportPrice(oID) * coverageCalc);
             totalPrice = String.valueOf(decimalFormat.format(price));
         } else {
-            totalPrice = decimalFormat.format(session.getAttribute("price"));
+            totalPrice = decimalFormat.format(session.getAttribute("totalPrice"));
         }
 
 
@@ -212,10 +216,11 @@ public class UpdateQuoteOrder extends Command {
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
 
+        request.setAttribute("quoteCoverage", coverage);
         request.setAttribute("totalPrice", totalPrice);
 
 
         // Return value for FrontController
-        return "quoteview";
+        return "adminQuoteView";
     }
 }

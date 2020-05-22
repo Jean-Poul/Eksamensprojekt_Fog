@@ -1,7 +1,15 @@
 package DBAccess;
 
-import FunctionLayer.*;
-import com.mysql.cj.protocol.Resultset;
+import FunctionLayer.Calculation.BeamDimensionHeavy;
+import FunctionLayer.Calculation.BeamDimensionLight;
+import FunctionLayer.Calculation.Item;
+import FunctionLayer.Calculation.StandardDimensions;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Measurements.*;
+import FunctionLayer.Tables.ItemList;
+import FunctionLayer.Measurements.RoofRaised;
+import FunctionLayer.Tables.UserProposition;
+import FunctionLayer.Users.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -222,7 +230,6 @@ public class DataMapper {
         List<Item> itemList = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            con = Connector.connection();
             String SQL = "SELECT * FROM item_list";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
@@ -435,6 +442,13 @@ public class DataMapper {
         }
     }
 
+
+    /**
+     *
+     * @param orderID
+     * @return coverage
+     * @throws LoginSampleException
+     */
     public static int getOrderCoverage(int orderID) throws LoginSampleException {
         int coverage = 0;
         try {
@@ -452,6 +466,12 @@ public class DataMapper {
         return coverage;
     }
 
+    /**
+     *
+     * @param coverage
+     * @param orderID
+     * @throws LoginSampleException
+     */
     public static void updateOrderCoverage(int coverage, int orderID) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
@@ -465,6 +485,13 @@ public class DataMapper {
         }
     }
 
+
+    /**
+     *
+     * @param orderID
+     * @return totalCarportPrice
+     * @throws LoginSampleException
+     */
     public static double getOrderTotalPrice(int orderID) throws LoginSampleException {
         double totalCarportPrice = 0;
         try {

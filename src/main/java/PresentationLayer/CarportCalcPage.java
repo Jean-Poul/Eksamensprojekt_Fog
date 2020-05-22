@@ -1,10 +1,12 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Calculation.CarportCalculation;
+import FunctionLayer.Calculation.PriceCalculator;
+import FunctionLayer.Exceptions.LoginSampleException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -122,6 +124,6 @@ public class CarportCalcPage extends Command {
         request.setAttribute("roofType",roofType);
         request.setAttribute("roofOption",roofOption);
         
-        return "receipt";
+        return "customerReceipt";
     }
 }

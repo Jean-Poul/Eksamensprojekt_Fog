@@ -1,9 +1,8 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.MeasurementUnits;
-import FunctionLayer.UserProposition;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Measurements.MeasurementUnits;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

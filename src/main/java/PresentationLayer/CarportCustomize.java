@@ -1,6 +1,9 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Measurements.*;
+import FunctionLayer.Measurements.RoofRaised;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * CarportCustomize is used to get values from the database and populate select option on carportcustomize.jsp
+ * CarportCustomize is used to get values from the database and populate select option on customerCarportCustomize.jsp
  */
 public class CarportCustomize extends Command {
     @Override
@@ -89,6 +92,6 @@ public class CarportCustomize extends Command {
 
 
         // Return value for FrontController
-        return "carportcustomize";
+        return "customerCarportCustomize";
     }
 }

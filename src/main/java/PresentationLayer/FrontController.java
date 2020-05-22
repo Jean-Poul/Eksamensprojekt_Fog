@@ -5,7 +5,7 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.Exceptions.LoginSampleException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.ServletException;
@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
-
- @author kasper
+ *
  */
 @WebServlet( name = "FrontController", urlPatterns = { "/FrontController" } )
 public class FrontController extends HttpServlet {
@@ -41,12 +40,19 @@ public class FrontController extends HttpServlet {
             String view = action.execute( request, response );
             if (view.equals("index")){
                 request.getRequestDispatcher(view + ".jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
+            }
+            if (view.contains("admin")) {
+                request.getRequestDispatcher("/WEB-INF/Admin/" + view + ".jsp").forward(request, response);
+            }
+            if (view.contains("customer")) {
+                request.getRequestDispatcher("/WEB-INF/Customer/" + view + ".jsp").forward(request, response);
+            }
+            if (view.equals("login")) {
+                request.getRequestDispatcher("/WEB-INF/System/" + view + ".jsp").forward(request, response);
             }
         } catch (UnsupportedEncodingException | LoginSampleException | ClassNotFoundException ex) {
             request.setAttribute( "error", ex.getMessage() );
-            request.getRequestDispatcher( "/WEB-INF/error.jsp" ).forward( request, response );
+            request.getRequestDispatcher( "/WEB-INF/System/error.jsp" ).forward( request, response );
         }
     }
 

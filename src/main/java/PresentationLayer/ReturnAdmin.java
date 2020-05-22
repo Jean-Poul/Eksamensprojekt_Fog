@@ -1,8 +1,8 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.UserProposition;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * The ReturnAdmin class makes sure the proposition list is updated when returning to adminpage.jsp from quoteview.jsp
+ * The ReturnAdmin class makes sure the proposition list is updated when returning to adminpage.jsp from adminQuoteView.jsp
  */
 public class ReturnAdmin extends Command {
     @Override

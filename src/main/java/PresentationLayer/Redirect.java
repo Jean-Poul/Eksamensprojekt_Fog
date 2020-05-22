@@ -1,6 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.Exceptions.LoginSampleException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ public class Redirect extends Command {
             case "adminpage":
                 request.setAttribute("message", "Admin side");
                 break;
-            case "carportstandard":
+            case "customerCarportStandard":
                 request.setAttribute("message", "Standard byg");
                 break;
             case "login":

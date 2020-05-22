@@ -1,6 +1,10 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Measurements.*;
+import FunctionLayer.Measurements.RoofRaised;
+import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,16 +13,16 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- * QuoteView is used to populate info fields with user quote information on quoteview.jsp
+ * QuoteView is used to populate info fields with user quote information on adminQuoteView.jsp
  */
 public class QuoteView extends Command {
     // Initialize variable to be able to parse a String to an int and calculate price
+    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
     private double price = 0;
     private int coverage = 0;
     private int vID = 0;
     private int oID = 0;
     private String totalPrice;
-    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
 
     @Override
@@ -52,7 +56,7 @@ public class QuoteView extends Command {
 
 
         // Getting parameter and initializing variable for showing total price
-        totalPrice = request.getParameter("price");
+        totalPrice = request.getParameter("totalPrice");
 
 
         // Check if viewID is not empty and parse it to an int
@@ -131,7 +135,7 @@ public class QuoteView extends Command {
             price = (LogicFacade.getTotalCarportPrice(oID) * coverageCalc);
             totalPrice = String.valueOf(decimalFormat.format(price));
         } else {
-            totalPrice = decimalFormat.format(session.getAttribute("price"));
+            totalPrice = decimalFormat.format(session.getAttribute("totalPrice"));
         }
 
 
@@ -153,6 +157,6 @@ public class QuoteView extends Command {
 
 
         // Return value for FrontController
-        return "quoteview";
+        return "adminQuoteView";
     }
 }

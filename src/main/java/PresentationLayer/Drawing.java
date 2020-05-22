@@ -1,6 +1,13 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import FunctionLayer.Drawings.Svg;
+import FunctionLayer.Drawings.SvgFront;
+import FunctionLayer.Drawings.SvgSideways;
+import FunctionLayer.Drawings.SvgSidewaysBlueprint;
+import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Tables.ItemList;
+import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -107,6 +114,6 @@ public class Drawing extends Command {
 
 
         // Return value for FrontController
-        return "drawing";
+        return "adminDrawing";
     }
 }
