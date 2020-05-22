@@ -6,26 +6,23 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
 public class DataMapperTest {
-//    Test date in the UsersTest table
-//    INSERT INTO `UsersTest` VALUES 
-//    (1,'jens@somewhere.com','jensen','customer'),
-//    (2,'ken@somewhere.com','kensen','customer'),
-//    (3,'robin@somewhere.com','batman','employee'),
-//    (4,'someone@nowhere.com','sesam','customer');
+
 
     private static Connection testConnection;
-    private static String USER = "testinguser";
-    private static String USERPW = "try1try2tryAgain";
-    private static String DBNAME = "useradminTest";
-    private static String HOST = "46.101.253.149";
+    private static String USER = "root";
+    private static String USERPW = "password";
+    private static String DBNAME = "fogdb_test?serverTimezone=CET&useSSL=false";
+    private static String HOST = "localhost";
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         try {
             // awoid making a new connection for each test
             if ( testConnection == null ) {
@@ -36,16 +33,24 @@ public class DataMapperTest {
                 // Make mappers use test 
                 Connector.setConnection( testConnection );
             }
-            // reset test database
-            try ( Statement stmt = testConnection.createStatement() ) {
-                stmt.execute( "drop table if exists Users" );
-                stmt.execute( "create table Users like UsersTest" );
-                stmt.execute( "insert into Users select * from UsersTest" );
-            }
 
         } catch ( ClassNotFoundException | SQLException ex ) {
             testConnection = null;
             System.out.println( "Could not open connection to database: " + ex.getMessage() );
+        }
+    }
+
+    @Before
+    public void beforeEachTest() {
+        try( Statement stmt = testConnection.createStatement()){
+            stmt.execute("drop table if exists users");
+            stmt.execute("CREATE TABLE `users` LIKE fogdb.users");
+            stmt.execute("INSERT INTO `users` VALUES " +
+                    "(1, 'admin@fog.dk', '1234', 'admin')," +
+                    "(2, 'palle@fog.dk', '1111', 'admin')," +
+                    "(3, 'kurt@fog.dk', '3333', 'admin');");
+        } catch (SQLException ex) {
+            System.out.println("Could not open connection to database: " + ex.getMessage());
         }
     }
 
@@ -58,30 +63,37 @@ public class DataMapperTest {
     @Test
     public void testLogin01() throws LoginSampleException {
         // Can we log in
-        User user = DataMapper.login( "jens@somewhere.com", "jensen" );
+        User user = DataMapper.login( "admin@fog.dk", "1234" );
         assertTrue( user != null );
     }
 
     @Test( expected = LoginSampleException.class )
     public void testLogin02() throws LoginSampleException {
         // We should get an exception if we use the wrong password
-        User user = DataMapper.login( "jens@somewhere.com", "larsen" );
+        User user = DataMapper.login( "admin@fog.dk", "4321" );
     }
 
     @Test
     public void testLogin03() throws LoginSampleException {
-        // Jens is supposed to be a customer
-        User user = DataMapper.login( "jens@somewhere.com", "jensen" );
-        assertEquals( "customer", user.getRole() );
+        // Admin is supposed to be a admin
+        User user = DataMapper.login( "admin@fog.dk", "1234" );
+        assertEquals( "admin", user.getRole() );
+    }
+
+    @Test
+    public void testLogin4() throws LoginSampleException {
+        // Admin is supposed to be a admin
+        User user = DataMapper.login("admin@fog.dk","1234");
+        assertNotEquals("customer", user.getRole());
     }
 
     @Test
     public void testCreateUser01() throws LoginSampleException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
-        User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );
+        User original = new User( "svend@fog.dk", "9999", "admin" );
         DataMapper.createUser( original );
-        User retrieved = DataMapper.login( "king@kong.com", "uhahvorhemmeligt" );
-        assertEquals( "konge", retrieved.getRole() );
+        User retrieved = DataMapper.login( "svend@fog.dk", "9999" );
+        assertEquals( "admin", retrieved.getRole() );
     }
 }

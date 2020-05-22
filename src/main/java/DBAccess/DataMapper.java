@@ -204,7 +204,8 @@ public class DataMapper {
     //#############################
 
     /**
-     * @param quoteID
+     * Delete quote from DB
+     * @param quoteID User proposition ID
      * @throws LoginSampleException
      */
     public static void deleteQuote(int quoteID) throws LoginSampleException {
@@ -252,8 +253,9 @@ public class DataMapper {
     }
 
     /**
-     * @param userId
-     * @return userProposition
+     * Get one user proposition from DB and maps it to an array.
+     * @param userId User proposition ID
+     * @return Arraylist of one userProposition
      * @throws LoginSampleException
      */
     public static List<UserProposition> getUserProposition(int userId) throws LoginSampleException {
@@ -297,7 +299,8 @@ public class DataMapper {
     }
 
     /**
-     * @return userProposition
+     * Gets all user proposition from DB and maps them to an array.
+     * @return Arraylist of all userProposition
      * @throws LoginSampleException
      */
     public static List<UserProposition> getAllUserPropositions() throws LoginSampleException {
