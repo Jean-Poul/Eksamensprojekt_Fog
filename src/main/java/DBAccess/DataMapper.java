@@ -179,7 +179,7 @@ public class DataMapper {
     }
 
     /**
-     * Inserts the total carport price w. tax and w/o coverage to order in DB
+     * Inserts the total carport price w.and w/o tax coverage to order in DB
      *
      * @param carportTotalPriceWithTax Total price for carport
      * @param propositionID            specific order ID
