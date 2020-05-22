@@ -199,9 +199,9 @@ public class DataMapper {
         }
     }
 
-    //############################
-    // 3. Queries for Quote view #
-    //############################
+    //#############################
+    // 3. Queries for Quote view  #
+    //#############################
 
     /**
      * @param quoteID
