@@ -9,6 +9,15 @@ public class MeasurementUnits {
     private int ts_width;
     private int ts_length;
 
+    /**
+     *
+     * @param measurementUnitsId
+     * @param units
+     * @param c_width
+     * @param c_length
+     * @param ts_width
+     * @param ts_length
+     */
     public MeasurementUnits(int measurementUnitsId, int units, int c_width, int c_length, int ts_width, int ts_length) {
         this.measurementUnitsId = measurementUnitsId;
         this.units = units;

@@ -12,6 +12,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class CarportCalcPage extends Command {
+    /**
+     *
+     * @return customerReceipt
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 

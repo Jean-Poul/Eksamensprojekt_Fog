@@ -2,7 +2,10 @@ package FunctionLayer.Drawings;
 
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
-
+/**
+ *  Contains Constructor and methods for generating sidewaysBlueprint svg drawing based off the CarportCalculation class.
+ *
+ */
 public class SvgSidewaysBlueprint {
 
     //##########################################################
@@ -10,6 +13,12 @@ public class SvgSidewaysBlueprint {
     //##########################################################
 
     CarportCalculation c;
+
+    /**
+     *
+     * @param orderID
+     * @throws LoginSampleException
+     */
     public SvgSidewaysBlueprint(int orderID) throws LoginSampleException {
 
         c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
@@ -91,10 +100,11 @@ public class SvgSidewaysBlueprint {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
+
     private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0\" y=\"0\" height=\"400\" width=\"900\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
-            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
-            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" + "</marker>\n" + "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
-            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" + "</marker>\n" + "</defs>";
+                                                "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                                "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" + "</marker>\n" + "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                                "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" + "</marker>\n" + "</defs>";
     private final String rectTemplate           = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
     private final String rectTemplateRoof       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
     private final String rectTemplateShed       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
@@ -112,7 +122,9 @@ public class SvgSidewaysBlueprint {
     //Methods for StringBuilder
     //##########################################################
 
-    //Roof builder
+    /**
+     * Draws the roof part of the svg drawing if the pitch is above 0, including rafters, laths, roofridge, wind barge
+     */
     public void addRoof(){
         //tjekker om der er tag (hældning på over 0 grader)
         if (pitch != 0){
@@ -139,7 +151,9 @@ public class SvgSidewaysBlueprint {
         }
     }
 
-    //carport builder
+    /**
+     * Draws the Carport & shed beams, barge, shedCladding and fascia board
+     */
     public void addCarport(){
         double shedX =  (carportLength-30-shedLength);
         double shedX2 = (carportLength-30-shedLength+5);
@@ -180,25 +194,28 @@ public class SvgSidewaysBlueprint {
     }
 
     //Line & measurements builder
+    /**
+     * Draws the lines and measurements on the blueprint
+     */
     public void addLines(){
 
         //Horizontal line
         svgSidewaysBlueprint.append(String.format(lineNoArrowTemplate, carportX-15,(carportHeight),carportLength+15,(carportHeight)));
 
-        //Diagonal line left
+        //vertical line left
         svgSidewaysBlueprint.append(String.format(lineNoArrowTemplate, carportX,(roofHeigt+15),carportX,(carportHeight+15)));
 
-        //Diagonal line right
+        //vertical line right
         svgSidewaysBlueprint.append(String.format(lineNoArrowTemplate, carportLength,(roofHeigt+15),carportLength,(carportHeight+15)));
 
         //Arrows & measurements
         //Height
-            //Tegner pil og tekst til toppen af taget hvis der er tag (hældning !=0)
+            //Draws arrow and text to the top of the roof, if pitch != 0
             if (pitch != 0){
                 svgSidewaysBlueprint.append(String.format(lineTemplate, (carportX-70),0.0,(carportX-70),carportHeight));
                 svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportX-73), y=(carportHeight/2), text= (int) carportHeight));
             }
-            //Tegner pil og tekst op til bunden af rem
+            //Draws arrows and text to the bottom of the roofbarge
             svgSidewaysBlueprint.append(String.format(lineTemplate,(carportX-35), (roofHeigt+5), (carportX-35),carportHeight));
             svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportX-38), y=(roofHeigt+(beamlength/2)), text= (int) beamlength));
 
@@ -214,7 +231,7 @@ public class SvgSidewaysBlueprint {
             svgSidewaysBlueprint.append(String.format(lineTemplate,(carportLength-30.0), (carportHeight+60), carportLength,(carportHeight+60)));
             svgSidewaysBlueprint.append(String.format(lowerTextTemplate, x=(carportLength-15), y=(carportHeight+80), text= 30));
 
-            //tjekker om der er skur eller ej
+            //checks if there is a shed or not, draws shed if shedLength is above 0
             if (shedLength>0) {
                 //shed left beam to right beam <--->
                 svgSidewaysBlueprint.append(String.format(lineTemplate,(carportLength-shedLength-30), (carportHeight+90), (carportLength-30),(carportHeight+90)));

@@ -11,6 +11,12 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class AdminItemListDB extends Command {
+    /**
+     *
+     * @return adminItemList
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

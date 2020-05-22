@@ -12,10 +12,15 @@ import java.util.List;
 
 /**
  * The purpose of Login is to have a user role before you can access the admin page
- *
  */
-public class Login extends Command {
 
+
+public class Login extends Command {
+    /**
+     *
+     * @return user.getRole() + "page"      returns a page, depending on the assigned user role (admin/kunde)
+     * @throws LoginSampleException Exception for login
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

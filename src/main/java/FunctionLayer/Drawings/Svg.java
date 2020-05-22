@@ -1,7 +1,7 @@
 package FunctionLayer.Drawings;
 
 /**
- * Contains Constructor and method for generating drawing based of the CarPortCalculation class.
+ * Contains Constructor and method for generating topview svg drawing based off the CarportCalculation class.
  *
  * @author group
  */
@@ -22,7 +22,7 @@ public class Svg {
 
     /**
      *
-     * @param orderID
+     * @param orderID               User data (In order to reference what order ID the drawing belongs to)
      * @throws LoginSampleException
      */
     public Svg(int orderID) throws LoginSampleException {

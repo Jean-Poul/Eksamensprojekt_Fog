@@ -1,5 +1,8 @@
 package FunctionLayer.Tables;
 
+/**
+ *
+ */
 public class ItemList {
 
     private int item_list_id;
@@ -14,7 +17,19 @@ public class ItemList {
     private String description;
     private double total_price;
 
-    // Constructor
+
+
+    /**
+     * Constructor
+     *
+     * @param orderline_id
+     * @param orders_id
+     * @param material_type
+     * @param quantity
+     * @param unit
+     * @param description
+     * @param total_price
+     */
     public ItemList(int orderline_id, int orders_id, String material_type, double quantity, String unit, String description, double total_price) {
         this.orderline_id = orderline_id;
         this.orders_id = orders_id;
@@ -25,7 +40,17 @@ public class ItemList {
         this.total_price = total_price;
     }
 
-    // Constructor for admin
+    /**
+     * Constructor for admin
+     *
+     * @param item_list_id
+     * @param material_type
+     * @param material
+     * @param description
+     * @param amounts
+     * @param unit
+     * @param price_per_unit
+     */
     public ItemList(int item_list_id,String material_type,String material,String description,int amounts,String unit,double price_per_unit) {
         this.item_list_id = item_list_id;
         this.material_type = material_type;

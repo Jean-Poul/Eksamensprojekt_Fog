@@ -21,7 +21,7 @@ public class SvgFront {
 
     /**
      *
-     * @param orderID
+     * @param orderID               User data (In order to reference what order ID the drawing belongs to)
      * @throws LoginSampleException
      */
     public SvgFront(int orderID) throws LoginSampleException {

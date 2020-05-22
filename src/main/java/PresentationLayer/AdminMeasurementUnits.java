@@ -10,6 +10,11 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class AdminMeasurementUnits extends Command {
+    /**
+     *
+     * @return adminMeasurementUnits
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

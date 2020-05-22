@@ -13,6 +13,11 @@ import java.util.List;
  * The ReturnAdmin class makes sure the proposition list is updated when returning to adminpage.jsp from adminQuoteView.jsp
  */
 public class ReturnAdmin extends Command {
+    /**
+     *
+     * @return adminpage
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

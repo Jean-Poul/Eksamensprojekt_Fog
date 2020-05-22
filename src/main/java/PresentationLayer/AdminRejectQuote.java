@@ -16,7 +16,11 @@ public class AdminRejectQuote extends Command {
     // Initialize variable to be able to parse a String to an int
     private int qID = 0;
 
-
+    /**
+     *
+     * @return adminpage
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

@@ -3,6 +3,7 @@ package FunctionLayer.Calculation;
 /**
  * Contains information about items from the Database. Used to retrive and update items in DB
  */
+
 public class Item {
 
     private int itemListID;
@@ -19,6 +20,16 @@ public class Item {
 
     }
 
+    /**
+     *
+     * @param itemListID
+     * @param materialType
+     * @param material
+     * @param description
+     * @param quantity
+     * @param unit
+     * @param pricePrUnit
+     */
     public Item(int itemListID, String materialType, String material, String description, int quantity, String unit, double pricePrUnit){
 
         this.itemListID = itemListID;
@@ -30,6 +41,13 @@ public class Item {
         this.pricePrUnit = pricePrUnit;
     }
 
+    /**
+     *
+     * @param ordersID
+     * @param itemListID
+     * @param quantity
+     * @param totalPrice
+     */
     public Item(int ordersID, int itemListID, double quantity, double totalPrice){
         this.ordersID = ordersID;
         this.itemListID = itemListID;

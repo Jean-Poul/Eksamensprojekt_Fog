@@ -6,6 +6,9 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Command Pattern design template - called by FrontController
+ */
 abstract class Command {
 
     private static HashMap<String, Command> commands;
@@ -36,6 +39,11 @@ abstract class Command {
         commands.put( "adminMeasurementUnitsDB", new AdminMeasurementUnitsDB() );
         commands.put( "adminItemListDB", new AdminItemListDB() );
     }
+
+    /**
+     * @param request receives a hidden value from a hidden inputfield with the name "target" from a form on a .jsp page
+     * @return Returns the value from inputfield "target"
+     */
 
     static Command from( HttpServletRequest request ) {
         String targetName = request.getParameter( "target" );

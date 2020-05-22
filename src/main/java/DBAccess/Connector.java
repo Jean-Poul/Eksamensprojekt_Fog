@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
-* The purpose of Connector is to...
+* Creates a connection to the database
 *
  */
 public class Connector {
@@ -16,10 +16,20 @@ public class Connector {
 
     private static Connection singleton;
 
+    /**
+     *
+     * @param con
+     */
     public static void setConnection( Connection con ) {
         singleton = con;
     }
 
+    /**
+     *
+     * @return singleton
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class, but no definition for the class with the specified name could be found.
+     * @throws SQLException An exception that provides information on a database access error or other errors
+     */
     public static Connection connection() throws ClassNotFoundException, SQLException {
         if ((singleton == null) || singleton.isClosed()) {
             setDBCredentials();
@@ -28,6 +38,7 @@ public class Connector {
         }
         return singleton;
     }
+
 
     public static void setDBCredentials() {
         String deployed = System.getenv("DEPLOYED");

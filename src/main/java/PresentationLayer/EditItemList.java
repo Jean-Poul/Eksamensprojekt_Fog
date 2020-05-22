@@ -20,13 +20,18 @@ import java.util.List;
  * The purpose of EditItemList is to be able to update the quantity of items from the item list
  */
 public class EditItemList extends Command {
+
     // Initialize variable to be able to parse a String to an int
     private int oID = 0;
     private int oLineID = 0;
     private int qty = 0;
     private int vID = 0;
 
-
+    /**
+     *
+     * @return adminDrawing
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

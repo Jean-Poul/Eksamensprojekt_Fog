@@ -11,6 +11,13 @@ import java.util.List;
 
 
 public class AdminMeasurementUnitsDB extends Command {
+    /**
+     *
+
+     * @return adminMeasurementUnits
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

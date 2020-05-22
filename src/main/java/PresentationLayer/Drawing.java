@@ -17,12 +17,19 @@ import java.util.List;
 /**
  * Drawing class will show a table of a item list on the current order and show the blueprints of carport + shed
  */
+
 public class Drawing extends Command {
     // Initialize variable to be able to parse a String to an int
     private int vID = 0;
     private int oID = 0;
 
-
+    /**
+     *
+     * @param request
+     * @param response
+     * @return adminDrawing
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

@@ -3,6 +3,7 @@ package FunctionLayer.Calculation;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Exceptions.LoginSampleException;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -12,6 +13,7 @@ import java.util.*;
  *
  * @author group
  */
+
 public class CarportCalculation {
 
     //User data (In order to reference what user ID the calculation belongs to
@@ -112,6 +114,11 @@ public class CarportCalculation {
     //private Map<Integer, Double> angleAndFactor = log.getPitchFactor();
     private Map<Integer, Double> angleAndFactor = LogicFacade.getPitchFactor();
 
+    /**
+     * constructor that takes order ID and calculates measurements and amounts for use in pricecalculator & svg drawings
+     * @param orderID                   User data (In order to reference what order ID the calculation belongs to
+     * @throws LoginSampleException
+     */
     public CarportCalculation(int orderID) throws LoginSampleException {
 
         this.orderID = orderID;

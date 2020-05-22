@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 /**
- *
+ * UpdateQuoteUser will update prices in the current quote/proposition while updating adminQuoteView.jsp
  */
 public class UpdateQuotePrice extends Command {
     // Initialize variables to be able to update a proposition and calculate price
@@ -23,7 +23,12 @@ public class UpdateQuotePrice extends Command {
     private int qCov = 0;
     private String totalPrice;
 
-
+    /**
+     *
+     * @return adminQuoteView
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

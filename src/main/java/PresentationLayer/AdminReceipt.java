@@ -29,7 +29,12 @@ public class AdminReceipt extends Command {
     private final String GODKEND = "Godkend";
     private String totalPrice;
 
-
+    /**
+     *
+     * @return adminReceipt
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

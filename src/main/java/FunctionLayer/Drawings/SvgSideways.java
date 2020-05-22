@@ -2,14 +2,24 @@ package FunctionLayer.Drawings;
 
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
+/**
+ *  Contains Constructor and methods for generating sideview svg drawing based off the CarportCalculation class.
+ *
+ */
 
 public class SvgSideways {
+
 
     //##########################################################
     //constructor
     //##########################################################
 
     CarportCalculation c;
+    /**
+     *
+     * @param orderID User data (In order to reference what order ID the drawing belongs to)
+     * @throws LoginSampleException
+     */
     public SvgSideways(int orderID) throws LoginSampleException {
 
         c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
@@ -121,7 +131,9 @@ public class SvgSideways {
     //Methods for StringBuilder
     //##########################################################
 
-    //Roof builder
+    /**
+     * Draws the roof part of the svg drawing if the pitch is above 0, including rafters, laths, roofridge, wind barge
+     */
     public void addRoof(){
         //tjekker om der er tag (hældning på over 0 grader
         if (pitch != 0){
@@ -138,18 +150,20 @@ public class SvgSideways {
             }
             //Roofridge
             svgSideways.append(String.format(rectTemplateRoof, RidgeX, (RidgeY+2.5), roofRidgeHeight, carportLength));
-            //Windwagoo
+            //Wind barge
             svgSideways.append(String.format(rectTemplateRoof, (carportX-5), carportY, (roofHeigt-5), 10.0));
             svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), carportY, (roofHeigt-5), 10.0));
-            //waterboard @ windwagoo
+            //waterboard @ wind barge
             svgSideways.append(String.format(rectTemplateRoof, (carportX-5), (carportY+70), 2.5, 10.0));
             svgSideways.append(String.format(rectTemplateRoof, (carportLength-5), (carportY+70), 2.5, 10.0));
         }
     }
 
-    //carport builder
+    /**
+     * Draws the Carport & shed beams, barge, shedCladding and fascia board
+     */
     public void addCarport(){
-        double shedX =  (carportLength-30-shedLength);
+        double shedX =  carportLength-30-shedLength;
         double shedX2 = (carportLength-30-shedLength+5);
         double noOfCladsSideways = shedLength/(shedCladdingWidth+5);
 
@@ -189,17 +203,21 @@ public class SvgSideways {
         svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, carportLength));
     }
 
+    /**
+     * Draws the horizontal ground line
+     */
     public void addLines(){
 
         //Horizontal line
         svgSideways.append(String.format(lineNoArrowTemplate, carportX-15,(carportHeight),carportLength+15,(carportHeight)));
-
     }
 
+    /**
+     * Draws the rooftiles and redraws barge board & fascia boards
+     */
     public void addRooftiles() {
 
         double roofTileColumns = Math.ceil(carportLength/roofTileWidth);
-
         if (pitch != 0) {
             roofTilesY1 = 10;
             //looper rows igennem
@@ -228,7 +246,6 @@ public class SvgSideways {
             svgSideways.append(String.format(rectTemplateRoof, fasciaBoardX, fasciaBoardY, fasciaBoardHeight, carportLength));
         }
     }
-
 
     //##########################################################
     //Getters/Setters/toString()
@@ -262,6 +279,10 @@ public class SvgSideways {
         return text;
     }
 
+    /**
+     *
+     * @return res + "</svg>"           returns the string res and a </svg> for use in the Drawing.java class
+     */
     @Override
     public String toString() {
 

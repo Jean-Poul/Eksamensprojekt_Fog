@@ -14,6 +14,13 @@ import java.util.List;
  * CarportCustomize is used to get values from the database and populate select option on customerCarportCustomize.jsp
  */
 public class CarportCustomize extends Command {
+    /**
+     *
+     * @param request
+     * @param response
+     * @return customerCarportCustomize
+     * @throws LoginSampleException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         // Initializing session variable with current session

@@ -34,7 +34,12 @@ public class UpdateQuoteOrder extends Command {
     private String roofType;
     private String totalPrice;
 
-
+    /**
+     *
+     * @return adminQuoteView
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

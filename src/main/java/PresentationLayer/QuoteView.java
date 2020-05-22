@@ -14,7 +14,9 @@ import java.util.List;
 
 /**
  * QuoteView is used to populate info fields with user quote information on adminQuoteView.jsp
+
  */
+
 public class QuoteView extends Command {
     // Initialize variable to be able to parse a String to an int and calculate price
     private DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -24,7 +26,12 @@ public class QuoteView extends Command {
     private int oID = 0;
     private String totalPrice;
 
-
+    /**
+     *
+     * @return adminQuoteView
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

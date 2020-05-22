@@ -5,12 +5,25 @@ package FunctionLayer.Users;
  */
 public class User {
 
+    /**
+     *
+     * @param email
+     * @param password
+     * @param role
+     */
     public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
+    /**
+     *
+     * @param id
+     * @param email
+     * @param password
+     * @param role
+     */
     public User(int id, String email, String password, String role) {
         this.id = id;
         this.email = email;
