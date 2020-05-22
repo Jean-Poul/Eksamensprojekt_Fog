@@ -1,11 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
-<<<<<<< Updated upstream
-=======
-import FunctionLayer.Calculation.CarportCalculation;
-import FunctionLayer.Calculation.PriceCalculator;
->>>>>>> Stashed changes
+
 import FunctionLayer.Drawings.Svg;
 import FunctionLayer.Drawings.SvgFront;
 import FunctionLayer.Drawings.SvgSideways;

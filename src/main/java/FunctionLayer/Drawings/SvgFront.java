@@ -2,15 +2,14 @@ package FunctionLayer.Drawings;
 
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
-<<<<<<< Updated upstream:src/main/java/FunctionLayer/Drawings/SvgFront.java
+
 
 /**
  * Contains Constructor and method for generating drawing based of the CarPortCalculation class.
  *
  * @author group
  */
-=======
->>>>>>> Stashed changes:src/main/java/FunctionLayer/SvgFront.java
+
 
 public class SvgFront {
 
