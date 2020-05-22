@@ -171,30 +171,30 @@ public class Svg {
         //Shed
         if(shedWidth>0){
             if(shedLength>carportWidth-(2*(lathSpan))) {
-                svg.append(String.format(rectShedTemplate, ((carportLength - shedWidth) - 15), (shedY + lathSpan)-4.5, shedLength-(lathSpan-9), shedWidth));
-                svg.append(String.format(rectTemplate, (carportLength-shedWidth)-15, shedY+lathSpan, beamHight, beamWidth));
-                svg.append(String.format(rectTemplate, carportLength -25, lathSpan, beamHight, beamWidth));
-                svg.append(String.format(rectTemplate, (carportLength -shedWidth)-15, (shedLength-(lathSpan-24)), beamHight, beamWidth));
-                svg.append(String.format(rectTemplate, carportLength -25, (shedLength-(lathSpan-24)), beamHight, beamWidth));
+                svg.append(String.format(rectShedTemplate, ((carportLength - shedWidth) -30), (shedY + lathSpan)-4.5, shedLength-(lathSpan-9), shedWidth));
+                svg.append(String.format(rectTemplate, (carportLength-shedWidth)-30, shedY+lathSpan, beamHight, beamWidth));
+                svg.append(String.format(rectTemplate, carportLength -40, lathSpan, beamHight, beamWidth));
+                svg.append(String.format(rectTemplate, (carportLength -shedWidth)-30, (shedLength-(lathSpan-24)), beamHight, beamWidth));
+                svg.append(String.format(rectTemplate, carportLength -40, (shedLength-(lathSpan-24)), beamHight, beamWidth));
 
                 //Arrows
                 svg.append(String.format(lineTemplate, (carportLength +35), lathSpan, (carportLength +35), shedLength));
-                svg.append(String.format(lineTemplate, (carportLength -shedWidth-15), arrowLineY1-30, (carportLength -15), arrowLineY2-30));
-                svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-15), y-33, text= (int) shedWidth));
-                svg.append(String.format(lowerTextTemplate, (carportLength +33), shedLength/2+15, text= (int) shedLength));
+                svg.append(String.format(lineTemplate, (carportLength -shedWidth-30), arrowLineY1-30, (carportLength -30), arrowLineY2-30));
+                svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-30), y-33, text= (int) shedWidth));
+                svg.append(String.format(lowerTextTemplate, (carportLength +33), shedLength/2+30, text= (int) shedLength));
 
                 }else{
-                    svg.append(String.format(rectShedTemplate, ((carportLength - shedWidth) - 15), shedY + lathSpan, shedLength, shedWidth));
-                    svg.append(String.format(rectTemplate, (carportLength-shedWidth)-15, shedY+lathSpan, beamHight, beamWidth));
-                    svg.append(String.format(rectTemplate, carportLength -25, shedY+lathSpan, beamHight, beamWidth));
-                    svg.append(String.format(rectTemplate, (carportLength -shedWidth)-15, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
-                    svg.append(String.format(rectTemplate, carportLength -25, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
+                    svg.append(String.format(rectShedTemplate, ((carportLength - shedWidth) -30), shedY + lathSpan, shedLength, shedWidth));
+                    svg.append(String.format(rectTemplate, (carportLength-shedWidth)-30, shedY+lathSpan, beamHight, beamWidth));
+                    svg.append(String.format(rectTemplate, carportLength -40, shedY+lathSpan, beamHight, beamWidth));
+                    svg.append(String.format(rectTemplate, (carportLength -shedWidth)-30, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
+                    svg.append(String.format(rectTemplate, carportLength -40, shedY=(shedLength+lathSpan)-10, beamHight, beamWidth));
 
                     //Arrows
                     svg.append(String.format(lineTemplate, (carportLength +35), lathSpan, (carportLength +35), shedLength+lathSpan));
-                    svg.append(String.format(lineTemplate, (carportLength -shedWidth-15), arrowLineY1-30, (carportLength -15), arrowLineY2-30));
-                    svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-15), y-33, text= (int) shedWidth));
-                    svg.append(String.format(lowerTextTemplate, (carportLength +33), (shedLength/2+15), text= (int) shedLength));
+                    svg.append(String.format(lineTemplate, (carportLength -shedWidth-30), arrowLineY1-30, (carportLength -30), arrowLineY2-30));
+                    svg.append(String.format(lowerTextTemplate, (carportLength -(shedWidth/2)-30), y-33, text= (int) shedWidth));
+                    svg.append(String.format(lowerTextTemplate, (carportLength +33), (shedLength/2+30), text= (int) shedLength));
                 }
         }
 

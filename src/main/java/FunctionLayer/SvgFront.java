@@ -29,7 +29,14 @@ public class SvgFront {
 
 
         //Viewbox
-        svgFront.append(String.format(headerTemplate));
+
+        //If else for handling viewbox size
+        if(carportWidth<600 && carportLength<600) {
+            svgFront.append(String.format(headerTemplate1));
+        }else {
+            svgFront.append(String.format(headerTemplate2));
+        }
+
     }
 
     //##########################################################
@@ -40,9 +47,13 @@ public class SvgFront {
     private double carportX = 0;
     private double carportY = 0;
 
+    private double roofHeight;
+    private double actualRoofHeight = 90;
+    private double roofAngle;
+    private double roofRaftLath;
+
     private double beamlength = 210;
-    private double roofHeigt = 90.0;
-    private double carportHeight = roofHeigt+beamlength+5;
+    private double carportHeight = roofHeight+beamlength+5;
 
     private double noOfRafts;
     private double raftDistance;
@@ -62,11 +73,6 @@ public class SvgFront {
     private double beamWidth = 10;
     private double beamX = 35;
     private double beamY = 35;
-
-    private double roofHeight;
-    private double roofAngle;
-    private double roofRaftLath;
-    private double roofTopAngel;
 
     private double arrowLineX1 = 0;
     private double arrowLineX2 = 0;
@@ -88,7 +94,15 @@ public class SvgFront {
     //##########################################################
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
-    private final String headerTemplate         = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+    private final String headerTemplate1        = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
+                                                    "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+                                                    "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+                                                    "</marker>\n" +
+                                                    "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+                                                    "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+                                                    "</marker>\n" +
+                                                    "</defs>";
+    private final String headerTemplate2        = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,700,700\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
                                                     "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
                                                     "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
                                                     "</marker>\n" +
@@ -114,14 +128,13 @@ public class SvgFront {
     public void addCarportFront() {
 
         //Beam
-                                                    //Temp (30) fix for distance until raftVerticalLength works
         svgFront.append(String.format(beamTemplate, carportX+30, carportY, carportHeight, beamWidth));
         svgFront.append(String.format(beamTemplate, carportWidth-30, carportY, carportHeight, beamWidth));
 
         if(roofAngle>0) {
-            //Raft
-            svgFront.append(String.format(raftTemplate, carportX, carportX + 5, (raftLength / 2) + 5, 0 - roofHeight));
-            svgFront.append(String.format(raftTemplate, (raftLength / 2) + 5, 0 - roofHeight, carportWidth + 10, carportY + 5));
+            //Rafts
+            svgFront.append(String.format(raftTemplate, carportX, carportX + 5, (raftLength / 2) + 5, 0 - actualRoofHeight));
+            svgFront.append(String.format(raftTemplate, (raftLength / 2) + 5, 0 - actualRoofHeight, carportWidth + 10, carportY + 5));
             //Lath
             svgFront.append(String.format(rectTemplate, carportX, carportY, beamWidth, raftLength+10));
             }else{
@@ -134,17 +147,23 @@ public class SvgFront {
         svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 210));
 
         //Leftside raft arrow
-        svgFront.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftLength/2, (-roofHeight)-30));
-        svgFront.append(String.format(lowerTextTemplate, raftLength/4, -roofHeight, text= (int) raftLength/2));
+        svgFront.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftLength/2, (-actualRoofHeight)-30));
+        svgFront.append(String.format(lowerTextTemplate, raftLength/4, textY-90, text= (int) raftLength/2));
 
+        //Roof arrows
         if(roofAngle>0) {
-            //Roof arrows
-            svgFront.append(String.format(lineTemplate, (carportWidth / 2) + 5, (arrowLineY1 = 0) - roofHeight, (carportWidth / 2) + 5, arrowLineY2 = 0.0));
-            svgFront.append(String.format(lowerAngelTextTemplate, x = 90, y = -6, text = (int) roofAngle));
-            svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - 80, y = -6, text = (int) roofAngle));
-            svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((roofHeight / 5) + 2), text = (int) roofHeight));
-            svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth / 2) - 5, y = -(((roofHeight / 4) * 3)-10), text = (int) roofTopAngel));
-        }
+            svgFront.append(String.format(lineTemplate, (carportWidth / 2) + 5, (arrowLineY1 = 0) - actualRoofHeight, (carportWidth / 2) + 5, arrowLineY2 = 0.0));
+            if(roofAngle==15){
+                svgFront.append(String.format(lowerAngelTextTemplate, x = 120, y = -6, text = (int) roofAngle));
+                svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - 110, y = -6, text = (int) roofAngle));
+                }else {
+                    svgFront.append(String.format(lowerAngelTextTemplate, x = carportWidth/5, y = -6, text = (int) roofAngle));
+                    svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - (carportWidth/5), y = -6, text = (int) roofAngle));
+                }
+            svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((actualRoofHeight / 5) + 2), text = (int) roofHeight-210));
+            svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth / 2) - 5, y = -(((actualRoofHeight / 4) * 3)-10), text = (int) (180-(roofAngle+roofAngle))));
+
+            }
 
         //Bottom Line
         svgFront.append(String.format(lineNoArrowTemplate, arrowLineX1=-30, arrowLineY1=carportHeight, arrowLineX2=carportWidth+30,arrowLineY2=carportHeight));
@@ -210,6 +229,7 @@ public class SvgFront {
         res = res.replace("M0.0 L12.6 L0.12 L0.0","M0,0 L12,6 L0,12 L0,0");
         res = res.replace("M0.6 L12.0 L12.12 L0.6","M0,6 L12,0 L12,12 L0,6");
         res = res.replace("0.0.600.600","0,0,600,600");
+        res = res.replace("0.0.700.700","0,0,700,700");
         return res + "</svg>" ;
     }
 }
