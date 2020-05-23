@@ -35,6 +35,14 @@ display: none;
 <div class="container mb-5 mt-5">
     <h2>Tagbeklædning</h2>
     <p>Her kan der rettes, slettes og tilføjes nye tag beklædninger til carport:</p>
+
+    <!-- Delete row form -->
+    <form name="delete" id="delete" action="FrontController" method="post">
+        <input type="hidden" name="target" value="adminRoofDB">
+        <input type="hidden" name="roofId" id="roofId" value="">
+        <input type="hidden" name="queryChoice" value="3">
+    </form>
+
     <table class="table table-sm">
         <thead>
         <tr>
@@ -45,36 +53,23 @@ display: none;
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>fladt</td>
-            <td>let</td>
-            <td>Plastmo Ecolite blåtonet</td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
-        <tr>
-            <td>rejst</td>
-            <td>let</td>
-            <td>Eternittag B6 - Mokka (brun)</td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
-        <tr>
-            <td>rejst</td>
-            <td>tung</td>
-            <td>Hollander – engoberet glaseret mat sort</td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-                <button type="submit" class="delete btn btn-sm btn-danger" data-toggle="tooltip"><span class="fa fa-trash"></span> slet</button>
-            </td>
-        </tr>
+        <c:forEach var="element" items="${requestScope.roofs}">
+            <tr id="tr_${element.roof_id}">
+                <td>${element.roof_type}</td>
+                <td>${element.roof_category}</td>
+                <td>${element.roof_material}</td>
+                <td class="text-right">
+                    <input type="hidden" name="target" value="adminRoofDB">
+                    <input type="hidden" name="roofId" value="${element.roof_id}">
+                    <input type="hidden" id="queryChoice" name="queryChoice" value="2">
+
+                    <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+                    <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
+                    <button type="submit" form="delete" id="${element.roof_id}" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm('Er du sikker på at du vil slette?')"><span class="fa fa-trash"></span> slet</button>
+                </td>
+            </tr>
+        </c:forEach>
+
         </tbody>
     </table>
     <button class="btn btn-sm btn-success add-new"><span class="fa fa-plus"></span> Tilføj ny</button>
@@ -87,13 +82,13 @@ display: none;
 <script type="text/javascript">
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
-        var actions = $("table td:last-child").html();
+        //var actions = $("table td:last-child").html();
         // Append table with add row form on add new button click
         $(".add-new").click(function(){
             $(this).attr("disabled", "disabled");
             $(".edit").attr("disabled", true);
             var index = $("table tbody tr:last-child").index();
-            var row = '<tr>' +
+            var row = '<tr id="tr_0">' +
                 '<td><select class="form-control" name="roof_type" id="roof_type">' +
                 '<option value="fladt">fladt</option>' +
                 '<option value="rejst">rejst</option>' +
@@ -103,7 +98,10 @@ display: none;
                 '<option value="tung">tung</option>' +
                 '</select></td>' +
                 '<td><input type="text" class="form-control" name="roof_material" id="roof_material"></td>' +
-                '<td class="text-right">' + actions + '</td>' +
+                '<td class="text-right"><input type="hidden" name="target" value="adminRoofDB">' +
+                '<input type="hidden" id="queryChoice" name="queryChoice" value="1">' +
+                '<button class="add btn btn-sm btn-success mr-1" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>' +
+                '<button type="submit" form="delete" id="0" class="delete btn btn-sm btn-danger" data-toggle="tooltip" onclick="return confirm(\'Er du sikker på at du vil slette?\')"><span class="fa fa-trash"></span> slet</button></td>' +
                 '</tr>';
             $("table").append(row);
             $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
@@ -112,6 +110,7 @@ display: none;
         // Add row on add button click
         $(document).on("click", ".add", function(){
             var empty = false;
+            var trId = $(this).closest('tr').attr('id'); // get id from tr
             var input = $(this).parents("tr").find('input[type="text"]');
             var selectBox1 = $(this).parents("tr").find("#roof_type");
             var selectBox2 = $(this).parents("tr").find("#roof_category");
@@ -129,6 +128,10 @@ display: none;
 
             $(this).parents("tr").find(".error").first().focus();
             if(!empty){
+
+                // if validated submit row
+                submitRowAsForm(trId);
+
                 input.each(function(){
                     $(this).parent("td").html($(this).val());
                 });
@@ -198,8 +201,33 @@ display: none;
         });
         // Delete row on delete button click
         $(document).on("click", ".delete", function(){
-            $(this).parents("tr").remove();
-            $(".add-new, .edit").removeAttr("disabled");
+            var uid = $(this).attr('id');
+            $('#roofId').val(uid);
+            //$(this).parents("tr").remove();
+            //$(".add-new, .edit").removeAttr("disabled");
         });
     });
+</script>
+
+<script>
+    function submitRowAsForm(idRow) {
+        form = document.createElement("form"); // CREATE A NEW FORM TO DUMP ELEMENTS INTO FOR SUBMISSION
+        form.method = "post"; // CHOOSE FORM SUBMISSION METHOD, "GET" OR "POST"
+        form.action = "FrontController"; // TELL THE FORM WHAT PAGE TO SUBMIT TO
+        $("#"+idRow+" td").children().each(function() { // GRAB ALL CHILD ELEMENTS OF <TD>'S IN THE ROW IDENTIFIED BY idRow, CLONE THEM, AND DUMP THEM IN OUR FORM
+            if(this.type.substring(0,6) == "select") { // JQUERY DOESN'T CLONE <SELECT> ELEMENTS PROPERLY, SO HANDLE THAT
+                input = document.createElement("input"); // CREATE AN ELEMENT TO COPY VALUES TO
+                input.type = "hidden";
+                input.name = this.name; // GIVE ELEMENT SAME NAME AS THE <SELECT>
+                input.value = this.value; // ASSIGN THE VALUE FROM THE <SELECT>
+                form.appendChild(input);
+            } else { // IF IT'S NOT A SELECT ELEMENT, JUST CLONE IT.
+                $(this).clone().appendTo(form);
+            }
+
+        });
+        form.style.display = "none"; // needed for firefox
+        document.body.appendChild(form); // needed for firefox
+        form.submit(); // NOW SUBMIT THE FORM THAT WE'VE JUST CREATED AND POPULATED
+    }
 </script>

@@ -39,6 +39,7 @@ abstract class Command {
         commands.put( "adminMeasurementUnitsDB", new AdminMeasurementUnitsDB() );
         commands.put( "adminItemListDB", new AdminItemListDB() );
         commands.put( "adminRafterSpacingDB", new AdminRafterSpacingDB() );
+        commands.put( "adminRoofDB", new AdminRoofDB() );
     }
 
     /**

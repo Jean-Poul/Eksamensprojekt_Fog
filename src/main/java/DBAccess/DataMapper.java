@@ -7,6 +7,7 @@ import FunctionLayer.Calculation.StandardDimensions;
 import FunctionLayer.Exceptions.LoginSampleException;
 import FunctionLayer.Measurements.*;
 import FunctionLayer.Measurements.RafterSpacing;
+import FunctionLayer.Measurements.Roof;
 import FunctionLayer.Tables.ItemList;
 import FunctionLayer.Measurements.RoofRaised;
 import FunctionLayer.Tables.UserProposition;
@@ -1131,6 +1132,99 @@ public class DataMapper {
             String SQL = "DELETE FROM rafter_spacing WHERE rafter_spacing_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, rafter_spacing_id);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    //----------------------------------------
+    // CRUD for Roof
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<Roof> getRoof() throws LoginSampleException {
+        List<Roof> roofs = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM roof ORDER BY roof_type ASC, roof_category ASC, roof_material ASC";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int roof_id = rs.getInt("roof_id");
+                String roof_type = rs.getString("roof_type");
+                String roof_category = rs.getString("roof_category");
+                String roof_material = rs.getString("roof_material");
+                Roof r = new Roof(roof_id,roof_type,roof_category,roof_material);
+                roofs.add(r);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return roofs;
+    }
+
+    /**
+     *
+     * @param roof_type
+     * @param roof_category
+     * @param roof_material
+     * @throws LoginSampleException
+     */
+    public static void createRoof(String roof_type, String roof_category, String roof_material) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO roof (roof_type,roof_category,roof_material) VALUES (?,?,?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, roof_type);
+            ps.setString(2, roof_category);
+            ps.setString(3, roof_material);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param roof_id
+     * @param roof_type
+     * @param roof_category
+     * @param roof_material
+     * @throws LoginSampleException
+     */
+    public static void updateRoof(int roof_id, String roof_type, String roof_category, String roof_material) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE roof SET roof_type = ?, roof_category = ?, roof_material = ? WHERE roof_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, roof_type);
+            ps.setString(2, roof_category);
+            ps.setString(3, roof_material);
+            ps.setInt(4, roof_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param roof_id
+     * @throws LoginSampleException
+     */
+    public static void deleteRoof(int roof_id) throws LoginSampleException {
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM roof WHERE roof_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, roof_id);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());

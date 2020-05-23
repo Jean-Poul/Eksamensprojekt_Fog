@@ -454,4 +454,49 @@ public class LogicFacade {
     public static void deleteRafterSpacing(int rafter_spacing_id) throws LoginSampleException {
         DataMapper.deleteRafterSpacing(rafter_spacing_id);
     }
+
+    //----------------------------------------
+    // CRUD for Roof
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<Roof> getRoof() throws LoginSampleException {
+        return DataMapper.getRoof();
+    }
+
+    /**
+     *
+     * @param roof_type
+     * @param roof_category
+     * @param roof_material
+     * @throws LoginSampleException
+     */
+    public static void createRoof(String roof_type, String roof_category, String roof_material) throws LoginSampleException {
+        DataMapper.createRoof(roof_type,roof_category,roof_material);
+    }
+
+    /**
+     *
+     * @param roof_id
+     * @param roof_type
+     * @param roof_category
+     * @param roof_material
+     * @throws LoginSampleException
+     */
+    public static void updateRoof(int roof_id, String roof_type, String roof_category, String roof_material) throws LoginSampleException {
+        DataMapper.updateRoof(roof_id,roof_type,roof_category,roof_material);
+    }
+
+    /**
+     *
+     * @param roof_id
+     * @throws LoginSampleException
+     */
+    public static void deleteRoof(int roof_id) throws LoginSampleException {
+        DataMapper.deleteRoof(roof_id);
+    }
 }
