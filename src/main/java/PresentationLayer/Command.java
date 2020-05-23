@@ -40,6 +40,7 @@ abstract class Command {
         commands.put( "adminItemListDB", new AdminItemListDB() );
         commands.put( "adminRafterSpacingDB", new AdminRafterSpacingDB() );
         commands.put( "adminRoofDB", new AdminRoofDB() );
+        commands.put( "adminRoofPitchDB", new AdminRoofPitchDB() );
     }
 
     /**

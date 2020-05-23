@@ -8,6 +8,7 @@ import FunctionLayer.Exceptions.LoginSampleException;
 import FunctionLayer.Measurements.*;
 import FunctionLayer.Measurements.RafterSpacing;
 import FunctionLayer.Measurements.Roof;
+import FunctionLayer.Measurements.RoofPitch;
 import FunctionLayer.Tables.ItemList;
 import FunctionLayer.Measurements.RoofRaised;
 import FunctionLayer.Tables.UserProposition;
@@ -1225,6 +1226,94 @@ public class DataMapper {
             String SQL = "DELETE FROM roof WHERE roof_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, roof_id);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    //----------------------------------------
+    // CRUD for Roof pitch
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<RoofPitch> getRoofPitch() throws LoginSampleException {
+        List<RoofPitch> roofPitches = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM roof_pitch ORDER BY pitch ASC";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int roof_pitch_id = rs.getInt("roof_pitch_id");
+                int pitch = rs.getInt("pitch");
+                double factor = rs.getDouble("factor");
+                RoofPitch rp = new RoofPitch(roof_pitch_id,pitch,factor);
+                roofPitches.add(rp);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return roofPitches;
+    }
+
+    /**
+     *
+     * @param pitch
+     * @param factor
+     * @throws LoginSampleException
+     */
+    public static void createRoofPitch(int pitch, double factor) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO roof_pitch (pitch,factor) VALUES (?,?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, pitch);
+            ps.setDouble(2, factor);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param roof_pitch_id
+     * @param pitch
+     * @param factor
+     * @throws LoginSampleException
+     */
+    public static void updateRoofPitch(int roof_pitch_id, int pitch, double factor) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE roof_pitch SET pitch = ?, factor = ? WHERE roof_pitch_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, pitch);
+            ps.setDouble(2, factor);
+            ps.setInt(3, roof_pitch_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param roof_pitch_id
+     * @throws LoginSampleException
+     */
+    public static void deleteRoofPitch(int roof_pitch_id) throws LoginSampleException {
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM roof_pitch WHERE roof_pitch_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, roof_pitch_id);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());

@@ -499,4 +499,47 @@ public class LogicFacade {
     public static void deleteRoof(int roof_id) throws LoginSampleException {
         DataMapper.deleteRoof(roof_id);
     }
+
+    //----------------------------------------
+    // CRUD for Roof pitch
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<RoofPitch> getRoofPitch() throws LoginSampleException {
+        return DataMapper.getRoofPitch();
+    }
+
+    /**
+     *
+     * @param pitch
+     * @param factor
+     * @throws LoginSampleException
+     */
+    public static void createRoofPitch(int pitch, double factor) throws LoginSampleException {
+        DataMapper.createRoofPitch(pitch,factor);
+    }
+
+    /**
+     *
+     * @param roof_pitch_id
+     * @param pitch
+     * @param factor
+     * @throws LoginSampleException
+     */
+    public static void updateRoofPitch(int roof_pitch_id, int pitch, double factor) throws LoginSampleException {
+        DataMapper.updateRoofPitch(roof_pitch_id,pitch,factor);
+    }
+
+    /**
+     *
+     * @param roof_pitch_id
+     * @throws LoginSampleException
+     */
+    public static void deleteRoofPitch(int roof_pitch_id) throws LoginSampleException {
+        DataMapper.deleteRoofPitch(roof_pitch_id);
+    }
 }
