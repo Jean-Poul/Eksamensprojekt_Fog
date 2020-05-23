@@ -33,6 +33,7 @@
 <div class="container mb-5 mt-5">
     <h2>Standardmål</h2>
     <p>Her kan der rettes standardmål til udregning af carport og skur:</p>
+
     <table class="table table-sm">
         <thead>
         <tr>
@@ -51,23 +52,28 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>35</td>
-            <td>2</td>
-            <td>3</td>
-            <td>30</td>
-            <td>25</td>
-            <td>20</td>
-            <td>240</td>
-            <td>109</td>
-            <td>19x100</td>
-            <td>125 x 125</td>
-            <td>100 x 100</td>
-            <td class="text-right">
-                <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
-                <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
-            </td>
-        </tr>
+        <c:forEach var="element" items="${requestScope.standardDimensions}">
+            <tr id="tr_${element.standard_dimensions_id}">
+                <td>${element.bottom_lathspan}</td>
+                <td>${element.bottom_laths}</td>
+                <td>${element.top_lath_gap}</td>
+                <td>${element.avg_lath_span}</td>
+                <td>${element.roof_tile_length}</td>
+                <td>${element.roof_tile_width}</td>
+                <td>${element.roof_trapez_length}</td>
+                <td>${element.roof_trapez_width}</td>
+                <td>${element.shed_claddeing_board_dim}</td>
+                <td>${element.beam_dimension_heavy}</td>
+                <td>${element.beam_dimension_light}</td>
+                <td class="text-right">
+                    <input type="hidden" name="target" value="adminStandardDimensionsDB">
+                    <input type="hidden" name="standardDimensionsId" value="${element.standard_dimensions_id}">
+
+                    <button type="submit" class="add btn btn-sm btn-success" data-toggle="tooltip"><span class="fa fa-plus"></span> Tilføj</button>
+                    <button class="edit btn btn-sm btn-warning" data-toggle="tooltip"><span class="fa fa-pencil"></span> ret</button>
+                </td>
+            </tr>
+        </c:forEach>
 
         </tbody>
     </table>
@@ -107,6 +113,7 @@
         // Add row on add button click
         $(document).on("click", ".add", function(){
             var empty = false;
+            var trId = $(this).closest('tr').attr('id'); // get id from tr
             var input = $(this).parents("tr").find('input[type="text"]');
             var bottom_lathspan = $(this).parents("tr").find("#bottom_lathspan");
             var bottom_laths = $(this).parents("tr").find("#bottom_laths");
@@ -193,6 +200,9 @@
 
             $(this).parents("tr").find(".error").first().focus();
             if(!empty){
+                // if validated submit row
+                submitRowAsForm(trId);
+
                 input.each(function(){
                     $(this).parent("td").html($(this).val());
                 });
@@ -253,4 +263,27 @@
             $(".add-new, .edit").removeAttr("disabled");
         });
     });
+</script>
+
+<script>
+    function submitRowAsForm(idRow) {
+        form = document.createElement("form"); // CREATE A NEW FORM TO DUMP ELEMENTS INTO FOR SUBMISSION
+        form.method = "post"; // CHOOSE FORM SUBMISSION METHOD, "GET" OR "POST"
+        form.action = "FrontController"; // TELL THE FORM WHAT PAGE TO SUBMIT TO
+        $("#"+idRow+" td").children().each(function() { // GRAB ALL CHILD ELEMENTS OF <TD>'S IN THE ROW IDENTIFIED BY idRow, CLONE THEM, AND DUMP THEM IN OUR FORM
+            if(this.type.substring(0,6) == "select") { // JQUERY DOESN'T CLONE <SELECT> ELEMENTS PROPERLY, SO HANDLE THAT
+                input = document.createElement("input"); // CREATE AN ELEMENT TO COPY VALUES TO
+                input.type = "hidden";
+                input.name = this.name; // GIVE ELEMENT SAME NAME AS THE <SELECT>
+                input.value = this.value; // ASSIGN THE VALUE FROM THE <SELECT>
+                form.appendChild(input);
+            } else { // IF IT'S NOT A SELECT ELEMENT, JUST CLONE IT.
+                $(this).clone().appendTo(form);
+            }
+
+        });
+        form.style.display = "none"; // needed for firefox
+        document.body.appendChild(form); // needed for firefox
+        form.submit(); // NOW SUBMIT THE FORM THAT WE'VE JUST CREATED AND POPULATED
+    }
 </script>

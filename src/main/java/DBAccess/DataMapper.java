@@ -1319,4 +1319,82 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
+    //----------------------------------------
+    // CRUD for Standard dimensions
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<StandardDimensions> getStandardDimensionsAdmin() throws LoginSampleException {
+        List<StandardDimensions> standardDimensions = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM standard_dimensions";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int standard_dimensions_id = rs.getInt("standard_dimensions_id");
+                int bottom_lathspan = rs.getInt("bottom_lathspan");
+                int bottom_laths = rs.getInt("bottom_laths");
+                double top_lath_gap = rs.getDouble("top_lath_gap");
+                double avg_lath_span = rs.getDouble("avg_lath_span");
+                double roof_tile_length = rs.getDouble("roof_tile_length");
+                double roof_tile_width = rs.getDouble("roof_tile_width");
+                double roof_trapez_length = rs.getDouble("roof_trapez_length");
+                double roof_trapez_width = rs.getDouble("roof_trapez_width");
+                String shed_claddeing_board_dim = rs.getString("shed_claddeing_board_dim");
+                String beam_dimension_heavy = rs.getString("beam_dimension_heavy");
+                String beam_dimension_light = rs.getString("beam_dimension_light");
+                StandardDimensions sd = new StandardDimensions(standard_dimensions_id,bottom_lathspan,bottom_laths,top_lath_gap,avg_lath_span,roof_tile_length,roof_tile_width,roof_trapez_length,roof_trapez_width,shed_claddeing_board_dim,beam_dimension_heavy,beam_dimension_light);
+                standardDimensions.add(sd);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return standardDimensions;
+    }
+
+    /**
+     *
+     * @param standard_dimensions_id
+     * @param bottom_lathspan
+     * @param bottom_laths
+     * @param top_lath_gap
+     * @param avg_lath_span
+     * @param roof_tile_length
+     * @param roof_tile_width
+     * @param roof_trapez_length
+     * @param roof_trapez_width
+     * @param shed_claddeing_board_dim
+     * @param beam_dimension_heavy
+     * @param beam_dimension_light
+     * @throws LoginSampleException
+     */
+    public static void updateStandardDimensions(int standard_dimensions_id,int bottom_lathspan,int bottom_laths,double top_lath_gap,double avg_lath_span,double roof_tile_length,double roof_tile_width,double roof_trapez_length, double roof_trapez_width, String shed_claddeing_board_dim, String beam_dimension_heavy, String beam_dimension_light) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE standard_dimensions SET bottom_lathspan = ?, bottom_laths = ?, top_lath_gap = ?, avg_lath_span = ?, roof_tile_length = ?, roof_tile_width = ?, roof_trapez_length = ?, roof_trapez_width = ?, shed_claddeing_board_dim = ?, beam_dimension_heavy = ?, beam_dimension_light = ? WHERE standard_dimensions_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, bottom_lathspan);
+            ps.setInt(2, bottom_laths);
+            ps.setDouble(3, top_lath_gap);
+            ps.setDouble(4, avg_lath_span);
+            ps.setDouble(5, roof_tile_length);
+            ps.setDouble(6, roof_tile_width);
+            ps.setDouble(7, roof_trapez_length);
+            ps.setDouble(8, roof_trapez_width);
+            ps.setString(9, shed_claddeing_board_dim);
+            ps.setString(10, beam_dimension_heavy);
+            ps.setString(11, beam_dimension_light);
+            ps.setInt(12, standard_dimensions_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
 }

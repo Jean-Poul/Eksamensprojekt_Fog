@@ -89,7 +89,7 @@
                         <button type="submit" class="dropdown-item" value="adminRafterSpacing" onclick="change(this.value)">Rafterafstand</button>
                         <button type="submit" class="dropdown-item" value="adminRoof" onclick="change(this.value)">Tagbeklædning</button>
                         <button type="submit" class="dropdown-item" value="adminRoofPitch" onclick="change(this.value)">Taghældning</button>
-                        <button type="submit" class="dropdown-item" value="adminStandartDimensions" onclick="change(this.value)">Standardmål</button>
+                        <button type="submit" class="dropdown-item" value="adminStandardDimensions" onclick="change(this.value)">Standardmål</button>
                     </div>
                 </li>
             </ul>

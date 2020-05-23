@@ -35,12 +35,13 @@ abstract class Command {
         commands.put( "adminRafterSpacing", new AdminRafterSpacing() );
         commands.put( "adminRoof", new AdminRoof() );
         commands.put( "adminRoofPitch", new AdminRoofPitch() );
-        commands.put( "adminStandartDimensions", new AdminStandartDimensions() );
+        commands.put( "adminStandardDimensions", new AdminStandardDimensions() );
         commands.put( "adminMeasurementUnitsDB", new AdminMeasurementUnitsDB() );
         commands.put( "adminItemListDB", new AdminItemListDB() );
         commands.put( "adminRafterSpacingDB", new AdminRafterSpacingDB() );
         commands.put( "adminRoofDB", new AdminRoofDB() );
         commands.put( "adminRoofPitchDB", new AdminRoofPitchDB() );
+        commands.put( "adminStandardDimensionsDB", new AdminStandardDimensionsDB() );
     }
 
     /**

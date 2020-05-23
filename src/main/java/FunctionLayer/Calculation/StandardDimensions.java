@@ -2,6 +2,7 @@ package FunctionLayer.Calculation;
 
 public class StandardDimensions {
 
+    private int standard_dimensions_id;
     private int bottom_lathspan;
     private int bottom_laths;
     private double top_lath_gap;
@@ -13,6 +14,36 @@ public class StandardDimensions {
     private String shed_claddeing_board_dim;
     private String beam_dimension_heavy;
     private String beam_dimension_light;
+
+    /**
+     * Constructor for admin
+     * @param standard_dimensions_id
+     * @param bottom_lathspan
+     * @param bottom_laths
+     * @param top_lath_gap
+     * @param avg_lath_span
+     * @param roof_tile_length
+     * @param roof_tile_width
+     * @param roof_trapez_length
+     * @param roof_trapez_width
+     * @param shed_claddeing_board_dim
+     * @param beam_dimension_heavy
+     * @param beam_dimension_light
+     */
+    public StandardDimensions(int standard_dimensions_id, int bottom_lathspan, int bottom_laths, double top_lath_gap, double avg_lath_span, double roof_tile_length, double roof_tile_width, double roof_trapez_length, double roof_trapez_width, String shed_claddeing_board_dim, String beam_dimension_heavy, String beam_dimension_light) {
+        this.standard_dimensions_id = standard_dimensions_id;
+        this.bottom_lathspan = bottom_lathspan;
+        this.bottom_laths = bottom_laths;
+        this.top_lath_gap = top_lath_gap;
+        this.avg_lath_span = avg_lath_span;
+        this.roof_tile_length = roof_tile_length;
+        this.roof_tile_width = roof_tile_width;
+        this.roof_trapez_length = roof_trapez_length;
+        this.roof_trapez_width = roof_trapez_width;
+        this.shed_claddeing_board_dim = shed_claddeing_board_dim;
+        this.beam_dimension_heavy = beam_dimension_heavy;
+        this.beam_dimension_light = beam_dimension_light;
+    }
 
     /**
      * Constructor
@@ -43,6 +74,10 @@ public class StandardDimensions {
     }
 
     // Getter and Setter
+    public int getStandard_dimensions_id() { return standard_dimensions_id; }
+
+    public void setStandard_dimensions_id(int standard_dimensions_id) { this.standard_dimensions_id = standard_dimensions_id; }
+
     public int getBottom_lathspan() { return bottom_lathspan; }
 
     public void setBottom_lathspan(int bottom_lathspan) { this.bottom_lathspan = bottom_lathspan; }
