@@ -407,4 +407,51 @@ public class LogicFacade {
     public static void deleteItemList(int item_list_id) throws LoginSampleException {
         DataMapper.deleteItemList(item_list_id);
     }
+
+    //----------------------------------------
+    // CRUD for Rafter spacing
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<RafterSpacing> getRafterSpacing() throws LoginSampleException {
+        return DataMapper.getRafterSpacing();
+    }
+
+    /**
+     *
+     * @param category
+     * @param beam_dimension
+     * @param beam_spacing
+     * @param rafter_length
+     * @throws LoginSampleException
+     */
+    public static void createRafterSpacing(String category, String beam_dimension, double beam_spacing, double rafter_length) throws LoginSampleException {
+        DataMapper.createRafterSpacing(category,beam_dimension,beam_spacing,rafter_length);
+    }
+
+    /**
+     *
+     * @param rafter_spacing_id
+     * @param category
+     * @param beam_dimension
+     * @param beam_spacing
+     * @param rafter_length
+     * @throws LoginSampleException
+     */
+    public static void updateRafterSpacing(int rafter_spacing_id, String category, String beam_dimension, double beam_spacing, double rafter_length) throws LoginSampleException {
+        DataMapper.updateRafterSpacing(rafter_spacing_id,category,beam_dimension,beam_spacing,rafter_length);
+    }
+
+    /**
+     *
+     * @param rafter_spacing_id
+     * @throws LoginSampleException
+     */
+    public static void deleteRafterSpacing(int rafter_spacing_id) throws LoginSampleException {
+        DataMapper.deleteRafterSpacing(rafter_spacing_id);
+    }
 }

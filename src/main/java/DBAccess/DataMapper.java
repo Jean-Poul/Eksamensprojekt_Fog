@@ -6,6 +6,7 @@ import FunctionLayer.Calculation.Item;
 import FunctionLayer.Calculation.StandardDimensions;
 import FunctionLayer.Exceptions.LoginSampleException;
 import FunctionLayer.Measurements.*;
+import FunctionLayer.Measurements.RafterSpacing;
 import FunctionLayer.Tables.ItemList;
 import FunctionLayer.Measurements.RoofRaised;
 import FunctionLayer.Tables.UserProposition;
@@ -1032,6 +1033,104 @@ public class DataMapper {
             String SQL = "DELETE FROM item_list WHERE item_list_id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, item_list_id);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    //----------------------------------------
+    // CRUD for Rafter Spacing
+    //----------------------------------------
+
+    /**
+     *
+     * @return
+     * @throws LoginSampleException
+     */
+    public static List<RafterSpacing> getRafterSpacing() throws LoginSampleException {
+        List<RafterSpacing> rafterSpacings = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM rafter_spacing ORDER BY category ASC, beam_dimension ASC";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int rafter_spacing_id = rs.getInt("rafter_spacing_id");
+                String category = rs.getString("category");
+                String beam_dimension = rs.getString("beam_dimension");
+                double beam_spacing = rs.getDouble("beam_spacing");
+                double rafter_length = rs.getDouble("rafter_length");
+                RafterSpacing rsp = new RafterSpacing(rafter_spacing_id,category,beam_dimension,beam_spacing,rafter_length);
+                rafterSpacings.add(rsp);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return rafterSpacings;
+    }
+
+    /**
+     *
+     * @param category
+     * @param beam_dimension
+     * @param beam_spacing
+     * @param rafter_length
+     * @throws LoginSampleException
+     */
+    public static void createRafterSpacing(String category, String beam_dimension, double beam_spacing, double rafter_length) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO rafter_spacing (category,beam_dimension,beam_spacing,rafter_length) VALUES (?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, category);
+            ps.setString(2, beam_dimension);
+            ps.setDouble(3, beam_spacing);
+            ps.setDouble(4, rafter_length);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param rafter_spacing_id
+     * @param category
+     * @param beam_dimension
+     * @param beam_spacing
+     * @param rafter_length
+     * @throws LoginSampleException
+     */
+    public static void updateRafterSpacing(int rafter_spacing_id, String category, String beam_dimension, double beam_spacing, double rafter_length) throws LoginSampleException {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE rafter_spacing SET category = ?, beam_dimension = ?, beam_spacing = ?, rafter_length = ? WHERE rafter_spacing_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1, category);
+            ps.setString(2, beam_dimension);
+            ps.setDouble(3, beam_spacing);
+            ps.setDouble(4, rafter_length);
+            ps.setInt(5, rafter_spacing_id);
+            ps.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param rafter_spacing_id
+     * @throws LoginSampleException
+     */
+    public static void deleteRafterSpacing(int rafter_spacing_id) throws LoginSampleException {
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM rafter_spacing WHERE rafter_spacing_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, rafter_spacing_id);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());

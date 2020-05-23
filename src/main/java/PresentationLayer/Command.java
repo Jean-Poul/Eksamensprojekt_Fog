@@ -2,9 +2,9 @@ package PresentationLayer;
 
 import FunctionLayer.Exceptions.LoginSampleException;
 
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 /**
  * Command Pattern design template - called by FrontController
@@ -38,6 +38,7 @@ abstract class Command {
         commands.put( "adminStandartDimensions", new AdminStandartDimensions() );
         commands.put( "adminMeasurementUnitsDB", new AdminMeasurementUnitsDB() );
         commands.put( "adminItemListDB", new AdminItemListDB() );
+        commands.put( "adminRafterSpacingDB", new AdminRafterSpacingDB() );
     }
 
     /**
