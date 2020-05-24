@@ -55,7 +55,7 @@
                         <p>${info.comments}</p>
                     </c:otherwise>
                 </c:choose>
-                <p>Vi har valgt at fremsende dig et tilbud på din forespørgsel på <b>${requestScope.totalPrice}</b> kr. <br>
+                <p>Vi har valgt at fremsende dig et tilbud på din forespørgsel på <b>${info.total_price}</b> kr. <br>
                     Skitsetegning er vedhæftet denne email og
                     standardbyggevejledning medfølger.</p>
                 <p class="mt-5 mb-5">Med venlig hilsen<br> Fog</p>

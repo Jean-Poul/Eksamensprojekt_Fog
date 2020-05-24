@@ -18,11 +18,8 @@ import java.util.List;
  */
 public class UpdateQuoteOrder extends Command {
     // Initialize variables to be able to update an order
-    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
-    private double price = 0;
     private int carpWidth = 0;
     private int carpLength = 0;
-    private int coverage = 0;
     private int oID = 0;
     private int pitch;
     private int roofDegrees = 0;
@@ -32,7 +29,7 @@ public class UpdateQuoteOrder extends Command {
     private String rFlat;
     private String rRaised;
     private String roofType;
-    private String totalPrice;
+
 
     /**
      *
@@ -79,9 +76,6 @@ public class UpdateQuoteOrder extends Command {
 
         // Roof option 0 or 1 for switch case
         String roofOption = request.getParameter("roofOption");
-
-        // Getting parameter and initializing variable for showing total price
-        totalPrice = request.getParameter("totalPrice");
 
 
         // Check if viewID is not empty and parse it to an int
@@ -196,18 +190,6 @@ public class UpdateQuoteOrder extends Command {
         }
 
 
-        // Gets the order coverage and price by passing oID to database.
-        // Adds the coverage to the price, to be displayed on the site
-        if (totalPrice == null) {
-            coverage = LogicFacade.getOrderCoverage(oID);
-            double coverageCalc = (coverage / 100) + 1;
-            price = (LogicFacade.getTotalCarportPrice(oID) * coverageCalc);
-            totalPrice = String.valueOf(decimalFormat.format(price));
-        } else {
-            totalPrice = decimalFormat.format(session.getAttribute("totalPrice"));
-        }
-
-
         // Attributes to use on jsp site
         request.setAttribute("userProposition", userProposition);
 
@@ -220,9 +202,6 @@ public class UpdateQuoteOrder extends Command {
 
         request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
-
-        request.setAttribute("quoteCoverage", coverage);
-        request.setAttribute("totalPrice", totalPrice);
 
 
         // Return value for FrontController

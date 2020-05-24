@@ -86,7 +86,10 @@
                 <!-- End table over customer quotes -->
             </div>
 
-            <!-- Create employee -->
+
+            <!-- If Fog wants to be able to make other employee users we have made room for it -->
+            <!-- ALL CODE/SETUP IS READY FOR USE -->
+            <!-- Create employee
             <div class="container d-flex justify-content-center my-5">
 
                 <div class="col-4 p-5 rounded-lg shadow">
@@ -114,7 +117,7 @@
                 </div>
 
             </div>
-            <!-- End employee -->
+            End employee -->
 
         </section>
         <!-- End section -->

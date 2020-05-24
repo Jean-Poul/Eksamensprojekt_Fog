@@ -25,6 +25,8 @@ public class UserProposition {
     private int pitch;
     private int coverage;
     private double offer_price;
+    private double total_price;
+
 
     /**
      *
@@ -47,8 +49,9 @@ public class UserProposition {
      * @param pitch
      * @param coverage
      * @param offer_price
+     * @param total_price
      */
-    public UserProposition(int user_proposition_id, String name, String address, String zipcodeCity, int phone, String email, String comments, int orders_id, String order_date, String status, int carport_width, int carport_length, int shed_width, int shed_length, String roof_type, String roof_material, int pitch, int coverage, double offer_price) {
+    public UserProposition(int user_proposition_id, String name, String address, String zipcodeCity, int phone, String email, String comments, int orders_id, String order_date, String status, int carport_width, int carport_length, int shed_width, int shed_length, String roof_type, String roof_material, int pitch, int coverage, double offer_price, double total_price) {
         this.user_proposition_id = user_proposition_id;
         this.name = name;
         this.address = address;
@@ -68,6 +71,7 @@ public class UserProposition {
         this.pitch = pitch;
         this.coverage = coverage;
         this.offer_price = offer_price;
+        this.total_price = total_price;
     }
 
     // Getters and setters
@@ -214,4 +218,12 @@ public class UserProposition {
     public double getOffer_price() { return offer_price; }
 
     public void setOffer_price(double offer_price) { this.offer_price = offer_price; }
+
+    public double getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(double total_price) {
+        this.total_price = total_price;
+    }
 }

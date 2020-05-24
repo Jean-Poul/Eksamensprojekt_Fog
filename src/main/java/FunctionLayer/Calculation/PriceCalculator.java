@@ -81,7 +81,7 @@ public class PriceCalculator {
     private double totalCarportPriceCoverage;
 
 
-    public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
+    public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException {
 
         this.orderID = cpCalc.getOrderID();
 

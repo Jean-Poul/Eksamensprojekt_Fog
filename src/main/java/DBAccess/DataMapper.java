@@ -33,9 +33,11 @@ import java.util.Map;
 
 public class DataMapper {
 
+
     //##################
     // 1. User queries #
     //##################
+
 
     /**
      * @param user
@@ -58,6 +60,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      * @param email
@@ -93,6 +96,7 @@ public class DataMapper {
     // 2. Create user quote queries #
     //###############################
 
+
     /**
      * @param name
      * @param address
@@ -123,6 +127,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      * @param user_proposition_id
@@ -159,6 +164,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      * @param orders_id
      * @param item_list_id
@@ -181,6 +187,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      * Inserts the total carport price w.and w/o tax coverage to order in DB
      *
@@ -202,9 +209,11 @@ public class DataMapper {
         }
     }
 
+
     //#############################
     // 3. Queries for Quote view  #
     //#############################
+
 
     /**
      * Delete quote from DB
@@ -223,6 +232,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      * Gets all items from DB and maps them to an array.
@@ -254,6 +264,7 @@ public class DataMapper {
 
         return itemList;
     }
+
 
     /**
      * Get one user proposition from DB and maps it to an array.
@@ -291,7 +302,8 @@ public class DataMapper {
                 int pitch = rs.getInt("pitch");
                 int coverage = rs.getInt("coverage");
                 double offer_price = rs.getDouble("offer_price");
-                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price);
+                double total_price = rs.getDouble("total_price");
+                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price, total_price);
                 userProposition.add(up);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -300,6 +312,7 @@ public class DataMapper {
 
         return userProposition;
     }
+
 
     /**
      * Gets all user proposition from DB and maps them to an array.
@@ -334,7 +347,8 @@ public class DataMapper {
                 int pitch = rs.getInt("pitch");
                 int coverage = rs.getInt("coverage");
                 double offer_price = rs.getDouble("offer_price");
-                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price);
+                double total_price = rs.getDouble("total_price");
+                UserProposition up = new UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price, total_price);
                 userProposition.add(up);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -344,9 +358,11 @@ public class DataMapper {
         return userProposition;
     }
 
+
     //##############################
     // 4. Queries for Quote update #
     //##############################
+
 
     /**
      * @param orderID
@@ -366,6 +382,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      * @param userID
@@ -395,6 +412,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      * @param orderID
@@ -426,6 +444,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      * Update quantity in orderline
@@ -472,6 +491,7 @@ public class DataMapper {
         return coverage;
     }
 
+
     /**
      *
      * @param coverage
@@ -515,6 +535,28 @@ public class DataMapper {
         return totalCarportPrice;
     }
 
+
+    /**
+     *
+     * @param totalPrice
+     * @param orderID
+     * @throws LoginSampleException
+     */
+    public static void setPriceWithCoverage(double totalPrice, int orderID) throws LoginSampleException {
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE `fogdb`.`orders` SET `total_price` = ? WHERE (`orders_id` = ?);";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setDouble(1, totalPrice);
+            ps.setInt(2, orderID);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+    }
+
+
     //###########################
     // 5. Select option queries #
     //###########################
@@ -542,6 +584,7 @@ public class DataMapper {
         return carportWidth;
     }
 
+
     /**
      * @return carportLength
      * @throws LoginSampleException
@@ -564,6 +607,7 @@ public class DataMapper {
 
         return carportLength;
     }
+
 
     /**
      * @return roofFlat
@@ -588,6 +632,7 @@ public class DataMapper {
         return roofFlat;
     }
 
+
     /**
      * @return roofRaised
      * @throws LoginSampleException
@@ -610,6 +655,7 @@ public class DataMapper {
 
         return roofRaised;
     }
+
 
     /**
      * @return roofDegree
@@ -634,6 +680,7 @@ public class DataMapper {
         return roofDegree;
     }
 
+
     /**
      * @return shedWidth
      * @throws LoginSampleException
@@ -656,6 +703,7 @@ public class DataMapper {
 
         return shedWidth;
     }
+
 
     /**
      * @return shedLength
@@ -708,6 +756,7 @@ public class DataMapper {
         return beamDimensionLight;
     }
 
+
     /**
      * @param rafterLength
      * @return beam-dimension and beam-spacing for heavy roof
@@ -734,6 +783,7 @@ public class DataMapper {
 
         return beamDimensionHeavy;
     }
+
 
     /**
      * @return HashMap of pitch and factor
@@ -800,8 +850,7 @@ public class DataMapper {
         List<ItemList> orderItemList = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            con = Connector.connection();
-            String SQL = "SELECT ol.orderline_id,o.orders_id,material_type,quantity,unit,description,total_price FROM user_proposition u\n" +
+            String SQL = "SELECT ol.orderline_id,o.orders_id,material_type,quantity,unit,description, ol.total_price FROM user_proposition u\n" +
                     "INNER JOIN orders o on u.user_proposition_id = o.user_proposition_id\n" +
                     "INNER JOIN orderline ol on o.orders_id = ol.orders_id\n" +
                     "INNER JOIN item_list il on ol.item_list_id = il.item_list_id\n" +
@@ -825,6 +874,7 @@ public class DataMapper {
         }
         return orderItemList;
     }
+
 
     //########################################
     // 6. All Admin queries for CRUD
@@ -862,6 +912,7 @@ public class DataMapper {
         return measurementUnits;
     }
 
+
     /**
      *
      * @param units
@@ -886,6 +937,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      *
@@ -915,6 +967,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      *
      * @param measurement_units_id
@@ -933,9 +986,11 @@ public class DataMapper {
         }
     }
 
+
     //----------------------------------------
     // CRUD for Item List
     //----------------------------------------
+
 
     /**
      *
@@ -966,6 +1021,7 @@ public class DataMapper {
         return itemLists;
     }
 
+
     /**
      *
      * @param material_type
@@ -992,6 +1048,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      *
@@ -1023,6 +1080,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      *
      * @param item_list_id
@@ -1041,13 +1099,15 @@ public class DataMapper {
         }
     }
 
+
     //----------------------------------------
     // CRUD for Rafter Spacing
     //----------------------------------------
 
+
     /**
      *
-     * @return
+     * @return rafterSpacings
      * @throws LoginSampleException
      */
     public static List<RafterSpacing> getRafterSpacing() throws LoginSampleException {
@@ -1072,6 +1132,7 @@ public class DataMapper {
         return rafterSpacings;
     }
 
+
     /**
      *
      * @param category
@@ -1094,6 +1155,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      *
@@ -1121,6 +1183,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      *
      * @param rafter_spacing_id
@@ -1139,9 +1202,11 @@ public class DataMapper {
         }
     }
 
+
     //----------------------------------------
     // CRUD for Roof
     //----------------------------------------
+
 
     /**
      *
@@ -1169,6 +1234,7 @@ public class DataMapper {
         return roofs;
     }
 
+
     /**
      *
      * @param roof_type
@@ -1189,6 +1255,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      *
@@ -1214,6 +1281,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      *
      * @param roof_id
@@ -1232,9 +1300,11 @@ public class DataMapper {
         }
     }
 
+
     //----------------------------------------
     // CRUD for Roof pitch
     //----------------------------------------
+
 
     /**
      *
@@ -1261,6 +1331,7 @@ public class DataMapper {
         return roofPitches;
     }
 
+
     /**
      *
      * @param pitch
@@ -1279,6 +1350,7 @@ public class DataMapper {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
 
     /**
      *
@@ -1302,6 +1374,7 @@ public class DataMapper {
         }
     }
 
+
     /**
      *
      * @param roof_pitch_id
@@ -1320,9 +1393,11 @@ public class DataMapper {
         }
     }
 
+
     //----------------------------------------
     // CRUD for Standard dimensions
     //----------------------------------------
+
 
     /**
      *
@@ -1357,6 +1432,7 @@ public class DataMapper {
         }
         return standardDimensions;
     }
+
 
     /**
      *

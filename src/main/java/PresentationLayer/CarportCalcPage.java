@@ -97,11 +97,7 @@ public class CarportCalcPage extends Command {
 
         CarportCalculation cpCalc = new CarportCalculation(orderId);
 
-        try {
-            PriceCalculator pcCalc = new PriceCalculator(cpCalc);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        PriceCalculator pcCalc = new PriceCalculator(cpCalc);
 
         // Create date for proposition receipt
         Locale dk = new Locale("da","DK");

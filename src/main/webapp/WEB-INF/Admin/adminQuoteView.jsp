@@ -268,7 +268,7 @@
                                         <label for="ShedWidth">Redskabsrum bredde</label>
                                         <select class="custom-select selectpicker" id="ShedWidth" name="shedWidth">
                                             <option value="${info.shed_width}">${info.shed_width} cm</option>
-                                            <option value="0">0 cm</option>
+                                            <option value="0">Fravælg</option>
                                             <c:forEach var="sWidth" items="${requestScope.shedWidth}">
                                                 <option class="optionDisabled" value="${sWidth.shedWidthOption}"
                                                         disabled>${sWidth.shedWidthOption} cm
@@ -281,7 +281,7 @@
                                         <label for="ShedLength">Redskabsrum længde</label>
                                         <select class="custom-select selectpicker" id="ShedLength" name="shedLength">
                                             <option value="${info.shed_length}">${info.shed_length} cm</option>
-                                            <option value="0">0 cm</option>
+                                            <option value="0">Fravælg</option>
                                             <c:forEach var="sLength" items="${requestScope.shedLength}">
                                                 <option class="optionDisabled" value="${sLength.shedLengthOption}"
                                                         disabled>${sLength.shedLengthOption} cm
@@ -342,23 +342,29 @@
                                 <input type="hidden" name="target" value="updateQuotePrice">
                                 <input type="hidden" name="orderID" value="${info.orders_id}">
                                 <input type="hidden" name="quoteID" value="${info.user_proposition_id}">
-                                <div class="container">
-                                    <label for="quoteCoverage">Dækningsgrad</label>
+                                <div class="form-group">
+                                    <label for="quoteCoverage">Dækningsgrad %</label>
                                     <input class="form-control" id="quoteCoverage" type="text" name="quoteCoverage"
-                                           value="${info.coverage}">
+                                           value="${info.coverage}" placeholder="%">
                                 </div>
 
-                                <div class="container">
+
+                                <div class="form-group">
+                                    <label for="quotePrice">Pris uden dækningsgrad</label>
+                                    <input class="form-control" id="quotePrice" type="text" name="offerPrice"
+                                           value="${info.offer_price}" readonly>
+                                </div>
+
                                     <div class="form-group">
-                                        <label for="quotePrice">Pris</label>
-                                        <input class="form-control" id="quotePrice" type="text" name="totalPrice"
-                                               value="${requestScope.totalPrice}" disabled>
+                                        <label for="quoteTotalPrice">Pris med dækningsgrad</label>
+                                        <input class="form-control" id="quoteTotalPrice" type="text" name="totalPrice"
+                                               value="${info.total_price}" readonly>
                                     </div>
                                     <!-- Update button -->
                                     <input class="btn btn-success btn-block" type="submit" value="Opdater"
                                            onclick="return confirm('Er du sikker på at du vil lave en opdatering?')"/>
                                     <!-- End update button -->
-                                </div>
+
                                     <!-- End right column -->
                             </form>
 

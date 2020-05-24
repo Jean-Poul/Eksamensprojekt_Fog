@@ -2,6 +2,8 @@ package PresentationLayer;
 
 import FunctionLayer.*;
 
+import FunctionLayer.Calculation.CarportCalculation;
+import FunctionLayer.Calculation.PriceCalculator;
 import FunctionLayer.Drawings.Svg;
 import FunctionLayer.Drawings.SvgFront;
 import FunctionLayer.Drawings.SvgSideways;
@@ -26,6 +28,7 @@ public class EditItemList extends Command {
     private int oLineID = 0;
     private int qty = 0;
     private int vID = 0;
+
 
     /**
      *
@@ -110,7 +113,6 @@ public class EditItemList extends Command {
         } else {
             userProposition = (List<UserProposition>) session.getAttribute("userProposition");
         }
-
 
 
         // Initializing instances of SVG classes to be able to show drawings

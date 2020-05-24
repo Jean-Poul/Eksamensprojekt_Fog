@@ -41,7 +41,7 @@ public class LogicFacade {
      * @throws LoginSampleException
      */
     public static User createUser(String email, String password) throws LoginSampleException {
-        User user = new User(email, password, "customer");
+        User user = new User(email, password, "admin");
         DataMapper.createUser(user);
         return user;
     }
@@ -174,13 +174,28 @@ public class LogicFacade {
         DataMapper.updateQuantityOrderline(orderlineID, quantity);
     }
 
+
+    /**
+     *
+     * @param orderID
+     * @return DataMapper.getOrderCoverage(orderID)
+     * @throws LoginSampleException
+     */
     public static int getOrderCoverage(int orderID) throws LoginSampleException {
         return DataMapper.getOrderCoverage(orderID);
     }
 
+
+    /**
+     *
+     * @param coverage
+     * @param orderID
+     * @throws LoginSampleException
+     */
     public static void updateOrderCoverage(int coverage, int orderID) throws LoginSampleException {
         DataMapper.updateOrderCoverage(coverage, orderID);
     }
+
 
     /**
      * Inserts the total carport price w. tax and w/o coverage to order in DB
@@ -193,9 +208,28 @@ public class LogicFacade {
         DataMapper.insertTotalPrice(totalCarportPriceWithTax, orderID);
     }
 
+
+    /**
+     *
+     * @param orderID
+     * @return DataMapper.getOrderTotalPrice(orderID)
+     * @throws LoginSampleException
+     */
     public static double getTotalCarportPrice(int orderID) throws LoginSampleException {
      return DataMapper.getOrderTotalPrice(orderID);
     }
+
+
+    /**
+     *
+     * @param totalPrice
+     * @param orderID
+     * @throws LoginSampleException
+     */
+    public static void setPriceWithCoverage(double totalPrice, int orderID) throws LoginSampleException {
+        DataMapper.setPriceWithCoverage(totalPrice, orderID);
+    }
+
 
     //######################
     // Select option calls #

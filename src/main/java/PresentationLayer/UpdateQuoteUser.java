@@ -2,12 +2,12 @@ package PresentationLayer;
 
 import FunctionLayer.*;
 import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.Measurements.*;
 import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -16,9 +16,6 @@ import java.util.List;
  */
 public class UpdateQuoteUser extends Command {
     // Initialize variables to be able to update a proposition and calculate price
-    private DecimalFormat decimalFormat = new DecimalFormat("#.00");
-    private double price = 0;
-    private int coverage = 0;
     private int vID = 0;
     private int qID = 0;
     private int oID = 0;
@@ -28,7 +25,6 @@ public class UpdateQuoteUser extends Command {
     private String email;
     private String name;
     private String status;
-    private String totalPrice;
     private String zipcode;
 
     /**
@@ -49,12 +45,20 @@ public class UpdateQuoteUser extends Command {
         List<UserProposition> userProposition = (List<UserProposition>) session.getAttribute("userProposition");
 
 
+        // Initializing Lists with measurement objects
+        List<CarportWidth> carportWidth = (List<CarportWidth>) session.getAttribute("carportWidth");
+        List<CarportLength> carportLength = (List<CarportLength>) session.getAttribute("carportLength");
+
+        List<RoofFlat> roofFlat = (List<RoofFlat>) session.getAttribute("roofFlat");
+        List<RoofRaised> roofRaised = (List<RoofRaised>) session.getAttribute("roofRaised");
+        List<RoofDegree> roofDegree = (List<RoofDegree>) session.getAttribute("roofDegree");
+
+        List<ShedWidth> shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
+        List<ShedLength> shedLength = (List<ShedLength>) session.getAttribute("shedLength");
+
+
         // Getting parameter to be able to update on current ID
         String viewID = request.getParameter("quoteID");
-
-
-        // Getting parameter and initializing variable for showing total price
-        totalPrice = request.getParameter("totalPrice");
 
 
         // Getting parameters from input fields
@@ -108,23 +112,65 @@ public class UpdateQuoteUser extends Command {
         }
 
 
-        // Gets the order coverage and price by passing oID to database.
-        // Adds the coverage to the price, to be displayed on the site
-        if (totalPrice == null) {
-            coverage = LogicFacade.getOrderCoverage(oID);
-            double coverageCalc = (coverage / 100) + 1;
-            price = (LogicFacade.getTotalCarportPrice(oID) * coverageCalc);
-            totalPrice = String.valueOf(decimalFormat.format(price));
+        // Singletons for initializing instances of CarportWidth, CarportLength, RoofFlat, RoofRaised, RoofDegree, ShedWidth, ShedLength
+        // if List is empty
+        if (carportWidth == null) {
+            carportWidth = LogicFacade.getCarportWidth();
         } else {
-            totalPrice = decimalFormat.format(session.getAttribute("totalPrice"));
+            carportWidth = (List<CarportWidth>) session.getAttribute("carportWidth");
+        }
+
+        if (carportLength == null) {
+            carportLength = LogicFacade.getCarportLength();
+        } else {
+            carportLength = (List<CarportLength>) session.getAttribute("carportLength");
+        }
+
+
+        if (roofFlat == null) {
+            roofFlat = LogicFacade.getRoofFlat();
+        } else {
+            roofFlat = (List<RoofFlat>) session.getAttribute("roofFlat");
+        }
+
+        if (roofRaised == null) {
+            roofRaised = LogicFacade.getRoofRaised();
+        } else {
+            roofRaised = (List<RoofRaised>) session.getAttribute("roofRaised");
+        }
+
+        if (roofDegree == null) {
+            roofDegree = LogicFacade.getRoofDegree();
+        } else {
+            roofDegree = (List<RoofDegree>) session.getAttribute("roofDegree");
+        }
+
+
+        if (shedWidth == null) {
+            shedWidth = LogicFacade.getShedWidth();
+        } else {
+            shedWidth = (List<ShedWidth>) session.getAttribute("shedWidth");
+        }
+
+        if (shedLength == null) {
+            shedLength = LogicFacade.getShedLength();
+        } else {
+            shedLength = (List<ShedLength>) session.getAttribute("shedLength");
         }
 
 
         // Attributes to use on jsp site
         request.setAttribute("userProposition", userProposition);
 
-        request.setAttribute("quoteCoverage", coverage);
-        request.setAttribute("totalPrice", totalPrice);
+        request.setAttribute("carportWidth", carportWidth);
+        request.setAttribute("carportLength", carportLength);
+
+        request.setAttribute("roofFlat", roofFlat);
+        request.setAttribute("roofRaised", roofRaised);
+        request.setAttribute("roofDegree", roofDegree);
+
+        request.setAttribute("shedWidth", shedWidth);
+        request.setAttribute("shedLength", shedLength);
 
 
         // Return value for FrontController
