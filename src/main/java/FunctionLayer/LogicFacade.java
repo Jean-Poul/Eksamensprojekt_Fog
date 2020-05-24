@@ -176,7 +176,7 @@ public class LogicFacade {
 
 
     /**
-     *
+     * Returns the coverage from database
      * @param orderID
      * @return DataMapper.getOrderCoverage(orderID)
      * @throws LoginSampleException
@@ -211,6 +211,7 @@ public class LogicFacade {
 
     /**
      *
+     * Returns total carport (Cost) price from database
      * @param orderID
      * @return DataMapper.getOrderTotalPrice(orderID)
      * @throws LoginSampleException

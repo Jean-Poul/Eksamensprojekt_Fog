@@ -80,8 +80,18 @@ public class PriceCalculator {
     private double totalCarportPriceCostWithTax;
     private double totalCarportPriceCoverage;
 
+<<<<<<< HEAD
 
     public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException {
+=======
+    /**
+     * Constructor for PriceCalculator. Takes a carport object to perform all necessary price calculations
+     * @param cpCalc CarportCalculation Object
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
+    public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
+>>>>>>> 3697dec194dc11962d44ccbba57ded3107d12a79
 
         this.orderID = cpCalc.getOrderID();
 
@@ -196,7 +206,7 @@ public class PriceCalculator {
      * @param item    Item type containing item type (no.), total calculated length and total price (qty x price per unit)
      * @throws LoginSampleException
      */
-    private void orderLineToDB(int orderID, Item item) throws LoginSampleException {
+    public void orderLineToDB(int orderID, Item item) throws LoginSampleException {
         int oID = orderID;
         int itemType = item.getItemListID();
         double totalLength = item.getQuantity();
@@ -218,7 +228,7 @@ public class PriceCalculator {
      * @param beam          subtotal
      */
 
-    private void calculateCarportTotalPrice(double raft, double shedCladBoard, double shedLath,
+    public void calculateCarportTotalPrice(double raft, double shedCladBoard, double shedLath,
                                             double roofLath, double supportStrap, double roofClad,
                                             double sternBoard, double beam, double screwkitRoofTile, double screwkitRoofTrapez,
                                             double screwkitShedCladInside, double screwkitShedCladOutside, double doorkit, double screwkitGenericBrackets,
@@ -239,7 +249,7 @@ public class PriceCalculator {
      * @param orderID                      specific order ID
      * @throws LoginSampleException
      */
-    private void costPriceToDB(double totalCarportPriceCostWithTax, int orderID) throws LoginSampleException {
+    public void costPriceToDB(double totalCarportPriceCostWithTax, int orderID) throws LoginSampleException {
         LogicFacade.insertTotalCarportPrice(totalCarportPriceCostWithTax, orderID);
     }
 
@@ -250,7 +260,7 @@ public class PriceCalculator {
      * @return
      * @throws SQLException
      */
-    private Item itemSearch(int itemID) throws LoginSampleException {
+    public Item itemSearch(int itemID) throws LoginSampleException {
 
         for (int i = 0; i < log.getItemList().size(); i++) {
 

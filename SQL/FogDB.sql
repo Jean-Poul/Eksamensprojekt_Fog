@@ -95,8 +95,9 @@ CREATE TABLE IF NOT EXISTS `fogdb`.`orders` (
   `roof_type` VARCHAR(45) NOT NULL,
   `roof_material` VARCHAR(90) NOT NULL,
   `pitch` INT(11) NOT NULL,
-  `coverage` INT(11) NOT NULL DEFAULT '40',
+  `coverage` INT(11) NOT NULL DEFAULT '0',
   `offer_price` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+  `total_price` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`orders_id`),
   INDEX `fk_userProp_orders_idx` (`user_proposition_id` ASC) INVISIBLE,
   CONSTRAINT `fk_userProp_orders`
