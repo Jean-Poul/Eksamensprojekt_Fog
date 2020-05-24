@@ -137,19 +137,13 @@ public class CarportCalculation {
         this.beamDimensionHeavy = standardDimensions.get(0).getBeam_dimension_heavy();
         this.beamDimensionLight = standardDimensions.get(0).getBeam_dimension_light();
 
-//        this.carportLength = log.getUserProposition(orderID).get(0).getCarport_length();
-//        this.carportWidth = log.getUserProposition(orderID).get(0).getCarport_width();
-//        this.customerRoofAngle = log.getUserProposition(orderID).get(0).getPitch();
-//        this.shedLength = log.getUserProposition(orderID).get(0).getShed_length();
-//        this.shedWidth = log.getUserProposition(orderID).get(0).getShed_width();
-
         this.carportLength = LogicFacade.getUserProposition(orderID).get(0).getCarport_length();
         this.carportWidth = LogicFacade.getUserProposition(orderID).get(0).getCarport_width();
         this.customerRoofAngle = LogicFacade.getUserProposition(orderID).get(0).getPitch();
         this.shedLength = LogicFacade.getUserProposition(orderID).get(0).getShed_length();
         this.shedWidth = LogicFacade.getUserProposition(orderID).get(0).getShed_width();
 
-        //Asosign accessories that follow all types of carprts
+        //Assign accessories that follow all types of carports
         this.screwKitGenericRoofBrackets = 9;
         this.screwKitGenericRoofLaths = 10;
         this.bracketKit = 34;
@@ -163,7 +157,6 @@ public class CarportCalculation {
             this.shedLength = 0;
             this.shedWidth = 0;
         }
-
 
 
         //Determine if roof is raised or flat and assign according screw packs

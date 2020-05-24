@@ -80,7 +80,12 @@ public class PriceCalculator {
     private double totalCarportPriceCostWithTax;
     private double totalCarportPriceCoverage;
 
-
+    /**
+     * Constructor for PriceCalculator. Takes a carport object to perform all necessary price calculations
+     * @param cpCalc CarportCalculation Object
+     * @throws LoginSampleException
+     * @throws ClassNotFoundException
+     */
     public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
 
         this.orderID = cpCalc.getOrderID();

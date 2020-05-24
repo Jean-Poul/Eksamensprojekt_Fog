@@ -174,6 +174,12 @@ public class LogicFacade {
         DataMapper.updateQuantityOrderline(orderlineID, quantity);
     }
 
+    /**
+     * Returns the coverage from database
+     * @param orderID
+     * @return
+     * @throws LoginSampleException
+     */
     public static int getOrderCoverage(int orderID) throws LoginSampleException {
         return DataMapper.getOrderCoverage(orderID);
     }
@@ -193,6 +199,12 @@ public class LogicFacade {
         DataMapper.insertTotalPrice(totalCarportPriceWithTax, orderID);
     }
 
+    /**
+     * Returns total carport (Cost) price from database
+     * @param orderID
+     * @return
+     * @throws LoginSampleException
+     */
     public static double getTotalCarportPrice(int orderID) throws LoginSampleException {
      return DataMapper.getOrderTotalPrice(orderID);
     }
