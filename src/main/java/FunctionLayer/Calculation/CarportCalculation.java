@@ -289,7 +289,7 @@ public class CarportCalculation {
             roofCladdingType = "tagsten";
             roofCladType = 32;
         } else if (!raisedRoof) {
-            double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TILE_WIDTH;
+            double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TRAPEZ_WIDTH;
             int noOfTrapezPlates = (int) ((carportLength * carportWidth) / trapezPlateSquareArea);
             totalNumberOfRoofTrapezPlates = noOfTrapezPlates;
             roofCladdingType = "trapezplader";
