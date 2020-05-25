@@ -177,7 +177,8 @@ public class SvgFront {
                 svgFront.append(String.format(lowerAngelTextTemplate, x = carportWidth/5, y = -6, text = (int) roofAngle));
                 svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - (carportWidth/5), y = -6, text = (int) roofAngle));
             }
-            svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((actualRoofHeight / 5) + 2), text = (int) roofHeight-210));
+
+            svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((actualRoofHeight / 5) + 2), text = (int) roofHeight));
             svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth / 2) - 5, y = -(((actualRoofHeight / 4) * 3)-10), text = (int) (180-(roofAngle+roofAngle))));
 
             //Leftside raft arrow if roof exist
