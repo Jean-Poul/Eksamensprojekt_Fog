@@ -40,6 +40,7 @@ public class DataMapper {
 
 
     /**
+     *
      * @param user
      * @throws LoginSampleException
      */

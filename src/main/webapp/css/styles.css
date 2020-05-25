@@ -115,6 +115,15 @@ footer a:hover {
     }
     .view-on-print {display: block;}
     .hide-on-print {display: none;}
+    .page-break {
+        clear: both;
+        page-break-after: always;
+    }
+    .bg-none-print {
+        background-color: #ffffff !important;
+        box-shadow: none !important;
+        border-color: #ffffff !important;
+    }
 }
 
 

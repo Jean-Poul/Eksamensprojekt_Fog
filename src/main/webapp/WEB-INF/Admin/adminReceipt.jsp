@@ -67,13 +67,16 @@
             </div>
         </div>
 
+        <!-- Break page on print -->
+        <div class="page-break"> </div>
+
         <!-- SVG container -->
         <div class="container col-8">
 
             <!-- SVG drawing sideways with color -->
-            <div class="col border-dark shadow my-5 p-5">
+            <div class="col border-dark shadow my-5 p-5 bg-none-print">
                 <h5 class="text-primary text-center mb-5">Færdig udgave af forespørgsel</h5>
-                <div class="container bg-light d-flex justify-content-center">
+                <div class="container bg-light d-flex justify-content-center bg-none-print">
                         ${requestScope.svgDrawingSideways}
                 </div>
             </div>

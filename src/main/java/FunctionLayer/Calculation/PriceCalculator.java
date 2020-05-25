@@ -216,7 +216,7 @@ public class PriceCalculator {
      *
      * @param raft          subtotal
      * @param shedCladBoard subtotal
-     * @param shedLath      subtotalsubtotal
+     * @param shedLath      subtotal
      * @param roofLath      subtotal
      * @param supportStrap  subtotal
      * @param roofClad      subtotal
