@@ -263,7 +263,7 @@ public class PriceCalculator {
     }
 
     /**
-     * Calculates the total carport price incl. tax.
+     * Calculates total carport price with tax
      * @param totalCarportCostNoTax
      */
     public void calculateCarportTotalPrice(double totalCarportCostNoTax) {

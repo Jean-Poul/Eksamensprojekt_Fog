@@ -33,7 +33,7 @@
 <body>
 
 <!-- Header -->
-<header role="banner" class="jumbotron-fluid">
+<header role="banner" class="jumbotron-fluid hide-on-print">
     <!-- Header text -->
 
     <div class="headerText px-3 py-3 d-none d-sm-inline-block">
