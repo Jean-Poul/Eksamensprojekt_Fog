@@ -26,11 +26,15 @@ public class PriceCalculator {
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#,##0.00");
 
+    //Used to update orderLine price
+    double orderLinePriceOld;
+    double orderLinePriceNew;
+
     int orderID;
 
     //Danish tax
     double addTax = 1.25;
-    double subtractTax = 1.20;
+    double subtractTax = 0.8;
     double orderCoverage;
 
     //  RAFT CALCULATIONS (Qty & Length [cm])
@@ -86,7 +90,6 @@ public class PriceCalculator {
      * @throws LoginSampleException
      * @throws ClassNotFoundException
      */
-
     public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
 
         this.orderID = cpCalc.getOrderID();
@@ -94,25 +97,14 @@ public class PriceCalculator {
         this.orderCoverage = LogicFacade.getOrderCoverage(cpCalc.orderID);
 
         //Accessories
-        this.doorKitPrice = itemSearch(cpCalc.getDoorKit()).getPricePrUnit() * doorKitQty;
+
         this.screwKitGenericRoofBracketsPrice = itemSearch(cpCalc.getScrewKitGenericRoofBrackets()).getPricePrUnit() * screwKitGenericRoofBracketsQty;
         this.screwKitGenericRoofLathsPrice = itemSearch(cpCalc.getScrewKitGenericRoofLaths()).getPricePrUnit() * screwKitGenericRoofLathsQty;
         this.bracketKitPrice = itemSearch(cpCalc.getBracketKit()).getPricePrUnit() * bracketKitQty;
-        this.screwKitShedDoorCladdingInsidePrice = itemSearch(cpCalc.getScrewKitShedDoorCladdingInside()).getPricePrUnit() * screwKitShedDoorCladdingInsideQty;
-        this.screwKitShedDoorCladdingOutsidePrice = itemSearch(cpCalc.getScrewKitShedDoorCladdingOutside()).getPricePrUnit() * screwKitShedDoorCladdingOutsideQty;
-        this.screwKitRoofTilesPrice = itemSearch(cpCalc.getScrewKitRoofRaised()).getPricePrUnit() * screwKitRoofTilesQty;
-        this.screwKitTrapezPrice = itemSearch(cpCalc.getScrewKitTrapez()).getPricePrUnit() * screwKitTrapezQty;
 
         //Rafters
         this.totalRaftLength = ((cpCalc.getRaftLength() + cpCalc.getHorizontalRaftLength() + cpCalc.getVerticalRaftLength()) / 100) * cpCalc.getNoOfRafts();
         this.totalRaftPrice = itemSearch(cpCalc.getRaftType()).getPricePrUnit() * totalRaftLength;
-
-        //Shed - NOTE THAT DOOR IS NOT SUBTRACTED FROM SHED CLADDING
-        this.totalShedWallLathLength = cpCalc.getShedWallLathsTotalLength();
-        this.totalShedWallLathPrice = itemSearch(cpCalc.getShedWallLathType()).getPricePrUnit() * (totalShedWallLathLength / 100);
-
-        this.totalShedCladdingBoardLength = cpCalc.getNoOfCladdingBoardsTotal() * 2.5; //2.5m is carport standard height
-        this.totalShedCladdingBoardPrice = itemSearch(cpCalc.getShedCladdingBoardType()).getPricePrUnit() * totalShedCladdingBoardLength;
 
         //Roof
         this.totalLathsLength = (cpCalc.getNoOfLaths() * cpCalc.getCarportLength() / 100);
@@ -124,15 +116,16 @@ public class PriceCalculator {
         if (cpCalc.getRoofCladdingType().equalsIgnoreCase("tagsten")) {
             this.totalNumberOfRoofTiles = cpCalc.getTotalNumberOfRoofTiles();
             this.totalRoofCladPrice = itemSearch(cpCalc.getRoofCladType()).getPricePrUnit() * totalNumberOfRoofTiles;
+            this.screwKitRoofTilesPrice = itemSearch(cpCalc.getScrewKitRoofRaised()).getPricePrUnit() * screwKitRoofTilesQty;
         } else {
             this.totalNumberOfRoofTrapezPlates = cpCalc.getTotalNumberOfRoofTrapezPlates();
             this.totalRoofCladPrice = itemSearch(cpCalc.getRoofCladType()).getPricePrUnit() * totalNumberOfRoofTrapezPlates;
+            this.screwKitTrapezPrice = itemSearch(cpCalc.getScrewKitTrapez()).getPricePrUnit() * screwKitTrapezQty;
         }
 
         //Assorted
         this.totalSternBoardLength = cpCalc.getSternBoardLength() / 100;
         this.totalSternBoardPrice = itemSearch((int) cpCalc.getSternBoardType()).getPricePrUnit() * totalSternBoardLength;
-
         this.totalNoOfBeamLength = cpCalc.getNoOfBeams() * 2.5; //STD LENGTH IS 250 cm - NEEDS TO MULTIPLY BY THIS - PROBABLY FROM DB
         this.totalBeamPrice = itemSearch(cpCalc.getBeamType()).getPricePrUnit() * totalNoOfBeamLength;
 
@@ -157,6 +150,14 @@ public class PriceCalculator {
             itemList.add(screwKitTrapezItem);
         }
         if (cpCalc.getShedLength() > 0) {
+            //Shed - NOTE THAT DOOR IS NOT SUBTRACTED FROM SHED CLADDING
+            this.totalShedWallLathLength = cpCalc.getShedWallLathsTotalLength();
+            this.totalShedWallLathPrice = itemSearch(cpCalc.getShedWallLathType()).getPricePrUnit() * (totalShedWallLathLength / 100);
+            this.totalShedCladdingBoardLength = cpCalc.getNoOfCladdingBoardsTotal() * 2.5; //2.5m is carport standard height
+            this.totalShedCladdingBoardPrice = itemSearch(cpCalc.getShedCladdingBoardType()).getPricePrUnit() * totalShedCladdingBoardLength;
+            this.doorKitPrice = itemSearch(cpCalc.getDoorKit()).getPricePrUnit() * doorKitQty;
+            this.screwKitShedDoorCladdingInsidePrice = itemSearch(cpCalc.getScrewKitShedDoorCladdingInside()).getPricePrUnit() * screwKitShedDoorCladdingInsideQty;
+            this.screwKitShedDoorCladdingOutsidePrice = itemSearch(cpCalc.getScrewKitShedDoorCladdingOutside()).getPricePrUnit() * screwKitShedDoorCladdingOutsideQty;
             Item shedWallLathItem = new Item(orderID, cpCalc.getShedWallLathType(), totalShedWallLathLength, totalShedWallLathPrice);
             Item shedCladdingBoardItem = new Item(orderID, cpCalc.getShedCladdingBoardType(), totalShedCladdingBoardLength, totalShedCladdingBoardPrice);
             Item screwKitShedDoorCladdingInsideItem = new Item(orderID, cpCalc.getScrewKitShedDoorCladdingInside(), screwKitShedDoorCladdingInsideQty, screwKitShedDoorCladdingInsidePrice);
@@ -185,14 +186,64 @@ public class PriceCalculator {
             itemList.clear();
 
 
+
         //Calculate the total carport cost price.
-        calculateCarportTotalPrice(totalRaftPrice, totalShedCladdingBoardPrice, totalShedWallLathPrice,
-                totalRoofLathPrice, totalSupportingStrapPrice, totalRoofCladPrice,
-                totalSternBoardPrice, totalBeamPrice, screwKitRoofTilesPrice, screwKitTrapezPrice, screwKitShedDoorCladdingInsidePrice,
-                screwKitShedDoorCladdingOutsidePrice, doorKitPrice, screwKitGenericRoofBracketsPrice, screwKitGenericRoofLathsPrice, bracketKitPrice);
+        totalCarportCostNoTax = totalRaftPrice+ totalShedCladdingBoardPrice+ totalShedWallLathPrice+
+                totalRoofLathPrice+ totalSupportingStrapPrice+ totalRoofCladPrice+
+                totalSternBoardPrice+ totalBeamPrice+ screwKitRoofTilesPrice+ screwKitTrapezPrice+ screwKitShedDoorCladdingInsidePrice+
+                screwKitShedDoorCladdingOutsidePrice+ doorKitPrice+ screwKitGenericRoofBracketsPrice+ screwKitGenericRoofLathsPrice+ bracketKitPrice;
+
+        calculateCarportTotalPrice(totalCarportCostNoTax);
 
         costPriceToDB(totalCarportPriceCostWithTax, orderID);
 
+    }
+
+    /**
+     * Constructor for updating single orderlines
+     * @param oLineID
+     * @param qty
+     * @param orderID
+     * @throws LoginSampleException
+     */
+    public PriceCalculator(int oLineID, double qty, int orderID) throws LoginSampleException {
+
+        //Get the current order line price (To be replaced)
+        this.orderLinePriceOld = LogicFacade.getOrderLinePriceFromLineID(orderID, oLineID); //399,95
+        System.out.println(orderID + " " + oLineID);
+        System.out.println("gamle pris: " + orderLinePriceOld);
+
+        //Update the new order line price
+        this.orderLinePriceNew = updatePrice(oLineID, qty); //799,9
+        System.out.println("nye pris" + orderLinePriceNew);
+
+        //Get the current total carport price (To be replaced)
+        double currentTotalPrice = LogicFacade.getTotalCarportPrice(orderID); //11024,65
+        System.out.println("Curr total price" + currentTotalPrice);
+
+        //Withdraw tax and current order line price from total carport price
+        double newTotalPrice = ((currentTotalPrice * subtractTax) - orderLinePriceOld); //(11024,65 * 0,8) - 399,95 = 8419,77
+        System.out.println("new price minus tax, minus orderline: " + newTotalPrice);
+
+        //Add new item line price and tax
+        newTotalPrice = (newTotalPrice + this.orderLinePriceNew) * addTax; //8419,77 + 799,9 * 1,25 = 11524,58
+        System.out.println("new price + new item + tax: " + newTotalPrice);
+
+        //Update the total cost
+        costPriceToDB(newTotalPrice, orderID);
+    }
+
+    /**
+     * Gets the updated price for an order line
+     * @param itemID
+     * @param qty
+     * @return
+     * @throws LoginSampleException
+     */
+    public double updatePrice(int itemID, double qty) throws LoginSampleException {
+        Item i = itemSearch(itemID);
+        double newOrderLinePrice = i.getPricePrUnit() * qty;
+        return newOrderLinePrice;
     }
 
     /**
@@ -212,27 +263,11 @@ public class PriceCalculator {
     }
 
     /**
-     * Calculates the total carport price. Takes subtotals as param
-     *
-     * @param raft          subtotal
-     * @param shedCladBoard subtotal
-     * @param shedLath      subtotal
-     * @param roofLath      subtotal
-     * @param supportStrap  subtotal
-     * @param roofClad      subtotal
-     * @param sternBoard    subtotal
-     * @param beam          subtotal
+     * Calculates total carport price with tax
+     * @param totalCarportCostNoTax
      */
+    public void calculateCarportTotalPrice(double totalCarportCostNoTax) {
 
-    public void calculateCarportTotalPrice(double raft, double shedCladBoard, double shedLath,
-                                            double roofLath, double supportStrap, double roofClad,
-                                            double sternBoard, double beam, double screwkitRoofTile, double screwkitRoofTrapez,
-                                            double screwkitShedCladInside, double screwkitShedCladOutside, double doorkit, double screwkitGenericBrackets,
-                                            double screwkitGenericRoofLath, double bracketKit) {
-
-        totalCarportCostNoTax = raft + shedCladBoard + shedLath + roofLath + supportStrap + roofClad + sternBoard + beam +
-                screwKitRoofTilesPrice + screwKitTrapezPrice + screwKitShedDoorCladdingOutsidePrice + screwKitShedDoorCladdingInsidePrice +
-                doorKitPrice + screwKitGenericRoofBracketsQty + screwKitGenericRoofLathsPrice + bracketKitPrice;
         totalCarportPriceCostWithTax = totalCarportCostNoTax * addTax;
         totalCarportPriceCoverage = totalCarportPriceCostWithTax * ((this.orderCoverage / 100) + 1);
 

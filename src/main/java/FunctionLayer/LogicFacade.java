@@ -12,6 +12,7 @@ import FunctionLayer.Measurements.RoofRaised;
 import FunctionLayer.Tables.UserProposition;
 import FunctionLayer.Users.User;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Map;
 
@@ -109,6 +110,21 @@ public class LogicFacade {
     }
 
     /**
+     * Returns the item no. by looking at specific orderLine in customers order
+     * @param orderID
+     * @param orderLineID
+     * @return
+     * @throws LoginSampleException
+     */
+    public static int getOrderIDFromLineID(int orderID, int orderLineID) throws LoginSampleException {
+        return DataMapper.getOrderIDFromLineID(orderID, orderLineID);
+    }
+
+    public static double getOrderLinePriceFromLineID(int orderID, int orderLineID) throws LoginSampleException {
+        return DataMapper.getOrderLinePriceFromLineID(orderID, orderLineID);
+    }
+
+    /**
      * @return DataMapper.getAllUserPropositions()
      * @throws LoginSampleException
      */
@@ -164,14 +180,15 @@ public class LogicFacade {
     }
 
     /**
-     * Update quantity in orderline
+     * Update orderline total price in DB
      *
      * @param orderlineID
      * @param quantity
+     * @param price
      * @throws LoginSampleException
      */
-    public static void updateQuantityOrderline(int orderlineID, double quantity) throws LoginSampleException {
-        DataMapper.updateQuantityOrderline(orderlineID, quantity);
+    public static void updateQuantityOrderline(int orderlineID, double quantity, double price) throws LoginSampleException {
+        DataMapper.updateQuantityOrderline(orderlineID, quantity, price);
     }
 
 

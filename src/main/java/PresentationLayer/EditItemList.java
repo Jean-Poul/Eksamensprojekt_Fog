@@ -2,7 +2,6 @@ package PresentationLayer;
 
 import FunctionLayer.*;
 
-import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Calculation.PriceCalculator;
 import FunctionLayer.Drawings.Svg;
 import FunctionLayer.Drawings.SvgFront;
@@ -28,6 +27,8 @@ public class EditItemList extends Command {
     private int oLineID = 0;
     private int qty = 0;
     private int vID = 0;
+    int item = 0;
+    private double updatedLineTotalPrice = 0;
 
 
     /**
@@ -93,8 +94,15 @@ public class EditItemList extends Command {
         }
 
 
-        // Updating an item list with parameters from jsp values
-        LogicFacade.updateQuantityOrderline(oLineID, qty);
+        // Use the orderID and orderlineID to return the part no. for the part to be updated
+        item = LogicFacade.getOrderIDFromLineID(oID,oLineID);
+
+        // Calculate the new item line total price
+        PriceCalculator pc = new PriceCalculator(item, qty, oID);
+        updatedLineTotalPrice = pc.updatePrice(item,qty);
+
+        // Updating an item list with parameters from jsp values and new price
+        LogicFacade.updateQuantityOrderline(oLineID, qty, updatedLineTotalPrice);
 
 
         // Singleton for initializing an instance of ItemList with an order id

@@ -182,19 +182,21 @@ public class CarportCalculation {
 //            LogicFacade.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy();
             raftDistance = 1.0;
             raftDimension = "45 x 195";
+            raftType = 21;
         } else {
             //this.raftDistance = log.getBeamDimensionLight(raftLength).get(0).getBeamSpacingLight();
             //this.raftDimension = log.getBeamDimensionLight(raftLength).get(0).getBeamDimensionLight();
             raftDistance = 1.0;
             raftDimension = "45 x 120";
+            raftType = 20;
         }
 
-        //Set rafttype depending on raftdistance table in database
-        if(raftDimension.equalsIgnoreCase("45 x 120")){
-            raftType = 20;
-        } else if (raftDimension.equalsIgnoreCase("45 x 195")){
-            raftType = 21;
-        }
+//        //Set rafttype depending on raftdistance table in database
+//        if(raftDimension.equalsIgnoreCase("45 x 120")){
+//            raftType = 20;
+//        } else if (raftDimension.equalsIgnoreCase("45 x 195")){
+//            raftType = 21;
+//        }
 
         //Begin calculations
         calcRoofHeight(customerRoofAngle, carportWidth);
@@ -287,7 +289,7 @@ public class CarportCalculation {
             roofCladdingType = "tagsten";
             roofCladType = 32;
         } else if (!raisedRoof) {
-            double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TILE_WIDTH;
+            double trapezPlateSquareArea = ROOF_TRAPEZ_LENGTH * ROOF_TRAPEZ_WIDTH;
             int noOfTrapezPlates = (int) ((carportLength * carportWidth) / trapezPlateSquareArea);
             totalNumberOfRoofTrapezPlates = noOfTrapezPlates;
             roofCladdingType = "trapezplader";
