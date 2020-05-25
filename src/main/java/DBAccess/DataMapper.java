@@ -266,6 +266,8 @@ public class DataMapper {
     }
 
 
+
+
     /**
      * Get one user proposition from DB and maps it to an array.
      * @param userId User proposition ID
@@ -453,19 +455,64 @@ public class DataMapper {
      * @param quantity
      * @throws LoginSampleException
      */
-    public static void updateQuantityOrderline(int orderlineID, double quantity) throws LoginSampleException {
+    public static void updateQuantityOrderline(int orderlineID, double quantity, double price) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE orderline SET quantity = ? WHERE orderline_id = ?";
+            String SQL = "UPDATE `orderline` SET `quantity` = ?, `total_price` = ? WHERE `orderline_id` = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setDouble(1, quantity);
-            ps.setInt(2, orderlineID);
+            ps.setDouble(2, price);
+            ps.setInt(3, orderlineID);
             ps.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException ex) {
             throw new LoginSampleException(ex.getMessage());
         }
     }
+
+    /**
+     * Returns the unique item no. by looking at order ID and the items orderLineID in the DB
+     * @param orderID
+     * @param orderLineID
+     * @return
+     * @throws LoginSampleException
+     */
+    public static int getOrderIDFromLineID(int orderID, int orderLineID) throws LoginSampleException {
+        int itemNo = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM orderline WHERE orders_id = ? AND orderline_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ps.setInt(2, orderLineID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                itemNo = rs.getInt("item_list_id");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return itemNo;
+    }
+
+    public static double getOrderLinePriceFromLineID(int orderID, int orderLineID) throws LoginSampleException {
+        double itemPrice = 0;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM orderline WHERE orders_id = ? AND item_list_id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ps.setInt(2, orderLineID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                itemPrice = rs.getDouble("total_price");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new LoginSampleException(ex.getMessage());
+        }
+        return itemPrice;
+    }
+
 
 
     /**
