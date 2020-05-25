@@ -18,7 +18,7 @@ public class CarportCalcPage extends Command {
      * @throws LoginSampleException
      */
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
 
 
 

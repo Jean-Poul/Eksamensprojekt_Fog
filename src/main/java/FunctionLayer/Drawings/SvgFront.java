@@ -21,7 +21,7 @@ public class SvgFront {
 
     /**
      *
-     * @param orderID               User data (In order to reference what order ID the drawing belongs to)
+     * @param orderID
      * @throws LoginSampleException
      */
     public SvgFront(int orderID) throws LoginSampleException {
@@ -111,26 +111,26 @@ public class SvgFront {
     //Templates for generation svg drawing using StringBuilder.
     //##########################################################
     private final String headerTemplate1        = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,600,600\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
-                                                    "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
-                                                    "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
-                                                    "</marker>\n" +
-                                                    "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
-                                                    "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
-                                                    "</marker>\n" +
-                                                    "</defs>";
+            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+            "</marker>\n" +
+            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+            "</marker>\n" +
+            "</defs>";
     private final String headerTemplate2        = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"x=\"0\" y=\"0\" height=\"400\" width=\"550\" viewBox=\"0,0,700,700\" preserveAspectRatio=\"xMinYMin\"> <defs>\n" +
-                                                    "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
-                                                    "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
-                                                    "</marker>\n" +
-                                                    "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
-                                                    "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
-                                                    "</marker>\n" +
-                                                    "</defs>";
+            "<marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
+            "<path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" />\n" +
+            "</marker>\n" +
+            "<marker id=\"endArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"12\" refY=\"6\" orient=\"auto\">\n" +
+            "<path d=\"M0,0 L12,6 L0,12 L0,0 \" style=\"fill: #000000;\" />\n" +
+            "</marker>\n" +
+            "</defs>";
     private final String rectTemplate           = "<rect transform=\"translate(100,200)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #000000\" />";
     private final String lathTemplate           = "<rect transform=\"translate(100,200)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #000000\" />";
     private final String beamTemplate           = "<rect transform=\"translate(100,200)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
     private final String lineTemplate           = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +
-                                                    "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
+            "marker-start: url(#beginArrow);\n"+"marker-end: url(#endArrow);\" />";
     private final String lineNoArrowTemplate    = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\" />";
     private final String raftTemplate           = "<line transform=\"translate(100,200)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke-width:10; stroke:#000000; stroke-linecap:round\"/>";
     private final String lowerTextTemplate      = "<text transform=\"translate(100,200)\" style=\"text-anchor: middle\" x=\"%f\" y=\"%f\"> %d cm</text>";
@@ -158,18 +158,14 @@ public class SvgFront {
             svgFront.append(String.format(raftTemplate, (raftLength / 2) + 5, 0 - actualRoofHeight, carportWidth + 10, carportY + 5));
             //Lath
             svgFront.append(String.format(rectTemplate, carportX, carportY, beamWidth, raftLength+10));
-            }else{
-                //Lath
-                svgFront.append(String.format(lathTemplate, carportX, carportY, beamWidth, raftLength+10));
-            }
+        }else{
+            //Lath
+            svgFront.append(String.format(lathTemplate, carportX, carportY, beamWidth, raftLength+10));
+        }
 
         //Leftside arrow
         svgFront.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportHeight)));
         svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 210));
-
-        //Leftside raft arrow
-        svgFront.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftLength/2, (-actualRoofHeight)-30));
-        svgFront.append(String.format(lowerTextTemplate, raftLength/4, textY-90, text= (int) raftLength/2));
 
         //Roof arrows
         if(roofAngle>0) {
@@ -177,14 +173,17 @@ public class SvgFront {
             if(roofAngle==15){
                 svgFront.append(String.format(lowerAngelTextTemplate, x = 120, y = -6, text = (int) roofAngle));
                 svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - 110, y = -6, text = (int) roofAngle));
-                }else {
-                    svgFront.append(String.format(lowerAngelTextTemplate, x = carportWidth/5, y = -6, text = (int) roofAngle));
-                    svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - (carportWidth/5), y = -6, text = (int) roofAngle));
-                }
+            }else {
+                svgFront.append(String.format(lowerAngelTextTemplate, x = carportWidth/5, y = -6, text = (int) roofAngle));
+                svgFront.append(String.format(lowerAngelTextTemplate, carportWidth - (carportWidth/5), y = -6, text = (int) roofAngle));
+            }
             svgFront.append(String.format(lowerTextTemplate, (carportWidth / 2) + 2, y = -((actualRoofHeight / 5) + 2), text = (int) roofHeight-210));
             svgFront.append(String.format(lowerAngelTextTemplate, (carportWidth / 2) - 5, y = -(((actualRoofHeight / 4) * 3)-10), text = (int) (180-(roofAngle+roofAngle))));
 
-            }
+            //Leftside raft arrow if roof exist
+            svgFront.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftLength/2, (-actualRoofHeight)-30));
+            svgFront.append(String.format(lowerTextTemplate, raftLength/4, textY-90, text= (int) raftLength/2));
+        }
 
         //Bottom Line
         svgFront.append(String.format(lineNoArrowTemplate, arrowLineX1=-30, arrowLineY1=carportHeight, arrowLineX2=carportWidth+30,arrowLineY2=carportHeight));

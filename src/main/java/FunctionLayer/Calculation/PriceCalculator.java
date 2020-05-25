@@ -80,18 +80,14 @@ public class PriceCalculator {
     private double totalCarportPriceCostWithTax;
     private double totalCarportPriceCoverage;
 
-<<<<<<< HEAD
-
-    public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException {
-=======
     /**
      * Constructor for PriceCalculator. Takes a carport object to perform all necessary price calculations
      * @param cpCalc CarportCalculation Object
      * @throws LoginSampleException
      * @throws ClassNotFoundException
      */
+
     public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
->>>>>>> 3697dec194dc11962d44ccbba57ded3107d12a79
 
         this.orderID = cpCalc.getOrderID();
 
