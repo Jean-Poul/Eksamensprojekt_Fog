@@ -2,6 +2,8 @@
 left to right direction
 title EksamensProjekt_Fog - Class Diagram
 
+PresentationLayer -left[hidden]> DBAccess
+
 package "DBAccess" #fa9696 {
     Class DataMapper
     Class Connector
@@ -15,31 +17,22 @@ Command --|> "//Command//"
 Command -[hidden]> "//Command//"
 
     package "//Command//" #78d683{
-    AdminRejectQuote -[hidden]>CarportCalcPage
-    CarportCalcPage -[hidden]> CarportCustomize
-    CarportCustomize -[hidden]-> Drawing
-    Drawing -[hidden]> DrawingSideways
-    DrawingSideways -[hidden]> DrawingSidewaysBlueprint
-    DrawingSidewaysBlueprint -[hidden]> DrawingFront
-    Login --[hidden]> Register
-    Register -[hidden]> UnknownCommand
-    RejectQuote -[hidden]-> UnknownCommand
+    AdminItemList -[hidden]>AdminItemListDB
+    AdminMeasurementUnits -[hidden]>AdminMeasurementUnitsDB
+    AdminRafterSpacing -[hidden]>AdminRafterSpacingDB
+    AdminReceipt -[hidden]>AdminRejectQuote
+    AdminRoof -[hidden]>AdminRoofDB
+    AdminRoofPitch -[hidden]>AdminRoofPitchDB
+    AdminStandardDimension -[hidden]>AdminStandardDimensionDB
 
-        Class AdminRejectQuote
-        Class Login
-        Class CarportCalcPage
-        Class Register
-        Class CarportCustomize
-        Class QuoteView
-        Class RejectQuote
-        Class Drawing
-        Class DrawingSideways
-        Class DrawingFront
-        Class DrawingSidewaysBlueprint
-        Class UnknownCommand
-        Class Redirect
-        Class EditItemList
-        Class AdminMeasurementUnits
+    CarportCalcPage -[hidden]>CarportCustomize
+    Command -[hidden]>Drawing
+    EditItemList -[hidden]>FrontController
+    Login -[hidden]>QuoteView
+    Redirect -[hidden]>Register
+    RejectQuote -[hidden]>ReturnAdmin
+    UnknownCommand -[hidden]>UpdateQuoteOrder
+    UpdateQuotePrice -[hidden]>UpdateQuoteUser
     }
 }
 
@@ -567,11 +560,84 @@ class User{
 /'##########################
  PresentationLayer
 ########################## '/
+Class AdminItemList{
++String execute(request, response)
+}
+
+Class AdminItemListDB{
++String execute(request, response)
+}
+
+Class AdminMeasurementUnits{
++String execute(request,response)
+}
+
+Class AdminMeasurementUnitsDB{
++String execute(request,response)
+}
+
+Class AdminRafterSpacing{
++String execute(request,response)
+}
+
+Class AdminRafterSpacingDB{
++String execute(request,response)
+}
+
+Class AdminReceipt{
++String execute(request,response)
+}
+
+Class AdminRejectQuote{
++String execute(request,response)
+}
+
+Class AdminRoof{
++String execute(request,response)
+}
+
+Class AdminRoofDB{
++String execute(request,response)
+}
+
+Class AdminRoofPitch{
++String execute(request,response)
+}
+
+Class AdminRoofPitchDB{
++String execute(request,response)
+}
+
+Class AdminStandardDimension{
++String execute(request,response)
+}
+
+Class AdminStandardDimensionDB{
++String execute(request,response)
+}
+
+Class CarportCalcPage{
++String execute(request, response)
+}
+
+Class CarportCustomize{
++String execute(request,response)
+}
+
 Class Command {
 {Static}-HashMap: String, command
 {Static}-void initCommands()
 {Static}+Command from(request)
 {abstract} String execute()
+}
+
+Class Drawing{
++String execute(request,response)
+}
+
+
+Class EditItemList{
++String execute(request,response)
 }
 
 Class FrontController{
@@ -581,23 +647,7 @@ Class FrontController{
 #void getServletInfo()
 }
 
-Class CarportCalcPage{
-+String execute(request, response)
-}
-
 Class Login{
-+String execute(request,response)
-}
-
-Class Register{
-+String execute(request,response)
-}
-
-Class AdminRejectQuote{
-+String execute(request,response)
-}
-
-Class CarportCustomize{
 +String execute(request,response)
 }
 
@@ -605,23 +655,19 @@ Class QuoteView{
 +String execute(request,response)
 }
 
+Class Redirect{
++String execute(request,response)
+}
+
+Class Register{
++String execute(request,response)
+}
+
 Class RejectQuote{
 +String execute(request,response)
 }
 
-Class Drawing{
-+String execute(request,response)
-}
-
-Class DrawingFront{
-+String execute(request,response)
-}
-
-Class DrawingSideways{
-+String execute(request,response)
-}
-
-Class DrawingSidewaysBlueprint{
+Class ReturnAdmin{
 +String execute(request,response)
 }
 
@@ -629,17 +675,18 @@ Class UnknownCommand{
 +String execute(request,response)
 }
 
-Class Redirect{
+Class UpdateQuoteOrder{
 +String execute(request,response)
 }
 
-Class EditItemList{
+Class UpdateQuotePrice{
 +String execute(request,response)
 }
 
-Class AdminMeasurementUnits{
+Class UpdateQuoteUser{
 +String execute(request,response)
 }
+
 
 /'##########################
  DBAccess
@@ -649,14 +696,22 @@ Class DataMapper{
 {static}+User login(email, password)
 {static}+Int createUserQuote(name, address, zipcodeCity, phone, email, comments)
 {static}+Int createQuoteOrder(user_proposition_id, oc_width, oc_length, ots_length, ots_width, ots_length, roof_type, roof_material, pitch)
-{static}+createQuoteOrderline(orders_id, item_list_id, quantity, total_price)
-{static}+deleteQuote(quoteID)
+{static}+void createQuoteOrderline(orders_id, item_list_id, quantity, total_price)
+{static}+void insertTotalPrice(calculateCarportTotalPriceWithTax, propositionID)
+{static}+void deleteQuote(quoteID)
 {static}+List <Item> getItemList()
 {static}+List <UserProposition> getUserProposition(userID)
 {static}+List <UserProposition> getAllUserProposition()
 {static}+void updateStatus(orderID, status)
 {static}+updateQuoteUserProposition(userID, name, address, zipcodeCity, phone, email, comments)
 {static}+void updateQuoteOrders(orderID, oc_width, oc_length, ots_width, ots_length, roof_type, roof_type, roof_material, pitch)
+{static}+void updateQuantityOrderline(orderlineID, quantity, price)
+{static}+int getOrderIDFromLineID(orderID, orderLIneID)
+{static}+double getOrderLinePriceFromLineID(orderID, orderLIneID)
+{static}+int getOrderCoverage(orderID)
+{static}+void updateOrderCoverage(coverage, orderID)
+{static}+double getOrderTotalPrice(orderID)
+{static}+void setPriceWithCoverage(totalPrice, orderID)
 {static}+List <CarportWidth> getCarportWidth()
 {static}+List <CarportLength> getCarportLength()
 {static}+List <RoofFlat> getRoofFlat()
@@ -668,6 +723,29 @@ Class DataMapper{
 {static}+List <BeamDimensionHeavy> getBeamDimensionHeavy()
 {static}+Map <Integer, Double> getPitchFactor()
 {static}+List <StandardDimensions> getStandardDimensions()
+{static}+List <ItemList> getAllItemList(orderID)
+{static}+List <MeasurementUnits> getMeasurementUnits()
+{static}+void createMeasurementUnits(units, c_width, c_length, ts_width, ts_length)
+{static}+void updateMeasurementUnits(measurement_units_id, units, c_width, c_length, ts_width, ts_length)
+{static}+void deleteMeasurementUnits(measurement_units_id)
+{static}+List <ItemList> getItemListAdmin()
+{static}+List <ItemList> createItemList(material_type, material, description, amounts, unit, price_per_unit)
+{static}+void updateItemList(item_list_id, material_type, material, description, amounts, String unit, price_per_unit)
+{static}+void deleteItemList(item_list_id)
+{static}+List <RafterSpacing> getRafterSpacing()
+{static}+void createRafterSpacing(category, beam_dimension, beam_spacing, rafter_length)
+{static}+void updateRafterSpacing(rafter_spacing_id, category, beam_dimension, beam_spacing, rafter_length)
+{static}+void deleteRafterSpacing(rafter_spacing_id)
+{static}+List <Roof> getRoof()
+{static}+void createRoof(roof_type, roof_category, roof_material)
+{static}+void updateRoof(roof_id, roof_type, roof_category, roof_material)
+{static}+void deleteRoof(roof_id)
+{static}+List <RoofPitch> getRoofPitch()
+{static}+void createRoofPitch(pitch, factor)
+{static}+void updateRoofPitch(roof_pitch_id, pitch, factor)
+{static}+void deleteRoofPitch(roof_pitch_id)
+{static}+List <StandardDimensions> getStandardDimensionsAdmin()
+{static}+void updateStandardDimensions( standard_dimensions_id, bottom_lathspan, bottom_laths, top_lath_gap,double avg_lath_span, roof_tile_length, roof_tile_width, roof_trapez_length, roof_trapez_width, shed_claddeing_board_dim, beam_dimension_heavy, beam_dimension_light)
 }
 Class Connector{
 {static}-String URL
