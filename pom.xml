@@ -4,6 +4,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>Fog</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
     <name>Fog</name>

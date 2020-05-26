@@ -68,9 +68,9 @@ public class DataMapperTest {
             stmt.execute("drop table if exists orders");
             stmt.execute("CREATE TABLE `orders` LIKE fogdb.orders");
             stmt.execute("INSERT INTO `orders` VALUE " +
-                    "(1, 1, '2020-05-05 18:26:00', 'Forespørgsel', '450', '510', '420', '300', 'rejst', 'Eternittag B6 - Teglrød','25','40','16500.95')," +
-                    "(2, 2, '2020-05-17 17:53:06', 'Forespørgsel', '360', '630', '330', '210', 'rejst','Betontagsten – B&C protector: Skifer', '25', '40', '13500.45')," +
-                    "(3, 3, '2020-05-18 13:33:37', 'Forespørgsel', '360', '570', '0', '0', 'fladt', 'bølgepap', '0', '40', '11200.35')");
+                    "(1, 1, '2020-05-05 18:26:00', 'Forespørgsel', '450', '510', '420', '300', 'rejst', 'Eternittag B6 - Teglrød','25','40','16500.95','23101.33')," +
+                    "(2, 2, '2020-05-17 17:53:06', 'Forespørgsel', '360', '630', '330', '210', 'rejst','Betontagsten – B&C protector: Skifer', '25', '40', '13500.45','18900.63')," +
+                    "(3, 3, '2020-05-18 13:33:37', 'Forespørgsel', '360', '570', '0', '0', 'fladt', 'bølgepap', '0', '40', '11200.35','15680.49')");
 
             stmt.execute("drop  table if exists item_list");
             stmt.execute("CREATE TABLE `item_list` LIKE fogdb.item_list");

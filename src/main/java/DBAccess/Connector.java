@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
 * Creates a connection to the database
-*
+* @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class Connector {
 
@@ -49,9 +49,9 @@ public class Connector {
             PASSWORD = System.getenv("JDBC_PASSWORD");
         } else {
             // Localhost
-            URL = "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET&useSSL=false";
+            URL = "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET"; //&useSSL=false
             USERNAME = "root";
-            PASSWORD = "password";
+            PASSWORD = "4354";
         }
     }
 
