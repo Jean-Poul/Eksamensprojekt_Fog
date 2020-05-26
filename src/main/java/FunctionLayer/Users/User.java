@@ -2,14 +2,17 @@ package FunctionLayer.Users;
 
 /**
  * The purpose of User is to create a user with a specific role
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class User {
 
     /**
+     * Constructor for user
      *
-     * @param email
-     * @param password
-     * @param role
+     * @param email e-mail
+     * @param password password
+     * @param role role
      */
     public User(String email, String password, String role) {
         this.email = email;
@@ -18,11 +21,12 @@ public class User {
     }
 
     /**
+     * Constructor for user with retrieval of autogen keys in DataMapper
      *
-     * @param id
-     * @param email
-     * @param password
-     * @param role
+     * @param id id
+     * @param email e-mail
+     * @param password password
+     * @param role role
      */
     public User(int id, String email, String password, String role) {
         this.id = id;
@@ -31,7 +35,7 @@ public class User {
         this.role = role;
     }
 
-    private int id; // just used to demo retrieval of autogen keys in UserMapper
+    private int id;
     private String email;
     private String password; // Should be hashed and secured
     private String role;

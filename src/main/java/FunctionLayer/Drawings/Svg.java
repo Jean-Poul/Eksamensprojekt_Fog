@@ -3,11 +3,8 @@ package FunctionLayer.Drawings;
 /**
  * Contains Constructor and method for generating topview svg drawing based off the CarportCalculation class.
  *
- * @author group
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
-
-import FunctionLayer.Calculation.CarportCalculation;
-import FunctionLayer.Exceptions.LoginSampleException;
 
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
@@ -21,15 +18,16 @@ public class Svg {
     CarportCalculation c;
 
     /**
-     *
-     * @param orderID               User data (In order to reference what order ID the drawing belongs to)
-     * @throws LoginSampleException
+     * Constructor for svg drawing
+     * @param orderID User data (In order to reference what order ID the drawing belongs to)
+     * @throws LoginSampleException LoginSampleException
      */
     public Svg(int orderID) throws LoginSampleException {
 
-        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+        c = new CarportCalculation(orderID); // Gets dummy request from database through carportcalc
 
         this.carportWidth = c.getCarportWidth();
+
         this.carportLength = c.getCarportLength();
         this.noOfRafts = c.getNoOfRafts();
         this.raftDistance = c.getAvgRaftDistance();

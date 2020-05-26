@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Register will add a new customer to the database, using email & password
+ * Register will add a new customer to the database, using email and password
  */
 public class Register extends Command {
     /**

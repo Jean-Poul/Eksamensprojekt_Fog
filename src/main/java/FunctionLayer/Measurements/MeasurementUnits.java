@@ -1,5 +1,10 @@
 package FunctionLayer.Measurements;
 
+/**
+ * Class for instantiating instances of request measurements units
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class MeasurementUnits {
 
     private int measurementUnitsId;
@@ -10,13 +15,14 @@ public class MeasurementUnits {
     private int ts_length;
 
     /**
+     * Constructor for measurement units
      *
-     * @param measurementUnitsId
-     * @param units
-     * @param c_width
-     * @param c_length
-     * @param ts_width
-     * @param ts_length
+     * @param measurementUnitsId measurement units id
+     * @param units units
+     * @param c_width carport width
+     * @param c_length carport length
+     * @param ts_width shed width
+     * @param ts_length shed length
      */
     public MeasurementUnits(int measurementUnitsId, int units, int c_width, int c_length, int ts_width, int ts_length) {
         this.measurementUnitsId = measurementUnitsId;

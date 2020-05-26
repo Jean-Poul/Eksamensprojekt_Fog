@@ -1,5 +1,10 @@
 package FunctionLayer.Measurements;
 
+/**
+ * Class for instantiating instances of request rafter spacing
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class RafterSpacing {
 
     private int rafter_spacing_id;
@@ -8,6 +13,15 @@ public class RafterSpacing {
     private double beam_spacing;
     private double rafter_length;
 
+    /**
+     * Constructor for rafter spacing
+     *
+     * @param rafter_spacing_id rafter spacing id
+     * @param category category
+     * @param beam_dimension beam dimension
+     * @param beam_spacing beam spacing
+     * @param rafter_length rafter length
+     */
     public RafterSpacing(int rafter_spacing_id, String category, String beam_dimension, double beam_spacing, double rafter_length) {
         this.rafter_spacing_id = rafter_spacing_id;
         this.category = category;

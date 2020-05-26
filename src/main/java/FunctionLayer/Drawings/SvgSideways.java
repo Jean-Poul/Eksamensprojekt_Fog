@@ -3,8 +3,9 @@ package FunctionLayer.Drawings;
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
 /**
- *  Contains Constructor and methods for generating sideview svg drawing based off the CarportCalculation class.
+ * Contains Constructor and methods for generating sideview svg drawing based off the CarportCalculation class.
  *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 
 public class SvgSideways {
@@ -16,9 +17,9 @@ public class SvgSideways {
 
     CarportCalculation c;
     /**
-     *
+     * Constructor for svg sideways drawing
      * @param orderID User data (In order to reference what order ID the drawing belongs to)
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     public SvgSideways(int orderID) throws LoginSampleException {
 
@@ -160,7 +161,7 @@ public class SvgSideways {
     }
 
     /**
-     * Draws the Carport & shed beams, barge, shedCladding and fascia board
+     * Draws the Carport and shed beams, barge, shedCladding and fascia board
      */
     public void addCarport(){
         double shedX =  carportLength-30-shedLength;
@@ -213,7 +214,7 @@ public class SvgSideways {
     }
 
     /**
-     * Draws the rooftiles and redraws barge board & fascia boards
+     * Draws the rooftiles and redraws barge board and fascia boards
      */
     public void addRooftiles() {
 
@@ -281,7 +282,7 @@ public class SvgSideways {
 
     /**
      *
-     * @return res + "</svg>"           returns the string res and a </svg> for use in the Drawing.java class
+     * @return res + svg tag           returns the string res and a svg tag for use in the Drawing.java class
      */
     @Override
     public String toString() {
