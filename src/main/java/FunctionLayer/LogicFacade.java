@@ -120,6 +120,13 @@ public class LogicFacade {
         return DataMapper.getOrderIDFromLineID(orderID, orderLineID);
     }
 
+    /**
+     * Gets current item price from orderline using lineID
+     * @param orderID
+     * @param orderLineID
+     * @return
+     * @throws LoginSampleException
+     */
     public static double getOrderLinePriceFromLineID(int orderID, int orderLineID) throws LoginSampleException {
         return DataMapper.getOrderLinePriceFromLineID(orderID, orderLineID);
     }

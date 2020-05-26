@@ -209,25 +209,19 @@ public class PriceCalculator {
     public PriceCalculator(int oLineID, double qty, int orderID) throws LoginSampleException {
 
         //Get the current order line price (To be replaced)
-        this.orderLinePriceOld = LogicFacade.getOrderLinePriceFromLineID(orderID, oLineID); //399,95
-        System.out.println(orderID + " " + oLineID);
-        System.out.println("gamle pris: " + orderLinePriceOld);
+        this.orderLinePriceOld = LogicFacade.getOrderLinePriceFromLineID(orderID, oLineID);
 
         //Update the new order line price
-        this.orderLinePriceNew = updatePrice(oLineID, qty); //799,9
-        System.out.println("nye pris" + orderLinePriceNew);
+        this.orderLinePriceNew = updatePrice(oLineID, qty);
 
         //Get the current total carport price (To be replaced)
-        double currentTotalPrice = LogicFacade.getTotalCarportPrice(orderID); //11024,65
-        System.out.println("Curr total price" + currentTotalPrice);
+        double currentTotalPrice = LogicFacade.getTotalCarportPrice(orderID);
 
         //Withdraw tax and current order line price from total carport price
-        double newTotalPrice = ((currentTotalPrice * subtractTax) - orderLinePriceOld); //(11024,65 * 0,8) - 399,95 = 8419,77
-        System.out.println("new price minus tax, minus orderline: " + newTotalPrice);
+        double newTotalPrice = ((currentTotalPrice * subtractTax) - orderLinePriceOld);
 
         //Add new item line price and tax
-        newTotalPrice = (newTotalPrice + this.orderLinePriceNew) * addTax; //8419,77 + 799,9 * 1,25 = 11524,58
-        System.out.println("new price + new item + tax: " + newTotalPrice);
+        newTotalPrice = (newTotalPrice + this.orderLinePriceNew) * addTax;
 
         //Update the total cost
         costPriceToDB(newTotalPrice, orderID);
