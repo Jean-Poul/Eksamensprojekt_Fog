@@ -1,0 +1,32 @@
+@startuml
+(*) --> "index.jsp"
+"index.jsp" --> "login.jsp"
+"index.jsp" --> "customerpage.jsp"
+
+"adminpage.jsp" --> "login.jsp"
+"login.jsp" --> [Login Error] "adminpage.jsp"
+"adminpage.jsp" --> [Logout] "index.jsp"
+"adminpage.jsp" --> "adminQuoteView.jsp"
+"adminQuoteView.jsp" --> [Logout] "index.jsp"
+"adminQuoteView.jsp" -left-> [Logout] "index.jsp"
+"adminQuoteView.jsp" --> "adminDrawing.jsp"
+"adminDrawing.jsp" -left-> [Logout] "index.jsp"
+"adminQuoteView.jsp" --> [Updated measurements] "Updates carport measurements"
+"Updates carport measurements" --> "adminQuoteView.jsp"
+
+partition "Updates carport measurements" #FFF8DC{
+AdminMeasurementsUpdates --> "ItemList.jsp"
+AdminMeasurementsUpdates --> "adminMeasurementUnits.jsp"
+AdminMeasurementsUpdates --> "adminRafterSpacing.jsp"
+AdminMeasurementsUpdates --> "adminRoof.jsp"
+AdminMeasurementsUpdates --> "adminRoofPitch.jsp"
+AdminMeasurementsUpdates --> "adminStandardDimensions.jsp"
+}
+
+"customerpage.jsp" --> [Choose carport type] "customerCarportCustomize.jsp"
+"customerpage.jsp" --> "customerCarportStandard.jsp"
+"customerCarportCustomize.jsp" --> [Generate quotation reciept] "customerReciept.jsp"
+"customerCarportStandard.jsp" --> "customerReciept.jsp"
+
+
+@enduml

@@ -24,5 +24,3 @@ Morten Rahbek Rasmussen [GitHub](https://github.com/Amazingh0rse)
 Mick Kristian Strellner Larsen [GitHub](https://github.com/MivleDK)
 
 Per Kringelbach [Github](https://github.com/cph-pk)
-
-<br>

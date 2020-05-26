@@ -1,0 +1,135 @@
+/* Global settings */
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Header */
+header {
+    height: 25vh;
+    background: url(../images/header.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.headerText{
+    float: right;
+    color: #1D5E9A;
+    font-family: 'Caveat', cursive;
+}
+
+
+/* Navigation */
+nav {
+    background-image: linear-gradient(-90deg, #1d5e9a, #030343 );
+    padding: 0 !important;
+    overflow: visible !important;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.effects {
+    text-align: center;
+    transition: .5s;
+}
+
+.effects::before {
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #ffffff;
+    transition: .5s;
+    transform: scale(.9);
+    z-index: -1;
+}
+
+.effects:hover {
+    color: #000000;
+    box-shadow: 0 0 5px #ffffff;
+    text-shadow: 0 0 5px #ffffff;
+}
+
+.effects:hover::before {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ffffff;
+}
+
+#menContainer{
+    margin: 0 auto !important;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+}
+
+.logo {
+    float: left;
+    border: none !important;
+    margin-top: -50px;
+/* On screens that are 600px or less, set the background color to olive */
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px #30343F;
+}
+
+.optionDisabled {
+    background-color: lightgray;
+}
+
+
+/* Footer */
+footer {
+    background: #1D5E9A;
+    color: #FAFAFF;
+}
+footer a:hover {
+    text-decoration: none;
+    color: #FAFAFF;
+}
+
+
+/* Print */
+.print-footer {
+    background: #1D5E9A;
+    color: #FAFAFF;
+    font-size: 0.8em;
+}
+
+.view-on-print {display: none;}
+.hide-on-print {display: block;}
+
+@media print {
+    #page-view {
+        background-color: #ffffff;
+    }
+    .view-on-print {display: block;}
+    .hide-on-print {display: none;}
+    .page-break {
+        clear: both;
+        page-break-after: always;
+    }
+    .bg-none-print {
+        background-color: #ffffff !important;
+        box-shadow: none !important;
+        border-color: #ffffff !important;
+    }
+}
+
+
+/* Media */
+@media screen and (max-width: 992px) {
+    .logo {
+        float: left !important;
+    }
+}

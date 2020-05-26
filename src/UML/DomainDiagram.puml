@@ -1,0 +1,60 @@
+@startuml
+
+class Customer
+class Order_Request
+class Carport
+class Shed
+class Extra
+class Roof
+
+Customer "1"-right- "*"Order_Request: \t
+Order_Request "1"-right-"1" Carport: \t
+
+Carport " 1 "--" 1 " Shed: \t
+Carport " 1 "--" * " Extra: \t
+Carport " 1 "--" 1 " Roof: \t
+
+class Customer {
+Customer ID
+Name
+Address
+Email
+Phone Nr
+Order Request
+}
+
+class Order_Request{
+OrderID
+Customer ID
+Carport
+}
+
+class Carport{
+Length
+Width
+Height
+Shed
+Extra
+Roof
+}
+
+class Shed{
+Shed
+Length
+width
+}
+
+class Extra{
+Walls
+Doors
+Windows
+Gutter
+}
+
+class Roof{
+Roof
+Roofmaterial
+Pitch
+}
+
+@enduml

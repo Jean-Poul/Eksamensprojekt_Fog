@@ -1,16 +1,19 @@
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.Exceptions.LoginSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- The purpose of UnknownCommand is to...
-
- @author kasper
+ *
+ * Customized exception handling for errors
  */
 public class UnknownCommand extends Command {
-
+    /**
+     *
+     * @return msg
+     * @throws LoginSampleException Exception for login
+     */
     @Override
     String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
         String msg = "Unknown command. Contact IT";
