@@ -23,4 +23,10 @@ Morten Rahbek Rasmussen [GitHub](https://github.com/Amazingh0rse)
 
 Mick Kristian Strellner Larsen [GitHub](https://github.com/MivleDK)
 
+<<<<<<< HEAD
 Per Kringelbach [Github](https://github.com/cph-pk)
+
+<br>
+=======
+Per Kringelbach [Github](https://github.com/cph-pk)
+>>>>>>> 961d5ad20365ef7fe47e8ff9d758dbec8fca001c

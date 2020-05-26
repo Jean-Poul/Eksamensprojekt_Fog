@@ -39,23 +39,15 @@ Command -[hidden]> "//Command//"
 package "FunctionLayer" #96c4fa{
 LogicFacade <--> DataMapper
 Connector <--> DataMapper
-DataMapper <--> User
-"Drawings" <--> "Carport Calculations"
-"Drawings" -[hidden]-->"Carport Calculations"
-ItemList <--> Item
+"Drawings" <--> "Calculations"
+"Drawings" -[hidden]-->"Calculations"
+"Drawings" -[hidden]-->"Measurements"
+"Proposition" -[hidden]-->"Drawings"
 
-Class Exception
-Class LoginSampleException
-Exception -[hidden]> LoginSampleException
-
-    package "Proposition" #96c4fa {
-    UserProposition <--> Item
-    UserProposition <--> ItemList
-    Item -[hidden]-> ItemList
-    UserProposition -[hidden]-> "Drawings"
-
-    Class UserProposition
-    Class CustomerQuote
+    package "Exceptions" #96c4fa {
+    Class Exception
+    Class LoginSampleException
+    Exception -[hidden]> LoginSampleException
     }
 
     package "Drawings" #96c4fa {
@@ -67,18 +59,40 @@ Exception -[hidden]> LoginSampleException
     Class SvgSidewaysBlueprint
     }
 
-    package "Carport Calculations" #96c4fa {
-    Class CarportWidth
-    Class CarportLength
-    Class ShedWidth
-    Class ShedLength
-    Class RoofRaised
-    Class RoofDegree
-    Class RoofFlat
-    Class CreateCalculatedQuote
+    package "Calculations" #96c4fa {
+    Class BeamDimensionHeavy
+    Class BeamDimensionLight
     Class CarportCalculation
+    Class Item
+    Class CreateCalculatedQuote
     Class StandardDimensions
     Class PriceCalculator
+    }
+
+    package "Measurements" #96c4fa {
+    Class CarportLength
+    Class CarportWidth
+    Class MeasurementUnits
+    Class RafterSpacing
+    Class Roof
+    Class RoofDegree
+    Class RoofFlat
+    Class RoofPitch
+    Class RoofRaised
+    Class ShedWidth
+    Class ShedLength
+    }
+
+    package "Tables" #96c4fa {
+    Class CustomerQuote
+    Class ItemList
+    Class UserProposition
+    }
+
+    package "Users" #96c4fa {
+    DataMapper <--> User
+
+    Class User
     }
 }
 
@@ -505,7 +519,10 @@ Class Item{
 -int quantity
 -String unit
 -double pricePrUnit
+-int ordersID
+-int totalPrice
 +Item(itemListID, materialType, material, description, quantity, unit, pricePrUnit)
++Item(ordersID, itemListID, quantity, totalPrice)
 }
 
 Class ItemList{
@@ -518,6 +535,8 @@ Class ItemList{
 -double total_price
 +ItemList(orderline_id, orders_id, material_type, quantity, unit, description, total_price)
 }
+
+
 
 Class LogicFacade {
 {static}+User login(email, password)

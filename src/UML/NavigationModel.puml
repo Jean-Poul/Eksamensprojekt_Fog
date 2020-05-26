@@ -7,7 +7,6 @@
 "login.jsp" --> [Login Error] "adminpage.jsp"
 "adminpage.jsp" --> [Logout] "index.jsp"
 "adminpage.jsp" --> "adminQuoteView.jsp"
-"adminQuoteView.jsp" --> [Logout] "index.jsp"
 "adminQuoteView.jsp" -left-> [Logout] "index.jsp"
 "adminQuoteView.jsp" --> "adminDrawing.jsp"
 "adminDrawing.jsp" -left-> [Logout] "index.jsp"

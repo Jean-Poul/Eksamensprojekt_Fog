@@ -40,6 +40,21 @@
                         Tilbud og skitsetegning fremsendes med post hurtigst muligt.
                         </p>
 
+<<<<<<< HEAD
+                        <br>
+                        <form name="testDrawing" action="FrontController" method="POST">
+                            <input type="hidden" name="target" value="drawing">
+                            <input class="btn btn-info" type="submit" value="test drawing">
+                        </form>
+                        <br>
+                        <form name="testDrawingFront" action="FrontController" method="POST">
+                            <input type="hidden" name="target" value="drawingFront">
+                            <input class="btn btn-info" type="submit" value="test drawingFront">
+                        </form>
+                        <br>
+
+=======
+>>>>>>> 961d5ad20365ef7fe47e8ff9d758dbec8fca001c
                     </article>
                     <!-- End article -->
 

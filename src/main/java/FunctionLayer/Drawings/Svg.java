@@ -231,7 +231,7 @@ public class Svg {
         //Rafters
         svg.append(String.format(rectTemplate, raftX, raftY, raftLength+5, raftWidth));
         for (int i=0; i <noOfRafts; i++) {
-            raftX=raftX+(carportLength /noOfRafts);
+            raftX=raftX+(carportLength/noOfRafts);
             svg.append(String.format(rectTemplate, raftX, raftY, raftLength+5, raftWidth));
         }
 
