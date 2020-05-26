@@ -76,7 +76,7 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <!--<input type="submit" class="nav-link btn btn-link px-5" value="Forspørgelsesoversigt" />-->
-                    <button type="submit" class="nav-link btn btn-link px-5" value="returnAdmin">Forspørgelsesoversigt</button>
+                    <button type="submit" class="nav-link btn btn-link px-5" value="returnAdmin">Forespørgelsesoversigt</button>
                 </li>
                 <!-- Dropdown -->
                 <li class="nav-item dropdown active">
