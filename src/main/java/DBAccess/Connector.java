@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
 * Creates a connection to the database
-*
+* @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class Connector {
 

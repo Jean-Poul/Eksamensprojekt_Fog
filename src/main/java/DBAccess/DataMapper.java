@@ -40,8 +40,8 @@ public class DataMapper {
 
 
     /**
-     *
-     * @param user
+     * Create user
+     * @param user User object
      * @throws LoginSampleException
      */
     public static void createUser(User user) throws LoginSampleException {
@@ -64,8 +64,10 @@ public class DataMapper {
 
 
     /**
-     * @param email
-     * @param password
+     *
+     * User login
+     * @param email e-mail
+     * @param password password
      * @return user
      * @throws LoginSampleException
      */
@@ -99,12 +101,13 @@ public class DataMapper {
 
 
     /**
-     * @param name
-     * @param address
-     * @param zipcodeCity
-     * @param phone
-     * @param email
-     * @param comments
+     * Create user quote
+     * @param name name
+     * @param address address
+     * @param zipcodeCity zipcode and city
+     * @param phone phonenumber
+     * @param email e-mail
+     * @param comments comments
      * @return userId
      * @throws LoginSampleException
      */
@@ -131,6 +134,7 @@ public class DataMapper {
 
 
     /**
+     * Create quote order
      * @param user_proposition_id
      * @param oc_width
      * @param oc_length
