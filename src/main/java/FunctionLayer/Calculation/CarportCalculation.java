@@ -100,6 +100,8 @@ public class CarportCalculation {
     ArrayList<ArrayList<String>> raftDistancesLight = new ArrayList<>(); //[FIX] Contains the raft distances to be selected from depending on raft length and roof type (Light/heavy)
     ArrayList<ArrayList<String>> raftDistancesHeavy = new ArrayList<>();
 
+    //Used to retrieve correct raft distance from DB (By converting distance from cm to m)
+    double raftLengthAdjust;
 
     //Formats decimal numbers to two decimals.
     DecimalFormat df = new DecimalFormat("#.##");
@@ -122,7 +124,6 @@ public class CarportCalculation {
     public CarportCalculation(int orderID) throws LoginSampleException {
 
         this.orderID = orderID;
-        //this.userPropositionID = user_proposition_Id; //How do we get this (Remember to add to parameter)?
 
         //Set standard dimensions from database (Assumptions)
         this.bottomLathSpan = standardDimensions.get(0).getBottom_lathspan();
@@ -174,29 +175,17 @@ public class CarportCalculation {
             this.customerRoofAngle = 0;
         }
 
-        //[FIX] TEMPORARY FIX UNTIL RAFTDISTANCES WORKS
         if (roofHeavy) {
-            //this.raftDistance = log.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy(); //Out of bounds!?
-            //this.raftDimension = log.getBeamDimensionHeavy(raftLength).get(0).getBeamDimensionHeavy();
-//            LogicFacade.getBeamDimensionHeavy(raftLength).get(0).getBeamDimensionHeavy();
-//            LogicFacade.getBeamDimensionHeavy(raftLength).get(0).getBeamSpacingHeavy();
-            raftDistance = 1.0;
-            raftDimension = "45 x 195";
+            raftLengthAdjust = raftLength / 100;
+            raftDistance = LogicFacade.getBeamDimensionHeavy(raftLengthAdjust).get(0).getBeamSpacingHeavy();
+            raftDimension = LogicFacade.getBeamDimensionHeavy(raftLengthAdjust).get(0).getBeamDimensionHeavy();
             raftType = 21;
         } else {
-            //this.raftDistance = log.getBeamDimensionLight(raftLength).get(0).getBeamSpacingLight();
-            //this.raftDimension = log.getBeamDimensionLight(raftLength).get(0).getBeamDimensionLight();
-            raftDistance = 1.0;
-            raftDimension = "45 x 120";
+            raftLengthAdjust = raftLength / 100;
+            raftDistance = LogicFacade.getBeamDimensionLight(raftLengthAdjust).get(0).getBeamSpacingLight();
+            raftDimension = LogicFacade.getBeamDimensionLight(raftLengthAdjust).get(0).getBeamDimensionLight();
             raftType = 20;
         }
-
-//        //Set rafttype depending on raftdistance table in database
-//        if(raftDimension.equalsIgnoreCase("45 x 120")){
-//            raftType = 20;
-//        } else if (raftDimension.equalsIgnoreCase("45 x 195")){
-//            raftType = 21;
-//        }
 
         //Begin calculations
         calcRoofHeight(customerRoofAngle, carportWidth);
@@ -209,7 +198,6 @@ public class CarportCalculation {
         calcNoOfBeamsAndDim(shedLength);
         calculateSupportingStrap(carportWidth, carportLength);
         calcSternBoardLength(carportLength);
-
     }
 
     /**
