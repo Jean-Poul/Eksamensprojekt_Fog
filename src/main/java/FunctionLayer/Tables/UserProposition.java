@@ -2,6 +2,8 @@ package FunctionLayer.Tables;
 
 /**
  * Class for instantiating instances of a user proposition with quote information
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 
 public class UserProposition {
@@ -29,27 +31,28 @@ public class UserProposition {
 
 
     /**
+     * Constructor for user proposition with quote info
      *
-     * @param user_proposition_id
-     * @param name
-     * @param address
-     * @param zipcodeCity
-     * @param phone
-     * @param email
-     * @param comments
-     * @param orders_id
-     * @param order_date
-     * @param status
-     * @param carport_width
-     * @param carport_length
-     * @param shed_width
-     * @param shed_length
-     * @param roof_type
-     * @param roof_material
-     * @param pitch
-     * @param coverage
-     * @param offer_price
-     * @param total_price
+     * @param user_proposition_id user proposition id
+     * @param name name
+     * @param address address
+     * @param zipcodeCity zipcode and city
+     * @param phone phone
+     * @param email e-mail
+     * @param comments comments
+     * @param orders_id order id
+     * @param order_date order date
+     * @param status status
+     * @param carport_width carport width
+     * @param carport_length carport length
+     * @param shed_width shed width
+     * @param shed_length shed length
+     * @param roof_type roof type
+     * @param roof_material roof material
+     * @param pitch pitch
+     * @param coverage coverage
+     * @param offer_price offer price
+     * @param total_price tatal price
      */
     public UserProposition(int user_proposition_id, String name, String address, String zipcodeCity, int phone, String email, String comments, int orders_id, String order_date, String status, int carport_width, int carport_length, int shed_width, int shed_length, String roof_type, String roof_material, int pitch, int coverage, double offer_price, double total_price) {
         this.user_proposition_id = user_proposition_id;

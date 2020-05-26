@@ -2,6 +2,8 @@ package FunctionLayer.Tables;
 
 /**
  * Class for instantiating instances of a customer quote with user information
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class CustomerQuote {
 
@@ -14,24 +16,24 @@ public class CustomerQuote {
     private String comment;
 
     /**
-     * Constructor
+     * Constructor for customer quote id
      *
-     * @param customerId
+     * @param customerId customer id
      */
     public CustomerQuote(int customerId) {
         this.customerId = customerId;
     }
 
     /**
-     * Constructor
+     * Constructor for customer quote
      *
-     * @param customerId
-     * @param name
-     * @param address
-     * @param zipcodeCity
-     * @param phone
-     * @param email
-     * @param comment
+     * @param customerId customer id
+     * @param name name
+     * @param address address
+     * @param zipcodeCity zipcode and city
+     * @param phone phone
+     * @param email e-mail
+     * @param comment comment
      */
     public CustomerQuote(int customerId, String name, String address, String zipcodeCity, int phone, String email, String comment) {
         this.customerId = customerId;

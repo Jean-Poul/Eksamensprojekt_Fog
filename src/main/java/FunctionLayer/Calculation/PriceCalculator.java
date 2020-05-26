@@ -1,16 +1,17 @@
 package FunctionLayer.Calculation;
 
-import FunctionLayer.LogicFacade;
 import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.LogicFacade;
 
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
- * Price calculator calculates the total price for the entire carport.
- * Takes a majority of calculated data from the CarportCalculation class.
+ * Price calculator calculates the total price for the entire carport.<br>
+ * Takes a majority of calculated data from the CarportCalculation class.<br>
  * Takes a majority of price information from the database.
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 
 public class PriceCalculator {
@@ -87,8 +88,8 @@ public class PriceCalculator {
     /**
      * Constructor for PriceCalculator. Takes a carport object to perform all necessary price calculations
      * @param cpCalc CarportCalculation Object
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     public PriceCalculator(CarportCalculation cpCalc) throws LoginSampleException, ClassNotFoundException {
 
@@ -201,10 +202,10 @@ public class PriceCalculator {
 
     /**
      * Constructor for updating single orderlines
-     * @param oLineID
-     * @param qty
-     * @param orderID
-     * @throws LoginSampleException
+     * @param oLineID order line id
+     * @param qty quantity
+     * @param orderID order id
+     * @throws LoginSampleException LoginSampleException
      */
     public PriceCalculator(int oLineID, double qty, int orderID) throws LoginSampleException {
 
@@ -229,10 +230,10 @@ public class PriceCalculator {
 
     /**
      * Gets the updated price for an order line
-     * @param itemID
-     * @param qty
-     * @return
-     * @throws LoginSampleException
+     * @param itemID item id
+     * @param qty quantity
+     * @return newOrderLinePrice
+     * @throws LoginSampleException LoginSampleException
      */
     public double updatePrice(int itemID, double qty) throws LoginSampleException {
         Item i = itemSearch(itemID);
@@ -245,7 +246,7 @@ public class PriceCalculator {
      *
      * @param orderID Current order ID
      * @param item    Item type containing item type (no.), total calculated length and total price (qty x price per unit)
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     public void orderLineToDB(int orderID, Item item) throws LoginSampleException {
         int oID = orderID;
@@ -258,7 +259,7 @@ public class PriceCalculator {
 
     /**
      * Calculates total carport price with tax
-     * @param totalCarportCostNoTax
+     * @param totalCarportCostNoTax total carport price without tax
      */
     public void calculateCarportTotalPrice(double totalCarportCostNoTax) {
 
@@ -272,7 +273,7 @@ public class PriceCalculator {
      *
      * @param totalCarportPriceCostWithTax Total cost price for carport with tax and without coverage
      * @param orderID                      specific order ID
-     * @throws LoginSampleException
+     * @throws LoginSampleException        LoginSampleException
      */
     public void costPriceToDB(double totalCarportPriceCostWithTax, int orderID) throws LoginSampleException {
         LogicFacade.insertTotalCarportPrice(totalCarportPriceCostWithTax, orderID);
@@ -280,10 +281,9 @@ public class PriceCalculator {
 
     /**
      * Takes item type from carport calculation and searches for equivilant in DB
-     *
-     * @param itemID
-     * @return
-     * @throws SQLException
+     * @param itemID item id
+     * @return item
+     * @throws LoginSampleException LoginSampleException
      */
     public Item itemSearch(int itemID) throws LoginSampleException {
 

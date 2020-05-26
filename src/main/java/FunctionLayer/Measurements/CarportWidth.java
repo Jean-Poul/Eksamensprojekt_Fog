@@ -2,15 +2,17 @@ package FunctionLayer.Measurements;
 
 /**
  * Class for instantiating instances of request measurements for carport width
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class CarportWidth {
 
     private int carportWidthOption;
 
     /**
-     * Constructor
+     * Constructor for carport width
      *
-     * @param carportWidthOption
+     * @param carportWidthOption carport width option
      */
     public CarportWidth(int carportWidthOption) {
         this.carportWidthOption = carportWidthOption;
