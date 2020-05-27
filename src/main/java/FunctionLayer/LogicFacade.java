@@ -34,6 +34,20 @@ public class LogicFacade {
     //##################
 
     /**
+     * Create user
+     *
+     * @param email e-mail
+     * @param password password
+     * @return user
+     * @throws LoginSampleException LoginSampleException
+     */
+    public static User createUser(String email,  String password) throws LoginSampleException {
+        User user = new User(email, password, "customer");
+        DataMapper.createUser( user );
+        return user;
+    }
+
+    /**
      * User login
      *
      * @param email e-mail
