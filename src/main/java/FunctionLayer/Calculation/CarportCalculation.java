@@ -182,10 +182,16 @@ public class CarportCalculation {
             raftDimension = LogicFacade.getBeamDimensionHeavy(raftLengthAdjust).get(0).getBeamDimensionHeavy();
             raftType = 21;
         } else {
+            if(!raisedRoof){
+                raftDistance = 1;
+                raftDimension = "45 x 195";
+                raftType = 20;
+            } else {
             raftLengthAdjust = raftLength / 100;
             raftDistance = LogicFacade.getBeamDimensionLight(raftLengthAdjust).get(0).getBeamSpacingLight();
             raftDimension = LogicFacade.getBeamDimensionLight(raftLengthAdjust).get(0).getBeamDimensionLight();
             raftType = 20;
+            }
         }
 
         //Begin calculations
