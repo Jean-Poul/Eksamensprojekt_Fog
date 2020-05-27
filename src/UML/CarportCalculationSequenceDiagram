@@ -1,0 +1,39 @@
+@startuml
+
+
+title "Customer carport RFQ - Sequence Diagram"
+
+
+actor Customer
+box "Presentation Layer" #LightBlue
+boundary customerCarportCustomize.jsp
+participant CarportCalcPage
+end box
+box "Function Layer" #LightGreen
+participant CarportCalculation
+participant PriceCalculation
+participant LogicFacade
+end box
+box "BBAccess" #fa6666
+database Database
+end box
+
+
+Customer -> customerCarportCustomize.jsp : Request for quotation
+customerCarportCustomize.jsp -> customerCarportCustomize.jsp : Validate request
+customerCarportCustomize.jsp -> Customer : Receipt for RFQ
+CarportCalcPage -> LogicFacade : Handle data and send to DB interface
+LogicFacade -> Database : Store RFQ in Database
+customerCarportCustomize.jsp -> CarportCalcPage : Fetch RFQ from .jsp
+CarportCalculation -> LogicFacade : Calculate and send to DB interface
+LogicFacade -> Database : Calculate all measurements
+CarportCalculation -> PriceCalculation : Calculate all prices
+CarportCalculation <--> LogicFacade : Get standard dimensions
+LogicFacade <--> Database : Get standard dimensions
+PriceCalculation <--> LogicFacade : Get item price information
+LogicFacade <--> Database : Get item price information
+PriceCalculation -> LogicFacade : Send quote to DB Interface
+LogicFacade -> Database : Store calculated quote in DB
+
+
+@enduml
