@@ -3,29 +3,31 @@
 "index.jsp" --> "login.jsp"
 "index.jsp" --> "customerpage.jsp"
 
-"adminpage.jsp" --> "login.jsp"
-"login.jsp" --> [Login Error] "adminpage.jsp"
+"adminpage.jsp" --> [Login Error] "login.jsp"
+"login.jsp" --> "adminpage.jsp"
 "adminpage.jsp" --> [Logout] "index.jsp"
-"adminpage.jsp" --> "adminQuoteView.jsp"
+"adminpage.jsp" -> "adminQuoteView.jsp"
 "adminQuoteView.jsp" -left-> [Logout] "index.jsp"
-"adminQuoteView.jsp" --> "adminDrawing.jsp"
+"adminQuoteView.jsp" -> "adminDrawing.jsp"
 "adminDrawing.jsp" -left-> [Logout] "index.jsp"
-"adminQuoteView.jsp" --> [Updated measurements] "Updates carport measurements"
-"Updates carport measurements" --> "adminQuoteView.jsp"
+"adminQuoteView.jsp" --> "customerReceipt.jsp"
 
-partition "Updates carport measurements" #FFF8DC{
-AdminMeasurementsUpdates --> "ItemList.jsp"
-AdminMeasurementsUpdates --> "adminMeasurementUnits.jsp"
-AdminMeasurementsUpdates --> "adminRafterSpacing.jsp"
-AdminMeasurementsUpdates --> "adminRoof.jsp"
-AdminMeasurementsUpdates --> "adminRoofPitch.jsp"
-AdminMeasurementsUpdates --> "adminStandardDimensions.jsp"
+partition "Admin Drop Down Menu" #FFF8DC{
+"adminpage.jsp" --> === S2 ===
+=== S2 === -right-> [Updated measurements and items] "adminpage.jsp"
+
+=== S2 === --> "ItemList.jsp"
+=== S2 === -left> "adminMeasurementUnits.jsp"
+=== S2 === -> "adminRafterSpacing.jsp"
+=== S2 === --> "adminRoof.jsp"
+=== S2 === --> "adminRoofPitch.jsp"
+=== S2 === --> "adminStandardDimensions.jsp"
 }
 
 "customerpage.jsp" --> [Choose carport type] "customerCarportCustomize.jsp"
 "customerpage.jsp" --> "customerCarportStandard.jsp"
-"customerCarportCustomize.jsp" --> [Generate quotation reciept] "customerReciept.jsp"
-"customerCarportStandard.jsp" --> "customerReciept.jsp"
+"customerCarportCustomize.jsp" --> [Generate quotation receipt] "customerReceipt.jsp"
+"customerCarportStandard.jsp" --> "customerReceipt.jsp"
 
 
 @enduml
