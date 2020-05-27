@@ -253,7 +253,7 @@ public class Svg {
 
         //Raft measurements
         svg.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftDistance, arrowLineY2-30));
-        svg.append(String.format(lowerTextTemplate, x+43, y-35, text= (int) raftDistance));
+        svg.append(String.format(lowerTextTemplate, raftDistance/2, y-38, text= (int) raftDistance));
 
         //Lath measurements
         svg.append(String.format(lineTemplate, carportLength+10, lathSpan, carportLength+10, arrowLineY2=0));

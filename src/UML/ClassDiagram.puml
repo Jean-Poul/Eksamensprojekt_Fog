@@ -2,7 +2,8 @@
 left to right direction
 title EksamensProjekt_Fog - Class Diagram
 
-PresentationLayer -left[hidden]> DBAccess
+"Drawings" <--> "Calculations"
+"Measurements" <-> "Calculations"
 
 package "DBAccess" #fa9696 {
     Class DataMapper
@@ -13,36 +14,51 @@ package "PresentationLayer" #78d683{
 
 FrontController --|> Command
 FrontController -[hidden]> Command
+HttpServlet -|> FrontController
 Command --|> "//Command//"
 Command -[hidden]> "//Command//"
+Tables -[hidden]> Measurements
 
     package "//Command//" #78d683{
-    AdminItemList -[hidden]>AdminItemListDB
-    AdminMeasurementUnits -[hidden]>AdminMeasurementUnitsDB
-    AdminRafterSpacing -[hidden]>AdminRafterSpacingDB
-    AdminReceipt -[hidden]>AdminRejectQuote
-    AdminRoof -[hidden]>AdminRoofDB
-    AdminRoofPitch -[hidden]>AdminRoofPitchDB
-    AdminStandardDimension -[hidden]>AdminStandardDimensionDB
+    Class AdminItemList
+    Class AdminItemListDB
+    Class AdminMeasurementUnits
+    Class AdminMeasurementUnitsDB
+    Class AdminRafterSpacing
+    Class AdminRafterSpacingDB
+    Class AdminReceipt
+    Class AdminRejectQuote
+    Class AdminRoof
+    Class AdminRoofDB
+    Class AdminRoofPitch
+    Class AdminRoofPitchDB
+    Class AdminStandardDimension
+    Class AdminStandardDimensionDB
+    Class CarportCalcPage
+    Class CarportCustomize
+    Class Drawing
+    Class EditItemList
+    Class Login
+    Class QuoteView
+    Class Redirect
+    Class Register
+    Class RejectQuote
+    Class ReturnAdmin
+    Class UnknownCommand
+    Class UpdateQuoteOrder
+    Class UpdateQuotePrice
+    Class UpdateQuoteUser
 
-    CarportCalcPage -[hidden]>CarportCustomize
-    Command -[hidden]>Drawing
-    EditItemList -[hidden]>FrontController
-    Login -[hidden]>QuoteView
-    Redirect -[hidden]>Register
-    RejectQuote -[hidden]>ReturnAdmin
-    UnknownCommand -[hidden]>UpdateQuoteOrder
-    UpdateQuotePrice -[hidden]>UpdateQuoteUser
     }
 }
 
 package "FunctionLayer" #96c4fa{
-LogicFacade <--> DataMapper
+LogicFacade <-> DataMapper
+LogicFacade <-> "//Command//"
 Connector <--> DataMapper
-"Drawings" <--> "Calculations"
 "Drawings" -[hidden]-->"Calculations"
 "Drawings" -[hidden]-->"Measurements"
-"Proposition" -[hidden]-->"Drawings"
+
 
     package "Exceptions" #96c4fa {
     Class Exception
@@ -70,6 +86,7 @@ Connector <--> DataMapper
     }
 
     package "Measurements" #96c4fa {
+
     Class CarportLength
     Class CarportWidth
     Class MeasurementUnits
@@ -84,14 +101,15 @@ Connector <--> DataMapper
     }
 
     package "Tables" #96c4fa {
+    CustomerQuote -up[hidden]> ItemList
+    ItemList -[hidden]up> UserProposition
     Class CustomerQuote
     Class ItemList
     Class UserProposition
     }
 
     package "Users" #96c4fa {
-    DataMapper <--> User
-
+    DataMapper <-> User
     Class User
     }
 }
@@ -584,8 +602,11 @@ Class UserProposition{
 -String roof_type
 -String roof_material
 -int pitch
+-int coverage
+-double offer_price
+-double total_price
 
-+UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id,order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch)
++UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price, total_price)
 }
 
 Class CustomerQuote{
@@ -597,6 +618,7 @@ Class CustomerQuote{
 -String email
 -String comment
 +CustomerQuote(customerID)
++CustomerQuote(customerId, name, address, zipcodeCity, int phone, email, comment)
 }
 
 Class Item{
@@ -615,6 +637,9 @@ Class Item{
 }
 
 Class ItemList{
+-int item_list_id
+-String material
+-int amounts
 -int orderline_id
 -int orders_id
 -String material_type
@@ -622,7 +647,8 @@ Class ItemList{
 -String unit
 -String description
 -double total_price
-+ItemList(orderline_id, orders_id, material_type, quantity, unit, description, total_price)
++ItemList(orderline_id, orders_id, material_type quantity unit description, total_price)
++ItemList(item_list_id, material_type, material, description, amounts, unit, price_per_unit)
 }
 
 
