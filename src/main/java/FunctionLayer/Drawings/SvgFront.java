@@ -68,7 +68,7 @@ public class SvgFront {
     private double roofAngle;
     private double roofRaftLath;
 
-    private double beamlength = 210;
+    private double beamlength = 250;
     private double carportHeight = roofHeight+beamlength+5;
 
     private double noOfRafts;
@@ -165,7 +165,7 @@ public class SvgFront {
 
         //Leftside arrow
         svgFront.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportHeight)));
-        svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 210));
+        svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 250));
 
         //Roof arrows
         if(roofAngle>0) {
