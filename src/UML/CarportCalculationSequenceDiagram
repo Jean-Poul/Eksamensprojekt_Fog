@@ -25,13 +25,15 @@ customerCarportCustomize.jsp -> Customer : Receipt for RFQ
 CarportCalcPage -> LogicFacade : Handle data and send to DB interface
 LogicFacade -> Database : Store RFQ in Database
 customerCarportCustomize.jsp -> CarportCalcPage : Fetch RFQ from .jsp
-CarportCalculation -> LogicFacade : Calculate and send to DB interface
-LogicFacade -> Database : Calculate all measurements
-CarportCalculation -> PriceCalculation : Calculate all prices
+Database -> LogicFacade : Fetch RFQ data
+LogicFacade -> CarportCalculation : Fetch RFQ data
 CarportCalculation <--> LogicFacade : Get standard dimensions
 LogicFacade <--> Database : Get standard dimensions
+CarportCalculation -> CarportCalculation : Perform calculations
+CarportCalculation -> PriceCalculation : Send calculations to price calc.
 PriceCalculation <--> LogicFacade : Get item price information
 LogicFacade <--> Database : Get item price information
+PriceCalculation -> PriceCalculation : Perform calculations
 PriceCalculation -> LogicFacade : Send quote to DB Interface
 LogicFacade -> Database : Store calculated quote in DB
 
