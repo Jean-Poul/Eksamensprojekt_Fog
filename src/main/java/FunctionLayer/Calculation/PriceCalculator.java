@@ -85,6 +85,8 @@ public class PriceCalculator {
     private double totalCarportPriceCostWithTax;
     private double totalCarportPriceCoverage;
 
+    public PriceCalculator(){}
+
     /**
      * Constructor for PriceCalculator. Takes a carport object to perform all necessary price calculations
      * @param cpCalc CarportCalculation Object

@@ -33,8 +33,8 @@
 
 <h1 class="text-center mt-5">Admin</h1>
 <div class="container mb-5 mt-5">
-    <h2>Rafterafstand</h2>
-    <p>Her kan der rettes, slettes og tilføjes nye måleenheder til rafter afstand:</p>
+    <h2>Spærafstand</h2>
+    <p>Her kan der rettes, slettes og tilføjes nye måleenheder til spærafstanden:</p>
 
     <!-- Delete row form -->
     <form name="delete" id="delete" action="FrontController" method="post">
@@ -47,8 +47,8 @@
         <thead>
         <tr>
             <th>Kategori</th>
-            <th>Bjælke dimension</th>
-            <th>Bjælkeafstand</th>
+            <th>Spær dimension</th>
+            <th>Spærafstand</th>
             <th>Spærlængde</th>
             <th></th>
         </tr>
