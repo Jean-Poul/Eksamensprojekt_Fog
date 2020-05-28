@@ -58,6 +58,7 @@ LogicFacade <-> "//Command//"
 Connector <--> DataMapper
 "Drawings" -[hidden]-->"Calculations"
 "Drawings" -[hidden]-->"Measurements"
+"Tables" <-> DataMapper
 
 
     package "Exceptions" #96c4fa {
