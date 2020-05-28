@@ -53,12 +53,15 @@ Tables -[hidden]> Measurements
 }
 
 package "FunctionLayer" #96c4fa{
-LogicFacade <-> DataMapper
-LogicFacade <-> "//Command//"
+LogicFacade <--> "DataMapper"
+LogicFacade <--> "//Command//"
+LogicFacade <--> "Drawings"
+LogicFacade <--> "Calculations"
+LogicFacade <-> "Tables"
 Connector <--> DataMapper
 "Drawings" -[hidden]-->"Calculations"
-"Drawings" -[hidden]-->"Measurements"
-"Tables" <-> DataMapper
+"Drawings" -[hidden]->"Measurements"
+"Tables" <-> "LogicFacade"
 
 
     package "Exceptions" #96c4fa {
