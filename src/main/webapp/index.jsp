@@ -40,17 +40,6 @@
                         Tilbud og skitsetegning fremsendes med post hurtigst muligt.
                         </p>
 
-                        <br>
-                        <form name="testDrawing" action="FrontController" method="POST">
-                            <input type="hidden" name="target" value="drawing">
-                            <input class="btn btn-info" type="submit" value="test drawing">
-                        </form>
-                        <br>
-                        <form name="testDrawingFront" action="FrontController" method="POST">
-                            <input type="hidden" name="target" value="drawingFront">
-                            <input class="btn btn-info" type="submit" value="test drawingFront">
-                        </form>
-                        <br>
 
                     </article>
                     <!-- End article -->
@@ -68,22 +57,22 @@
                                 <div class="carousel-item active">
                                     <img class="d-block w-100" src="images/logo.png" alt="First slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Overskrift</h5>
-                                        <p>Køb køb køb køb ALT</p>
+                                        <h5>Velkommen</h5>
+                                        <p>Til Fog Trælast's carport designer</p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="images/logo.png" alt="Second slide">
+                                    <img class="d-block w-100" src="images/carport1.jpg" alt="Second slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Overskrift</h5>
-                                        <p>Køb køb køb køb ALT</p>
+                                        <h5></h5>
+                                        <p></p>
                                     </div>
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100" src="images/logo.png" alt="Third slide">
+                                    <img class="d-block w-100" src="images/carport2.jpg" alt="Third slide">
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>Overskrift</h5>
-                                        <p>Køb køb køb køb ALT</p>
+                                        <h5></h5>
+                                        <p></p>
                                     </div>
                                 </div>
 

@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Fog">
+    <output-path>$PROJECT_DIR$/out/artifacts/Fog</output-path>
+    <root id="archive" name="Fog.war" />
+  </artifact>
+</component>

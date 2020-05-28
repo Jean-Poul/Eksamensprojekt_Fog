@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>projektskabelon</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>Fog</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>projektskabelon</name>
+    <name>Fog</name>
 
 
     <properties>

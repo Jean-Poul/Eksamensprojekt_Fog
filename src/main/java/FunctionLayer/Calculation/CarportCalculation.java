@@ -1,17 +1,18 @@
 package FunctionLayer.Calculation;
 
-import FunctionLayer.LogicFacade;
 import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.LogicFacade;
 
-import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Contains methods for calculating every dimension of the total carport solution.
+ * Contains methods for calculating every dimension of the total carport solution.<br>
  * The calculations are used to generate drawings, bill-of-material and the final quote.
  *
- * @author group
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 
 public class CarportCalculation {
@@ -117,9 +118,9 @@ public class CarportCalculation {
     private Map<Integer, Double> angleAndFactor = LogicFacade.getPitchFactor();
 
     /**
-     * constructor that takes order ID and calculates measurements and amounts for use in pricecalculator & svg drawings
+     * constructor that takes order ID and calculates measurements and amounts for use in pricecalculator and svg drawings
      * @param orderID                   User data (In order to reference what order ID the calculation belongs to
-     * @throws LoginSampleException
+     * @throws LoginSampleException     LoginSampleException
      */
     public CarportCalculation(int orderID) throws LoginSampleException {
 
@@ -181,10 +182,16 @@ public class CarportCalculation {
             raftDimension = LogicFacade.getBeamDimensionHeavy(raftLengthAdjust).get(0).getBeamDimensionHeavy();
             raftType = 21;
         } else {
+            if(!raisedRoof){
+                raftDistance = 1;
+                raftDimension = "45 x 195";
+                raftType = 20;
+            } else {
             raftLengthAdjust = raftLength / 100;
             raftDistance = LogicFacade.getBeamDimensionLight(raftLengthAdjust).get(0).getBeamSpacingLight();
             raftDimension = LogicFacade.getBeamDimensionLight(raftLengthAdjust).get(0).getBeamDimensionLight();
             raftType = 20;
+            }
         }
 
         //Begin calculations
@@ -247,6 +254,8 @@ public class CarportCalculation {
 
     /**
      * Outputs number of laths required for shed. Currently set to a fixed number of 12
+     * @param shedLength Shed length
+     * @param shedWidth  Shed width
      */
     public void calculateShedWallLaths(int shedLength, int shedWidth) {
         shedWallLathType = 29;
@@ -262,6 +271,7 @@ public class CarportCalculation {
      * @param ROOF_TILE_WIDTH    Width of a roof tile (Assumed value from FOG website)
      * @param ROOF_TRAPEZ_LENGTH Length of a roof trapez plate (Assumed value from FOG website)
      * @param ROOF_TRAPEZ_WIDTH  Width of a roof trapez plate (Assumed value from FOG website)
+     * @param customerRoofAngle  The customer selected roof angle
      */
     public void calcRoofCladdingArea(int carportLength, double calcRaftLength, double ROOF_TILE_LENGTH, double ROOF_TILE_WIDTH, double ROOF_TRAPEZ_LENGTH, double ROOF_TRAPEZ_WIDTH, int customerRoofAngle) {
 
@@ -374,7 +384,7 @@ public class CarportCalculation {
     /**
      * Calculates the required amount of roof laths and the necessary distance between them
      *
-     * @param calcRaftLength
+     * @param calcRaftLength calculated raft length
      */
     public void calcRoofLaths(double calcRaftLength) {
         roofLathType = 27;

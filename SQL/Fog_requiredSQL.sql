@@ -173,20 +173,27 @@ INSERT INTO standard_dimensions (bottom_lathspan,bottom_laths,top_lath_gap,avg_l
 UNLOCK TABLES;
 
 LOCK TABLES user_proposition WRITE;
-INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES ('Hans Gummi','Gummivej 2', '3490 Kvistgård', '12116644', 'gummigeden@gmail.com','');
+INSERT INTO user_proposition (name,address,zipcodeCity,phone,email,comments) VALUES ('Hans Hansen','Gasværksvej 21', '3490 Kvistgård', '12116644', 'hanshansen@gmail.com','');
 UNLOCK TABLES;
 
 LOCK TABLES orders WRITE;
-INSERT INTO orders (user_proposition_id,order_date,status,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch) VALUES ('1','2020-05-05 18:26:00','Forespørgsel','450','510','420','300','rejst','Eternittag B6 - Teglrød','25');
+INSERT INTO orders (user_proposition_id,order_date,status,oc_width,oc_length,ots_width,ots_length,roof_type,roof_material,pitch,coverage,offer_price,total_price) VALUES ('1','2020-05-05 18:26:00','Forespørgsel','450','510','420','300','rejst','Eternittag B6 - Teglrød','25','40','17743.23','24840.52');
 UNLOCK TABLES;
 
 LOCK TABLES orderline WRITE;
-INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES('1','21','6','2126'),
-																		  ('1','29','12','3101.76'),
-                                                                          ('1','31','152','3781'),
-                                                                          ('1','26','18','2088.45'),
-                                                                          ('1','25','14.7','660.76'),
-                                                                          ('1','32','450','8077.50'),
-                                                                          ('1','30','10.2','509.49'),
-                                                                          ('1','23','8','3180');
+INSERT INTO orderline (orders_id,item_list_id,quantity,total_price) VALUES('1','32','450.00','4027.50'),
+																		  ('1','32','1.00','38.50'),
+                                                                          ('1','29','17280.00','1641.60'),
+                                                                          ('1','31','380.00','1881.00'),
+                                                                          ('1','12','1.00','37.00'),
+                                                                          ('1','11','1.00','70.00'),
+                                                                          ('1','35','1.00','599.95'),
+                                                                          ('1','21','88.84','1998.84'),
+                                                                          ('1','27','91.00','1046.50'),
+                                                                          ('1','25','14.70','330.75'),
+                                                                          ('1','30','10.20','254.49'),
+                                                                          ('1','23','20.00','1590.00'),
+                                                                          ('1','9','1.00','109.50'),
+                                                                          ('1','10','1.00','169.00'),
+                                                                          ('1','34','1.00','399.95');
 UNLOCK TABLES;

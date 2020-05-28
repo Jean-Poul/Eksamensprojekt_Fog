@@ -9,11 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Class that gets a List of all roof pitch and factor from database and sets attribute for<br>
+ * view on adminRoofPitch.jsp
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class AdminRoofPitch extends Command {
+
     /**
+     * Get roof pitch and factor from database and set attribute for jsp page
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminRoofPitch
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

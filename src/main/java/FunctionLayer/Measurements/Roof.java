@@ -1,5 +1,10 @@
 package FunctionLayer.Measurements;
 
+/**
+ * Class for instantiating instances of request roof
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class Roof {
 
     private int roof_id;
@@ -7,6 +12,14 @@ public class Roof {
     private String roof_category;
     private String roof_material;
 
+    /**
+     * Constructor for roof
+     *
+     * @param roof_id roof id
+     * @param roof_type roof type
+     * @param roof_category roof category
+     * @param roof_material roof material
+     */
     public Roof(int roof_id, String roof_type, String roof_category, String roof_material) {
         this.roof_id = roof_id;
         this.roof_type = roof_type;

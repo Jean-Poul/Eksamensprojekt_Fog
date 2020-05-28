@@ -2,7 +2,8 @@
 left to right direction
 title EksamensProjekt_Fog - Class Diagram
 
-PresentationLayer -left[hidden]> DBAccess
+"Drawings" <--> "Calculations"
+"Measurements" <-> "Calculations"
 
 package "DBAccess" #fa9696 {
     Class DataMapper
@@ -13,49 +14,56 @@ package "PresentationLayer" #78d683{
 
 FrontController --|> Command
 FrontController -[hidden]> Command
+HttpServlet -|> FrontController
 Command --|> "//Command//"
 Command -[hidden]> "//Command//"
+Tables -[hidden]> Measurements
 
     package "//Command//" #78d683{
-    AdminItemList -[hidden]>AdminItemListDB
-    AdminMeasurementUnits -[hidden]>AdminMeasurementUnitsDB
-    AdminRafterSpacing -[hidden]>AdminRafterSpacingDB
-    AdminReceipt -[hidden]>AdminRejectQuote
-    AdminRoof -[hidden]>AdminRoofDB
-    AdminRoofPitch -[hidden]>AdminRoofPitchDB
-    AdminStandardDimension -[hidden]>AdminStandardDimensionDB
+    Class AdminItemList
+    Class AdminItemListDB
+    Class AdminMeasurementUnits
+    Class AdminMeasurementUnitsDB
+    Class AdminRafterSpacing
+    Class AdminRafterSpacingDB
+    Class AdminReceipt
+    Class AdminRejectQuote
+    Class AdminRoof
+    Class AdminRoofDB
+    Class AdminRoofPitch
+    Class AdminRoofPitchDB
+    Class AdminStandardDimension
+    Class AdminStandardDimensionDB
+    Class CarportCalcPage
+    Class CarportCustomize
+    Class Drawing
+    Class EditItemList
+    Class Login
+    Class QuoteView
+    Class Redirect
+    Class Register
+    Class RejectQuote
+    Class ReturnAdmin
+    Class UnknownCommand
+    Class UpdateQuoteOrder
+    Class UpdateQuotePrice
+    Class UpdateQuoteUser
 
-    CarportCalcPage -[hidden]>CarportCustomize
-    Command -[hidden]>Drawing
-    EditItemList -[hidden]>FrontController
-    Login -[hidden]>QuoteView
-    Redirect -[hidden]>Register
-    RejectQuote -[hidden]>ReturnAdmin
-    UnknownCommand -[hidden]>UpdateQuoteOrder
-    UpdateQuotePrice -[hidden]>UpdateQuoteUser
     }
 }
 
 package "FunctionLayer" #96c4fa{
-LogicFacade <--> DataMapper
+LogicFacade <-> DataMapper
+LogicFacade <-> "//Command//"
 Connector <--> DataMapper
-DataMapper <--> User
-"Drawings" <--> "Carport Calculations"
-"Drawings" -[hidden]-->"Carport Calculations"
-ItemList <--> Item
+"Drawings" -[hidden]-->"Calculations"
+"Drawings" -[hidden]-->"Measurements"
 
-Class Exception
-Class LoginSampleException
-Exception -[hidden]> LoginSampleException
 
-    package "Proposition" #96c4fa {
-    UserProposition <--> Item
-    UserProposition <--> ItemList
-    Item -[hidden]-> ItemList
-    UserProposition -[hidden]-> "Drawings"
-
-    Class UserProposition
-    Class CustomerQuote
+    package "Exceptions" #96c4fa {
+    Class Exception
+    Class LoginSampleException
+    Exception -[hidden]> LoginSampleException
     }
 
     package "Drawings" #96c4fa {
@@ -67,18 +75,42 @@ Exception -[hidden]> LoginSampleException
     Class SvgSidewaysBlueprint
     }
 
-    package "Carport Calculations" #96c4fa {
-    Class CarportWidth
-    Class CarportLength
-    Class ShedWidth
-    Class ShedLength
-    Class RoofRaised
-    Class RoofDegree
-    Class RoofFlat
-    Class CreateCalculatedQuote
+    package "Calculations" #96c4fa {
+    Class BeamDimensionHeavy
+    Class BeamDimensionLight
     Class CarportCalculation
+    Class Item
+    Class CreateCalculatedQuote
     Class StandardDimensions
     Class PriceCalculator
+    }
+
+    package "Measurements" #96c4fa {
+
+    Class CarportLength
+    Class CarportWidth
+    Class MeasurementUnits
+    Class RafterSpacing
+    Class Roof
+    Class RoofDegree
+    Class RoofFlat
+    Class RoofPitch
+    Class RoofRaised
+    Class ShedWidth
+    Class ShedLength
+    }
+
+    package "Tables" #96c4fa {
+    CustomerQuote -up[hidden]> ItemList
+    ItemList -[hidden]up> UserProposition
+    Class CustomerQuote
+    Class ItemList
+    Class UserProposition
+    }
+
+    package "Users" #96c4fa {
+    DataMapper <-> User
+    Class User
     }
 }
 
@@ -106,6 +138,14 @@ Class CarportCalculation{
 -int roofCladType
 -int sternBoardType
 -int beamType
+-int doorKit
+-int bracketKit
+-int screwKitRoofRaised
+-int screwKitTrapez
+-int screwKitGenericRoofBrackets
+-int screwKitGenericRoofLaths
+-int screwKitShedDoorCladdingInside
+-int screwKitShedDoorCladdingOutside
 -boolean raisedRoof
 -int carportLength
 -int carportWidth
@@ -143,8 +183,10 @@ Class CarportCalculation{
 -List <BeamDimensionLight> raftStringHeavy
 +Arraylist<Arraylist> raftDistancesLight
 +Arraylist<Arraylist> raftDistancesHeavy
++double raftLengthAdjust
 -List<StandardDimensions> standardDimensions
 -Map<Integer, Double> angleAndFactor
++CarportCalculation(orderID)
 -calcRaftLength(carportWidth, customerRoofAngle,calculateRoofAngle)
 -calcShedCladding(shedWidth, shedLength)
 -calculateShedWallLaths()
@@ -159,6 +201,7 @@ Class CarportCalculation{
 }
 
 class StandardDimensions{
+-int standard_dimensions_id
 -int bottom_lathspan
 -int bottom_laths
 -double top_lath_gap
@@ -170,10 +213,16 @@ class StandardDimensions{
 -String shed_claddeing_board_dim
 -String beam_dimension_heavy
 -String beam_dimension_light
-+StandardDimensions(bottom_lathspan,bottom_laths,top_lath_gap,avg_lath_span,roof_tile_length, roof_tile_width, roof_trapez_length, roof_trapez_width, shed_claddeing_board_dim, beam_dimension_heavy, beam_dimension_light)
++StandardDimensions(standard_dimensions_id, bottom_lathspan,bottom_laths,top_lath_gap,avg_lath_span,roof_tile_length, roof_tile_width, roof_trapez_length, roof_trapez_width, shed_claddeing_board_dim, beam_dimension_heavy, beam_dimension_light)
++StandardDimensions(bottom_lathspan, bottom_laths, top_lath_gap, avg_lath_span, roof_tile_length, roof_tile_width, roof_trapez_length, roof_trapez_width, shed_claddeing_board_dim, beam_dimension_heavy, beam_dimension_light) {
+
 }
 
 class PriceCalculator{
++ArrayList <Item> itemList
++orderLinePriceOld
++orderLinePriceNew
++orderID
 -double totalRaftLength
 -double totalRaftPrice
 -double totalShedWallLathLength
@@ -191,10 +240,44 @@ class PriceCalculator{
 -double totalNoOfBeamLength
 -double totalSternBoardPrice
 -double totalBeamPrice
--double totalCarportPrice
+-int doorKitQty
+-int screwKitGenericRoofBracketsQty
+-int screwKitGenericRoofLathsQty
+-int bracketKitQty
+-int screwKitShedDoorCladdingInsideQty
+-int screwKitShedDoorCladdingOutsideQty
+-int screwKitRoofTilesQty
+-int screwKitTrapezQty
+-double doorKitPrice
+-double screwKitGenericRoofBracketsPrice
+-double screwKitGenericRoofLathsPrice
+-double bracketKitPrice
+-double screwKitShedDoorCladdingInsidePrice
+-double screwKitShedDoorCladdingOutsidePrice
+-double screwKitRoofTilesPrice
+-double screwKitTrapezPrice
+-double totalCarportCostNoTax
+-double totalCarportPriceCostWithTax
+-double totalCarportPriceCoverage
 +PriceCalculator(CarportCalculation cpCalc)
--void calculateCarportTotalPrice(raft, shedCladBoard, shedLath, roofFlat, supportStrap, roofClad, sternBoard, beam)
++PriceCalculator(oLineID, qty, orderID)
++double updatePrice(itemID, qty)
++void orderLineToDB
++void calculateCarportTotalPrice
++void calculateCarportTotalPrice(totalCarportCostNoTax)
 -Item itemSearch(int itemID)
+}
+
+Class BeamDimensionLight{
+-String beamDimensionLight
+-double beamSpacingLight
++BeamDimensionLight(beamDimensionLight, beamSpacingLight)
+}
+
+Class BeamDimensionHeavy{
+-String beamDimensionHeavy
+-double beamSpacingHeavy
++BeamDimensionHeavy(beamDimensionHeavy, beamSpacingHeavy)
 }
 
 class CarportLength{
@@ -208,9 +291,43 @@ class CarportWidth{
 class CreateCalculatedQuote{
 }
 
+Class RafterSpacing{
+-int rafter_spacing_id
+-String category
+-String beam_dimension
+-double beam_spacing
+-double rafter_length
++RafterSpacing(rafter_spacing_id, category, beam_dimension, beam_spacing, rafter_length)
+}
+
 class RoofDegree{
 -int roofDegreeOption
 +RoofDegree(roofDegreeOption)
+}
+
+class Roof{
+-int roof_id
+-String roof_type
+-String roof_category
+-String roof_material
++Roof(roof_id, roof_type, roof_category, roof_material)
+}
+
+Class RoofPitch{
+-int roof_pitch_id
+-int pitch
+-double factor
++ RoofPitch(roof_pitch_id, pitch, factor)
+}
+
+Class MeasurementUnits{
+-int measurementUnitsId;
+-int units
+-int c_width
+-int c_length
+-int ts_width
+-int ts_length
++MeasurementUnits(measurementUnitsId, units, c_width, c_length, ts_width, ts_length)
 }
 
 class RoofFlat{
@@ -234,6 +351,7 @@ class ShedWidth{
 }
 
 class Svg{
++Svg(orderID)
 -double carportWidth
 -double carportLength
 -double carportX
@@ -275,21 +393,83 @@ class Svg{
 -double textX
 -double textY
 -int text
+-double width
+-double height
+-String viewbox
+-double x
+-double y
 -Stringbuilder svg
--String headerTemplate
+-String headerTemplate1
+-String headerTemplate2
+-String headerTemplate3
+-String headerTemplate4
+-String headerTemplate5
 -String rectTemplate
+-String rectRemTemplate
+-String rectShedTemplate
 -String lineTemplate
 -String dotLineTemplate
 -String lowerTextTemplate
--String upperTextTemplate
-+Svg(height, width, viewbox, x, y)
-+Svg(x1, y1, x2, y2)
-+Svg(x, y, text)
 +void addCarport()
 + toString()
 }
 
+class SvgFront{
++SvgFront(orderID)
+-double carportWidth
+-double carportLength
+-double carportX
+-double carportY
+-double roofHeigt
+-double actualRoofHeigt
+-double roofAngle
+-double roofRaftLath
+-double beamlength
+-double carportHeight
+-double noOfRafts
+-double raftDistance
+-double raftLength
+-double raftWidth
+-double shedLength
+-double shedWidth
+-double noOfLaths
+-double lathLength
+-double lathWidth
+-double lathSpan
+-double noOfBeams
+-double beamHight
+-double beamWidth
+-double beamX
+-double beamY
+-double roofTopAngel
+-double arrowLineX1
+-double arrowLineX2
+-double arrowLineY1
+-double arrowLineY2
+-double textX
+-double textY
+-int text
+-double width
+-double height
+-String viewbox
+-double x
+-double y
+-StringBuilder svgFront = new StringBuilder()
+-String headerTemplate1
+-String headerTemplate2
+-String rectTemplate
+-String lathTemplate
+-String beamTemplate
+-String lineTemplate
+-String lineNoArrowTemplate
+-String lowerTextTemplate
+-String lowerAngelTextTemplate
++void addCarportFront()
++ toString()
+}
+
 class SvgSideways{
++SvgSideways(orderID)
 -double carportLength
 -double carportX
 -double carportY
@@ -308,21 +488,14 @@ class SvgSideways{
 -double roofRidgeLength
 -double RidgeX
 -double RidgeY
--double roofBargeHeigt
--double roofBargeLength
--double roofBargeX
--double roofBargeY
 -double fasciaBoardHeight
 -double fasciaBoardLength
 -double fasciaBoardX
 -double fasciaBoardY
 -double shedLength
--double shedX
--double shedX2
 -double shedY
 -double shedCladdingWidth
 -double shedCladdingHeight
--double noOfCladsSideways
 -double noOfLaths
 -double lathWidth
 -double lathLength
@@ -332,16 +505,12 @@ class SvgSideways{
 -double noOfBeams
 -double beamlength
 -double beamWidth
--double beamX
 -double beamY
 -double roofTileHeight
 -double roofTileWidth
--double roofTileColumns
 -double roofTileRows
 -double roofTilesX1
 -double roofTilesY1
--double roofTilesPx
--double roofTilesPy
 -double carportHeight = (roofHeigt+beamlength+5)
 -Stringbuilder svgSideways
 -String headerTemplate
@@ -354,15 +523,6 @@ class SvgSideways{
 -String rectTemplateHiddenTile
 -String lineTemplate
 -String lineNoArrowTemplate
--String dotLineTemplate
--String lowerTextTemplate
--String upperTextTemplate
--String roofTileTemplate1
--String roofTileTemplate2
--String roofTileTemplate
-+SvgSideways(height, width, viewbox, x, y)
-+SvgSideways(x1, y1, x2, y2)
-+SvgSideways(x, y, text)
 +void addRoof()
 +void addCarport()
 +void addLines()
@@ -371,6 +531,7 @@ class SvgSideways{
 }
 
 Class SvgSidewaysBlueprint{
++SvgSidewaysBlueprint(orderID)
 -double carportLength
 -double carportX
 -double carportY
@@ -387,16 +548,12 @@ Class SvgSidewaysBlueprint{
 -double RidgeX
 -double RidgeY
 -double fasciaBoardHeight
--double fasciaBoardLength
 -double fasciaBoardX
 -double fasciaBoardY
 -double shedLength
--double shedX
--double shedX2
 -double shedY
 -double shedCladdingWidth
 -double shedCladdingHeight
--double noOfCladsSideways
 -double noOfLaths
 -double lathWidth
 -double lathLength
@@ -413,55 +570,18 @@ Class SvgSidewaysBlueprint{
 -double y
 -int text
 -StringBuilder svgSidewaysBlueprint = new StringBuilder()
-+SvgSidewaysBlueprint
+-String headerTemplate
+-String rectTemplate
+-String rectTemplateRoof
+-String rectTemplateShed
+-String rectTemplateShed2
+-String rectTemplateLaths
+-String lineTemplate
+-String lineNoArrowTemplate
+-String lowerTextTemplate
 +void addRoof()
 +void addCarport()
 +void addLines()
-}
-
-class SvgFront{
--double carportWidth
--double carportLength
--double carportX
--double carportY
--double beamlength
--double roofHeigt
--double carportHeight
--double noOfRafts
--double raftDistance
--double raftLength
--double raftWidth
--double shedLength
--double shedWidth
--double noOfLaths
--double lathLength
--double lathWidth
--double lathSpan
--double noOfBeams
--double beamHight
--double beamWidth
--double beamX
--double beamY
--double roofHeight
--double roofAngle
--double roofRaftLath
--double roofTopAngel
--double arrowLineX1
--double arrowLineX2
--double arrowLineY1
--double arrowLineY2
--double textX
--double textY
--int text
--double width
--double height
--String viewbox
--double x
--double y
--StringBuilder svgFront = new StringBuilder()
-+SvgFront()
-+void addCarportFront()
-+ toString()
 }
 
 Class UserProposition{
@@ -482,8 +602,11 @@ Class UserProposition{
 -String roof_type
 -String roof_material
 -int pitch
+-int coverage
+-double offer_price
+-double total_price
 
-+UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id,order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch)
++UserProposition(user_proposition_id, name, address, zipcodeCity, phone, email, comments, orders_id, order_date, status, carport_width, carport_length, shed_width, shed_length, roof_type, roof_material, pitch, coverage, offer_price, total_price)
 }
 
 Class CustomerQuote{
@@ -495,6 +618,7 @@ Class CustomerQuote{
 -String email
 -String comment
 +CustomerQuote(customerID)
++CustomerQuote(customerId, name, address, zipcodeCity, int phone, email, comment)
 }
 
 Class Item{
@@ -505,10 +629,17 @@ Class Item{
 -int quantity
 -String unit
 -double pricePrUnit
+-int ordersID
+-int totalPrice
++ Item()
 +Item(itemListID, materialType, material, description, quantity, unit, pricePrUnit)
++Item(ordersID, itemListID, quantity, totalPrice)
 }
 
 Class ItemList{
+-int item_list_id
+-String material
+-int amounts
 -int orderline_id
 -int orders_id
 -String material_type
@@ -516,8 +647,11 @@ Class ItemList{
 -String unit
 -String description
 -double total_price
-+ItemList(orderline_id, orders_id, material_type, quantity, unit, description, total_price)
++ItemList(orderline_id, orders_id, material_type quantity unit description, total_price)
++ItemList(item_list_id, material_type, material, description, amounts, unit, price_per_unit)
 }
+
+
 
 Class LogicFacade {
 {static}+User login(email, password)

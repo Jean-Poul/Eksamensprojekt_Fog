@@ -1,7 +1,9 @@
 package FunctionLayer.Tables;
 
 /**
+ * Class for instantiating instances of request item list
  *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class ItemList {
 
@@ -20,15 +22,15 @@ public class ItemList {
 
 
     /**
-     * Constructor
+     * Constructor for adding items to orderline
      *
-     * @param orderline_id
-     * @param orders_id
-     * @param material_type
-     * @param quantity
-     * @param unit
-     * @param description
-     * @param total_price
+     * @param orderline_id orderline id
+     * @param orders_id order id
+     * @param material_type material type
+     * @param quantity quantity
+     * @param unit unit
+     * @param description description
+     * @param total_price total price
      */
     public ItemList(int orderline_id, int orders_id, String material_type, double quantity, String unit, String description, double total_price) {
         this.orderline_id = orderline_id;
@@ -41,15 +43,15 @@ public class ItemList {
     }
 
     /**
-     * Constructor for admin
+     * Constructor for admin management
      *
-     * @param item_list_id
-     * @param material_type
-     * @param material
-     * @param description
-     * @param amounts
-     * @param unit
-     * @param price_per_unit
+     * @param item_list_id item list id
+     * @param material_type material type
+     * @param material material
+     * @param description description
+     * @param amounts amounts
+     * @param unit unit
+     * @param price_per_unit price per unit
      */
     public ItemList(int item_list_id,String material_type,String material,String description,int amounts,String unit,double price_per_unit) {
         this.item_list_id = item_list_id;

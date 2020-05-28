@@ -3,8 +3,9 @@ package FunctionLayer.Drawings;
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
 /**
- *  Contains Constructor and methods for generating sidewaysBlueprint svg drawing based off the CarportCalculation class.
+ * Contains Constructor and methods for generating sidewaysBlueprint svg drawing based off the CarportCalculation class.
  *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class SvgSidewaysBlueprint {
 
@@ -15,13 +16,13 @@ public class SvgSidewaysBlueprint {
     CarportCalculation c;
 
     /**
-     *
-     * @param orderID
-     * @throws LoginSampleException
+     * Constructor for svg sideways blueprint
+     * @param orderID User data (In order to reference what order ID the drawing belongs to)
+     * @throws LoginSampleException LoginSampleException
      */
     public SvgSidewaysBlueprint(int orderID) throws LoginSampleException {
 
-        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+        c = new CarportCalculation(orderID); // Gets dummy request from database through carportcalc
 
 
         this.carportLength = c.getCarportLength();
@@ -152,7 +153,7 @@ public class SvgSidewaysBlueprint {
     }
 
     /**
-     * Draws the Carport & shed beams, barge, shedCladding and fascia board
+     * Draws the Carport and shed beams, barge, shedCladding and fascia board
      */
     public void addCarport(){
         double shedX =  (carportLength-30-shedLength);

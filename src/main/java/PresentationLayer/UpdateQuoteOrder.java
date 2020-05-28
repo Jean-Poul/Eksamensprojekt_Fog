@@ -1,20 +1,20 @@
 package PresentationLayer;
 
-import FunctionLayer.*;
 import FunctionLayer.Exceptions.LoginSampleException;
+import FunctionLayer.LogicFacade;
 import FunctionLayer.Measurements.*;
-import FunctionLayer.Measurements.RoofRaised;
 import FunctionLayer.Tables.UserProposition;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.text.DecimalFormat;
 import java.util.List;
 
 
 /**
  * UpdateQuoteOrder will update the current order while updating adminQuoteView.jsp
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class UpdateQuoteOrder extends Command {
     // Initialize variables to be able to update an order
@@ -32,10 +32,13 @@ public class UpdateQuoteOrder extends Command {
 
 
     /**
+     * Updates quote orders on adminQuoteView page
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminQuoteView
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

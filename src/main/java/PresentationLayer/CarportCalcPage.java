@@ -11,11 +11,22 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * Class that takes a user proposition and insert into user quote and order quote through LogicFacade.<br>
+ * Thereafter create a new CarportCalculation object from order id and add that to new PriceCalculator<br>
+ * object for insert into orderline. Then populate customerReceipt.jsp with user proposition input for receipt.
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class CarportCalcPage extends Command {
+
     /**
+     * Get user proposition and create user quote and calculate input
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return customerReceipt
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

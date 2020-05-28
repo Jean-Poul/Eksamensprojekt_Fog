@@ -3,11 +3,8 @@ package FunctionLayer.Drawings;
 /**
  * Contains Constructor and method for generating topview svg drawing based off the CarportCalculation class.
  *
- * @author group
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
-
-import FunctionLayer.Calculation.CarportCalculation;
-import FunctionLayer.Exceptions.LoginSampleException;
 
 import FunctionLayer.Calculation.CarportCalculation;
 import FunctionLayer.Exceptions.LoginSampleException;
@@ -21,15 +18,16 @@ public class Svg {
     CarportCalculation c;
 
     /**
-     *
-     * @param orderID               User data (In order to reference what order ID the drawing belongs to)
-     * @throws LoginSampleException
+     * Constructor for svg drawing
+     * @param orderID User data (In order to reference what order ID the drawing belongs to)
+     * @throws LoginSampleException LoginSampleException
      */
     public Svg(int orderID) throws LoginSampleException {
 
-        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+        c = new CarportCalculation(orderID); // Gets dummy request from database through carportcalc
 
         this.carportWidth = c.getCarportWidth();
+
         this.carportLength = c.getCarportLength();
         this.noOfRafts = c.getNoOfRafts();
         this.raftDistance = c.getAvgRaftDistance();
@@ -231,7 +229,7 @@ public class Svg {
         //Rafters
         svg.append(String.format(rectTemplate, raftX, raftY, raftLength+5, raftWidth));
         for (int i=0; i <noOfRafts; i++) {
-            raftX=raftX+(carportLength /noOfRafts);
+            raftX=raftX+(carportLength/noOfRafts);
             svg.append(String.format(rectTemplate, raftX, raftY, raftLength+5, raftWidth));
         }
 
@@ -255,7 +253,7 @@ public class Svg {
 
         //Raft measurements
         svg.append(String.format(lineTemplate, arrowLineX1=0, arrowLineY1-30, raftDistance, arrowLineY2-30));
-        svg.append(String.format(lowerTextTemplate, x+43, y-35, text= (int) raftDistance));
+        svg.append(String.format(lowerTextTemplate, raftDistance/2, y-38, text= (int) raftDistance));
 
         //Lath measurements
         svg.append(String.format(lineTemplate, carportLength+10, lathSpan, carportLength+10, arrowLineY2=0));

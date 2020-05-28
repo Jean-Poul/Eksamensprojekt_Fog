@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 /**
 * Creates a connection to the database
-*
+* @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class Connector {
 
@@ -17,15 +17,15 @@ public class Connector {
     private static Connection singleton;
 
     /**
-     *
-     * @param con
+     * Set connection string
+     * @param con connection
      */
     public static void setConnection( Connection con ) {
         singleton = con;
     }
 
     /**
-     *
+     * Create connection
      * @return singleton
      * @throws ClassNotFoundException Thrown when an application tries to load in a class, but no definition for the class with the specified name could be found.
      * @throws SQLException An exception that provides information on a database access error or other errors
@@ -39,7 +39,9 @@ public class Connector {
         return singleton;
     }
 
-
+    /**
+     * Set DB Credentials
+     */
     public static void setDBCredentials() {
         String deployed = System.getenv("DEPLOYED");
         if (deployed != null){
@@ -49,7 +51,7 @@ public class Connector {
             PASSWORD = System.getenv("JDBC_PASSWORD");
         } else {
             // Localhost
-            URL = "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET&useSSL=false";
+            URL = "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET"; //&useSSL=false
             USERNAME = "root";
             PASSWORD = "password";
         }

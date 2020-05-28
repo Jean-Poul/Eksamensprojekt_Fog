@@ -19,6 +19,8 @@ import java.util.List;
 
 /**
  * The purpose of EditItemList is to be able to update the quantity of items from the item list
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class EditItemList extends Command {
 
@@ -32,9 +34,12 @@ public class EditItemList extends Command {
 
 
     /**
+     * Updates quantity and price in orderline by id
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminDrawing
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

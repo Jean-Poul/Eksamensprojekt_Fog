@@ -10,12 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Class that takes requests from adminItemList.jsp and choose witch query through LogicFacade to<br>
+ * populate, and thereafter return updated Item List to jsp page.
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class AdminItemListDB extends Command {
+
     /**
+     * Get request from jsp page and populate data to DB and return new item list
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminItemList
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

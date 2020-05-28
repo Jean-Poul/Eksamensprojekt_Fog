@@ -11,15 +11,20 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * CarportCustomize is used to get values from the database and populate select option on customerCarportCustomize.jsp
+ * CarportCustomize is used to get values from the database and populate select option<br>
+ * on customerCarportCustomize.jsp
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class CarportCustomize extends Command {
+
     /**
+     * Set select options on customerCarportCustomize.jsp
      *
-     * @param request
-     * @param response
+     * @param request request
+     * @param response response
      * @return customerCarportCustomize
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

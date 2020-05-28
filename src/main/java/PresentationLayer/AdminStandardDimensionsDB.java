@@ -9,7 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Class that takes requests from adminStandardDimensions.jsp and update through LogicFacade<br>
+ * and thereafter return updated standard dimension list to jsp page.
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class AdminStandardDimensionsDB extends Command {
+
+    /**
+     *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
+     * @return adminStandardDimensions
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
+     */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {
         // Initializing session variable with current session

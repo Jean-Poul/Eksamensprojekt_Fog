@@ -2,15 +2,17 @@ package FunctionLayer.Measurements;
 
 /**
  * Class for instantiating instances of request measurements for shed length
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class ShedLength {
 
     private int shedLengthOption;
 
     /**
-     * Constructor
+     * Constructor for shed length
      *
-     * @param shedLengthOption
+     * @param shedLengthOption shed length option
      */
     public ShedLength(int shedLengthOption) {
         this.shedLengthOption = shedLengthOption;

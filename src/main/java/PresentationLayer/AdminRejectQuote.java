@@ -11,15 +11,20 @@ import java.util.List;
 
 /**
  * AdminRejectQuote will delete a customer quote using a user proposition id
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class AdminRejectQuote extends Command {
     // Initialize variable to be able to parse a String to an int
     private int qID = 0;
 
     /**
+     * Delete user proposition and refresh adminpage.jsp
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminpage
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

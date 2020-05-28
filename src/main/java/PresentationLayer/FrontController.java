@@ -6,15 +6,20 @@
 package PresentationLayer;
 
 import FunctionLayer.Exceptions.LoginSampleException;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
-
+/**
+ * Class that process request for both GET and POST methods
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 @WebServlet( name = "FrontController", urlPatterns = { "/FrontController" } )
 public class FrontController extends HttpServlet {
 

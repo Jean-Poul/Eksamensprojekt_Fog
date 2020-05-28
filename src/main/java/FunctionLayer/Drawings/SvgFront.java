@@ -7,7 +7,7 @@ import FunctionLayer.Exceptions.LoginSampleException;
 /**
  * Contains Constructor and method for generating drawing based of the CarPortCalculation class.
  *
- * @author group
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 
 
@@ -20,13 +20,13 @@ public class SvgFront {
     CarportCalculation c;
 
     /**
-     *
-     * @param orderID
-     * @throws LoginSampleException
+     * Constructor for svg front drawing
+     * @param orderID User data (In order to reference what order ID the drawing belongs to)
+     * @throws LoginSampleException LoginSampleException
      */
     public SvgFront(int orderID) throws LoginSampleException {
 
-        c = new CarportCalculation(orderID); //Henter dummy forespørgsel fra database igennem carportcalc
+        c = new CarportCalculation(orderID); // Gets dummy request from database through carportcalc
 
         this.carportWidth = c.getCarportWidth();
         this.carportLength = c.getCarportLength();
@@ -68,7 +68,7 @@ public class SvgFront {
     private double roofAngle;
     private double roofRaftLath;
 
-    private double beamlength = 210;
+    private double beamlength = 250;
     private double carportHeight = roofHeight+beamlength+5;
 
     private double noOfRafts;
@@ -165,7 +165,7 @@ public class SvgFront {
 
         //Leftside arrow
         svgFront.append(String.format(lineTemplate, arrowLineX1-30, arrowLineY1=0, arrowLineX2=-30, arrowLineY2=(carportHeight)));
-        svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 210));
+        svgFront.append(String.format(lowerTextTemplate, x=-33, y=(carportHeight /2), text= 250));
 
         //Roof arrows
         if(roofAngle>0) {
