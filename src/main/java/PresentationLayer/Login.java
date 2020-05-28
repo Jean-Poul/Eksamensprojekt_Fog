@@ -12,13 +12,17 @@ import java.util.List;
 
 /**
  * The purpose of Login is to have a user role before you can access the admin page
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
-
-
 public class Login extends Command {
+
     /**
+     * returns a page, depending on the assigned user role (admin/kunde)
      *
-     * @return user.getRole() + "page"      returns a page, depending on the assigned user role (admin/kunde)
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
+     * @return user.getRole() + "page"
      * @throws LoginSampleException Exception for login
      */
     @Override

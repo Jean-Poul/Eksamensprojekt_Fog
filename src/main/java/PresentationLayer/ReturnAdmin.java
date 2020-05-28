@@ -11,12 +11,18 @@ import java.util.List;
 
 /**
  * The ReturnAdmin class makes sure the proposition list is updated when returning to adminpage.jsp from adminQuoteView.jsp
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class ReturnAdmin extends Command {
+
     /**
+     * Set userProposition object for view on adminpage.jsp
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminpage
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

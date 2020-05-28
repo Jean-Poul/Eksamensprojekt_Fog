@@ -20,6 +20,11 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
+/**
+ * Test class for DataMapper
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class DataMapperTest {
 
 

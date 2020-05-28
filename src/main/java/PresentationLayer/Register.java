@@ -1,20 +1,25 @@
 package PresentationLayer;
 
-import FunctionLayer.LogicFacade;
 import FunctionLayer.Exceptions.LoginSampleException;
-import FunctionLayer.Users.User;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Register will add a new customer to the database, using email and password
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class Register extends Command {
+
     /**
+     * NOT IN USE<br>
+     *     Add new customer to database
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return user.getRole() + "page"
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {

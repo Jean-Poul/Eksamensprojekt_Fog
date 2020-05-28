@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * UpdateQuoteUser will update the currently viewed user info while updating the jsp site
  *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class UpdateQuoteUser extends Command {
     // Initialize variables to be able to update a proposition and calculate price
@@ -28,12 +29,13 @@ public class UpdateQuoteUser extends Command {
     private String zipcode;
 
     /**
+     * Update user info on adminQuoteView page
      *
-     * @param request
-     * @param response
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminQuoteView
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

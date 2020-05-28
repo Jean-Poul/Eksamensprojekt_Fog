@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * QuoteView is used to populate info fields with user quote information on adminQuoteView.jsp
  *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class QuoteView extends Command {
     // Initialize variable to be able to parse a String to an int and calculate price
@@ -21,10 +22,13 @@ public class QuoteView extends Command {
 
 
     /**
+     * Get list from UserProposition and measurements objects and populate adminQuoteView.jsp
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminQuoteView
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

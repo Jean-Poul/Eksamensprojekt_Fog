@@ -5,6 +5,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test class for Svg view
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class SvgTest {
 
     Svg svg;

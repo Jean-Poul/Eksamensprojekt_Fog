@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 /**
  * Command Pattern design template - called by FrontController
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 abstract class Command {
 

@@ -2,6 +2,7 @@ package FunctionLayer.Calculation;
 
 /**
  * Creates a object for beam dimension light
+ *
  * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class BeamDimensionLight {

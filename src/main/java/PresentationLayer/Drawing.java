@@ -16,6 +16,8 @@ import java.util.List;
 
 /**
  * Drawing class will show a table of a item list on the current order and show the blueprints of carport + shed
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class Drawing extends Command {
     // Initialize variable to be able to parse a String to an int
@@ -24,11 +26,13 @@ public class Drawing extends Command {
 
 
     /**
+     * Get user proposition- and item-list. Initialize svg object and set attributes for adminDrawing.jsp<br>
+     * with result.
      *
-     * @param request
-     * @param response
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminDrawing
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

@@ -11,15 +11,20 @@ import java.util.List;
 
 /**
  * RejectQuote will reject and delete a customer quote using a user proposition id
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class RejectQuote extends Command {
     // Initialize variable to be able to parse a String to an int
     private int qID;
 
     /**
+     * Delete user quote and return to admin page
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminpage
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

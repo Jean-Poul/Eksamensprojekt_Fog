@@ -18,6 +18,8 @@ import java.util.Locale;
 
 /**
  * AdminReceipt will change status on a quote to "Godkend" while printing a receipt for the customer
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class AdminReceipt extends Command {
     // Initialize variable to be able to parse a String to an int and calculate price
@@ -30,10 +32,14 @@ public class AdminReceipt extends Command {
     private String totalPrice;
 
     /**
+     * Get all lists from user proposition, update status, get coverage<br>
+     * and populate result to jsp page
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminReceipt
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

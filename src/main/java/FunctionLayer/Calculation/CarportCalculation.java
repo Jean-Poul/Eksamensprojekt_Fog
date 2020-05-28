@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Contains methods for calculating every dimension of the total carport solution.
+ * Contains methods for calculating every dimension of the total carport solution.<br>
  * The calculations are used to generate drawings, bill-of-material and the final quote.
  *
  * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller

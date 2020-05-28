@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * UpdateQuoteUser will update prices in the current quote/proposition while updating adminQuoteView.jsp
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class UpdateQuotePrice extends Command {
     // Initialize variables to be able to update a proposition and calculate price
@@ -24,10 +26,13 @@ public class UpdateQuotePrice extends Command {
 
 
     /**
+     * Updates quote price on adminQuoteView page
      *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return adminQuoteView
-     * @throws LoginSampleException
-     * @throws ClassNotFoundException
+     * @throws LoginSampleException LoginSampleException
+     * @throws ClassNotFoundException ClassNotFoundException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, ClassNotFoundException {

@@ -8,6 +8,11 @@ import org.junit.Test;
 
 import java.util.Map;
 
+/**
+ * Test class for CarportCalculation
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class CarportCalculationTest {
 
     CarportCalculation cp;

@@ -1,0 +1,9 @@
+DBAccess
+FunctionLayer
+FunctionLayer.Calculation
+FunctionLayer.Drawings
+FunctionLayer.Exceptions
+FunctionLayer.Measurements
+FunctionLayer.Tables
+FunctionLayer.Users
+PresentationLayer

@@ -4,19 +4,18 @@ import DBAccess.Connector;
 import FunctionLayer.Exceptions.LoginSampleException;
 import FunctionLayer.LogicFacade;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sun.rmi.runtime.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
+/**
+ * Test class for PriceCalculation
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
+ */
 public class PriceCalculatorTest {
 
     private static Connection testConnection;

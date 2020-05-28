@@ -7,13 +7,18 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Redirect helps with managing the navigation of the site while not having to make a java class and form for each link
+ *
+ * @author Alexander Pihl, Mick Larsen, Morten Rahbek, Per Kringelbach, Jean-Poul Leth-Møller
  */
 public class Redirect extends Command {
-    /**
-     *
 
+    /**
+     * Navigation helper for jsp pages without using form and java classes
+     *
+     * @param request request for Http Servlet
+     * @param response response for Http Servlet
      * @return destination
-     * @throws LoginSampleException
+     * @throws LoginSampleException LoginSampleException
      */
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
