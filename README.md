@@ -1,4 +1,4 @@
-<img src="https://github.com/Jean-Poul/Eksamensprojekt_Fog/blob/Production/Img/FogLogo.png" height="100px" width="100px">
+<img src="https://github.com/Jean-Poul/Eksamensprojekt_Fog/blob/master/src/main/webapp/images/logo.png" height="100px" width="100px">
 
 <br>
 
