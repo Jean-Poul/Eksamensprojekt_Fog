@@ -233,7 +233,7 @@ class PriceCalculator{
 -double totalShedCladdingBoardLength
 -double totalShedCladdingBoardPrice
 -double totalShedWallLathPrice
--double totalLathsLength
+1-double totalLathsLength
 -double totalSupportingStrapLength
 -int totalNumberOfRoofTiles
 -int totalNumberOfRoofTrapezPlates
