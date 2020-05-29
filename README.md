@@ -10,15 +10,15 @@
 Web applikation udført med Java i en command-pattern skabelon.
 
 #### Præsentationsvideo
-[https://www.youtube.com/watch?v=1ygwSqIfdZ8&feature=youtu.be] (YouTube)
+[YouTube](https://www.youtube.com/watch?v=1ygwSqIfdZ8&feature=youtu.be)
 
 
 #### Website
-[http://134.209.243.195:8080/Fog/](Deployed website)
+[Deployed website](http://134.209.243.195:8080/Fog/)
 
 
 #### JavaDoc
-[https://jean-poul.github.io/Eksamensprojekt_Fog/](JavaDoc)
+[JavaDoc](https://jean-poul.github.io/Eksamensprojekt_Fog/)
 
 <br>
 
