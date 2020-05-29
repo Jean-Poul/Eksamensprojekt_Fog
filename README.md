@@ -9,7 +9,16 @@
 #### 2. Semester, CPH Business Lyngby</h2>
 Web applikation udført med Java i en command-pattern skabelon.
 
-**OBS: Den nyeste version af programmet ligger på *Production* branch**
+#### Præsentationsvideo
+[https://www.youtube.com/watch?v=1ygwSqIfdZ8&feature=youtu.be] (YouTube)
+
+
+#### Website
+[http://134.209.243.195:8080/Fog/](Deployed website)
+
+
+#### JavaDoc
+[https://jean-poul.github.io/Eksamensprojekt_Fog/](JavaDoc)
 
 <br>
 

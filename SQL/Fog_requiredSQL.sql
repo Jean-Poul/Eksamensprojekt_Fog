@@ -6,7 +6,7 @@ USE fogdb;
 -- + One dummy user_proposition, orders record
 -- ------------------------------------------------------------------------------------------------------------------------
 LOCK TABLES users WRITE;
-INSERT INTO users (email,password,role) VALUES ('admin@fog.dk','1234','admin');
+INSERT INTO users (email,password,role) VALUES ('fogAdmin@fog.dk','Gruppe666/','admin');
 UNLOCK TABLES;
 
 LOCK TABLES measurement_units WRITE;

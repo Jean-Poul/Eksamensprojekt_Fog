@@ -24,10 +24,9 @@ public class Svg {
      */
     public Svg(int orderID) throws LoginSampleException {
 
-        c = new CarportCalculation(orderID); // Gets dummy request from database through carportcalc
+        c = new CarportCalculation(orderID);
 
         this.carportWidth = c.getCarportWidth();
-
         this.carportLength = c.getCarportLength();
         this.noOfRafts = c.getNoOfRafts();
         this.raftDistance = c.getAvgRaftDistance();
@@ -40,7 +39,6 @@ public class Svg {
         this.lathSpan = c.getLathSpan();
         this.noOfBeams = c.getNoOfBeams();
         this.roofBargeWidth = c.getCarportLength();
-
 
         //If else for handling viewbox size
         if(carportWidth<400 && carportLength<400) {
@@ -111,9 +109,6 @@ public class Svg {
     private double textY = 0;
     private int text = 0;
 
-    //##########################################################
-    //Variables for Svg.java
-    //##########################################################
     private double width;
     private double height;
     private String viewbox;
@@ -166,7 +161,9 @@ public class Svg {
                                             "</marker>\n" +
                                             "</defs>";
 
-    private final String rectTemplate       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectTemplate       = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" " +
+                                              "style=\"stroke:#000000; fill: #ffffff\" />";
+
     private final String rectRemTemplate    = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #bababa\" />";
     private final String rectShedTemplate   = "<rect transform=\"translate(100,100)\" x=\"%f\" y=\"%f\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #cfcfcf\" />";
     private final String lineTemplate       = "<line transform=\"translate(100,100)\" x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\" style=\"stroke:#000000;\n" +

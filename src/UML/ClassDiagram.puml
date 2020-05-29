@@ -53,11 +53,15 @@ Tables -[hidden]> Measurements
 }
 
 package "FunctionLayer" #96c4fa{
-LogicFacade <-> DataMapper
-LogicFacade <-> "//Command//"
+LogicFacade <--> "DataMapper"
+LogicFacade <--> "//Command//"
+LogicFacade <--> "Drawings"
+LogicFacade <--> "Calculations"
+LogicFacade <-> "Tables"
 Connector <--> DataMapper
 "Drawings" -[hidden]-->"Calculations"
-"Drawings" -[hidden]-->"Measurements"
+"Drawings" -[hidden]->"Measurements"
+"Tables" <-> "LogicFacade"
 
 
     package "Exceptions" #96c4fa {
@@ -229,7 +233,7 @@ class PriceCalculator{
 -double totalShedCladdingBoardLength
 -double totalShedCladdingBoardPrice
 -double totalShedWallLathPrice
--double totalLathsLength
+1-double totalLathsLength
 -double totalSupportingStrapLength
 -int totalNumberOfRoofTiles
 -int totalNumberOfRoofTrapezPlates
