@@ -43,12 +43,12 @@ public class Connector {
      * Set DB Credentials
      */
     public static void setDBCredentials() {
-        String deployed = System.getenv("DEPLOYED");
+        String deployed = System.getenv("DEPLOYED_FOG");
         if (deployed != null){
             // Prod: hent variabler fra setenv.sh i Tomcats bin folder
-            URL = System.getenv("JDBC_CONNECTION_STRING");
-            USERNAME = System.getenv("JDBC_USER");
-            PASSWORD = System.getenv("JDBC_PASSWORD");
+            URL = System.getenv("JDBC_CONNECTION_STRING_FOG");
+            USERNAME = System.getenv("JDBC_USER_FOG");
+            PASSWORD = System.getenv("JDBC_PASSWORD_FOG");
         } else {
             // Localhost
             URL = "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET"; //&useSSL=false

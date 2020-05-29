@@ -21,12 +21,12 @@
                         <div class="form-group">
                             <label for="InputEmail">Email adresse</label>
                             <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp"
-                                   name="email" value="admin@fog.dk">
+                                   name="email">
                             <small id="emailHelp" class="form-text text-muted">Brugernavn</small>
                         </div>
                         <div class="form-group">
                             <label for="InputPassword">Password</label>
-                            <input type="password" class="form-control" id="InputPassword" name="password" value="Gruppe666/">
+                            <input type="password" class="form-control" id="InputPassword" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Log ind</button>
                     </form>
